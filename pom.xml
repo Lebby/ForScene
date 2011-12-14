@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>Lebby</groupId>
+  <artifactId>forscene-project</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>forscene-project</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <android.version>2.0</android.version>
+    <android.maven.version>3.0.0</android.maven.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.googlecode.playn</groupId>
+    	<artifactId>playn-project</artifactId>
+    	<type>pom</type>
+    	<version>1.0.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.googlecode.playn</groupId>
+    	<artifactId>playn-core</artifactId>
+    	<version>1.0.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.googlecode.playn</groupId>
+    	<artifactId>playn-android</artifactId>
+    	<version>1.0.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.googlecode.playn</groupId>
+    	<artifactId>playn-flash</artifactId>
+    	<version>1.0.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.googlecode.playn</groupId>
+    	<artifactId>playn-html</artifactId>
+    	<version>1.0.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.googlecode.playn</groupId>
+    	<artifactId>playn-java</artifactId>
+    	<version>1.0.2</version>
+    </dependency>
+  </dependencies>
+  <description>Forscene is a project based on PlayN project ( ex-forplay). It add a scene management features and other features.</description>
+  <organization>
+  	<name>Lebby</name>
+  </organization>
+  <modules>
+    <module>forscene-test</module>
+    <module>forscene-core</module>
+  </modules>
+  <dependencyManagement>
+  	<dependencies>
+  	</dependencies>
+  </dependencyManagement>
+  
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>tests</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>${basedir}/src</directory>
+      </resource>
+    </resources>
+  </build>
+  
+</project>
