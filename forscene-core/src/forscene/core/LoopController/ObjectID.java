@@ -1,40 +1,33 @@
 package forscene.core.LoopController;
 
-public class ObjectID<T> {
-	private String name="";
+import playn.core.PlayN;
+import forscene.core.entities.AbstractSceneObject;
+
+
+public class ObjectID implements  Comparable<ObjectID> {	
 	private long ID;
-	private T instance;
+	private AbstractSceneObject instance;
 	private ASOType type;
 	
-	private ObjectID()
-	{}
-	
-	public ObjectID(T instance)
+	public ObjectID(AbstractSceneObject instance)
 	{
 		this.instance = instance;
+		
 	}
 	
 	public String getName() {
-		return name;
+		return instance.getName();
 	}
 	
 	public void setName(String name) {
-		this.name = name;
-	}
+		instance.setName(name);
+	}	
 	
-	public long getID() {
-		return ID;
-	}
-	
-	public void setID(long iD) {
-		ID = iD;
-	}
-	
-	public T getInstance() {
+	public AbstractSceneObject getInstance() {
 		return instance;
 	}
 	
-	public void setInstance(T instance) {
+	public void setInstance(AbstractSceneObject instance) {
 		this.instance = instance;
 	}
 	
@@ -42,5 +35,10 @@ public class ObjectID<T> {
 	{
 		return type.getType();
 	}
+
+	public int compareTo(ObjectID arg0) {
+		PlayN.log().debug("ObjectIDCompare : " + this.getName() + " " + arg0.getName());
+		return this.getName().compareTo(arg0.getName());		
+	}	
 	
 }

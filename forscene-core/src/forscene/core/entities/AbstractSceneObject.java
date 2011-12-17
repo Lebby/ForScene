@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import playn.core.GroupLayer;
+import playn.core.PlayN;
 import forscene.core.LoopController.ObjectID;
 import forscene.core.util.GraphicFactory;
 import forscene.exceptions.AbstractObjectNotFoundException;
@@ -15,16 +16,16 @@ import forscene.exceptions.NoNameException;
 public abstract class AbstractSceneObject{
 	private GroupLayer root;
 	private String name="";
-	private ObjectID<AbstractSceneObject> ID;
+	private ObjectID ID;
 	
 	//TODO: improve Object child
-	Set<ObjectID<AbstractSceneObject>> childs;
+	TreeSet<ObjectID> childs;
 	
 	public AbstractSceneObject() {
 		root = GraphicFactory.createGroupLayer();
 		root.clear();
-		childs = new TreeSet<ObjectID<AbstractSceneObject>>();
-		ID = new ObjectID<AbstractSceneObject>(this);
+		childs = new TreeSet<ObjectID>();
+		ID = new ObjectID(this);
 	}
 	
 	public GroupLayer getRoot()
@@ -73,7 +74,8 @@ public abstract class AbstractSceneObject{
 	public void addSceneObject(AbstractSceneObject object) throws NoNameException
 	{
 		if ( object.getName() == null || object.getName() == "" ) throw new NoNameException();
-		childs.add(new ObjectID<AbstractSceneObject>(object));		
+			childs.add(new ObjectID(object));
+		PlayN.log().debug("childs size : " + childs.size());
 	}
 	
 	public void addSceneObject(String name,AbstractSceneObject object) throws NoNameException
@@ -91,8 +93,8 @@ public abstract class AbstractSceneObject{
 	
 	public AbstractSceneObject getSceneObject(String name) throws AbstractObjectNotFoundException
 	{
-		for (Iterator<ObjectID<AbstractSceneObject>> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID<AbstractSceneObject> type = (ObjectID<AbstractSceneObject>) iterator.next();
+		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
+			ObjectID type = (ObjectID) iterator.next();
 			if (type.getName()==name)
 				return type.getInstance();
 		}
@@ -100,21 +102,13 @@ public abstract class AbstractSceneObject{
 	}
 
 	public String getName() {
-		return ID.getName();
+		return name;
 	}
 
 	public void setName(String name) {
-		ID.setName (name);
+		this.name = name;
 	}
-
-	public long getID() {
-		return ID.getID();
-	}
-
-	public void setID(long iD) {
-		ID.setID(iD);
-	}
-	
+		
 	public String getType()
 	{
 		return ID.getType();
@@ -122,11 +116,12 @@ public abstract class AbstractSceneObject{
 	
 	public void buildChild()
 	{
-		for (Iterator<ObjectID<AbstractSceneObject>> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID<AbstractSceneObject> type = (ObjectID<AbstractSceneObject>) iterator.next();					
+		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
+			ObjectID type = (ObjectID) iterator.next();					
 			type.getInstance().build();
-			type.getInstance().buildChild();
+			type.getInstance().buildChild();						
 			getRoot().add(type.getInstance().getRoot());
+			PlayN.log().debug("BuildChild");
 		}
 		
 	}

@@ -143,9 +143,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		}
 		else
 		{
-			currentScene = scene;			
+			currentScene = scene;
+			PlayN.log().debug("loadscene build/buildchild");
 			scene.build();
 			scene.buildChild();
+			
+			
 		}
 		if (currentScene != null) prevScene=currentScene;
 		

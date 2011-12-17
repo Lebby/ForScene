@@ -32,6 +32,7 @@ public class ASOLibrary {
 		return null;
 	}
 	
+	/*
 	public AbstractSceneObject getObjectByID(long ID)
 	{
 		for (Iterator iterator = objects.iterator(); iterator.hasNext();) {
@@ -39,7 +40,7 @@ public class ASOLibrary {
 			if (value.getID() == ID) return value;			
 		}
 		return null;
-	}
+	}*/
 	
 	public AbstractSceneObject[] getObjectsByType(String type)
 	{
