@@ -10,13 +10,38 @@ public abstract class AbstractScene extends AbstractSceneObject{
 	private AbstractKeyboardListener keyboardListener;
 	
 	
-	public boolean USE_TIMER = false;
-	public boolean IS_READY_TO_SWITCH = false;
-	public boolean IS_CONDITIONAL = false;
+	private boolean USE_TIMER = false;
+	private boolean IS_READY_TO_SWITCH = false;
+	private boolean IS_CONDITIONAL = false;
 	private int seconds;
 	
 	private AbstractScene next,prev;
 	
+	
+	public boolean isConditional()
+	{
+		return IS_CONDITIONAL;
+	}
+	
+	public void setConditional(boolean isConditional)
+	{
+		IS_CONDITIONAL = isConditional;
+	}
+	
+	public boolean isReadyToSwitch()
+	{
+		return IS_READY_TO_SWITCH;
+	}
+	
+	public void setReadyToSwitch(boolean isReady)
+	{
+		IS_READY_TO_SWITCH = isReady;
+	}
+	
+	public boolean hasTimeout()
+	{
+		return USE_TIMER;
+	}	
 	
 	public AbstractMouseListener getMouseListener() {
 		return mouseListener;
@@ -34,12 +59,11 @@ public abstract class AbstractScene extends AbstractSceneObject{
 	}
 
 	
-	
-	public int getSeconds() {
+	public int getTimeout() {
 		return seconds;
 	}
 
-	public void setSeconds(int seconds) {
+	public void setTimeout(int seconds) {
 		this.seconds = seconds;
 		USE_TIMER = true;
 	}
@@ -72,13 +96,11 @@ public abstract class AbstractScene extends AbstractSceneObject{
 		this.updateRate = rate;
 	}
 	
+
 	public long getUpdateRate()
 	{
 		return updateRate;
 	}
 	
-	
-	
-	
-	
+
 }

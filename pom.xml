@@ -12,8 +12,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <android.version>2.0</android.version>
-    <android.maven.version>3.0.0</android.maven.version>
   </properties>
 
   <dependencies>
@@ -59,8 +57,7 @@
   <organization>
   	<name>Lebby</name>
   </organization>
-  <modules>
-    <module>forscene-test</module>
+  <modules>    
     <module>forscene-core</module>
   </modules>
   <dependencyManagement>

@@ -2,6 +2,9 @@ package forscene.core.util;
 
 import java.util.ArrayList;
 
+import forscene.core.entities.AbstractScene;
+import forscene.core.entities.AbstractSceneObject;
+
 import playn.core.AssetManager;
 import playn.core.CanvasLayer;
 import playn.core.Font;
@@ -26,24 +29,17 @@ public class GraphicFactory {
 	
 	public static ImageLayer loadImage(String url)
 	{
-		// create and add background image layer
-		//GroupLayer layer = GraphicFactory.createGroupLayer();
-		 
 		Image bgImage = assetManager().getImage(url);
 	    ImageLayer bgLayer = graphics().createImageLayer(bgImage);
 	    //PlayN.log().debug("TEST " + bgLayer);	    
 	    return bgLayer;
-
-	    // add a listener for pointer (mouse, touch) input
-/*	    pointer().setListener(new Pointer.Adapter() {
-	      @Override
-	      public void onPointerEnd(Pointer.Event event) {
-	        Pea pea = new Pea(layer, event.x(), event.y());
-	        peas.add(pea);
-	      }
-	    });
-*/
-		
+	}
+	
+	public static ImageLayer addImage(String url,AbstractSceneObject scene)
+	{
+		ImageLayer image = loadImage(url);
+		scene.getRoot().add(image);
+		return image;
 	}
 	
 	public static Layer createText(String text, TextFormat format)

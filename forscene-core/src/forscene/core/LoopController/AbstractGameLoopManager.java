@@ -143,8 +143,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		}
 		else
 		{
-			currentScene = scene;		
+			currentScene = scene;			
 			scene.build();
+			scene.buildChild();
 		}
 		if (currentScene != null) prevScene=currentScene;
 		
@@ -319,6 +320,10 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	
 	public void paint()
 	{
+		eventMonitor.push(new EventDrawScene(currentScene));
+		
+		/* substitution by evenetDrawScene
+		 * 
 		ArrayList<Layer> ls = new ArrayList<Layer>();
 		for ( int i = 0 ; i < root.size() ; i++)
 		{
@@ -332,6 +337,8 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 			root.add(ls.get(i));
 		}
 		//PlayN.log().debug("Size root tm : " + root.size());
+		 * 
+		 */
 		
 	}
 	
@@ -356,10 +363,10 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 				eventMonitor.push(new EventUpdateScene(currentScene));
 			}
 			// currentScene.updateState(); //OLD
-			if (currentScene.IS_READY_TO_SWITCH)
+			if (currentScene.isReadyToSwitch())
 				eventMonitor.push(new EventNext());
 			
-			if ( currentScene.USE_TIMER)
+			if ( currentScene.hasTimeout())
 			{				
 //				PlayN.log().debug("USETIMER : " + (seconds - currentTimeTimer));
 				if (startTimer == false )
@@ -367,7 +374,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 					startTimer = true;
 					currentTimeTimer = seconds;				
 				}
-				if ((startTimer) && (seconds - currentTimeTimer) == currentScene.getSeconds() )
+				if ((startTimer) && (seconds - currentTimeTimer) == currentScene.getTimeout() )
 				{					
 					eventMonitor.push(new EventNext()); 
 					startTimer = false;			
@@ -379,7 +386,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 //		PlayN.log().debug("currentScene!!!: " + currentScene);
 //		if (currentScene != null )
 //			PlayN.log().debug("currentScene NEXT!!!: " + currentScene.getNext());
-		eventMonitor.push(new EventDrawScene(currentScene));
+		
+		//Before ... now moved in paint
+		//eventMonitor.push(new EventDrawScene(currentScene));
 		
 	}
 	

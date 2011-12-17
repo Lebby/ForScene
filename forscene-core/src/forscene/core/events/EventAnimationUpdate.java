@@ -26,6 +26,12 @@ public class EventAnimationUpdate extends AbstractEvent{
 			PlayN.log().debug( " ticksRAte " + GameLoopManager.getInstance().getTickRate());
 			PlayN.log().debug( " second " + GameLoopManager.getInstance().getSeconds());
 			PlayN.log().debug( " updateRate " + updateRate );*/
+			if (updateRate == 0 )
+			{
+				animation.run();				
+				return;
+			}
+			
 			 long scaledFps =  ( GameLoopManager.getInstance().getTickRate() / updateRate);
 			 //PlayN.log().debug( " turi:  " + scaledFps  );
 			if (scaledFps == 0 ) scaledFps =1;

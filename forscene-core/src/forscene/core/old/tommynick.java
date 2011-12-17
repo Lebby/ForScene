@@ -20,7 +20,7 @@ public class tommynick implements Game {
 	Introduction intro = new Introduction();
 	
 	private int sec = 0;
-  @Override
+//  @Override
   public void init() {
 	  gameController = new GameController();
 	  
@@ -33,13 +33,13 @@ public class tommynick implements Game {
 	  GameController.loadScene(scene);  
   }
 
-  @Override
+//  @Override
   public void paint(float alpha) {
     // the background automatically paints itself, so no need to do anything here!
 	  GameController.updateScene();
   }
 
-  @Override
+//  @Override
   public void update(float delta) {
 	  //verify state
 	  sec ++ ;
@@ -49,7 +49,7 @@ public class tommynick implements Game {
 	  }	  
   }
 
-  @Override
+//  @Override
   public int updateRate() {
     return 25;
   }

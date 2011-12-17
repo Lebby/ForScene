@@ -45,8 +45,6 @@ public class Scroll extends AbstractEffect {
 		this.loop = loop;
 	}
 
-
-	
 	@Override
 	public void goNext() {		
 		run();
@@ -96,8 +94,7 @@ public class Scroll extends AbstractEffect {
 	
 	@Override
 	public void build() {
-		setRoot(getTarget().getRoot());
-		
+		setRoot(getTarget().getRoot());		
 	}
 	
 	public float getStartX() {
@@ -115,6 +112,5 @@ public class Scroll extends AbstractEffect {
 	public void setStartY(float startY) {
 		this.startY = startY;
 	}
-		
-		
+
 }

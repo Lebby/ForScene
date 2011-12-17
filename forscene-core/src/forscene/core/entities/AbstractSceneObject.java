@@ -1,11 +1,16 @@
 package forscene.core.entities;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import playn.core.GroupLayer;
 import forscene.core.LoopController.ObjectID;
 import forscene.core.util.GraphicFactory;
+import forscene.exceptions.AbstractObjectNotFoundException;
+import forscene.exceptions.NoNameException;
 
 public abstract class AbstractSceneObject{
 	private GroupLayer root;
@@ -18,6 +23,8 @@ public abstract class AbstractSceneObject{
 	public AbstractSceneObject() {
 		root = GraphicFactory.createGroupLayer();
 		root.clear();
+		childs = new TreeSet<ObjectID<AbstractSceneObject>>();
+		ID = new ObjectID<AbstractSceneObject>(this);
 	}
 	
 	public GroupLayer getRoot()
@@ -63,19 +70,33 @@ public abstract class AbstractSceneObject{
 	
 	public abstract void updateState();
 	
-	public void addSceneObject(AbstractSceneObject object)
+	public void addSceneObject(AbstractSceneObject object) throws NoNameException
 	{
-		childs.add(new ObjectID<AbstractSceneObject>(object));
+		if ( object.getName() == null || object.getName() == "" ) throw new NoNameException();
+		childs.add(new ObjectID<AbstractSceneObject>(object));		
 	}
 	
-	public void removeSceneObject(AbstractSceneObject object)
+	public void addSceneObject(String name,AbstractSceneObject object) throws NoNameException
 	{
-		
+		object.setName(name);
+		addSceneObject(object);
 	}
 	
-	public AbstractSceneObject getSceneObject()
+	public void removeSceneObject(AbstractSceneObject object) throws AbstractObjectNotFoundException
 	{
-		return null;		
+		if (childs.contains(object))
+			childs.remove(object);
+		else throw new AbstractObjectNotFoundException();
+	}
+	
+	public AbstractSceneObject getSceneObject(String name) throws AbstractObjectNotFoundException
+	{
+		for (Iterator<ObjectID<AbstractSceneObject>> iterator = childs.iterator(); iterator.hasNext();) {
+			ObjectID<AbstractSceneObject> type = (ObjectID<AbstractSceneObject>) iterator.next();
+			if (type.getName()==name)
+				return type.getInstance();
+		}
+		throw new AbstractObjectNotFoundException();		
 	}
 
 	public String getName() {
@@ -97,6 +118,17 @@ public abstract class AbstractSceneObject{
 	public String getType()
 	{
 		return ID.getType();
+	}
+	
+	public void buildChild()
+	{
+		for (Iterator<ObjectID<AbstractSceneObject>> iterator = childs.iterator(); iterator.hasNext();) {
+			ObjectID<AbstractSceneObject> type = (ObjectID<AbstractSceneObject>) iterator.next();					
+			type.getInstance().build();
+			type.getInstance().buildChild();
+			getRoot().add(type.getInstance().getRoot());
+		}
+		
 	}
 	
 }
