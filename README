@@ -1,0 +1,21 @@
+ForScene is a library based on PlayN framework.
+
+Disclaimer:
+This project is in a "pre-alpha" phase.
+Many concept must be simplified and fixed. I want to develop "simply to use" library.
+I'm thinking to offer "full-access" to each data in class because I hope to develope a GUI to use this library to offer an easy tool to build demos/games/presentations.
+This library is HEAVILY BASED ON PLAYN.
+I'll add documentation and refer to playN project and its authors in "documentation" phase.
+Now, code is ugly and not documented ... you can read "debug lines and old code" and other things ... please don't care to them! 
+If you're of PlayN Projects and you something wrong, you can send email to glscud@gmail.com.   
+
+Purpose:
+It's purpose is to offer a layer to easy manage scene and not layer.
+Scene is a logical collection of layers and Scene Objects. 
+Scene Object is a logical view of multiple Layers.
+A Scene Object can be combined to create complex objects.
+I'm developing effects that can be have Scene object as target.
+I have developed a small event-driven management of scene building process and effect.
+   
+
+I want to develop by this library a "Monkey Island"-like game ... then i focus on all I needs to achieve this target!  
