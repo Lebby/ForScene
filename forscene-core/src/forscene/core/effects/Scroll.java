@@ -1,13 +1,8 @@
 package forscene.core.effects;
 
-import static playn.core.PlayN.graphics;
 import playn.core.PlayN;
 
 import forscene.core.entities.AbstractEffect;
-import forscene.core.entities.AbstractScene;
-import forscene.core.events.AbstractEvent;
-import forscene.core.events.EventAnimationUpdate;
-import forscene.core.util.GraphicFactory;
 
 public class Scroll extends AbstractEffect {
 	private float startX;
@@ -92,10 +87,8 @@ public class Scroll extends AbstractEffect {
 		scroll();		
 	}
 	
-	@Override
-	public void build() {
-		setRoot(getTarget().getRoot());		
-	}
+	
+	
 	
 	public float getStartX() {
 		return startX;

@@ -308,7 +308,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 				{
 			//		PlayN.log().debug(" PRE - REDRAW SIZE : " + scene.getRoot().size() + 
 			//				" depth : " + scene.getRoot().depth() + " : " + scene.getRoot().getClass());
-					scene.redraw();
+					//scene.redraw();
 					getRoot().clear();
 					getRoot().add(scene.getRoot());
 					

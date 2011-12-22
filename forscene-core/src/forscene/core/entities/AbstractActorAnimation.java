@@ -3,7 +3,7 @@ package forscene.core.entities;
 
 public abstract class AbstractActorAnimation  extends AbstractLayerSequence {
 	
-	@Override
+	/*@Override
 	public void redraw() {
 		// TODO Auto-generated method stub
 		super.redraw();
@@ -11,5 +11,5 @@ public abstract class AbstractActorAnimation  extends AbstractLayerSequence {
 		
 		//MAKUMBA
 		//getTarget(). updateDraw(getRoot());
-	}
+	}*/
 }

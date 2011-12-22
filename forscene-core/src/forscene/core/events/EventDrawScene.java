@@ -12,8 +12,9 @@ public class EventDrawScene extends AbstractEvent {
 	}
 	
 	@Override
-	public void run() {
+	public void run() {		
 		AbstractGameLoopManager.getInstance().draw(scene);
+		
 	}
 
 

@@ -44,7 +44,8 @@ public abstract class AbstractSceneObject{
 		this.getRoot().add(layer);
 	}
 	
-	public void redraw()
+	//evil function
+	private void redraw()
 	{
 		//PlayN.log().debug("REDRAW SIZE 1 : " + getRoot().size() + " depth : " + getRoot().depth() + " : " + getRoot().getClass());
 		GroupLayer parent = this.getRoot().parent();
@@ -62,7 +63,7 @@ public abstract class AbstractSceneObject{
 			{
 				PlayN.log().debug("\t size : " + ((GroupLayer) getRoot().get(i)).size() + " -||- " + ((GroupLayer) getRoot().get(i)));
 			}	
-		}*/	
+		}*/
 		
 	}
 	

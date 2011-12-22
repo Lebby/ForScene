@@ -39,9 +39,7 @@ public class EventAnimationUpdate extends AbstractEvent{
 			{
 				animation.goNext();
 				//animation.getTarget(). updateDraw(animation.getRoot());
-				
-				animation.redraw();
-				
+			
 				//setDone(true);
 				
 			}
