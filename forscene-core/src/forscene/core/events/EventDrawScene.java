@@ -9,6 +9,7 @@ public class EventDrawScene extends AbstractEvent {
 	public EventDrawScene(AbstractScene scene)
 	{
 		this.scene=scene;
+		this.setPriority(-1);
 	}
 	
 	@Override
@@ -16,6 +17,8 @@ public class EventDrawScene extends AbstractEvent {
 		AbstractGameLoopManager.getInstance().draw(scene);
 		
 	}
+	
+	
 
 
 }

@@ -18,6 +18,11 @@ public abstract class AbstractEvent implements IEvent{
 		return priority;
 	}
 	
+	public void setPriority(int priority)
+	{
+		this.priority = priority; 
+	}
+	
 	public boolean isDone()
 	{
 		return done;

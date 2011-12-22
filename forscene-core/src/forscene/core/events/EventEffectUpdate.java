@@ -9,6 +9,7 @@ public abstract class EventEffectUpdate extends AbstractEvent {
 	public EventEffectUpdate(AbstractEffect effect) {
 		this.effect = effect;
 		this.setDone(false);
+		this.setPriority(-1);
 	}
 	
 }

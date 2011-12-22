@@ -13,6 +13,7 @@ public class EventAnimationUpdate extends AbstractEvent{
 	{
 		this.animation = anim;		
 		setDone(false);
+		this.setPriority(-1);
 	}
 	
 	@Override

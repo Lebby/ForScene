@@ -53,7 +53,7 @@ public interface IGameLoopManager {
 
 	long getCurrentTimeTimer();
 
-	void incSeconds();
+	//void incSeconds();
 
 	void paint();
 
@@ -68,6 +68,8 @@ public interface IGameLoopManager {
 	short getTickRate();
 
 	void addScene(AbstractScene scene);
+
+	void incTime(float delta);
 	
 	
 }

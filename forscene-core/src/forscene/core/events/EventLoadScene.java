@@ -8,6 +8,7 @@ public class EventLoadScene extends AbstractEvent{
 	
 	public EventLoadScene(AbstractScene scene) {
 		this.scene = scene;
+		this.setPriority(-1);
 	}
 
 	@Override

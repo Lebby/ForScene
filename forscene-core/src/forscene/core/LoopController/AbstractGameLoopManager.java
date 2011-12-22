@@ -39,7 +39,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	
 	private long seconds;
 	private long ticks = 0;
-	
+	private float ms = 0;
 	//tick per second
 	private short tickRate = 25 ;
 	private short tmpTickRate = 0;
@@ -205,11 +205,11 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	//Time Monitor
 	
 	public void setSeconds(long seconds) {
-		seconds = seconds;
+		this.seconds = seconds;
 	}
 	
 	public void setCurrentTimeTimer(long currentTimeTimer) {
-		currentTimeTimer = currentTimeTimer;
+		this.currentTimeTimer = currentTimeTimer;
 	}
 	
 	public long getSeconds() {
@@ -221,13 +221,13 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	}
 	
 	
-	public void incSeconds()
+	/*public void incSeconds()
 	{
 		seconds++;
 		tickRate=tmpTickRate;
 		tmpTickRate = 0;
 		debug.write(Long.toString(seconds));		
-	}
+	}*/
 	
 	
 	public void incTicks()
@@ -348,11 +348,13 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	// =======
 	
 	public void updateState() 
-	{
+	{		
+		eventMonitor.update();
 		
-		eventMonitor.update();	
 		if (currentScene != null )
 		{
+			PlayN.log().debug("UPDATE SCENE" + currentScene.getTimeout() + " ht : " + currentScene.hasTimeout() +
+					" CurrentTimer :" + getCurrentTimeTimer() + " StartTimer : " + startTimer + "");
 /*			PlayN.log().debug("CurrentScene: " +
 					" IS_READY_TO_SWITCH : " + currentScene.IS_READY_TO_SWITCH +
 					" USE_TIMER : " + currentScene.USE_TIMER +
@@ -371,14 +373,16 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 			
 			if ( currentScene.hasTimeout())
 			{				
-//				PlayN.log().debug("USETIMER : " + (seconds - currentTimeTimer));
+				PlayN.log().debug("USETIMER : " + (seconds - currentTimeTimer));
 				if (startTimer == false )
 				{
 					startTimer = true;
-					currentTimeTimer = seconds;				
+					currentTimeTimer = getSeconds();				
 				}
-				if ((startTimer) && (seconds - currentTimeTimer) == currentScene.getTimeout() )
-				{					
+				
+				if ((startTimer) && (getSeconds() - currentTimeTimer) >= currentScene.getTimeout() )
+				{
+					PlayN.log().debug("CHECK TIMER!!!!!");
 					eventMonitor.push(new EventNext()); 
 					startTimer = false;			
 				}
@@ -420,6 +424,15 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		addSceneGroup(DefaultSceneGroup.getInstance());
 	}
 	
+	public void incTime(float delta) 
+	{		
+		ms+=delta;
+		if (ms>1000)
+		{
+			seconds++;
+			ms-=1000;
+		}		
+	}
 	
 
 }
