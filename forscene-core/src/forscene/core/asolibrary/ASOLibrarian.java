@@ -1,6 +1,4 @@
 package forscene.core.asolibrary;
-
-import forscene.core.entities.AbstractSceneObject;
 public class ASOLibrarian{
 	private ASOLibrary library;
 	private static ASOLibrarian instance;

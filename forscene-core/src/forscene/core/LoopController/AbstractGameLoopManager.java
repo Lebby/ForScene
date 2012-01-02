@@ -5,7 +5,6 @@ import static playn.core.PlayN.graphics;
 import java.util.ArrayList;
 
 import playn.core.GroupLayer;
-import playn.core.Layer;
 import playn.core.PlayN;
 
 import forscene.core.entities.AbstractScene;
@@ -16,10 +15,6 @@ import forscene.core.events.EventLoadScene;
 import forscene.core.events.EventLoadSceneGroup;
 import forscene.core.events.EventMonitor;
 import forscene.core.events.EventNext;
-import forscene.core.events.EventNextScene;
-import forscene.core.events.EventNextSceneGroup;
-import forscene.core.events.EventUnloadScene;
-import forscene.core.events.EventUnloadSceneGroup;
 import forscene.core.events.EventUpdateScene;
 import forscene.core.helper.DefaultSceneGroup;
 import forscene.core.util.DebugLayer;

@@ -1,5 +1,6 @@
 package forscene.core.events;
 
+import forscene.core.LoopController.AbstractGameLoopManager;
 import forscene.core.LoopController.GameLoopManager;
 
 
@@ -12,7 +13,7 @@ public class EventTimerTick extends AbstractEvent{
 	@Override
 	public void run() {
 		//tick++;
-		GameLoopManager.getInstance().incTicks();
+		AbstractGameLoopManager.getInstance().incTicks();
 	}
 
 

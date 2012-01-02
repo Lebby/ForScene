@@ -2,6 +2,7 @@ package forscene.core.events;
 
 import playn.core.PlayN;
 
+import forscene.core.LoopController.AbstractGameLoopManager;
 import forscene.core.LoopController.GameLoopManager;
 
 public class EventInit extends AbstractEvent{
@@ -10,9 +11,9 @@ public class EventInit extends AbstractEvent{
 	public void run() {
 		this.setDone(false);
 		PlayN.log().debug("EventInit calling init");
-		GameLoopManager.getInstance().init();
-		if ((GameLoopManager.getInstance().getCurrentSceneGroup() != null)
-				&& (GameLoopManager.getInstance().getCurrentScene() != null))
+		AbstractGameLoopManager.getInstance().init();
+		if ((AbstractGameLoopManager.getInstance().getCurrentSceneGroup() != null)
+				&& (AbstractGameLoopManager.getInstance().getCurrentScene() != null))
 		{
 			setDone(true);
 		}

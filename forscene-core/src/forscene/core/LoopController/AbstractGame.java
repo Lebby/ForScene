@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import playn.core.Game;
 import playn.core.GroupLayer;
-import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
 import forscene.core.util.DebugLayer;
@@ -17,7 +16,7 @@ public abstract class AbstractGame   implements Game, IGameLoopManager {
 	
 
 	public void init() {		
-		gameManager =  GameLoopManager.getInstance();
+		gameManager =  AbstractGameLoopManager.getInstance();
 		build();
 		
 	};

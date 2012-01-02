@@ -1,8 +1,6 @@
 package forscene.core.util.position;
 
-import playn.core.GroupLayer;
 import playn.core.ImageLayer;
-import playn.core.Layer;
 import pythagoras.f.Point;
 
 public class LayoutHelper {

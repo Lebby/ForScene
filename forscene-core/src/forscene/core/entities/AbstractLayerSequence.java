@@ -2,8 +2,6 @@ package forscene.core.entities;
 
 import java.util.ArrayList;
 
-import playn.core.GroupLayer;
-import playn.core.ImageLayer;
 import playn.core.Layer;
 import playn.core.PlayN;
 import forscene.core.util.GraphicFactory;
@@ -27,6 +25,7 @@ public abstract class AbstractLayerSequence extends AbstractAnimation{
 		PlayN.log().debug("ADDED LAYRESSSSSS : " + layers.size());
 	}
 	
+	@Override
 	public void goNext()
 	{
 		prev = currentIndex;

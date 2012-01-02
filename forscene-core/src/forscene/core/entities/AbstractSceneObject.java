@@ -107,7 +107,7 @@ public abstract class AbstractSceneObject {
 	public AbstractSceneObject getSceneObject(String name) throws AbstractObjectNotFoundException
 	{
 		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = (ObjectID) iterator.next();
+			ObjectID type = iterator.next();
 			if (type.getName()==name)
 				return type.getInstance();
 		}
@@ -135,7 +135,7 @@ public abstract class AbstractSceneObject {
 	public void buildChild()
 	{
 		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = (ObjectID) iterator.next();					
+			ObjectID type = iterator.next();					
 			type.getInstance().build();
 			type.getInstance().buildChild();						
 			getRoot().add(type.getInstance().getRoot());
@@ -161,11 +161,11 @@ public abstract class AbstractSceneObject {
 	public void removeAllSceneObjectChild()
 	{
 		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = (ObjectID) iterator.next();			
+			ObjectID type = iterator.next();			
 			type.getInstance().removeAllSceneObjectChild();			
 		}
 		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = (ObjectID) iterator.next();			
+			ObjectID type = iterator.next();			
 			try {
 				removeSceneObject(type.getInstance());
 			} catch (AbstractObjectNotFoundException e) {

@@ -2,8 +2,6 @@ package forscene.core.events;
 
 import java.util.PriorityQueue;
 
-import playn.core.PlayN;
-
 
 
 public class EventMonitor{

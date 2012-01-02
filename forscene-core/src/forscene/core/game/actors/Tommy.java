@@ -1,15 +1,12 @@
 package forscene.core.game.actors;
 
 import playn.core.Key;
-import playn.core.Keyboard;
 import playn.core.PlayN;
 import playn.core.Keyboard.Event;
 import forscene.core.entities.AbstractActorAnimation;
-import forscene.core.entities.AbstractAnimation;
 import forscene.core.entities.AbstractActor;
 import forscene.core.events.input.EventKeyDown;
 import forscene.core.events.input.EventKeyUp;
-import forscene.core.listener.AbstractKeyboardListener;
 import forscene.core.util.GraphicFactory;
 
 public  class Tommy extends AbstractActor{

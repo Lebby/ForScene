@@ -1,8 +1,5 @@
 package forscene.core.events;
 
-import forscene.core.effects.FadeIn;
-import forscene.core.effects.FadeOut;
-
 
 
 public abstract class AbstractEvent implements IEvent{

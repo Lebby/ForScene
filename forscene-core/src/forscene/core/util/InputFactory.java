@@ -1,12 +1,5 @@
 package forscene.core.util;
 
-import static playn.core.PlayN.keyboard;
-
-import playn.core.Keyboard;
-import playn.core.Keyboard.Event;
-import playn.core.Keyboard.Listener;
-import forscene.core.events.*;
-
 public class InputFactory {
 	/*public static Listener createKeyboardListener()
 	{

@@ -1,6 +1,5 @@
 package forscene.core.listener;
 
-import static playn.core.PlayN.keyboard;
 import static playn.core.PlayN.mouse;
 import playn.core.Mouse.Adapter;
 import playn.core.Mouse.ButtonEvent;

@@ -1,11 +1,9 @@
 package forscene.core.entities;
 
 import playn.core.GroupLayer;
-import playn.core.Layer;
 import playn.core.PlayN;
 import forscene.core.events.EventAnimationUpdate;
 import forscene.core.events.EventMonitor;
-import forscene.core.util.GraphicFactory;
 
 public abstract  class AbstractAnimation {
 	private boolean started = false;	

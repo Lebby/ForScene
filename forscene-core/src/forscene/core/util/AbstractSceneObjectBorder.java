@@ -3,7 +3,6 @@ package forscene.core.util;
 import playn.core.GroupLayer;
 import playn.core.PlayN;
 import forscene.core.entities.AbstractSceneObject;
-import forscene.exceptions.NoNameException;
 
 public class AbstractSceneObjectBorder extends AbstractSceneObject{
 	private AbstractSceneObject object;	

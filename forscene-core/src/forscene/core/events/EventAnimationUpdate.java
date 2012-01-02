@@ -2,9 +2,9 @@ package forscene.core.events;
 
 
 import playn.core.PlayN;
+import forscene.core.LoopController.AbstractGameLoopManager;
 import forscene.core.LoopController.GameLoopManager;
 import forscene.core.entities.AbstractAnimation;
-import forscene.core.util.GraphicFactory;
 
 public class EventAnimationUpdate extends AbstractEvent{
 	private AbstractAnimation animation;
@@ -33,10 +33,10 @@ public class EventAnimationUpdate extends AbstractEvent{
 				return;
 			}
 			
-			 long scaledFps =  ( GameLoopManager.getInstance().getTickRate() / updateRate);
+			 long scaledFps =  ( AbstractGameLoopManager.getInstance().getTickRate() / updateRate);
 			 //PlayN.log().debug( " turi:  " + scaledFps  );
 			if (scaledFps == 0 ) scaledFps =1;
-			 if ((updateRate == 0)  || ((( GameLoopManager.getInstance().getTicks()))%scaledFps == 0)) 
+			 if ((updateRate == 0)  || ((( AbstractGameLoopManager.getInstance().getTicks()))%scaledFps == 0)) 
 			{
 				animation.goNext();				
 			}

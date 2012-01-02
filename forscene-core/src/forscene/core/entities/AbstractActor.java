@@ -1,15 +1,7 @@
 package forscene.core.entities;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
-
 import playn.core.GroupLayer;
-
-import playn.core.PlayN;
-
-import forscene.core.events.EventAnimationUpdate;
-import forscene.core.events.EventMonitor;
 
 
 

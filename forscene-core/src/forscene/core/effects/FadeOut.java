@@ -1,7 +1,5 @@
 package forscene.core.effects;
 
-import playn.core.PlayN;
-
 public class FadeOut extends FadeIn{
 	public FadeOut() {
 		setStep(-0.1f);

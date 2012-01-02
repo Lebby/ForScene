@@ -1,13 +1,9 @@
 package forscene.core.util;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
-import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneObject;
 
-import playn.core.AssetManager;
-import playn.core.Canvas;
 import playn.core.CanvasLayer;
 import playn.core.Font;
 import playn.core.Font.Style;
@@ -19,12 +15,10 @@ import playn.core.PlayN;
 import playn.core.SurfaceLayer;
 import playn.core.TextFormat;
 import playn.core.TextFormat.Alignment;
-import playn.core.TextFormat.Effect;
 import playn.core.TextLayout;
 
 import static playn.core.PlayN.assetManager;
 import static playn.core.PlayN.graphics;
-import static playn.core.PlayN.pointer;
 
 
 

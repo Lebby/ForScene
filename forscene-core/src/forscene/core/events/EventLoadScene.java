@@ -1,5 +1,6 @@
 package forscene.core.events;
 
+import forscene.core.LoopController.AbstractGameLoopManager;
 import forscene.core.LoopController.GameLoopManager;
 import forscene.core.entities.AbstractScene;
 
@@ -13,7 +14,7 @@ public class EventLoadScene extends AbstractEvent{
 
 	@Override
 	public void run() {
-		GameLoopManager.getInstance().loadScene(scene);
+		AbstractGameLoopManager.getInstance().loadScene(scene);
 		if (scene.getKeyboardListener() != null) scene.getKeyboardListener().register();
 		if (scene.getMouseListener() != null) scene.getMouseListener().register();
 		this.setDone(true);
