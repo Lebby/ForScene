@@ -7,7 +7,7 @@ I'm thinking to offer "full-access" to each data in class because I hope to deve
 This library is HEAVILY BASED ON PLAYN.
 I'll add documentation and refer to playN project and its authors in "documentation" phase.
 Now, code is ugly and not documented ... you can read "debug lines and old code" and other things ... please don't care to them! 
-If you're of PlayN Projects and you something wrong, you can send email to glscud@gmail.com.   
+If you're of PlayN Projects and you noticed something wrong, you can send email to glscud@gmail.com.   
 
 Purpose:
 It's purpose is to offer a layer to easy manage scene and not layer.
