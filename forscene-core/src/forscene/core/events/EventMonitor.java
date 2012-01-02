@@ -1,9 +1,8 @@
-package forscene.core.LoopController;
+package forscene.core.events;
 
 import java.util.PriorityQueue;
 
 import playn.core.PlayN;
-import forscene.core.events.IEvent;
 
 
 

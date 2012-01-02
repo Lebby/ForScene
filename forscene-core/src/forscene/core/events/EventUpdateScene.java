@@ -10,7 +10,8 @@ public class EventUpdateScene extends AbstractEvent{
 	}
 	@Override
 	public void run() {
-		scene.updateState();		
+		if (scene.isToUpdate())
+			scene.updateState();		
 	}
 	
 

@@ -1,17 +1,9 @@
 package forscene.core.util;
 
-import static playn.core.PlayN.graphics;
-
 import java.util.ArrayList;
-
-import playn.core.CanvasLayer;
-import playn.core.Font;
 import playn.core.GroupLayer;
 import playn.core.Layer;
-import playn.core.PlayN;
 import playn.core.TextFormat;
-import playn.core.TextLayout;
-import forscene.core.entities.AbstractScene;
 
 public class DebugLayer {
 	private GroupLayer root;
@@ -23,7 +15,6 @@ public class DebugLayer {
 		format = GraphicFactory.createTextFormat();
 		format = format.withWrapWidth(200);
 		strings = new ArrayList<String>();
-		
 	}
 	
 	public void write(String string)
@@ -40,15 +31,12 @@ public class DebugLayer {
 	{
 		this.strings.add(string);
 		//render();
-		
 	}
 	
 	private void render()
-	{
-		 
+	{		 
 		for(int i = 0 ; i < root.size(); i++)
 		{
-			
 			root.get(0).destroy();
 			//root.remove(root.get(i));
 			root.clear();

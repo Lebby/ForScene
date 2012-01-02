@@ -2,7 +2,6 @@ package forscene.core.events;
 
 import playn.core.PlayN;
 
-import forscene.core.LoopController.EventMonitor;
 import forscene.core.LoopController.GameLoopManager;
 import forscene.core.entities.AbstractSceneGroup;
 

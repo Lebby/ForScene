@@ -1,11 +1,13 @@
 package forscene.core.util;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneObject;
 
 import playn.core.AssetManager;
+import playn.core.Canvas;
 import playn.core.CanvasLayer;
 import playn.core.Font;
 import playn.core.Font.Style;
@@ -14,6 +16,7 @@ import playn.core.Image;
 import playn.core.ImageLayer;
 import playn.core.Layer;
 import playn.core.PlayN;
+import playn.core.SurfaceLayer;
 import playn.core.TextFormat;
 import playn.core.TextFormat.Alignment;
 import playn.core.TextFormat.Effect;
@@ -54,9 +57,6 @@ public class GraphicFactory {
 		layer = graphics().createCanvasLayer((int)Math.ceil(layout.width()), (int)Math.ceil(layout.height()));
 		layer.canvas().drawText(layout, 0, 0);
 	    return layer;
-	    
-	    
-
 	}
 	
 	public static Layer setAlpha(int alpha, Layer layer)
@@ -109,6 +109,30 @@ public class GraphicFactory {
 		}	
 	}
 	
+	public static GroupLayer drawBorder(Layer root)
+	{
+		GroupLayer border=null;
+		
+		if ((root instanceof Layer.HasSize) ||
+			(root instanceof ImageLayer) ||
+			(root instanceof SurfaceLayer) ||
+			(root instanceof CanvasLayer) )
+		{
+			Layer.HasSize tmp = ( Layer.HasSize)root;
+			CanvasLayer canvas = graphics().createCanvasLayer((int)tmp.width(), (int)tmp.height());
+			canvas.canvas().setStrokeColor(playn.core.Color.rgb(100, 100, 100));
+			canvas.canvas().setFillColor(playn.core.Color.rgb(100, 100, 100));
+			canvas.canvas().setStrokeWidth(2);
+			canvas.canvas().drawLine(tmp.originX(), tmp.originY(), tmp.originX(), tmp.originY()+tmp.height());
+			canvas.canvas().drawLine(tmp.originX(), tmp.originY()+tmp.height(), tmp.originX()+tmp.width(), tmp.originY()+tmp.height());
+			canvas.canvas().drawLine(tmp.originX()+tmp.width(), tmp.originY()+tmp.height(), tmp.originX()+tmp.width(), tmp.originY());
+			canvas.canvas().drawLine(tmp.originX()+tmp.width(), tmp.originY(),tmp.originX(), tmp.originY());
+			border = graphics().createGroupLayer();
+			border.add(canvas);
+			PlayN.log().debug("BORDER " + border);
+		}		
+		return border;
+	}
 
 	
 }

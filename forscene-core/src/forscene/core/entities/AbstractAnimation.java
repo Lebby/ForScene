@@ -1,16 +1,19 @@
 package forscene.core.entities;
 
+import playn.core.GroupLayer;
+import playn.core.Layer;
 import playn.core.PlayN;
-import forscene.core.LoopController.EventMonitor;
 import forscene.core.events.EventAnimationUpdate;
+import forscene.core.events.EventMonitor;
 import forscene.core.util.GraphicFactory;
 
-public abstract  class AbstractAnimation extends AbstractSceneObject{
+public abstract  class AbstractAnimation {
 	private boolean started = false;	
 	private boolean init=false;
 	private AbstractSceneObject  target;
 	private long updateRate = 0;
 	
+	public abstract void build();
 	
 	public void start()
 	{
@@ -34,7 +37,7 @@ public abstract  class AbstractAnimation extends AbstractSceneObject{
 		return started;
 	}
 	
-	public abstract void goNext();
+	public abstract void goNext(); //same of update state ...
 	public abstract  void run();
 	
 	public AbstractSceneObject getTarget() {
@@ -47,7 +50,7 @@ public abstract  class AbstractAnimation extends AbstractSceneObject{
 		this.getRoot().add(actor.getRoot());*/
 	}
 	
-	@Override
+	//@Override
 	public void updateState() {		
 		//GraphicFactory.refresh(getRoot()); //: wrong		
 	}
@@ -61,5 +64,16 @@ public abstract  class AbstractAnimation extends AbstractSceneObject{
 	{
 		return updateRate;
 	} 
+	
+	public GroupLayer getRoot()
+	{
+		return getTarget().getRoot();
+	}
+	
+	public void setRoot(GroupLayer groupLayer)
+	{
+		getTarget().setRoot(groupLayer);
+	}	
+	
 	
 }

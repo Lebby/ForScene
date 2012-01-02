@@ -5,7 +5,7 @@ import playn.core.Keyboard.Adapter;
 import static playn.core.PlayN.keyboard;
 import playn.core.Keyboard.Event;
 
-import forscene.core.LoopController.EventMonitor;
+import forscene.core.events.EventMonitor;
 import forscene.core.events.input.EventKeyDown;
 import forscene.core.events.input.EventKeyUp;
 

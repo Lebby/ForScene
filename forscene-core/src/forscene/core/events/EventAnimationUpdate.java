@@ -38,11 +38,7 @@ public class EventAnimationUpdate extends AbstractEvent{
 			if (scaledFps == 0 ) scaledFps =1;
 			 if ((updateRate == 0)  || ((( GameLoopManager.getInstance().getTicks()))%scaledFps == 0)) 
 			{
-				animation.goNext();
-				//animation.getTarget(). updateDraw(animation.getRoot());
-			
-				//setDone(true);
-				
+				animation.goNext();				
 			}
 		}else setDone(true);
 	}

@@ -13,7 +13,7 @@ public abstract class AbstractScene extends AbstractSceneObject{
 	private boolean USE_TIMER = false;
 	private boolean IS_READY_TO_SWITCH = false;
 	private boolean IS_CONDITIONAL = false;
-	private int seconds;
+	private float seconds;
 	
 	private AbstractScene next,prev;
 	
@@ -59,11 +59,11 @@ public abstract class AbstractScene extends AbstractSceneObject{
 	}
 
 	
-	public int getTimeout() {
+	public float getTimeout() {
 		return seconds;
 	}
 
-	public void setTimeout(int seconds) {
+	public void setTimeout(float seconds) {
 		this.seconds = seconds;
 		USE_TIMER = true;
 	}

@@ -7,7 +7,7 @@ import playn.core.Mouse.ButtonEvent;
 import playn.core.Mouse.MotionEvent;
 import playn.core.Mouse.WheelEvent;
 
-import forscene.core.LoopController.EventMonitor;
+import forscene.core.events.EventMonitor;
 import forscene.core.events.input.EventMouseDown;
 import forscene.core.events.input.EventMouseMove;
 import forscene.core.events.input.EventMouseScroll;

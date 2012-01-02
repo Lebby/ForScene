@@ -14,6 +14,7 @@ import forscene.core.events.EventDrawScene;
 import forscene.core.events.EventInit;
 import forscene.core.events.EventLoadScene;
 import forscene.core.events.EventLoadSceneGroup;
+import forscene.core.events.EventMonitor;
 import forscene.core.events.EventNext;
 import forscene.core.events.EventNextScene;
 import forscene.core.events.EventNextSceneGroup;
@@ -309,13 +310,18 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 			//		PlayN.log().debug(" PRE - REDRAW SIZE : " + scene.getRoot().size() + 
 			//				" depth : " + scene.getRoot().depth() + " : " + scene.getRoot().getClass());
 					//scene.redraw();
-					getRoot().clear();
-					getRoot().add(scene.getRoot());
+
+					//if (currentScene.isToUpdate())
+					//{
+						getRoot().clear();
+						getRoot().add(scene.getRoot());
 					
-					if((DEBUGMODE) )//&& (getSeconds()%25==0))
-					{
-						root.add(debug.getRoot());						
-					}
+						if((DEBUGMODE) ) 
+						{
+							root.add(debug.getRoot());						
+						}
+					//	currentScene.setToUpdate(false);
+					//}
 					
 				}
 		}

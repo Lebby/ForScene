@@ -12,7 +12,7 @@ public abstract class AbstractSceneGroup {
 	private ArrayList<AbstractScene> scenes;
 	
 	private GroupLayer root;	
-	private int currentScene = -1;
+	private float currentScene = -1;
 	
 	
 	public abstract ArrayList<AbstractScene> build();

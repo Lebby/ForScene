@@ -1,7 +1,7 @@
-package forscene.core.LoopController;
+package forscene.core.entities;
 
 import playn.core.PlayN;
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.asolibrary.ASOType;
 
 
 public class ObjectID implements  Comparable<ObjectID> {	

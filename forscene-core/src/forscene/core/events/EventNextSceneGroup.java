@@ -1,6 +1,5 @@
 package forscene.core.events;
 
-import forscene.core.LoopController.EventMonitor;
 import forscene.core.LoopController.GameLoopManager;
 import forscene.core.entities.AbstractSceneGroup;
 

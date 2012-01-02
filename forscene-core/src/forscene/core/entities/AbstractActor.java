@@ -8,8 +8,8 @@ import playn.core.GroupLayer;
 
 import playn.core.PlayN;
 
-import forscene.core.LoopController.EventMonitor;
 import forscene.core.events.EventAnimationUpdate;
+import forscene.core.events.EventMonitor;
 
 
 

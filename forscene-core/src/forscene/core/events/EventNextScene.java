@@ -1,6 +1,5 @@
 package forscene.core.events;
 
-import forscene.core.LoopController.EventMonitor;
 import forscene.core.LoopController.GameLoopManager;
 
 public class EventNextScene extends AbstractEvent{

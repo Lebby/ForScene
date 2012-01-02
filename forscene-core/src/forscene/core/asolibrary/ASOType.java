@@ -1,4 +1,4 @@
-package forscene.core.LoopController;
+package forscene.core.asolibrary;
 
 public class ASOType {
 	private String type="";
