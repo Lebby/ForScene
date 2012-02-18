@@ -1,10 +1,6 @@
 package forscene.core.old;
 
-import static playn.core.PlayN.*;
-
 import playn.core.Game;
-import playn.core.Image;
-import playn.core.ImageLayer;
 import forscene.core.util.GraphicFactory;
 
 public class tommynick implements Game {
@@ -24,7 +20,7 @@ public class tommynick implements Game {
   public void init() {
 	  gameController = new GameController();
 	  
-	  gameController.setSize(800, 600);
+	  GameController.setSize(800, 600);
 	  GameController.loadSceneGroup(intro);	  
 	  Scene scene = new Scene();
 		scene.getRoot().add(GraphicFactory.loadImage("images/intro_bg.png"));

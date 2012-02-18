@@ -5,16 +5,16 @@ import playn.core.PlayN;
 import playn.core.Keyboard.Event;
 import forscene.core.entities.AbstractActorAnimation;
 import forscene.core.entities.AbstractActor;
-import forscene.core.events.input.EventKeyDown;
-import forscene.core.events.input.EventKeyUp;
+import forscene.core.events.input.OnKeyDownEvent;
+import forscene.core.events.input.OnKeyUpEvent;
 import forscene.core.util.GraphicFactory;
 
 public  class Tommy extends AbstractActor{
-	public EventKeyUp eventKeyUp;
-	public EventKeyDown eventKeyDown;
+	public OnKeyUpEvent eventKeyUp;
+	public OnKeyDownEvent eventKeyDown;
 	public Tommy() {
 		
-			eventKeyDown = new EventKeyDown() {
+			eventKeyDown = new OnKeyDownEvent() {
 				
 				@Override
 				public void run(Event event) {					
@@ -41,7 +41,7 @@ public  class Tommy extends AbstractActor{
 				}
 			};
 			
-			eventKeyUp = new EventKeyUp() {
+			eventKeyUp = new OnKeyUpEvent() {
 				
 				@Override
 				public void run(Event event) {
@@ -83,7 +83,8 @@ public  class Tommy extends AbstractActor{
 		getAnimations().put("down", walk);
 		getAnimations().put("left", walk);
 		getAnimations().put("right", walk);
-		getRoot().add( (GraphicFactory.loadImage("images/walk/tommynickpirata_1.png")));
+		setRoot(GraphicFactory.loadImage("images/walk/tommynickpirata_1.png"));
+		
 		/*getRoot().add( (GraphicFactory.loadImage("images/walk/tommynickpirata_2.png")));
 		getRoot().add( (GraphicFactory.loadImage("images/walk/tommynickpirata_3.png")));
 		getRoot().add( (GraphicFactory.loadImage("images/walk/tommynickpirata_4.png")));

@@ -1,10 +1,6 @@
 package forscene.core.old;
 
-import static playn.core.PlayN.assetManager;
 import static playn.core.PlayN.graphics;
-import static playn.core.PlayN.pointer;
-
-
 import playn.core.Keyboard;
 import playn.core.Layer;
 import playn.core.Mouse;

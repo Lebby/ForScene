@@ -1,11 +1,7 @@
 package forscene.core.old;
 
 
-import static playn.core.PlayN.graphics;
-import playn.core.AbstractLayer;
 import playn.core.GroupLayer;
-import playn.core.GroupLayerImpl;
-import playn.core.Layer;
 import playn.core.Mouse;
 import forscene.core.util.GraphicFactory;
 

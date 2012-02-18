@@ -1,7 +1,6 @@
 package forscene.core.old;
 
 import playn.core.Font;
-import playn.core.GroupLayer;
 import playn.core.Layer;
 import playn.core.TextFormat;
 import playn.core.TextFormat.Effect;
