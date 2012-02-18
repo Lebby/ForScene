@@ -9,52 +9,88 @@ import playn.core.PlayN;
 
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
-import forscene.core.events.EventDrawScene;
-import forscene.core.events.EventInit;
-import forscene.core.events.EventLoadScene;
-import forscene.core.events.EventLoadSceneGroup;
-import forscene.core.events.EventMonitor;
-import forscene.core.events.EventNext;
-import forscene.core.events.EventUpdateScene;
+import forscene.core.events.system.DrawSceneEvent;
+import forscene.core.events.system.EventManager;
+import forscene.core.events.system.InitEvent;
+import forscene.core.events.system.LoadSceneEvent;
+import forscene.core.events.system.LoadSceneGroupEvent;
+import forscene.core.events.system.NextEvent;
+import forscene.core.events.system.UpdateSceneEvent;
 import forscene.core.helper.DefaultSceneGroup;
 import forscene.core.util.DebugLayer;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractGameLoopManager.
+ * It's a Singlethon class. It is true core of this library because it manages game loop.
+ * 
+ */
 public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	
+	/** Singlethon instance */
 	private static AbstractGameLoopManager instance = null;
-	private boolean DEBUGMODE = true;
-	private boolean started = false;
 	
-	private AbstractScene currentScene,prevScene;
+	/** DebugMode: if you set true a useless layer will be added to the game that show ticks in the upper-left corner */
+	private boolean DEBUGMODE = true;
+	
+	/** currentScene: reference to current scene */
+	private AbstractScene currentScene;
+	
+	/** prevScene: reference to previous scene */
+	private AbstractScene prevScene;
+	
+	/** currentSceneGroup: reference to current sceneGroup */
 	private AbstractSceneGroup currentSceneGroup;
+	
+	/** sceneGroups: container of all sceneGroups */
 	private ArrayList<AbstractSceneGroup> sceneGroups;
-	private EventMonitor eventMonitor;
+	
+	/** eventMonitor: instance of event monitor that manages events */
+	private EventManager eventMonitor;
 
+	/** debug: debugLayer */
 	private static DebugLayer debug = new DebugLayer(); //Must change on singlethon 
 	
+	/** seconds: seconds elapsed from starting game */
 	private long seconds;
-	private long ticks = 0;
-	private float ms = 0;
-	//tick per second
-	private short tickRate = 25 ;
-	private short tmpTickRate = 0;
 	
+	/** ticks: ticks elapsed from starting game. Tick is a call of update function ( inherited from PlayN ) */
+	private long ticks = 0;
+	
+	/** ms: milliseconds elapsed from starting game. It's calculated from alpha passed by PlayN. */
+	private float ms = 0;
+	
+	/** tickRate: tick per seconds. It's similar to fps. */
+	private short tickRate = 25 ;
+	
+	/** The start timer. */
 	private boolean startTimer = false;
+	
+	/** The current time timer. */
 	private long currentTimeTimer = 0;
 	
 	//PaintManager
+	/** The root. */
 	private static GroupLayer root;
 	
+	/**
+	 * Instantiates a new abstract game loop manager.
+	 */
 	protected AbstractGameLoopManager()
 	{
-		eventMonitor = EventMonitor.getInstance();
+		eventMonitor = EventManager.getInstance();
 		sceneGroups = new ArrayList<AbstractSceneGroup>();
-		eventMonitor.push(new EventInit());
+		eventMonitor.push(new InitEvent());
 		root = graphics().rootLayer();		
 	}
 	
 	
+	/**
+	 * Gets the single instance of AbstractGameLoopManager.
+	 *
+	 * @return single instance of AbstractGameLoopManager
+	 */
 	public static IGameLoopManager getInstance()
 	{
 		if (instance == null)
@@ -65,26 +101,41 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		return instance;
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getCurrentScene()
+	 */
 	public AbstractScene getCurrentScene() {
 		return this.currentScene;		
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setCurrentScene(forscene.core.entities.AbstractScene)
+	 */
 	public void setCurrentScene(AbstractScene scene) {
 		currentScene=scene;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getCurrentSceneGroup()
+	 */
 	public AbstractSceneGroup getCurrentSceneGroup() {		
 		return currentSceneGroup;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setCurrentSceneGroup(forscene.core.entities.AbstractSceneGroup)
+	 */
 	public void setCurrentSceneGroup(AbstractSceneGroup sceneGroup) 
 	{
 		currentSceneGroup = sceneGroup;		
 	}
 		
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#addSceneGroup(forscene.core.entities.AbstractSceneGroup)
+	 */
 	public void addSceneGroup(AbstractSceneGroup sceneGroup) 
 	{
 		AbstractSceneGroup tmp = null;
@@ -104,23 +155,35 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getNextSceneGroup()
+	 */
 	public AbstractSceneGroup getNextSceneGroup() {
 		if (currentSceneGroup == null) return null;		
 		return currentSceneGroup.getNext();		
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getNextScene()
+	 */
 	public AbstractScene getNextScene() {
 		if (currentScene == null) return null;
 		return currentScene.getNext();		
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getSceneGroups()
+	 */
 	public ArrayList<AbstractSceneGroup> getSceneGroups() {
 		return sceneGroups;
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#loadSceneGroup(forscene.core.entities.AbstractSceneGroup)
+	 */
 	public void loadSceneGroup(AbstractSceneGroup sceneGroup) {
 		if (sceneGroup == null) throw new NullPointerException();		
 		//PlayN.log().debug("glc.loadscenegroup" + sceneGroup);
@@ -130,6 +193,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#loadScene(forscene.core.entities.AbstractScene)
+	 */
 	public void loadScene(AbstractScene scene) {
 		//PlayN.log().debug("LoadScene start!");
 		//if (scene == null) throw new NullPointerException();
@@ -141,10 +207,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		{
 			currentScene = scene;
 			PlayN.log().debug("loadscene build/buildchild");
-			scene.build();
-			scene.buildChild();
-			
-			
+			scene.systemBuild();						
 		}
 		if (currentScene != null) prevScene=currentScene;
 		
@@ -153,28 +216,43 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#removeSceneGroup(forscene.core.entities.AbstractSceneGroup)
+	 */
 	public void removeSceneGroup(AbstractSceneGroup sceneGroup) {		
 		if (sceneGroup == null) throw new NullPointerException();
 		sceneGroups.remove(sceneGroups);
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setDebugMode(boolean)
+	 */
 	public void setDebugMode(boolean debug)
 	{
 		DEBUGMODE = debug;
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getDebug()
+	 */
 	public DebugLayer getDebug() {
 		return debug;
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#isDebugMode()
+	 */
 	public boolean isDebugMode() {
 		return DEBUGMODE;
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setDebug(forscene.core.util.DebugLayer)
+	 */
 	public void setDebug(DebugLayer debug) {
 		AbstractGameLoopManager.debug = debug;
 	}
@@ -182,16 +260,25 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	//PaintMan	
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getRoot()
+	 */
 	public GroupLayer getRoot() {
 		return root;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setRoot(playn.core.GroupLayer)
+	 */
 	public void setRoot(GroupLayer root) {
 		AbstractGameLoopManager.root = root;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setSize(int, int)
+	 */
 	public void setSize(int width, int height)
 	{
 		graphics().setSize(width, height);		
@@ -200,18 +287,30 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		
 	//Time Monitor
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setSeconds(long)
+	 */
 	public void setSeconds(long seconds) {
 		this.seconds = seconds;
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#setCurrentTimeTimer(long)
+	 */
 	public void setCurrentTimeTimer(long currentTimeTimer) {
 		this.currentTimeTimer = currentTimeTimer;
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getSeconds()
+	 */
 	public long getSeconds() {
 		return seconds;
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getCurrentTimeTimer()
+	 */
 	public long getCurrentTimeTimer() {
 		return currentTimeTimer;
 	}
@@ -226,14 +325,19 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	}*/
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#incTicks()
+	 */
 	public void incTicks()
 	{
 		ticks++;
-		tmpTickRate++;
 		debug.write(Long.toString(ticks));		
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#resetSeconds()
+	 */
 	public void resetSeconds()
 	{
 		seconds = 0;
@@ -244,6 +348,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	//most complex ................. 
 
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#goNext()
+	 */
 	public void goNext()
 	{
 		//PlayN.log().debug("GoNext");
@@ -262,12 +369,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 							//PlayN.log().debug("GoScene Return!");
 							return;
 						}
-						eventMonitor.push(new EventLoadSceneGroup(sceneGroups.get(0)));
+						eventMonitor.push(new LoadSceneGroupEvent(sceneGroups.get(0)));
 				}
 			}else //if (currentSceneGroup != null )
 			{
 				//PlayN.log().debug("GoScene currentSceneGroup != null");
-				eventMonitor.push(new EventLoadScene(currentSceneGroup.getFirstScene()));
+				eventMonitor.push(new LoadSceneEvent(currentSceneGroup.getFirstScene()));
 
 			}
 		}
@@ -277,7 +384,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 			if (currentScene.hasNext()) //switch scene
 			{
 				//PlayN.log().debug("GoScene currentScene hasNext");
-				eventMonitor.push(new EventLoadScene(currentScene.getNext()));
+				eventMonitor.push(new LoadSceneEvent(currentScene.getNext()));
 			}
 			else //switch sceneGroup
 			{
@@ -285,7 +392,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 				if (currentSceneGroup.hasNext())
 				{
 					//PlayN.log().debug("GoScene hasNext ... nextSceneGroup");
-					eventMonitor.push(new EventLoadSceneGroup(currentSceneGroup.getNext()));
+					eventMonitor.push(new LoadSceneGroupEvent(currentSceneGroup.getNext()));
 					//i must load firstScene of new  currentSceneGroup ... but it's not builded ...
 					//eventMonitor.push(new EventLoadScene(currentSceneGroup.getNext().getFirstScene()));					
 				}
@@ -294,6 +401,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	}
 					
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#draw(forscene.core.entities.AbstractScene)
+	 */
 	public void draw(AbstractScene scene) 
 	{
 
@@ -322,9 +432,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#paint()
+	 */
 	public void paint()
 	{
-		eventMonitor.push(new EventDrawScene(currentScene));
+		eventMonitor.push(new DrawSceneEvent(currentScene));
 		
 		/* substitution by evenetDrawScene
 		 * 
@@ -348,6 +461,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	
 	// =======
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#updateState()
+	 */
 	public void updateState() 
 	{		
 		eventMonitor.update();
@@ -362,15 +478,15 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 					"");*/
 			if (currentScene.getUpdateRate() == 0)
 			{
-				eventMonitor.push(new EventUpdateScene(currentScene));
+				eventMonitor.push(new UpdateSceneEvent(currentScene));
 			}
 			else if (getTicks() % (getTickRate()/currentScene.getUpdateRate()) == 0)
 			{
-				eventMonitor.push(new EventUpdateScene(currentScene));
+				eventMonitor.push(new UpdateSceneEvent(currentScene));
 			}
 			// currentScene.updateState(); //OLD
 			if (currentScene.isReadyToSwitch())
-				eventMonitor.push(new EventNext());
+				eventMonitor.push(new NextEvent());
 			
 			if ( currentScene.hasTimeout())
 			{				
@@ -384,12 +500,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 				if ((startTimer) && (getSeconds() - currentTimeTimer) >= currentScene.getTimeout() )
 				{
 					PlayN.log().debug("CHECK TIMER!!!!!");
-					eventMonitor.push(new EventNext()); 
+					eventMonitor.push(new NextEvent()); 
 					startTimer = false;			
 				}
 			}			
 			
-		}else eventMonitor.push(new EventNext());
+		}else eventMonitor.push(new NextEvent());
 
 //		PlayN.log().debug("currentScene!!!: " + currentScene);
 //		if (currentScene != null )
@@ -401,30 +517,45 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#init()
+	 */
 	public void init()
 	{
 //		PlayN.log().debug("glc.Init");	
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getTicks()
+	 */
 	public long getTicks()
 	{
 		return ticks;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getTickRate()
+	 */
 	public short getTickRate()
 	{
 		return tickRate;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#addScene(forscene.core.entities.AbstractScene)
+	 */
 	public void addScene(AbstractScene scene) {		
 		DefaultSceneGroup.getInstance().addScene(scene);
 		if (getSceneGroups().contains(DefaultSceneGroup.getInstance())) return;
 		addSceneGroup(DefaultSceneGroup.getInstance());
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#incTime(float)
+	 */
 	public void incTime(float delta) 
 	{		
 		ms+=delta;

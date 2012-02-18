@@ -13,16 +13,18 @@ public class AbstractSceneObjectBorder extends AbstractSceneObject{
 
 	@Override
 	public void updateState() {
+		PlayN.log().debug("Border: "+ object + " Root : " + object.getRoot());
 		if (object.isToUpdate())
-		{
-			this.removeAllSceneObjectChild();
-			this.build();					
+		{			
+			this.systemBuild();					
 		}
 	}
 	
 	@Override
 	public void build() {		
 		GroupLayer tmp = GraphicFactory.drawBorder(object.getRoot());
+		PlayN.log().debug("Border: "+ object + " Root : " + object.getRoot() +  " DrawBorder " + tmp );
+		
 		if (tmp != null)
 		{
 			this.setRoot(tmp);

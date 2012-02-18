@@ -5,32 +5,32 @@ import playn.core.Keyboard.Adapter;
 import static playn.core.PlayN.keyboard;
 import playn.core.Keyboard.Event;
 
-import forscene.core.events.EventMonitor;
-import forscene.core.events.input.EventKeyDown;
-import forscene.core.events.input.EventKeyUp;
+import forscene.core.events.input.OnKeyDownEvent;
+import forscene.core.events.input.OnKeyUpEvent;
+import forscene.core.events.system.EventManager;
 
 public class AbstractKeyboardListener extends Adapter implements IListener {	
-	private EventKeyDown evtKeyDown;
-	private EventKeyUp evtKeyUp;
+	private OnKeyDownEvent evtKeyDown;
+	private OnKeyUpEvent evtKeyUp;
 	
 	private AbstractKeyboardListener() {
 		super();
 	
 	}
 	
-	public AbstractKeyboardListener(EventKeyDown event)
+	public AbstractKeyboardListener(OnKeyDownEvent event)
 	{
 		this();
 		this.evtKeyDown = event;		
 	}
 	
-	public AbstractKeyboardListener(EventKeyUp event)
+	public AbstractKeyboardListener(OnKeyUpEvent event)
 	{
 		this();
 		this.evtKeyUp = event;
 	}
 	
-	public AbstractKeyboardListener(EventKeyDown eventKeyDown,EventKeyUp eventKeyUp)
+	public AbstractKeyboardListener(OnKeyDownEvent eventKeyDown,OnKeyUpEvent eventKeyUp)
 	{
 		this();
 		this.evtKeyDown = eventKeyDown;
@@ -42,7 +42,7 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 	public void onKeyDown(Event event) {
 		if (evtKeyDown == null) return;
 		this.evtKeyDown.setEvent(event);
-		EventMonitor.getInstance().push(this.evtKeyDown);
+		EventManager.getInstance().push(this.evtKeyDown);
 		this.evtKeyUp.setDone(true);
 	}
 	
@@ -50,7 +50,7 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 	public void onKeyUp(Event event) {
 		if (evtKeyUp == null) return;
 		this.evtKeyDown.setEvent(event);
-		EventMonitor.getInstance().push(this.evtKeyUp);
+		EventManager.getInstance().push(this.evtKeyUp);
 		this.evtKeyDown.setDone(true);
 	}
 

@@ -1,18 +1,36 @@
 package forscene.core.entities;
 
-import playn.core.GroupLayer;
+import playn.core.Layer;
 import playn.core.PlayN;
-import forscene.core.events.EventAnimationUpdate;
-import forscene.core.events.EventMonitor;
+import forscene.core.events.system.AnimationUpdateEvent;
+import forscene.core.events.system.EventManager;
 
-public abstract  class AbstractAnimation {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractAnimation.
+ */
+public abstract class AbstractAnimation {
+	
+	/** The started. */
 	private boolean started = false;	
+	
+	/** The init. */
 	private boolean init=false;
-	private AbstractSceneObject  target;
+	
+	/** The target. */
+	private AbstractSceneObject target;
+	
+	/** The update rate. */
 	private long updateRate = 0;
 	
+	/**
+	 * Builds the.
+	 */
 	public abstract void build();
 	
+	/**
+	 * Start.
+	 */
 	public void start()
 	{
 		if (init == false)
@@ -21,27 +39,52 @@ public abstract  class AbstractAnimation {
 			build();
 		}
 		started = true;
-		EventAnimationUpdate eventUpdate = new EventAnimationUpdate(this);
-		EventMonitor.getInstance().push(eventUpdate);
+		AnimationUpdateEvent eventUpdate = new AnimationUpdateEvent(this);
+		EventManager.getInstance().push(eventUpdate);
 	};
 	
+	/**
+	 * Stop.
+	 */
 	public void stop(){
 		started = false;
 		PlayN.log().debug("ABSTRACT ANIMATION STOP!");
 	};
 	
+	/**
+	 * Checks if is started.
+	 *
+	 * @return true, if is started
+	 */
 	public boolean isStarted()
 	{
 		return started;
 	}
 	
+	/**
+	 * Go next.
+	 */
 	public abstract void goNext(); //same of update state ...
+	
+	/**
+	 * Run.
+	 */
 	public abstract  void run();
 	
+	/**
+	 * Gets the target.
+	 *
+	 * @return the target
+	 */
 	public AbstractSceneObject getTarget() {
 		return target;
 	}
 	
+	/**
+	 * Sets the target.
+	 *
+	 * @param actor the new target
+	 */
 	public void setTarget(AbstractSceneObject actor) {
 		this.target = actor;
 		/*this.getRoot().clear(); TODO: fix these issue!
@@ -49,26 +92,49 @@ public abstract  class AbstractAnimation {
 	}
 	
 	//@Override
+	/**
+	 * Update state.
+	 */
 	public void updateState() {		
 		//GraphicFactory.refresh(getRoot()); //: wrong		
 	}
 	
+	/**
+	 * Sets the update rate.
+	 *
+	 * @param rate the new update rate
+	 */
 	public void setUpdateRate(long rate )
 	{
 		this.updateRate = rate;
 	}
 	
+	/**
+	 * Gets the update rate.
+	 *
+	 * @return the update rate
+	 */
 	public long getUpdateRate()
 	{
 		return updateRate;
 	} 
 	
-	public GroupLayer getRoot()
+	/**
+	 * Gets the root.
+	 *
+	 * @return the root
+	 */
+	public Layer getRoot()
 	{
 		return getTarget().getRoot();
 	}
 	
-	public void setRoot(GroupLayer groupLayer)
+	/**
+	 * Sets the root.
+	 *
+	 * @param groupLayer the new root
+	 */
+	public void setRoot(Layer groupLayer)
 	{
 		getTarget().setRoot(groupLayer);
 	}	

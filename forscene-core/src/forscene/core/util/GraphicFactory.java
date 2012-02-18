@@ -3,6 +3,7 @@ package forscene.core.util;
 import java.util.ArrayList;
 
 import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.AbstractSceneObjectGroup;
 
 import playn.core.CanvasLayer;
 import playn.core.Font;
@@ -35,7 +36,9 @@ public class GraphicFactory {
 	public static ImageLayer addImage(String url,AbstractSceneObject scene)
 	{
 		ImageLayer image = loadImage(url);
-		scene.getRoot().add(image);
+		if (scene instanceof AbstractSceneObjectGroup)
+			((AbstractSceneObjectGroup)scene).getRoot().add(image);
+		else scene.setRoot(image);
 		return image;
 	}
 	
@@ -107,7 +110,14 @@ public class GraphicFactory {
 	{
 		GroupLayer border=null;
 		
-		if ((root instanceof Layer.HasSize) ||
+		if (root instanceof GroupLayer)
+		{
+			GroupLayer tmpborder= graphics().createGroupLayer();
+			for (int i = 0; i < ((GroupLayer)root).size(); i++)
+			tmpborder.add(drawBorder(((GroupLayer)root).get(i)));
+			border=tmpborder;
+		}
+		else if ((root instanceof Layer.HasSize) ||
 			(root instanceof ImageLayer) ||
 			(root instanceof SurfaceLayer) ||
 			(root instanceof CanvasLayer) )

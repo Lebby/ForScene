@@ -1,58 +1,110 @@
 package forscene.core.entities;
 
-import java.util.Iterator;
-import java.util.TreeSet;
 
-import playn.core.GroupLayer;
-import playn.core.PlayN;
 import forscene.core.util.GraphicFactory;
-import forscene.exceptions.AbstractObjectNotFoundException;
-import forscene.exceptions.NoNameException;
 
+import playn.core.CanvasLayer;
+import playn.core.GroupLayer;
+import playn.core.ImageLayer;
+import playn.core.Layer;
+import playn.core.PlayN;
+import playn.core.SurfaceLayer;
+
+import static playn.core.PlayN.graphics;
+
+
+
+
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractSceneObject.
+ */
 public abstract class AbstractSceneObject {
-	private GroupLayer root;
+	
+	/** The root. */
+	private Layer root;
+	
+	/** The name. */
 	private String name="";
+	
+	/** The ID. */
 	private ObjectID ID;
+	
+	/** The to update. */
 	private boolean toUpdate = true;
 	
+	/**
+	 * Checks if is to update.
+	 *
+	 * @return true, if is to update
+	 */
 	public boolean isToUpdate() {
 		return toUpdate;
 	}
 
+	/**
+	 * Sets the to update.
+	 *
+	 * @param toUpdate the new to update
+	 */
 	public void setToUpdate(boolean toUpdate) {
 		this.toUpdate = toUpdate;
 	}
-	//TODO: improve Object child
-	private TreeSet<ObjectID> childs;
+
 	
 	
+	/**
+	 * Instantiates a new abstract scene object.
+	 */
 	public AbstractSceneObject() {
 		root = GraphicFactory.createGroupLayer();
-		root.clear();
-		childs = new TreeSet<ObjectID>();
+		root = graphics().createImageLayer();				
+		//root.clear();
+		//childs = new TreeSet<ObjectID>();
 		ID = new ObjectID(this);
 	}	
 	
 	
-	public GroupLayer getRoot()
+	/**
+	 * Gets the root.
+	 *
+	 * @return the root
+	 */
+	public Layer getRoot()
 	{
 		return root;
 	}
 	
-	public void setRoot(GroupLayer groupLayer)
+	/**
+	 * Sets the root.
+	 *
+	 * @param groupLayer the new root
+	 */
+	public void setRoot(Layer layer)
 	{
-		this.root = groupLayer;
+		this.root = layer;
 		setToUpdate(true);
 	}
 	
-	public void updateDraw(GroupLayer layer)
+	/**
+	 * Update draw.
+	 *
+	 * @param layer the layer
+	 */
+	public void updateDraw(Layer layer)
 	{
-		this.getRoot().clear();
-		this.getRoot().add(layer);
+//		this.getRoot().clear();
+		//this.getRoot().add(layer);
+		getRoot().parent().remove(layer);
+		getRoot().parent().add(layer);
 		setToUpdate(false);
 	}
 	
 	//evil function
+	/**
+	 * Redraw.
+	 */
 	private void redraw()
 	{
 		//PlayN.log().debug("REDRAW SIZE 1 : " + getRoot().size() + " depth : " + getRoot().depth() + " : " + getRoot().getClass());
@@ -77,105 +129,81 @@ public abstract class AbstractSceneObject {
 	}
 	
 	
+	/**
+	 * Builds the.
+	 */
 	public abstract void build();
 	
+	/**
+	 * Update state.
+	 */
 	public abstract void updateState();
 	
-	public void addSceneObject(AbstractSceneObject object) throws NoNameException
-	{
-		if ( object.getName() == null || object.getName() == "" ) throw new NoNameException();
-			childs.add(new ObjectID(object));
-		PlayN.log().debug("childs size : " + childs.size());
-		setToUpdate(true);
-	}
-	
-	public void addSceneObject(String name,AbstractSceneObject object) throws NoNameException
-	{
-		object.setName(name);
-		addSceneObject(object);
-		setToUpdate(true);
-	}
-	
-	public void removeSceneObject(AbstractSceneObject object) throws AbstractObjectNotFoundException
-	{
-		if (childs.contains(object))
-			childs.remove(object);
-		else throw new AbstractObjectNotFoundException();
-		setToUpdate(true);
-	}
-	
-	public AbstractSceneObject getSceneObject(String name) throws AbstractObjectNotFoundException
-	{
-		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = iterator.next();
-			if (type.getName()==name)
-				return type.getInstance();
-		}
-		throw new AbstractObjectNotFoundException();		
-	}
-	
-	public AbstractSceneObject getSceneObject(int i)
-	{
-		return (AbstractSceneObject) childs.toArray()[i];				
-	}
-
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 		
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
 	public String getType()
 	{
 		return ID.getType();
 	}
 	
-	public void buildChild()
+	public void systemBuild()
 	{
-		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = iterator.next();					
-			type.getInstance().build();
-			type.getInstance().buildChild();						
-			getRoot().add(type.getInstance().getRoot());
-			PlayN.log().debug("BuildChild");
-		}
-		setToUpdate(true);
+		build();
 	}
 	
-	public TreeSet<ObjectID> getChilds() {
-		return childs;
+	
+	public boolean contains(int x, int y)
+	{
+		return contains(x,y,root);
 	}
 
-	public void setChilds(TreeSet<ObjectID> childs) {
-		this.childs = childs;
-		setToUpdate(true);
-	}
+		
 	
-	public int getSize()
+
+	private boolean contains(int x, int y, Layer layer)
 	{
-		return childs.size();
-	}
-	
-	public void removeAllSceneObjectChild()
-	{
-		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = iterator.next();			
-			type.getInstance().removeAllSceneObjectChild();			
+		if (layer instanceof GroupLayer)
+		{			
+			for (int i = 0; i < ((GroupLayer)layer).size(); i++)
+				if (contains(x,y,((GroupLayer)layer).get(i))) return true;			
 		}
-		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = iterator.next();			
-			try {
-				removeSceneObject(type.getInstance());
-			} catch (AbstractObjectNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
+		else if ((layer instanceof Layer.HasSize) ||
+			 (layer instanceof ImageLayer) ||
+			 (layer instanceof SurfaceLayer) ||
+			 (layer instanceof CanvasLayer) )
+		{
+			 Layer.HasSize tmp = ( Layer.HasSize)layer;
+			 
+			 if ( (x > tmp.originX()) && (x<  (tmp.originX() +  tmp.width()))   
+			 &&   (y > tmp.originY()) && (y<  (tmp.originY() + tmp.height())) )
+			 {
+				 return true;
+			 }		 
 		}
-		setToUpdate(true);
+		 return false;
 	}
-	
+		
 	
 	
 }

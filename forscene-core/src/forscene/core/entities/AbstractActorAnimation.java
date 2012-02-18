@@ -1,6 +1,9 @@
 package forscene.core.entities;
 
 
+/**
+ * The Class AbstractActorAnimation.
+ */
 public abstract class AbstractActorAnimation  extends AbstractLayerSequence {
 	
 	/*@Override

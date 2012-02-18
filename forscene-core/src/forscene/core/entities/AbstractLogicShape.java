@@ -1,15 +1,28 @@
 package forscene.core.entities;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractLogicShape.
+ */
 public abstract class AbstractLogicShape implements ILogicShape{
 
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ILogicShape#getWidth()
+	 */
 	public float getWidth() {
 		return getMaxX()-getMinX();		
 	}
 
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ILogicShape#getHeight()
+	 */
 	public float getHeight() {
 		return getMaxY()-getMinY();		
 	}
 
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ILogicShape#contains(float, float)
+	 */
 	public boolean contains(float x, float y) {		
 		if ((x<getMaxX()) 
 			&& (x>getMinX()) 
@@ -18,10 +31,16 @@ public abstract class AbstractLogicShape implements ILogicShape{
 		else return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ILogicShape#getCenterX()
+	 */
 	public float getCenterX() {
 		return (getMaxX()+getMinX()/2);		
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ILogicShape#getCenterY()
+	 */
 	public float getCenterY() {
 		return (getMaxY()+getMinY()/2);
 	}
