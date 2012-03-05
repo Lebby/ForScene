@@ -42,8 +42,7 @@ public class Scroll extends AbstractEffect {
 
 	@Override
 	public void goNext() {		
-		run();
-		PlayN.log().debug("UPDATESCENE TEST SCROLL RUN" );
+		run();		
 	}
 	
 	private  void scroll()
@@ -87,9 +86,6 @@ public class Scroll extends AbstractEffect {
 		scroll();		
 	}
 	
-	
-	
-	
 	public float getStartX() {
 		return startX;
 	}
@@ -104,6 +100,16 @@ public class Scroll extends AbstractEffect {
 
 	public void setStartY(float startY) {
 		this.startY = startY;
+	}
+	
+	public float getPositionX()
+	{
+		return getTarget().getRoot().originX();
+	}
+	
+	public float getPositionY()
+	{
+		return getTarget().getRoot().originY();
 	}
 
 }

@@ -7,7 +7,6 @@ import playn.core.CanvasLayer;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
 import playn.core.Layer;
-import playn.core.PlayN;
 import playn.core.SurfaceLayer;
 
 import static playn.core.PlayN.graphics;
@@ -20,10 +19,10 @@ import static playn.core.PlayN.graphics;
 /**
  * The Class AbstractSceneObject.
  */
-public abstract class AbstractSceneObject {
+public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	
 	/** The root. */
-	private Layer root;
+	private Layer root; //TODO: This must be template ... < T extends Layer > !!!
 	
 	/** The name. */
 	private String name="";
@@ -70,7 +69,7 @@ public abstract class AbstractSceneObject {
 	 * Gets the root.
 	 *
 	 * @return the root
-	 */
+	 */	
 	public Layer getRoot()
 	{
 		return root;

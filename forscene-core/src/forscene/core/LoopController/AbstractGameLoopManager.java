@@ -470,9 +470,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		
 		if (currentScene != null )
 		{
-			PlayN.log().debug("UPDATE SCENE" + currentScene.getTimeout() + " ht : " + currentScene.hasTimeout() +
+/*			PlayN.log().debug("UPDATE SCENE" + currentScene.getTimeout() + " ht : " + currentScene.hasTimeout() +
 					" CurrentTimer :" + getCurrentTimeTimer() + " StartTimer : " + startTimer + "");
-/*			PlayN.log().debug("CurrentScene: " +
+			PlayN.log().debug("CurrentScene: " +
 					" IS_READY_TO_SWITCH : " + currentScene.IS_READY_TO_SWITCH +
 					" USE_TIMER : " + currentScene.USE_TIMER +
 					"");*/
@@ -490,7 +490,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 			
 			if ( currentScene.hasTimeout())
 			{				
-				PlayN.log().debug("USETIMER : " + (seconds - currentTimeTimer));
+				//PlayN.log().debug("USETIMER : " + (seconds - currentTimeTimer));
 				if (startTimer == false )
 				{
 					startTimer = true;
@@ -499,7 +499,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 				
 				if ((startTimer) && (getSeconds() - currentTimeTimer) >= currentScene.getTimeout() )
 				{
-					PlayN.log().debug("CHECK TIMER!!!!!");
+					//PlayN.log().debug("CHECK TIMER!!!!!");
 					eventMonitor.push(new NextEvent()); 
 					startTimer = false;			
 				}

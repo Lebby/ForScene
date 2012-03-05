@@ -15,7 +15,16 @@ public abstract class AbstractEvent implements IEvent{
 	private boolean done = true;
 	
 	private EventStatus status = EventStatus.NONE;
+	
+	private String name ="";
 
+	public AbstractEvent() {		
+		name = this.getClass().getName();
+		if (name.lastIndexOf('.') > 0) {
+		    name = name.substring(name.lastIndexOf('.')+1);
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
@@ -85,9 +94,16 @@ public abstract class AbstractEvent implements IEvent{
 			case PAUSED:
 			default: this.status = status;
 			break;		
-		}
-		
-		
+		}		
 	}
-
+	
+	public String getName() {
+		
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;		
+	}
+	
 }

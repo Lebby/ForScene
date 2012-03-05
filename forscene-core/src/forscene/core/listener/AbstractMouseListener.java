@@ -5,57 +5,69 @@ import playn.core.Mouse.Adapter;
 import playn.core.Mouse.ButtonEvent;
 import playn.core.Mouse.MotionEvent;
 import playn.core.Mouse.WheelEvent;
-
-import forscene.core.events.input.mouse.OnButtonDownMouseEvent;
-import forscene.core.events.input.mouse.OnButtonUpMouseEvent;
-import forscene.core.events.input.mouse.OnMoveMouseEvent;
-import forscene.core.events.input.mouse.OnScrollMouseEvent;
+import forscene.core.events.input.mouse.OnMouseButtonDownEvent;
+import forscene.core.events.input.mouse.OnMouseButtonUpEvent;
+import forscene.core.events.input.mouse.OnMouseMoveEvent;
+import forscene.core.events.input.mouse.OnMouseWheelScrollEvent;
 import forscene.core.events.system.EventManager;
 
 
 public class AbstractMouseListener extends Adapter implements IListener{
-	private OnButtonDownMouseEvent evtMouseDown;	
-	private OnButtonUpMouseEvent evtMouseUp;
-	private OnScrollMouseEvent evtMouseWheelScroll;
-	private OnMoveMouseEvent evtMouseMove;
+	private OnMouseButtonDownEvent evtMouseDown;	
+	private OnMouseButtonUpEvent evtMouseUp;
+	private OnMouseWheelScrollEvent evtMouseWheelScroll;
+	private OnMouseMoveEvent evtMouseMove;
 
 	private AbstractMouseListener() {
 		super();
 	}
 	
-	public AbstractMouseListener(OnButtonDownMouseEvent event)
+	public AbstractMouseListener(OnMouseButtonDownEvent event)
 	{
 		this();
 		this.evtMouseDown = event;
 	}
 	
-	public AbstractMouseListener(OnButtonUpMouseEvent event)
+	public AbstractMouseListener(OnMouseButtonUpEvent event)
 	{
 		this();
 		this.evtMouseUp = event;
 	}
 	
-	public AbstractMouseListener(OnScrollMouseEvent event)
+	public AbstractMouseListener(OnMouseWheelScrollEvent event)
 	{
 		this();
 		this.evtMouseWheelScroll = event;
 	}
-	public AbstractMouseListener(OnMoveMouseEvent event)
+	public AbstractMouseListener(OnMouseMoveEvent event)
 	{
 		this();
 		this.evtMouseMove = event;
 	}
 	
-	public AbstractMouseListener(OnButtonDownMouseEvent eventMouseDown,OnButtonUpMouseEvent eventMouseUp)
+	public AbstractMouseListener(OnMouseButtonDownEvent eventMouseDown,OnMouseButtonUpEvent eventMouseUp)
 	{
 		this();
 		this.evtMouseDown = eventMouseDown;
 		this.evtMouseUp = eventMouseUp;
 	}
+	
+	public AbstractMouseListener
+	(OnMouseButtonDownEvent eventMouseDown, 
+	 OnMouseButtonUpEvent eventMouseUp,
+	 OnMouseMoveEvent eventMouseMove,
+	 OnMouseWheelScrollEvent eventMouseScroll)
+	{
+		this();
+		this.evtMouseDown = eventMouseDown;
+		this.evtMouseMove = eventMouseMove;
+		this.evtMouseUp = eventMouseUp;
+		this.evtMouseWheelScroll = eventMouseScroll;		
+	}
+	
 
 	@Override
-	public void onMouseDown(ButtonEvent event) {	
-		// TODO Auto-generated method stub	
+	public void onMouseDown(ButtonEvent event) {		
 		if (evtMouseDown == null) return;
 		this.evtMouseDown.setEvent(event);
 		EventManager.getInstance().push(this.evtMouseDown);		
@@ -83,10 +95,11 @@ public class AbstractMouseListener extends Adapter implements IListener{
 		this.evtMouseWheelScroll.setEvent(event);
 		EventManager.getInstance().push(this.evtMouseWheelScroll);		
 	}
-
 	
 	public void register() {
 		mouse().setListener(this);		
 	}
+	
+	
 
 }

@@ -25,33 +25,34 @@
     	<groupId>com.googlecode.playn</groupId>
     	<artifactId>playn-project</artifactId>
     	<type>pom</type>
-    	<version>1.0.2</version>
+    	<version>1.0.3</version>
     </dependency>
     <dependency>
     	<groupId>com.googlecode.playn</groupId>
     	<artifactId>playn-core</artifactId>
-    	<version>1.0.2</version>
+    	<version>1.0.3</version>
     </dependency>
     <dependency>
     	<groupId>com.googlecode.playn</groupId>
     	<artifactId>playn-android</artifactId>
-    	<version>1.0.2</version>
+    	<version>1.0.3</version>
     </dependency>
     <dependency>
     	<groupId>com.googlecode.playn</groupId>
     	<artifactId>playn-flash</artifactId>
-    	<version>1.0.2</version>
+    	<version>1.0.3</version>
     </dependency>
     <dependency>
     	<groupId>com.googlecode.playn</groupId>
     	<artifactId>playn-html</artifactId>
-    	<version>1.0.2</version>
+    	<version>1.0.3</version>
     </dependency>
     <dependency>
     	<groupId>com.googlecode.playn</groupId>
     	<artifactId>playn-java</artifactId>
-    	<version>1.0.2</version>
+    	<version>1.0.3</version>
     </dependency>
+    
   </dependencies>
   <description>Forscene is a project based on PlayN project ( ex-forplay). It add a scene management features and other features.</description>
   <organization>

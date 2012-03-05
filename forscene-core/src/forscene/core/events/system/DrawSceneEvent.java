@@ -30,7 +30,7 @@ public class DrawSceneEvent extends AbstractEvent {
 	@Override
 	public void run() {		
 		AbstractGameLoopManager.getInstance().draw(scene);
-		
+		setDone(true);
 	}
 	
 	

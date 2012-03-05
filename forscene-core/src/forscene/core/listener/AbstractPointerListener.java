@@ -3,6 +3,7 @@ package forscene.core.listener;
 import static playn.core.PlayN.pointer;
 import playn.core.Pointer.Adapter;
 import playn.core.Pointer.Event;
+
 public class AbstractPointerListener extends Adapter implements IListener{ //TODO: TO IMPLEMENT
 
 	

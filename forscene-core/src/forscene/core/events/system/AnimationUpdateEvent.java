@@ -32,7 +32,7 @@ public class AnimationUpdateEvent extends AbstractEvent{
 	 */
 	@Override
 	public void run() {
-		PlayN.log().debug("Animation update");
+		//PlayN.log().debug("Animation update");
 
 		if (animation.isStarted())
 		{

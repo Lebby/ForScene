@@ -23,4 +23,9 @@ public interface IEvent extends Comparable<AbstractEvent>{
 	EventStatus getStatus();
 	
 	void setStatus(EventStatus status);
+	
+	String getName();
+	
+	void setName(String name);
+	
 }

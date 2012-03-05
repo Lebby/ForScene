@@ -1,17 +1,19 @@
 package forscene.core.listener;
 
 
-import playn.core.Keyboard.Adapter;
 import static playn.core.PlayN.keyboard;
+import playn.core.Keyboard.Adapter;
 import playn.core.Keyboard.Event;
-
-import forscene.core.events.input.OnKeyDownEvent;
-import forscene.core.events.input.OnKeyUpEvent;
+import playn.core.Keyboard.TypedEvent;
+import forscene.core.events.input.keyboard.OnKeyDownEvent;
+import forscene.core.events.input.keyboard.OnKeyTypedEvent;
+import forscene.core.events.input.keyboard.OnKeyUpEvent;
 import forscene.core.events.system.EventManager;
 
 public class AbstractKeyboardListener extends Adapter implements IListener {	
 	private OnKeyDownEvent evtKeyDown;
 	private OnKeyUpEvent evtKeyUp;
+	private OnKeyTypedEvent evtKeyTyped;
 	
 	private AbstractKeyboardListener() {
 		super();
@@ -36,7 +38,6 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 		this.evtKeyDown = eventKeyDown;
 		this.evtKeyUp = eventKeyUp;
 	}
-
 	
 	@Override
 	public void onKeyDown(Event event) {
@@ -53,11 +54,17 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 		EventManager.getInstance().push(this.evtKeyUp);
 		this.evtKeyDown.setDone(true);
 	}
-
 	
+	@Override
+	public void onKeyTyped(TypedEvent event) {
+		if (evtKeyTyped == null) return;		
+		this.evtKeyTyped.setEvent( event);
+		EventManager.getInstance().push(this.evtKeyTyped);
+		this.evtKeyTyped.setDone(true);
+	}
+
 	public void register() {
 		keyboard().setListener(this);		
-	}
-	
+	}	
 	
 }

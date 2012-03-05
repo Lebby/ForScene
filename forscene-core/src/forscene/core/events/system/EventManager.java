@@ -19,6 +19,8 @@ public class EventManager{
 	/** The current event. */
 	private static IEvent currentEvent;
 	
+	
+
 	/** The instance. */
 	private static EventManager instance = null;
 	
@@ -31,9 +33,9 @@ public class EventManager{
 	}
 	
 	/**
-	 * Gets the single instance of EventMonitor.
+	 * Gets the singlethon instance of EventMonitor.
 	 *
-	 * @return single instance of EventMonitor
+	 * @return singlethon instance of EventMonitor
 	 */
 	public static EventManager getInstance()
 	{
@@ -66,8 +68,10 @@ public class EventManager{
 		while(!events.isEmpty())
 		{
 			//PlayN.log().debug("event run");
-			currentEvent = pop();
-			currentEvent.run();			
+			currentEvent = pop();			
+			currentEvent.run();
+			//useless ...
+			EventObserverManager.getInstance().notify(currentEvent); 
 			if (!currentEvent.isDone())
 			{
 				//PlayN.log().debug("push current event");
@@ -100,7 +104,10 @@ public class EventManager{
 	{		
 		currentEvent = events.poll();
 		currentEvent.setStatus(EventStatus.STARTED);
-		//PlayN.log().debug("evt OUT: " + currentEvent);
+		return currentEvent;
+	}
+	
+	public IEvent getCurrentEvent() {
 		return currentEvent;
 	}
 }

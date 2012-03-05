@@ -32,7 +32,11 @@ public class LoadSceneEvent extends AbstractEvent{
 		AbstractGameLoopManager.getInstance().loadScene(scene);
 		if (scene.getKeyboardListener() != null) scene.getKeyboardListener().register();
 		if (scene.getMouseListener() != null) scene.getMouseListener().register();
-		this.setDone(true);
+		setDone(true);
+	}
+	
+	public AbstractScene getScene() {
+		return scene;
 	}
 
 }
