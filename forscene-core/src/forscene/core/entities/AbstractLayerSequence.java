@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import playn.core.Layer;
 import playn.core.PlayN;
-import forscene.core.util.GraphicFactory;
 import static playn.core.PlayN.graphics;
 
 // TODO: Auto-generated Javadoc

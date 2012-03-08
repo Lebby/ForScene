@@ -1,7 +1,6 @@
 package forscene.core.events.system;
 
 import forscene.core.LoopController.AbstractGameLoopManager;
-import forscene.core.LoopController.GameLoopManager;
 import forscene.core.entities.AbstractScene;
 
 // TODO: Auto-generated Javadoc

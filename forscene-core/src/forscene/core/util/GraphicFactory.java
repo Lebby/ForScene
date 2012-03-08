@@ -27,7 +27,7 @@ public class GraphicFactory {
 	
 	public static ImageLayer loadImage(String url)
 	{
-		Image bgImage = assetManager().getImage(url);
+		Image bgImage = PlayN.assets().getImage(url);
 	    ImageLayer bgLayer = graphics().createImageLayer(bgImage);
 	    //PlayN.log().debug("TEST " + bgLayer);	    
 	    return bgLayer;

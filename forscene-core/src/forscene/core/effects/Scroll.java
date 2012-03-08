@@ -1,7 +1,5 @@
 package forscene.core.effects;
 
-import playn.core.PlayN;
-
 import forscene.core.entities.AbstractEffect;
 
 public class Scroll extends AbstractEffect {
