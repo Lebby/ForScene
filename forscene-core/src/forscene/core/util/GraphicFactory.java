@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.entities.AbstractSceneObjectGroup;
 
+import playn.core.CanvasImage;
 import playn.core.CanvasLayer;
 import playn.core.Font;
 import playn.core.Font.Style;
@@ -18,7 +19,6 @@ import playn.core.TextFormat;
 import playn.core.TextFormat.Alignment;
 import playn.core.TextLayout;
 
-import static playn.core.PlayN.assetManager;
 import static playn.core.PlayN.graphics;
 
 
@@ -42,17 +42,21 @@ public class GraphicFactory {
 		return image;
 	}
 	
-	public static Layer createText(String text, TextFormat format)
+	public static ImageLayer createText(String text, TextFormat format)
 	{
 	    // crea il font        :  Font font = graphics().createFont("Courier", Font.Style.PLAIN, 16);
 		// crea il format      :  TextFormat txtFormat = new TextFormat();
 		// crea il layout      :  TextLayout layout = graphics().layoutText(text, format);
 		// crea il canvaslayer :  CanvasLayer layer = graphics().createCanvasLayer((int)Math.ceil(layout.width()), (int)Math.ceil(layout.height()));
 		// scrivo il layer     :  layer.canvas().drawText(layout, 0, 0);		
-		CanvasLayer layer;
-		TextLayout layout = graphics().layoutText(text, format);
-		layer = graphics().createCanvasLayer((int)Math.ceil(layout.width()), (int)Math.ceil(layout.height()));
-		layer.canvas().drawText(layout, 0, 0);
+		CanvasImage canvas;
+		TextLayout layout = graphics().layoutText(text, format);		
+		canvas = graphics().createImage((int)Math.ceil(layout.width()), (int)Math.ceil(layout.height()));
+		canvas.canvas().drawText(layout, 0, 0);
+		
+		ImageLayer layer = PlayN.graphics().createImageLayer();
+		layer.setImage(canvas);
+		
 	    return layer;
 	}
 	

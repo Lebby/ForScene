@@ -1,8 +1,13 @@
 package forscene.core.util;
 
 import java.util.ArrayList;
+
+import playn.core.CanvasImage;
+import playn.core.CanvasLayer;
 import playn.core.GroupLayer;
+import playn.core.ImageLayer;
 import playn.core.Layer;
+import playn.core.PlayN;
 import playn.core.TextFormat;
 
 public class DebugLayer {
@@ -53,10 +58,8 @@ public class DebugLayer {
 		{
 			string+=strings.get(i);
 		}
-		Layer l = GraphicFactory.createText(string, format);
-		l.setTranslation(10, 10);
-		
-		root.add(l);
+		ImageLayer layer = GraphicFactory.createText(string, format);		
+		root.add(layer);
 		//PlayN.log().debug("RENDER : " + root.size() + " strings " + strings.size());
 	}
 	
