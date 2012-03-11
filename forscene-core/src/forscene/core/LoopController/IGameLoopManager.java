@@ -6,7 +6,6 @@ import playn.core.GroupLayer;
 
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
-import forscene.core.util.DebugLayer;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -114,34 +113,6 @@ public interface IGameLoopManager {
 	void resetSeconds();
 
 	/**
-	 * Sets the debug mode.
-	 *
-	 * @param debug the new debug mode
-	 */
-	void setDebugMode(boolean debug);
-
-	/**
-	 * Gets the debug.
-	 *
-	 * @return the debug
-	 */
-	DebugLayer getDebug();
-
-	/**
-	 * Checks if is debug mode.
-	 *
-	 * @return true, if is debug mode
-	 */
-	boolean isDebugMode();
-
-	/**
-	 * Sets the debug.
-	 *
-	 * @param debug the new debug
-	 */
-	void setDebug(DebugLayer debug);
-
-	/**
 	 * Gets the root.
 	 *
 	 * @return the root
@@ -235,6 +206,20 @@ public interface IGameLoopManager {
 	 * @param delta the delta
 	 */
 	void incTime(float delta);
+
+	/**
+	 * getHeight of game
+	 *
+	 * @return game height ( float )
+	 */
+	float getHeight();
+
+	/**
+	 * getWidth of game
+	 *
+	 * @return game width ( float )
+	 */
+	float getWidth();
 	
 	
 }

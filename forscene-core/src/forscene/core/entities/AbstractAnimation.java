@@ -62,6 +62,16 @@ public abstract class AbstractAnimation {
 	}
 	
 	/**
+	 * Checks if is stopped.
+	 *
+	 * @return true, if is stopped
+	 */
+	public boolean isStopped()
+	{
+		return !started;
+	}
+	
+	/**
 	 * Go next.
 	 */
 	public abstract void goNext(); //same of update state ...
@@ -87,8 +97,6 @@ public abstract class AbstractAnimation {
 	 */
 	public void setTarget(AbstractSceneObject actor) {
 		this.target = actor;
-		/*this.getRoot().clear(); TODO: fix these issue!
-		this.getRoot().add(actor.getRoot());*/
 	}
 	
 	//@Override

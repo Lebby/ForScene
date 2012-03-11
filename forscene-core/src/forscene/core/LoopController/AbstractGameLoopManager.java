@@ -17,7 +17,7 @@ import forscene.core.events.system.LoadSceneGroupEvent;
 import forscene.core.events.system.NextEvent;
 import forscene.core.events.system.UpdateSceneEvent;
 import forscene.core.helper.DefaultSceneGroup;
-import forscene.core.util.DebugLayer;
+
 
 
 // TODO: Auto-generated Javadoc
@@ -48,9 +48,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	
 	/** eventMonitor: instance of event monitor that manages events */
 	private EventManager eventMonitor;
-
-	/** debug: debugLayer */
-	private static DebugLayer debug = new DebugLayer(); //Must change on singlethon 
 	
 	/** seconds: seconds elapsed from starting game */
 	private long seconds;
@@ -122,8 +119,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	public AbstractSceneGroup getCurrentSceneGroup() {		
 		return currentSceneGroup;
 	}
-	
-	
+		
 	/* (non-Javadoc)
 	 * @see forscene.core.LoopController.IGameLoopManager#setCurrentSceneGroup(forscene.core.entities.AbstractSceneGroup)
 	 */
@@ -132,7 +128,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		currentSceneGroup = sceneGroup;		
 	}
 		
-	
 	/* (non-Javadoc)
 	 * @see forscene.core.LoopController.IGameLoopManager#addSceneGroup(forscene.core.entities.AbstractSceneGroup)
 	 */
@@ -197,9 +192,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	 * @see forscene.core.LoopController.IGameLoopManager#loadScene(forscene.core.entities.AbstractScene)
 	 */
 	public void loadScene(AbstractScene scene) {
-		//PlayN.log().debug("LoadScene start!");
-		//if (scene == null) throw new NullPointerException();
-		
 		if (scene == null){
 			scene = currentSceneGroup.getFirstScene();
 		}
@@ -233,15 +225,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		DEBUGMODE = debug;
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see forscene.core.LoopController.IGameLoopManager#getDebug()
-	 */
-	public DebugLayer getDebug() {
-		return debug;
-	}
-
-	
 	/* (non-Javadoc)
 	 * @see forscene.core.LoopController.IGameLoopManager#isDebugMode()
 	 */
@@ -249,16 +232,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		return DEBUGMODE;
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see forscene.core.LoopController.IGameLoopManager#setDebug(forscene.core.util.DebugLayer)
-	 */
-	public void setDebug(DebugLayer debug) {
-		AbstractGameLoopManager.debug = debug;
-	}
-
 	//PaintMan	
-	
 	
 	/* (non-Javadoc)
 	 * @see forscene.core.LoopController.IGameLoopManager#getRoot()
@@ -315,23 +289,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		return currentTimeTimer;
 	}
 	
-	
-	/*public void incSeconds()
-	{
-		seconds++;
-		tickRate=tmpTickRate;
-		tmpTickRate = 0;
-		debug.write(Long.toString(seconds));		
-	}*/
-	
-	
 	/* (non-Javadoc)
 	 * @see forscene.core.LoopController.IGameLoopManager#incTicks()
 	 */
 	public void incTicks()
 	{
-		ticks++;
-		debug.write(Long.toString(ticks));		
+		ticks++;		
 	}
 	
 	
@@ -353,37 +316,27 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	 */
 	public void goNext()
 	{
-		//PlayN.log().debug("GoNext");
 		if (currentScene == null) 
 		{
-			//PlayN.log().debug("GoScene currentScene null");
 			if (currentSceneGroup == null )
 			{
-				//PlayN.log().debug("GoScene currentSceneGroup null");
-				//PlayN.log().debug("GoScene all null > 0 ");
 				if (sceneGroups.size()>0)
 				{				
-						//PlayN.log().debug("GoScene sceneGroups > 0 " + sceneGroups.size() );
-						if (sceneGroups.get(0) == null )
-						{
-							//PlayN.log().debug("GoScene Return!");
-							return;
-						}
-						eventMonitor.push(new LoadSceneGroupEvent(sceneGroups.get(0)));
+					if (sceneGroups.get(0) == null )
+					{
+						return;
+					}
+					eventMonitor.push(new LoadSceneGroupEvent(sceneGroups.get(0)));
 				}
 			}else //if (currentSceneGroup != null )
 			{
-				//PlayN.log().debug("GoScene currentSceneGroup != null");
 				eventMonitor.push(new LoadSceneEvent(currentSceneGroup.getFirstScene()));
-
 			}
 		}
 		else //(currentScene != null)
 		{
-			//PlayN.log().debug("GoScene currentScene != null");
 			if (currentScene.hasNext()) //switch scene
 			{
-				//PlayN.log().debug("GoScene currentScene hasNext");
 				eventMonitor.push(new LoadSceneEvent(currentScene.getNext()));
 			}
 			else //switch sceneGroup
@@ -391,10 +344,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 				PlayN.log().debug("GoScene !currentScene.hasNext() ...");
 				if (currentSceneGroup.hasNext())
 				{
-					//PlayN.log().debug("GoScene hasNext ... nextSceneGroup");
 					eventMonitor.push(new LoadSceneGroupEvent(currentSceneGroup.getNext()));
-					//i must load firstScene of new  currentSceneGroup ... but it's not builded ...
-					//eventMonitor.push(new EventLoadScene(currentSceneGroup.getNext().getFirstScene()));					
 				}
 			}
 		}
@@ -406,28 +356,13 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	 */
 	public void draw(AbstractScene scene) 
 	{
-
 		if (scene != null)
 		{
 				currentScene= scene;
 				if ((scene != null ) && scene.getRoot() != null)
 				{
-			//		PlayN.log().debug(" PRE - REDRAW SIZE : " + scene.getRoot().size() + 
-			//				" depth : " + scene.getRoot().depth() + " : " + scene.getRoot().getClass());
-					//scene.redraw();
-
-					//if (currentScene.isToUpdate())
-					//{
 						getRoot().clear();
 						getRoot().add(scene.getRoot());
-					
-						if((DEBUGMODE) ) 
-						{
-							root.add(debug.getRoot());						
-						}
-					//	currentScene.setToUpdate(false);
-					//}
-					
 				}
 		}
 	}
@@ -438,25 +373,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	public void paint()
 	{
 		eventMonitor.push(new DrawSceneEvent(currentScene));
-		
-		/* substitution by evenetDrawScene
-		 * 
-		ArrayList<Layer> ls = new ArrayList<Layer>();
-		for ( int i = 0 ; i < root.size() ; i++)
-		{
-			ls.add(	root.get(i));			
-			//PlayN.log().debug("EXXXXXXXXXX : " + ls.get(i));
-		}
-		//PlayN.log().debug("Size ls tm : " + ls.size());
-		for ( int i = 0 ; i < ls.size() ; i++)
-		{
-			root.remove(ls.get(i));
-			root.add(ls.get(i));
-		}
-		//PlayN.log().debug("Size root tm : " + root.size());
-		 * 
-		 */
-		
 	}
 	
 	// =======
@@ -467,53 +383,33 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	public void updateState() 
 	{		
 		eventMonitor.update();
-		
 		if (currentScene != null )
 		{
-/*			PlayN.log().debug("UPDATE SCENE" + currentScene.getTimeout() + " ht : " + currentScene.hasTimeout() +
-					" CurrentTimer :" + getCurrentTimeTimer() + " StartTimer : " + startTimer + "");
-			PlayN.log().debug("CurrentScene: " +
-					" IS_READY_TO_SWITCH : " + currentScene.IS_READY_TO_SWITCH +
-					" USE_TIMER : " + currentScene.USE_TIMER +
-					"");*/
-			if (currentScene.getUpdateRate() == 0)
+			/*if (currentScene.getUpdateRate() == 0)
 			{
 				eventMonitor.push(new UpdateSceneEvent(currentScene));
 			}
-			else if (getTicks() % (getTickRate()/currentScene.getUpdateRate()) == 0)
+			//else if (getTicks() % (getTickRate()/currentScene.getUpdateRate()) == 0)
+			else */if  ((currentScene.getUpdateRate()!=0) && (getTicks() % getTickRate()/currentScene.getUpdateRate()) == 0)
 			{
 				eventMonitor.push(new UpdateSceneEvent(currentScene));
 			}
-			// currentScene.updateState(); //OLD
 			if (currentScene.isReadyToSwitch())
 				eventMonitor.push(new NextEvent());
-			
 			if ( currentScene.hasTimeout())
 			{				
-				//PlayN.log().debug("USETIMER : " + (seconds - currentTimeTimer));
 				if (startTimer == false )
 				{
 					startTimer = true;
 					currentTimeTimer = getSeconds();				
 				}
-				
 				if ((startTimer) && (getSeconds() - currentTimeTimer) >= currentScene.getTimeout() )
 				{
-					//PlayN.log().debug("CHECK TIMER!!!!!");
 					eventMonitor.push(new NextEvent()); 
 					startTimer = false;			
 				}
 			}			
-			
 		}else eventMonitor.push(new NextEvent());
-
-//		PlayN.log().debug("currentScene!!!: " + currentScene);
-//		if (currentScene != null )
-//			PlayN.log().debug("currentScene NEXT!!!: " + currentScene.getNext());
-		
-		//Before ... now moved in paint
-		//eventMonitor.push(new EventDrawScene(currentScene));
-		
 	}
 	
 	
@@ -565,6 +461,18 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 			ms-=1000;
 		}		
 	}
-	
 
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getHeight()
+	 */
+	public float getHeight() {
+		return graphics().height();
+	}
+
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getWidth()
+	 */
+	public float getWidth() {
+		return graphics().width();
+	}
 }

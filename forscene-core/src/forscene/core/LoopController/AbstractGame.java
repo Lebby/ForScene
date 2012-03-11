@@ -6,7 +6,7 @@ import playn.core.Game;
 import playn.core.GroupLayer;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
-import forscene.core.util.DebugLayer;
+
 
 /**
  * The Class AbstractGame.
@@ -205,42 +205,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 	public void resetSeconds() {
 		gameManager.resetSeconds();
 		
-	}
-
-	
-	/* (non-Javadoc)
-	 * @see forscene.core.LoopController.IGameLoopManager#setDebugMode(boolean)
-	 */
-	public void setDebugMode(boolean debug) {
-		gameManager.setDebugMode(debug);
-		
-	}
-
-	
-	/* (non-Javadoc)
-	 * @see forscene.core.LoopController.IGameLoopManager#getDebug()
-	 */
-	public DebugLayer getDebug() {
-		return gameManager.getDebug();
-	}
-
-	
-	/* (non-Javadoc)
-	 * @see forscene.core.LoopController.IGameLoopManager#isDebugMode()
-	 */
-	public boolean isDebugMode() {
-		return gameManager.isDebugMode();
-	}
-
-	
-	/* (non-Javadoc)
-	 * @see forscene.core.LoopController.IGameLoopManager#setDebug(forscene.core.util.DebugLayer)
-	 */
-	public void setDebug(DebugLayer debug) {
-		gameManager.setDebug(debug);
-		
-	}
-
+	}	
 	
 	/* (non-Javadoc)
 	 * @see forscene.core.LoopController.IGameLoopManager#getRoot()
@@ -354,4 +319,20 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 		 gameManager.addScene(scene);
 	}
 	
-}  
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getHeight()
+	 */
+	public float getHeight()
+	{
+		return gameManager.getHeight();
+	}
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.LoopController.IGameLoopManager#getHeight()
+	 */
+	public float getWidth()
+	{
+		return gameManager.getWidth();
+	}
+	
+}

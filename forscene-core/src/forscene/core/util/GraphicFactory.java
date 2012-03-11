@@ -90,11 +90,10 @@ public class GraphicFactory {
 	public static GroupLayer createGroupLayer()
 	{
 		GroupLayer gl = graphics().createGroupLayer();		
-		PlayN.log().debug("GL *******  " + gl);
 		return gl;
 	}
 	
-	public static void refresh(GroupLayer root)
+	/*public static void refresh(GroupLayer root)
 	{
 		ArrayList<Layer> ls = new ArrayList<Layer>();
 		for ( int i = 0 ; i < root.size() ; i++)
@@ -108,7 +107,7 @@ public class GraphicFactory {
 		{
 			root.add(ls.get(i));
 		}	
-	}
+	}*/
 	
 	public static GroupLayer drawBorder(Layer root)
 	{

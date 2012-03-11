@@ -5,17 +5,14 @@ import playn.core.Keyboard;
 import playn.core.Layer;
 import playn.core.Mouse;
 import playn.core.GroupLayer;
-import forscene.core.util.DebugLayer;
 
 
 public class GameController {
 	private static GroupLayer root;
-	private static DebugLayer debug;
 	
 	private static Mouse mouseListener;
 	private static Keyboard keyboardListener;
 	
-	//private static GroupLayer currentGroup;
 	private static Layer current;
 	
 	private static Scene currentScene;
@@ -30,24 +27,28 @@ public class GameController {
 	{
 		root = graphics().rootLayer();
 		seconds = 0;
-		debug = new DebugLayer();
 	}
 	
 	public static GroupLayer getRoot() {
 		return root;
 	}
+	
 	public static void setRoot(GroupLayer root) {
 		GameController.root = root;
 	}
+	
 	public static Mouse getMouseListener() {
 		return mouseListener;
 	}
+	
 	public static void setMouseListener(Mouse mouseListener) {
 		GameController.mouseListener = mouseListener;
 	}
+	
 	public static Keyboard getKeyboardListener() {
 		return keyboardListener;
 	}
+	
 	public static void setKeyboardListener(Keyboard keyboardListener) {
 		GameController.keyboardListener = keyboardListener;
 	}
@@ -64,10 +65,7 @@ public class GameController {
 	{		
 		if (current != null )
 		{
-			//current.setVisible(false);
 			root.remove(current);
-			//root.destroy();
-			//root.clear();
 		}
 		
 		current = scene.getRoot();
@@ -78,7 +76,7 @@ public class GameController {
 	public static void incSeconds()
 	{
 		seconds++;
-		debug.write(Long.toString(seconds));		
+//		debug.write(Long.toString(seconds));		
 	}
 	
 	public static void resetSeconds()
@@ -122,13 +120,7 @@ public class GameController {
 	private static void goNext()
 	{
 		currentSceneGroup.goNext();		
-		loadScene(currentSceneGroup.getCurrentScene());
-		addDebugLayer();
-	}
-	
-	private static void addDebugLayer()
-	{		
-		root.add(debug.getRoot());
+		loadScene(currentSceneGroup.getCurrentScene());	
 	}
 	
 	public static void setSize(int width, int height)

@@ -21,6 +21,9 @@ import static playn.core.PlayN.graphics;
  */
 public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	
+	/** The update rate. */
+	private long updateRate = 0;
+	
 	/** The root. */
 	private Layer root; //TODO: This must be template ... < T extends Layer > !!!
 	
@@ -62,6 +65,10 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		//root.clear();
 		//childs = new TreeSet<ObjectID>();
 		ID = new ObjectID(this);
+		name = this.getClass().getName();
+		if (name.lastIndexOf('.') > 0) {
+		    name = name.substring(name.lastIndexOf('.')+1);
+		}
 	}	
 	
 	
@@ -202,6 +209,28 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		}
 		 return false;
 	}
+	
+	/**
+	 * Sets the update rate.
+	 *
+	 * @param rate the new update rate
+	 */
+	public void setUpdateRate(long rate )
+	{
+		this.updateRate = rate;
+	}
+	
+
+	/**
+	 * Gets the update rate.
+	 *
+	 * @return the update rate
+	 */
+	public long getUpdateRate()
+	{
+		return updateRate;
+	}
+
 		
 	
 	

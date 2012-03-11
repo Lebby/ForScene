@@ -8,10 +8,7 @@ import forscene.core.listener.AbstractMouseListener;
 /**
  * The Class AbstractScene.
  */
-public abstract class AbstractScene extends AbstractSceneObjectGroup{
-	
-	/** The update rate. */
-	private long updateRate = 0;
+public abstract class AbstractScene extends AbstractSceneObjectGroup{	
 	
 	/** The mouse listener. */
 	private AbstractMouseListener mouseListener;	
@@ -191,28 +188,4 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	{
 		return (next != null);
 	}
-	
-	
-	/**
-	 * Sets the update rate.
-	 *
-	 * @param rate the new update rate
-	 */
-	public void setUpdateRate(long rate )
-	{
-		this.updateRate = rate;
-	}
-	
-
-	/**
-	 * Gets the update rate.
-	 *
-	 * @return the update rate
-	 */
-	public long getUpdateRate()
-	{
-		return updateRate;
-	}
-	
-
 }
