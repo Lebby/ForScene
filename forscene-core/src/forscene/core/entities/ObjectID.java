@@ -1,10 +1,7 @@
 package forscene.core.entities;
 
-import playn.core.PlayN;
 import forscene.core.asolibrary.ASOType;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class ObjectID.
  */
@@ -27,6 +24,7 @@ public class ObjectID implements  Comparable<ObjectID> {
 	public ObjectID(AbstractSceneObject instance)
 	{
 		this.instance = instance;
+		instance.setID(this);
 		
 	}
 	
@@ -79,8 +77,7 @@ public class ObjectID implements  Comparable<ObjectID> {
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(ObjectID arg0) {
-		PlayN.log().debug("ObjectIDCompare : " + this.getName() + " " + arg0.getName());
+	public int compareTo(ObjectID arg0) {		
 		return this.getName().compareTo(arg0.getName());		
 	}	
 	

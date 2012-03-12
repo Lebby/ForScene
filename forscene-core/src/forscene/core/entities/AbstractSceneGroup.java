@@ -122,20 +122,10 @@ public abstract class AbstractSceneGroup {
 		}
 		this.setScenes(tmp);
 		
-		for (Iterator<AbstractScene> iterator = this.getScenes().iterator(); iterator.hasNext();) {
-			
+		//chain scene sequence
+		for (Iterator<AbstractScene> iterator = this.getScenes().iterator(); iterator.hasNext();) {			
 			current =  iterator.next();
-			//current.setPrev(prev);		
-			//if (prev != null )prev.setNext(current);
-			
-			/*PlayN.log().debug("*-------------*");
-			PlayN.log().debug("GLCScene prev :" + current.getPrev());
-			PlayN.log().debug("GLCScene ---- :" + current);			
-			PlayN.log().debug("GLCScene next :" + current.getNext());
-			prev=current;*/			
-			
 		}
-		//this.scenes = scenes;//
 	}
 	
 	/**

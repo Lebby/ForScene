@@ -65,10 +65,11 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		//root.clear();
 		//childs = new TreeSet<ObjectID>();
 		ID = new ObjectID(this);
-		name = this.getClass().getName();
+		/*name = this.getClass().getName();
 		if (name.lastIndexOf('.') > 0) {
 		    name = name.substring(name.lastIndexOf('.')+1);
-		}
+		}*/
+		name = ""+this;
 	}	
 	
 	
@@ -176,6 +177,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	public void systemBuild()
 	{
 		build();
+		setToUpdate(false);
 	}
 	
 	
@@ -231,7 +233,8 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		return updateRate;
 	}
 
+	public void setID(ObjectID objectID) {
+		this.ID = objectID;
 		
-	
-	
+	}	
 }

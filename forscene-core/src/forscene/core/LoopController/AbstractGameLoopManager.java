@@ -390,7 +390,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 				eventMonitor.push(new UpdateSceneEvent(currentScene));
 			}
 			//else if (getTicks() % (getTickRate()/currentScene.getUpdateRate()) == 0)
-			else */if  ((currentScene.getUpdateRate()!=0) && (getTicks() % getTickRate()/currentScene.getUpdateRate()) == 0)
+			else */if  ((currentScene.getUpdateRate()!=0) 
+					&& (getTicks() % getTickRate()/currentScene.getUpdateRate()) == 0) 
+			{
+				eventMonitor.push(new UpdateSceneEvent(currentScene));
+			}
+			if ((currentScene.getUpdateRate() == 0) && (currentScene.isToUpdate()))
 			{
 				eventMonitor.push(new UpdateSceneEvent(currentScene));
 			}

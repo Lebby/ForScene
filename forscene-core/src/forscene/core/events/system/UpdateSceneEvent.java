@@ -31,12 +31,16 @@ public class UpdateSceneEvent extends AbstractEvent{
 	public void run() {
 		tick++;
 		
-		if (((scene.isToUpdate()) || (scene.getUpdateRate() != 0 && tick%scene.getUpdateRate() == 0 )) )// || tick%25==0)
+		if (((scene.isToUpdate()) || (scene.getUpdateRate() != 0 && tick%scene.getUpdateRate() == 0 )) )
 		{			
 			if ((scene.getRoot() == null)|| (scene.getRoot().parent() == null)) return;
-			scene.buildChild();   //MAYBE:WRONG! TODO: FIX OR CHECK THIS --- Fixed by pending childs			
-			scene.updateState();			
+			//MAYBE:WRONG! TODO: FIX OR CHECK THIS --- Fixed by pending childs			
+			
+			scene.updateChilds();
+			scene.updateState();
+			scene.setToUpdate(false);			
 		}
+		if (scene.getUpdateRate() == 0) setDone(true);
 	}
 	
 

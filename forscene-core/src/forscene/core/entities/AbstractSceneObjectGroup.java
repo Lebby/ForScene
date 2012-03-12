@@ -8,6 +8,7 @@ import playn.core.GroupLayer;
 import playn.core.PlayN;
 import forscene.core.util.GraphicFactory;
 import forscene.exceptions.AbstractObjectNotFoundException;
+import forscene.exceptions.IDAlreadyPresentException;
 import forscene.exceptions.NoNameException;
 
 // TODO: Auto-generated Javadoc
@@ -64,18 +65,17 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	 *
 	 * @param object the object
 	 * @throws NoNameException the no name exception
+	 * @throws IDAlreadyPresentException 
 	 */
-	public void addSceneObject(AbstractSceneObject object) throws NoNameException
+	public void addSceneObject(AbstractSceneObject object) throws NoNameException, IDAlreadyPresentException
 	{
 		if ( object.getName() == null || object.getName() == "" ) throw new NoNameException();
 		
 		//childs.add(new ObjectID(object));
 		ObjectID element =new ObjectID(object);
-		pendingChilds.add(element);		
-		PlayN.log().debug("childs size : " + childs.size() + "pending size " + pendingChilds.size() + element.getInstance() );
-		
-		element = pendingChilds.peek();
-		PlayN.log().debug("Element instance " + element.getInstance() + " Element " + element);
+		if(!pendingChilds.add(element)) throw new IDAlreadyPresentException();	
+		PlayN.log().debug("AddSceneObject:" + this + " childs size : " + childs.size() + " pending size " + pendingChilds.size() + " " + element.getInstance() );
+		//PlayN.log().debug("Element instance " + element.getInstance() );
 		setToUpdate(true);
 	}
 	
@@ -85,8 +85,9 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	 * @param name the name
 	 * @param object the object
 	 * @throws NoNameException the no name exception
+	 * @throws IDAlreadyPresentException 
 	 */
-	public void addSceneObject(String name,AbstractSceneObject object) throws NoNameException
+	public void addSceneObject(String name,AbstractSceneObject object) throws NoNameException, IDAlreadyPresentException
 	{
 		object.setName(name);
 		addSceneObject(object);
@@ -144,38 +145,47 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	/**
 	 * Builds the child.
 	 */
-	public void buildChild()
+	public void buildChilds()
 	{		
-		ObjectID element = pendingChilds.poll();
-		//ObjectID element = pendingChilds.peek();
-		PlayN.log().debug("BuildChild " + element);
-		PlayN.log().debug("Object " + this);
+		ObjectID element = pendingChilds.poll();		
+		//PlayN.log().debug("Object " + this);
 		while(element!=null )
 		{			 
 			childs.add(element);
 			element.getInstance().build();
+			element.getInstance().setToUpdate(false);
 			
-			if (element.getInstance() instanceof AbstractSceneObjectGroup) {
-					((AbstractSceneObjectGroup) element.getInstance()).buildChild();
+			if (!element.getInstance().isToUpdate())
+			{
+				//PlayN.log().debug("BuildChild " + element.getInstance() + "isToUpdate " + element.getInstance().isToUpdate());
+				if (element.getInstance() instanceof AbstractSceneObjectGroup) {
+					((AbstractSceneObjectGroup) element.getInstance()).buildChilds();
+				}
 			}
 			getRoot().add(element.getInstance().getRoot());			 
-			element = pendingChilds.poll();						
-		}
-		
-		for (Iterator<ObjectID> iterator = pendingChilds.iterator(); iterator.hasNext();) {
-			ObjectID type = iterator.next();					
-			PlayN.log().debug("intance " + type);
-		}
-		/*for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
-			ObjectID type = iterator.next();					
-			type.getInstance().build();
-			if (type.getInstance() instanceof AbstractSceneObjectGroup) {
-				((AbstractSceneObjectGroup)type.getInstance()).buildChild();
-			}
-			getRoot().add(type.getInstance().getRoot());
-			PlayN.log().debug("BuildChild");
-		}*/
+			element = pendingChilds.poll();		
+		}	
 		setToUpdate(false);
+	}
+	
+	
+	public void updateChilds()
+	{
+		//call update on child builded
+		//PlayN.log().debug("UpdateChilds " + this);
+		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
+			ObjectID obj = iterator.next();					
+			//type.getInstance().build();
+			if (obj.getInstance() instanceof AbstractSceneObjectGroup) {
+				AbstractSceneObjectGroup objGroup = (AbstractSceneObjectGroup)obj.getInstance();
+				objGroup.updateState();
+				if (objGroup.pendingChilds.size() >0) 
+				objGroup.buildChilds();								
+			}
+			obj.getInstance().updateState();		
+		}
+		this.updateState();
+		
 	}
 	
 	/**
@@ -235,7 +245,21 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	public void systemBuild()
 	{
 		build();
-		buildChild();
-	}	
+		buildChilds();
+	}
+	
+	@Override
+	public boolean isToUpdate() {		
+		if (pendingChilds.size()> 0) return true;
+		
+		for (Iterator<ObjectID> iterator = childs.iterator(); iterator.hasNext();) {
+			ObjectID child = (ObjectID) iterator.next();
+			if (child.getInstance().isToUpdate()){				
+				return true;			
+			}
+		}
+		
+		return super.isToUpdate();
+	}
 	
 }
