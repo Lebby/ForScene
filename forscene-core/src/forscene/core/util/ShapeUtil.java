@@ -30,22 +30,19 @@ public class ShapeUtil {
 					if(tmp.getMinX() > tmp1.getMinX()) tmp.setMinX(tmp1.getMinX());
 					if(tmp.getMinY() > tmp1.getMinY()) tmp.setMinY(tmp1.getMinY());
 				}
-				if (tmpLayer instanceof Layer.HasSize)
-				{			
-					t=(Layer.HasSize)tmpLayer.get(i);
-					if (tmp.getMaxX() < (t.scaledWidth()+t.originX()) )
-					tmp.setMaxX(t.scaledWidth()+t.originX());
-				
-					if (tmp.getMaxY() < (t.scaledHeight()+t.originY()) )
-						tmp.setMaxY(t.scaledHeight()+t.originY());
-				
-					if (tmp.getMinX() > (t.scaledWidth()+t.originX()) )
-						tmp.setMinX(t.scaledWidth()+t.originX());
-				
-					if (tmp.getMinY() > (t.scaledHeight()+t.originY()) )
-						tmp.setMinY(t.scaledHeight()+t.originY());							
-				}						
 			}
+		}
+		if (layer instanceof Layer.HasSize)
+		{			
+			t=(Layer.HasSize)layer;
+			if (tmp.getMaxX() < (t.scaledWidth()+t.originX()) )
+				tmp.setMaxX(t.scaledWidth()+t.originX());
+			if (tmp.getMaxY() < (t.scaledHeight()+t.originY()) )
+				tmp.setMaxY(t.scaledHeight()+t.originY());
+			if (tmp.getMinX() > (t.scaledWidth()+t.originX()) )
+				tmp.setMinX(t.scaledWidth()+t.originX());
+			if (tmp.getMinY() > (t.scaledHeight()+t.originY()) )
+				tmp.setMinY(t.scaledHeight()+t.originY());			
 		}
 		return tmp;
 	}
