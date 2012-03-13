@@ -83,7 +83,7 @@ public class GraphicFactory {
 	public static TextFormat createTextFormat()
 	{
 		Font font = GraphicFactory.createFont("Arial", Font.Style.PLAIN, 10f);
-		TextFormat format= GraphicFactory.createTextFormat(font, 0xFFFF0000);
+		TextFormat format= GraphicFactory.createTextFormat(font, 0xFF000000);
 		return format;		
 	}
 	
@@ -126,7 +126,7 @@ public class GraphicFactory {
 			(root instanceof CanvasLayer) )
 		{
 			Layer.HasSize tmp = ( Layer.HasSize)root;
-			CanvasLayer canvas = graphics().createCanvasLayer((int)tmp.width(), (int)tmp.height());
+			CanvasImage canvas = graphics().createImage((int)tmp.width(), (int)tmp.height());
 			canvas.canvas().setStrokeColor(playn.core.Color.rgb(100, 100, 100));
 			canvas.canvas().setFillColor(playn.core.Color.rgb(100, 100, 100));
 			canvas.canvas().setStrokeWidth(2);
@@ -135,7 +135,8 @@ public class GraphicFactory {
 			canvas.canvas().drawLine(tmp.originX()+tmp.width(), tmp.originY()+tmp.height(), tmp.originX()+tmp.width(), tmp.originY());
 			canvas.canvas().drawLine(tmp.originX()+tmp.width(), tmp.originY(),tmp.originX(), tmp.originY());
 			border = graphics().createGroupLayer();
-			border.add(canvas);
+			ImageLayer imageLayer = graphics().createImageLayer(canvas);
+			border.add(imageLayer);
 			PlayN.log().debug("BORDER " + border);
 		}		
 		return border;

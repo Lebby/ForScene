@@ -51,30 +51,30 @@ public class Scroll extends AbstractEffect {
 		switch(scrollType)
 		{
 			case UP:
-				getRoot().setOrigin(x , y-step); break;
+				getRoot().setTranslation(x , y-step); break;
 			case DOWN:
-				getRoot().setOrigin(x, y+step); break;
+				getRoot().setTranslation(x, y+step); break;
 		
 			case LEFT:
-				tmpX++;				
-				//getTarget().getRoot().setOrigin(tmpX , tmpY);
-				getRoot().setOrigin(tmpX , tmpY);
+				tmpX--;				
+				//getTarget().getRoot().setTranslation(tmpX , tmpY);
+				getRoot().setTranslation(tmpX , tmpY);
 				break;
 			case RIGHT:
-				tmpX--;
-				//getTarget().getRoot().setOrigin(tmpX, tmpY);
-				getRoot().setOrigin(tmpX , tmpY);
+				tmpX++;
+				//getTarget().getRoot().setTranslation(tmpX, tmpY);
+				getRoot().setTranslation(tmpX , tmpY);
 				break;
 		
 			case DOWN_LEFT:
-				getTarget().getRoot().setOrigin(x+step , y+step); break;
+				getTarget().getRoot().setTranslation(x-step , y+step); break;
 			case UP_RIGHT:
-				getTarget().getRoot().setOrigin(x-step , y-step); break;
+				getTarget().getRoot().setTranslation(x+step , y-step); break;
 		
 			case DOWN_RIGHT:
-				getTarget().getRoot().setOrigin(x-step , y+step); break;		 
+				getTarget().getRoot().setTranslation(x+step , y+step); break;		 
 			case UP_LEFT: 
-				getTarget().getRoot().setOrigin(x+step , y-step); break;		
+				getTarget().getRoot().setTranslation(x-step , y-step); break;		
 		}
 		
 	}
