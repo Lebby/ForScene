@@ -71,11 +71,9 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	{
 		if ( object.getName() == null || object.getName() == "" ) throw new NoNameException();
 		
-		//childs.add(new ObjectID(object));
 		ObjectID element =new ObjectID(object);
-		if(!pendingChilds.add(element)) throw new IDAlreadyPresentException();	
-		PlayN.log().debug("AddSceneObject:" + this + " childs size : " + childs.size() + " pending size " + pendingChilds.size() + " " + element.getInstance() );
-		//PlayN.log().debug("Element instance " + element.getInstance() );
+		if(!pendingChilds.add(element)) throw new IDAlreadyPresentException();		
+
 		setToUpdate(true);
 	}
 	
@@ -103,7 +101,10 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	public void removeSceneObject(AbstractSceneObject object) throws AbstractObjectNotFoundException
 	{
 		if (childs.contains(object))
+		{
+			object.setParent(null);
 			childs.remove(object);
+		}
 		else throw new AbstractObjectNotFoundException();
 		setToUpdate(true);
 	}
@@ -151,8 +152,9 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 		//PlayN.log().debug("Object " + this);
 		while(element!=null )
 		{			 
-			childs.add(element);
+			childs.add(element);			
 			element.getInstance().build();
+			element.getInstance().setParent(this);
 			element.getInstance().setToUpdate(false);
 			
 			if (!element.getInstance().isToUpdate())
@@ -163,7 +165,7 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 				}
 			}
 			getRoot().add(element.getInstance().getRoot());			 
-			element = pendingChilds.poll();		
+			element = pendingChilds.poll();			
 		}	
 		setToUpdate(false);
 	}

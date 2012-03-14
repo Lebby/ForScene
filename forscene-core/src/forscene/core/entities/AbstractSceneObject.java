@@ -11,10 +11,6 @@ import playn.core.SurfaceLayer;
 
 import static playn.core.PlayN.graphics;
 
-
-
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class AbstractSceneObject.
@@ -35,6 +31,8 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	
 	/** The to update. */
 	private boolean toUpdate = true;
+
+	private AbstractSceneObject parent;
 	
 	/**
 	 * Checks if is to update.
@@ -62,8 +60,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	public AbstractSceneObject() {
 		root = GraphicFactory.createGroupLayer();
 		root = graphics().createImageLayer();				
-		//root.clear();
-		//childs = new TreeSet<ObjectID>();
+
 		ID = new ObjectID(this);
 		/*name = this.getClass().getName();
 		if (name.lastIndexOf('.') > 0) {
@@ -131,8 +128,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 				PlayN.log().debug("\t size : " + ((GroupLayer) getRoot().get(i)).size() + " -||- " + ((GroupLayer) getRoot().get(i)));
 			}	
 		}*/
-		setToUpdate(false);
-		
+		setToUpdate(false);		
 	}
 	
 	
@@ -186,8 +182,6 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		return contains(x,y,root);
 	}
 
-		
-	
 
 	private boolean contains(int x, int y, Layer layer)
 	{
@@ -236,5 +230,21 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	public void setID(ObjectID objectID) {
 		this.ID = objectID;
 		
-	}	
+	}
+	
+	public AbstractSceneObject getParent()
+	{
+		return this.parent;
+	}
+	
+	public void setParent(AbstractSceneObject parent)
+	{
+		this.parent = parent;
+	}
+	
+	public boolean hasParent()
+	{
+		return (parent!=null);
+	}
+	
 }

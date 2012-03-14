@@ -38,8 +38,7 @@ public abstract class AbstractLayerSequence extends AbstractAnimation{
 	public void addLayer(Layer layer)
 	{
 		if (layers == null ) layers = new ArrayList<Layer>();
-		layers.add(layer);
-		PlayN.log().debug("ADDED LAYRESSSSSS : " + layers.size());
+		layers.add(layer);		
 	}
 	
 	/* (non-Javadoc)
@@ -50,8 +49,7 @@ public abstract class AbstractLayerSequence extends AbstractAnimation{
 	{
 		prev = currentIndex;
 		currentIndex = (currentIndex+1)%layers.size();;
-		next = (currentIndex+1)%layers.size();
-		PlayN.log().debug("GoNextAnim" + currentIndex);
+		next = (currentIndex+1)%layers.size();		
 		this.updateState();
 	}
 	
@@ -104,16 +102,11 @@ public abstract class AbstractLayerSequence extends AbstractAnimation{
 	 */
 	@Override
 	public void updateState() {
-
-		//goNext();	// <---- WRONG
-		//GraphicFactory.refresh(getRoot());
-		//draw();
-		
-		PlayN.log().debug("UPDATE STATE ANIMATION " + getRoot() + " systemroot " + graphics().rootLayer() + " current" + current );
 	}
 	
 	/**
 	 * Draw.
+	 * 
 
 	public void draw()
 	{

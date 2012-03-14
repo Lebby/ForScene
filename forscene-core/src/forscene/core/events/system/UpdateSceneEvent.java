@@ -31,7 +31,7 @@ public class UpdateSceneEvent extends AbstractEvent{
 	public void run() {
 		tick++;
 		
-		if (((scene.isToUpdate()) || (scene.getUpdateRate() != 0 && tick%scene.getUpdateRate() == 0 )) )
+		if ((scene.hasParent()&&(scene.isToUpdate()) || (scene.getUpdateRate() != 0 && tick%scene.getUpdateRate() == 0 )) )
 		{			
 			if ((scene.getRoot() == null)|| (scene.getRoot().parent() == null)) return;
 			//MAYBE:WRONG! TODO: FIX OR CHECK THIS --- Fixed by pending childs			
