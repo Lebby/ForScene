@@ -248,6 +248,8 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	{
 		build();
 		buildChilds();
+		setBuilded(true);
+		
 	}
 	
 	@Override

@@ -4,14 +4,15 @@
 
   <groupId>com.github.Lebby</groupId>
   <artifactId>forscene-project</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>forscene-project</name>
-  <url>http://maven.apache.org</url>
+  <url>www.github.com/Lebby/Forscene</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <forscene.version>${project.version}</forscene.version>
+    <playn.version>1.1.1</playn.version>
   </properties>
 
   <dependencies>
@@ -25,13 +26,14 @@
     <dependency>
     	<groupId>com.googlecode.playn</groupId>
     	<artifactId>playn-project</artifactId>
-    	<version>1.1.1</version>
+    	<version>${playn.version}</version>
     	<type>pom</type>
     </dependency>
   </dependencies>
   <description>Forscene is a project based on PlayN project ( ex-forplay). It add a scene management features and other features.</description>
   <organization>
   	<name>Lebby</name>
+  	<url>lebby.github.com</url>
   </organization>
   <modules>    
     <module>forscene-core</module>
@@ -44,17 +46,19 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>tests</testSourceDirectory>
+    <!--
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
       </plugin>
-    </plugins>
+    </plugins> 
+    -->
     <resources>
       <resource>
         <directory>${basedir}/src</directory>
       </resource>
     </resources>
-  </build>
-  
+  </build>  
+  <version>1.0</version>
 </project>

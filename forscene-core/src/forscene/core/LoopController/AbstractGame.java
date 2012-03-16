@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import playn.core.Game;
 import playn.core.GroupLayer;
+import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
 
@@ -60,7 +61,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 	 */
 	public void update(float delta) 
 	{		
-		//PlayN.log().debug("delta" + delta + "Incs" + incs);
+		//PlayN.log().debug("delta" + delta + "Incs" );
 		//for ( int i = 0 ; i < incs; i++)
 		//{
 			//PlayN.log().debug("INCSECONDS");
@@ -69,7 +70,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 		frame++;
 		incTicks();
 		incTime(delta);
-		/*if ((updateRate() != 0 ) && ( (frame%(1f/updateRate())) ==0) ) 
+		/*if ((updateRate() != 0 ) && ( (frame%updateRate()) ==0) ) 
 		{			
 			updateState();
 		}*/

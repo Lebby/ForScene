@@ -31,6 +31,8 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	
 	/** The to update. */
 	private boolean toUpdate = true;
+	
+	private boolean builded = false; 
 
 	private AbstractSceneObject parent;
 	
@@ -173,6 +175,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	public void systemBuild()
 	{
 		build();
+		setBuilded(true);
 		setToUpdate(false);
 	}
 	
@@ -245,6 +248,20 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	public boolean hasParent()
 	{
 		return (parent!=null);
+	}
+
+	/**
+	 * @return the builded
+	 */
+	public boolean isBuilded() {
+		return builded;
+	}
+
+	/**
+	 * @param builded the builded to set
+	 */
+	protected void setBuilded(boolean builded) {
+		this.builded = builded;
 	}
 	
 }
