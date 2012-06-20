@@ -2,11 +2,11 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 <?xml version="1.0"?>
-<project name="${package}" default="run-java" xmlns:artifact="urn:maven-artifact-ant">
+<project name="${rootArtifactId}" default="run-java" xmlns:artifact="urn:maven-artifact-ant">
   <!-- Define your project information here -->
-  <property name="java.classname" value="${package}.java.MainJava"/>
-  <property name="html.classname" value="${package}.Main"/>
-  <property name="html.index" value="Main.html"/>
+  <property name="java.classname" value="${package}.java.${JavaGameClassName}Java"/>
+  <property name="html.classname" value="${package}.${JavaGameClassName}"/>
+  <property name="html.index" value="${JavaGameClassName}.html"/>
 
   <!-- Everything below here shouldn't need to be modified -->
   <!-- run 'ant -p' to see available targets -->

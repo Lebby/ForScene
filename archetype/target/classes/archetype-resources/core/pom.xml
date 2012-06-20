@@ -9,18 +9,13 @@
 
   <artifactId>${artifactId}</artifactId>
   <packaging>jar</packaging>
-  <name>Main Core</name>
+  <name>${JavaGameClassName} Core</name>
 
   <dependencies>
     <dependency>
       <groupId>com.googlecode.playn</groupId>
       <artifactId>playn-core</artifactId>
       <version>${playn.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${groupId}</groupId>
-      <artifactId>${rootArtifactId}-core</artifactId>
-      <version>${version}</version>
     </dependency>
   </dependencies>
 

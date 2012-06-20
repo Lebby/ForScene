@@ -1,6 +1,3 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -17,7 +14,7 @@ namespace ${package}
       app.SetStatusBarHidden(true, true);
       var pf = IOSPlatform.register(app, IOSPlatform.SupportedOrients.PORTRAITS);
       pf.assets().setPathPrefix("assets");
-      PlayN.run(new Main());
+      PlayN.run(new ${JavaGameClassName}());
       return true;
     }
   }

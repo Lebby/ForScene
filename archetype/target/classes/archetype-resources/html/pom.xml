@@ -1,6 +1,3 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,17 +5,17 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>${groupId}</groupId>
-    <artifactId>${package}</artifactId>
+    <artifactId>${rootArtifactId}</artifactId>
     <version>${version}</version>
   </parent>
 
-  <artifactId>${package}-html</artifactId>
+  <artifactId>${artifactId}-html</artifactId>
   <packaging>war</packaging>
-  <name>Main HTML</name>
+  <name>${JavaGameClassName} HTML</name>
 
   <properties>
-    <gwt.module>${package}.Main</gwt.module>
-    <gwt.name>${package}</gwt.name>
+    <gwt.module>${package}.${JavaGameClassName}</gwt.module>
+    <gwt.name>${rootArtifactId}</gwt.name>
     <!-- Desired Google App Engine SDK version -->
     <gae.version>1.6.1</gae.version>
   </properties>
@@ -26,14 +23,14 @@
   <dependencies>
     <dependency>
       <groupId>${groupId}</groupId>
-      <artifactId>${package}-core</artifactId>
-      <version>${symbol_dollar}{project.version}</version>
+      <artifactId>${rootArtifactId}-core</artifactId>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.googlecode.playn</groupId>
       <artifactId>playn-html</artifactId>
-      <version>${symbol_dollar}{playn.version}</version>
+      <version>${playn.version}</version>
     </dependency>
 
     <!-- Start Google App Engine dependencies -->
@@ -41,26 +38,26 @@
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-1.0-sdk</artifactId>
-      <version>${symbol_dollar}{gae.version}</version>
+      <version>${gae.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-labs</artifactId>
-      <version>${symbol_dollar}{gae.version}</version>
+      <version>${gae.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-testing</artifactId>
-      <version>${symbol_dollar}{gae.version}</version>
+      <version>${gae.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-stubs</artifactId>
-      <version>${symbol_dollar}{gae.version}</version>
+      <version>${gae.version}</version>
       <scope>test</scope>
     </dependency>
     <!-- End Google App Engine dependencies -->
@@ -88,7 +85,7 @@
         <version>8.0.0.v20110901</version>
         <configuration>
           <webApp>
-            ${symbol_dollar}{project.basedir}/target/${symbol_dollar}{project.artifactId}-${symbol_dollar}{project.version}
+            ${project.basedir}/target/${project.artifactId}-${project.version}
           </webApp>
         </configuration>
         <executions>
@@ -133,7 +130,7 @@
           <dependency>
             <groupId>net.kindleit</groupId>
             <artifactId>gae-runtime</artifactId>
-            <version>${symbol_dollar}{gae.version}</version>
+            <version>${gae.version}</version>
             <type>pom</type>
           </dependency>
         </dependencies>

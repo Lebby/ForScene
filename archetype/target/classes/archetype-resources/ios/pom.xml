@@ -1,6 +1,3 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,25 +5,25 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>${groupId}</groupId>
-    <artifactId>${package}</artifactId>
+    <artifactId>${rootArtifactId}</artifactId>
     <version>${version}</version>
   </parent>
 
-  <artifactId>${package}-ios</artifactId>
+  <artifactId>${artifactId}-ios</artifactId>
   <packaging>dll</packaging>
-  <name>Main iOS</name>
+  <name>${JavaGameClassName} iOS</name>
 
   <dependencies>
     <dependency>
       <groupId>${groupId}</groupId>
-      <artifactId>${package}-core</artifactId>
-      <version>${symbol_dollar}{project.version}</version>
+      <artifactId>${rootArtifactId}-core</artifactId>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.googlecode.playn</groupId>
       <artifactId>playn-ios</artifactId>
-      <version>${symbol_dollar}{playn.version}</version>
+      <version>${playn.version}</version>
     </dependency>
   </dependencies>
 
@@ -34,7 +31,7 @@
     <!-- use bin as that's where MonoDevelop puts its build bits -->
     <directory>bin</directory>
     <!-- omit the version from the dll name so it doesn't change with releases -->
-    <finalName>${symbol_dollar}{project.artifactId}</finalName>
+    <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
         <groupId>com.samskivert</groupId>
@@ -55,6 +52,7 @@
           </dlls>
           <copyDlls>
             <copyDll>bin/IKVM.Runtime.dll</copyDll>
+            <copyDll>bin/IKVM.Runtime.JNI.dll</copyDll>
             <copyDll>bin/IKVM.OpenJDK.Core.dll</copyDll>
             <copyDll>bin/IKVM.OpenJDK.Util.dll</copyDll>
             <copyDll>bin/IKVM.OpenJDK.Text.dll</copyDll>
