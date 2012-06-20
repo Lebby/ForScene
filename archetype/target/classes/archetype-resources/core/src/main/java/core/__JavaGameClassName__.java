@@ -5,9 +5,9 @@ package ${package}.core;
 
 import static playn.core.PlayN.*;
 
-import ${package}.core.LoopController.AbstractGame;
-import ${package}.core.entities.AbstractScene;
-import ${package}.core.util.GraphicFactory;
+import forscene.core.LoopController.AbstractGame;
+import forscene.core.entities.AbstractScene;
+import forscene.core.util.GraphicFactory;
 
 public class Main extends AbstractGame {
 

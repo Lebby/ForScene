@@ -7,8 +7,10 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
+
   <artifactId>forscene-archetype</artifactId>
   <packaging>maven-archetype</packaging>
+
 
   <name>ForScene Project Archetype</name>
   <description>Archetype for ForScene game projects ( based on PlayN ).</description>
