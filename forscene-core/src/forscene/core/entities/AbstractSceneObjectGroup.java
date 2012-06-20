@@ -148,7 +148,7 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 	 */
 	public void buildChilds()
 	{		
-		ObjectID element = pendingChilds.poll();		
+		ObjectID element = pendingChilds.poll();
 		//PlayN.log().debug("Object " + this);
 		while(element!=null )
 		{			 
@@ -165,7 +165,7 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 				}
 			}
 			getRoot().add(element.getInstance().getRoot());			 
-			element = pendingChilds.poll();			
+			element = pendingChilds.poll();
 		}	
 		setToUpdate(false);
 	}

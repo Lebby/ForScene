@@ -152,7 +152,6 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 	 */
 	public void loadScene(AbstractScene scene) {
 		gameManager.loadScene(scene);
-		
 	}
 
 	
@@ -161,7 +160,6 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 	 */
 	public void loadSceneGroup(AbstractSceneGroup sceneGroup) {
 		gameManager.loadSceneGroup(sceneGroup);
-		
 	}
 
 	

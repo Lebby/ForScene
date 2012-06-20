@@ -1,10 +1,5 @@
 package forscene.core.util;
 
-import java.util.ArrayList;
-
-import forscene.core.entities.AbstractSceneObject;
-import forscene.core.entities.AbstractSceneObjectGroup;
-
 import playn.core.CanvasImage;
 import playn.core.CanvasLayer;
 import playn.core.Font;
@@ -18,6 +13,11 @@ import playn.core.SurfaceLayer;
 import playn.core.TextFormat;
 import playn.core.TextFormat.Alignment;
 import playn.core.TextLayout;
+
+import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.AbstractSceneObjectGroup;
+
+
 
 import static playn.core.PlayN.graphics;
 
@@ -49,15 +49,22 @@ public class GraphicFactory {
 		// crea il layout      :  TextLayout layout = graphics().layoutText(text, format);
 		// crea il canvaslayer :  CanvasLayer layer = graphics().createCanvasLayer((int)Math.ceil(layout.width()), (int)Math.ceil(layout.height()));
 		// scrivo il layer     :  layer.canvas().drawText(layout, 0, 0);		
-		CanvasImage canvas;
-		TextLayout layout = graphics().layoutText(text, format);		
-		canvas = graphics().createImage((int)Math.ceil(layout.width()), (int)Math.ceil(layout.height()));
-		canvas.canvas().drawText(layout, 0, 0);
 		
-		ImageLayer layer = PlayN.graphics().createImageLayer();
-		layer.setImage(canvas);
+		TextLayout layout = graphics().layoutText(text, format);
+		PlayN.log().debug("LAYOUT " +  layout.height() + " "+layout.width());
+		//CanvasImage canvas = graphics().createImage(((int)Math.ceil(layout.width())), ((int)Math.ceil(layout.height())));
+		/*CanvasImage canvas =*/ graphics().createImage(layout.width(), layout.height());
+		//canvas = graphics().createImage((int)Math.ceil(layout.width()), (int)Math.ceil(layout.height()));
+		//canvas.canvas().strokeText (layout, 0, 0);
 		
-	    return layer;
+		//ImageLayer layer = PlayN.graphics().createImageLayer();
+		//layer.setImage(canvas);
+		
+	    //return layer;
+		ImageLayer image = graphics().createImageLayer();
+		image.setHeight(10);
+		image.setWidth(10);
+		return image;
 	}
 	
 	public static Layer setAlpha(int alpha, Layer layer)
