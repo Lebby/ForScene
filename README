@@ -1,5 +1,49 @@
 ==================================== ForScene ====================================
 
+ForScene: A java library to develop exportable multiplatform game ( HTML5/JS, IOS, Flash, Java, Android )
+
+Author: Scuderi Giovanni Luca ( glscud at gmail dot com ) { Lebby }
+This is a ZenCoders.org ( see below ) project.
+
+License:
+If you want to use for a GPL project you're free to use.
+For commercial purpose and not GPL project, you can't use (all right reserved). You must contact me.
+All Rights Reserved. This is a temp license. When i'll finish core code, i'll change it in a different license.
+This library use PlayN; PlayN is under http://www.apache.org/licenses/LICENSE-2.0.
+This works is not a derivative work but use strongly PlayN Library and tools.
+
+
+I'm studiying all license to choose one that fit better to this project!
+( I think it will be open source and double licensed  ... non commercial purpose and commercial purpose )
+
+ForScene is a java library based on PlayN framework that allow to you to produce code in:
+HTML5/js, Android, IOS, Flash ( and all supported platform by PlayN ).
+It is a game develop library that introduce many concept to allow a easier
+and faster develop of a game. It inherits all of the benefits and requirements of PlayN.
+
+Disclaimer:
+You can still use to develop game, but ... i want to improve it!
+Many concept must be simplified and fixed. I want to develop "simply to use" library.
+I'm thinking to offer "full-access" to each data in class because I hope to develope a GUI
+to use this library to offer an easy tool to build demos/games/presentations.
+This library is HEAVILY BASED ON PLAYN.
+I'll add documentation and refer to playN project and its authors in "documentation" phase.
+Now, code is ugly and not documented ... you can read "debug lines and old code" and other things ...
+please don't care to them! 
+If you're one of PlayN Projects and you noticed something wrong, you can send email to me.
+
+Concepts:
+It's purpose is to offer a layer to easy manage scene and not layer.
+Scene is a logical collection of layers and Scene Objects. 
+Scene Object is a logical view of multiple Layers.
+A Scene Object can be combined to create complex objects.
+I'm developing effects that can be have Scene object as target.
+I have developed a small event-driven management of scene building process and effect.
+I've developed "boundaries" for object and scene.
+
+I want to develop by this library a "Monkey Island"-like game ... then i focus on all I needs to achieve this target!
+This game is called TommyNick!
+
         When you see this tree, know that you've came across ZenCoders.org        
 
 
@@ -47,30 +91,3 @@ if(                        else      #define     fp    FILE* f         char* s
 
 For further information:
 ZenCoders Website : www.zencoders.org
-
-Author: Scuderi Giovanni Luca ( glscud at gmail dot com ) 
-
-License: All Rights Reserved. This is a temp license. When i'll finish core code, i'll change it in a open license.
-
-
-ForScene is a library based on PlayN framework.
-
-Disclaimer:
-This project is in a "pre-alpha" phase.
-Many concept must be simplified and fixed. I want to develop "simply to use" library.
-I'm thinking to offer "full-access" to each data in class because I hope to develope a GUI to use this library to offer an easy tool to build demos/games/presentations.
-This library is HEAVILY BASED ON PLAYN.
-I'll add documentation and refer to playN project and its authors in "documentation" phase.
-Now, code is ugly and not documented ... you can read "debug lines and old code" and other things ... please don't care to them! 
-If you're of PlayN Projects and you noticed something wrong, you can send email to glscud@gmail.com.   
-
-Purpose:
-It's purpose is to offer a layer to easy manage scene and not layer.
-Scene is a logical collection of layers and Scene Objects. 
-Scene Object is a logical view of multiple Layers.
-A Scene Object can be combined to create complex objects.
-I'm developing effects that can be have Scene object as target.
-I have developed a small event-driven management of scene building process and effect.
-   
-
-I want to develop by this library a "Monkey Island"-like game ... then i focus on all I needs to achieve this target!  
