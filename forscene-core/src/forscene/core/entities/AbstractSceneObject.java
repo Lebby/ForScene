@@ -1,8 +1,6 @@
 package forscene.core.entities;
 
 
-import forscene.core.util.GraphicFactory;
-
 import playn.core.CanvasLayer;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
@@ -21,7 +19,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	private long updateRate = 0;
 	
 	/** The root. */
-	private Layer root; //TODO: This must be template ... < T extends Layer > !!!
+	private ImageLayer root; //TODO: This must be template ... < T extends Layer > !!!
 	
 	/** The name. */
 	private String name="";
@@ -41,7 +39,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	 *
 	 * @return true, if is to update
 	 */
-	public boolean isToUpdate() {
+	public boolean isToUpdate() {		
 		return toUpdate;
 	}
 
@@ -54,14 +52,12 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		this.toUpdate = toUpdate;
 	}
 
-	
-	
-	/**
+		/**
 	 * Instantiates a new abstract scene object.
 	 */
 	public AbstractSceneObject() {
-		root = GraphicFactory.createGroupLayer();
-		root = graphics().createImageLayer();				
+		//root = GraphicFactory.createGroupLayer();
+		root = graphics().createImageLayer();
 
 		ID = new ObjectID(this);
 		/*name = this.getClass().getName();
@@ -89,7 +85,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	 */
 	public void setRoot(Layer layer)
 	{
-		this.root = layer;
+		this.root = (ImageLayer)layer;
 		setToUpdate(true);
 	}
 	
@@ -256,7 +252,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	public boolean isBuilded() {
 		return builded;
 	}
-
+	
 	/**
 	 * @param builded the builded to set
 	 */
