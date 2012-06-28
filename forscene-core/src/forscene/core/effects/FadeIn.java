@@ -2,7 +2,8 @@ package forscene.core.effects;
 
 import forscene.core.entities.AbstractEffect;
 
-public class FadeIn extends AbstractEffect{
+public class FadeIn extends AbstractEffect
+{
 	private boolean init=false;
 	private float startAlpha =0f;
 	private float currentAlpha = startAlpha;
@@ -10,12 +11,15 @@ public class FadeIn extends AbstractEffect{
 	private float step = 0.1f;
 
 	@Override
-	public void build() {
+	public void build() 
+	{
 		super.build();
 		this.getRoot().setAlpha(getStartAlpha());
 	}
+	
 	@Override
-	public void goNext() {		
+	public void goNext() 
+	{		
 		this.getRoot().setAlpha(currentAlpha);
 		if (currentAlpha >= endAlpha) this.stop();
 		else
@@ -23,7 +27,8 @@ public class FadeIn extends AbstractEffect{
 	}
 
 	@Override
-	public void run() {
+	public void run() 
+	{
 		if (init == false)
 		{
 			init= true;
@@ -35,54 +40,59 @@ public class FadeIn extends AbstractEffect{
 	/**
 	 * @return the startAlpha
 	 */
-	public float getStartAlpha() {
+	public float getStartAlpha() 
+	{
 		return startAlpha;
 	}
 
 	/**
 	 * @param startAlpha the startAlpha to set
 	 */
-	public void setStartAlpha(float startAlpha) {
+	public void setStartAlpha(float startAlpha) 
+	{
 		this.startAlpha = startAlpha;
 	}
 
 	/**
 	 * @return the endAlpha
 	 */
-	public float getEndAlpha() {
+	public float getEndAlpha() 
+	{
 		return endAlpha;
 	}
 
 	/**
 	 * @param endAlpha the endAlpha to set
 	 */
-	public void setEndAlpha(float endAlpha) {
+	public void setEndAlpha(float endAlpha) 
+	{
 		this.endAlpha = endAlpha;
 	}
 
 	/**
 	 * @return the step
 	 */
-	public float getStep() {
+	public float getStep() 
+	{
 		return step;
 	}
 
 	/**
 	 * @param step the step to set
 	 */
-	public void setStep(float step) {
+	public void setStep(float step) 
+	{
 		this.step = step;
 	}
-	
-	
+		
 	public float getCurrentAlpha()
 	{
 		return currentAlpha;
 	}
 	
-	protected void setCurrentAlpha(float f) {
-		this.currentAlpha = f;
-		
+	protected void setCurrentAlpha(float f) 
+	{
+		this.currentAlpha = f;		
 	}
 
 }

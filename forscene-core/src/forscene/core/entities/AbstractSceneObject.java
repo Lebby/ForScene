@@ -135,6 +135,14 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	 */
 	public abstract void build();
 	
+	public void buildOnce()
+	{
+		if(!isBuilded())
+		{
+			systemBuild();
+		}
+	}
+	
 	/**
 	 * Update state.
 	 */
@@ -251,6 +259,22 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	 */
 	public boolean isBuilded() {
 		return builded;
+	}
+	
+	public void hide()
+	{
+		root.setAlpha(0);
+	}
+	
+	public void show()
+	{
+		root.setAlpha(1);
+	}
+	
+	public boolean isVisible()
+	{
+		if (root.alpha()>0) return true;
+		return false;
 	}
 	
 	/**

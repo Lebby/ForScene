@@ -153,7 +153,7 @@ public abstract class AbstractSceneObjectGroup extends AbstractSceneObject{
 		while(element!=null )
 		{			 
 			childs.add(element);			
-			element.getInstance().build();
+			element.getInstance().buildOnce();
 			element.getInstance().setParent(this);
 			element.getInstance().setToUpdate(false);
 			

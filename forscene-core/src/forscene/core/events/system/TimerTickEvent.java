@@ -13,7 +13,6 @@ public class TimerTickEvent extends AbstractEvent{
 	 * Instantiates a new event timer tick.
 	 */
 	public TimerTickEvent() {
-		//tick++;
 	}	
 	
 	/* (non-Javadoc)
@@ -21,7 +20,6 @@ public class TimerTickEvent extends AbstractEvent{
 	 */
 	@Override
 	public void run() {
-		//tick++;
 		AbstractGameLoopManager.getInstance().incTicks();
 	}
 

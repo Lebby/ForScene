@@ -2,6 +2,8 @@ package forscene.core.events.system;
 
 import java.util.PriorityQueue;
 
+import playn.core.PlayN;
+
 
 
 // TODO: Auto-generated Javadoc
