@@ -1,0 +1,19 @@
+package forscene.core.util.position;
+
+public enum Align {
+	HORIZONTAL_CENTER,
+	VERTICAL_CENTER,
+	LEFT,
+	RIGHT,
+	TOP,	
+	BOTTOM,	
+	TOP_LEFT,
+	TOP_RIGHT,
+	TOP_CENTER,
+	BOTTOM_LEFT,
+	BOTTOM_RIGHT,
+	BOTTOM_CENTER,
+	CENTER_LEFT,
+	CENTER_RIGHT,
+	MIDDLE
+}

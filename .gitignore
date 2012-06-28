@@ -1,8 +1,6 @@
 /target
-/forscene-test
-/forscene-test (copia)
-/.settings
-/forscene-core
+.settings
+/forscene-core/.settings
 /.oitignore
 forscene-core/src/forscene/core/game/actors/Tommy.java
 site
