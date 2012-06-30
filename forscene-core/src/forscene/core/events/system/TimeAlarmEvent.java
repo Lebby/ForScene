@@ -46,7 +46,7 @@ public abstract class TimeAlarmEvent extends AbstractEvent{
 			alarm();
 			this.setDone(true);
 		}else this.setDone(false);
-		PlayN.log().debug(GameLoopManager.getInstance().getTicks() + " -> " +time);
+		//PlayN.log().debug(GameLoopManager.getInstance().getTicks() + " -> " +time);
 	}
 	
 	public abstract void alarm();

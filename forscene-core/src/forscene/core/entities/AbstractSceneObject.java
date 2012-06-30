@@ -19,7 +19,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	private long updateRate = 0;
 	
 	/** The root. */
-	private ImageLayer root; //TODO: This must be template ... < T extends Layer > !!!
+	private Layer.HasSize root; //TODO: This must be template ... < T extends Layer > !!!
 	
 	/** The name. */
 	private String name="";
@@ -85,7 +85,7 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	 */
 	public void setRoot(Layer layer)
 	{
-		this.root = (ImageLayer)layer;
+		this.root = (Layer.HasSize)layer;
 		setToUpdate(true);
 	}
 	
