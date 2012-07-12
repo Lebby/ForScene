@@ -44,3 +44,6 @@ site
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Scripts #
+*.sh
