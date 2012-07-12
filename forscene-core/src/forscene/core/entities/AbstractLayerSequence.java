@@ -110,6 +110,7 @@ public abstract class AbstractLayerSequence extends AbstractAnimation{
 
 	public void draw()
 	{
+		//#Debug
 		//PlayN.log().debug("ROOT " + getRoot() + " systemroot " + graphics().rootLayer() + " current" + current );
 		
 		if (currentIndex == -1) return;
@@ -128,6 +129,7 @@ public abstract class AbstractLayerSequence extends AbstractAnimation{
 		//current.setScale(0.3f);
 		
 		current.setVisible(true);
+		//#Debug
 		//PlayN.log().debug("SEq current : " + current);
 		//PlayN.log().debug("SEq current : " + currentIndex%layers.size());
 		getRoot().add(current);

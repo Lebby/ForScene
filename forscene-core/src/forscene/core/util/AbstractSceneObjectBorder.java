@@ -4,14 +4,14 @@ import playn.core.GroupLayer;
 import playn.core.PlayN;
 import forscene.core.entities.AbstractSceneObject;
 
-public class AbstractSceneObjectBorder extends AbstractSceneObject{
-	private AbstractSceneObject object;	
+public class AbstractSceneObjectBorder extends AbstractSceneObject<GroupLayer>{
+	private AbstractSceneObject<?> object;	
 	
-	public AbstractSceneObjectBorder(AbstractSceneObject object) {
+	public AbstractSceneObjectBorder(AbstractSceneObject<?> object) {
 		setTargetObject(object);
 	}
 
-	@Override
+	
 	public void updateState() {
 		PlayN.log().debug("Border: "+ object + " Root : " + object.getRoot());
 		if (object.isToUpdate())

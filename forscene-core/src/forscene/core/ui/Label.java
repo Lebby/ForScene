@@ -3,7 +3,6 @@ package forscene.core.ui;
 
 import playn.core.ImageLayer;
 import playn.core.TextFormat;
-import forscene.core.entities.AbstractSceneObject;
 import forscene.core.util.GraphicFactory;
 
 public class Label extends UIComponent{
@@ -14,7 +13,7 @@ public class Label extends UIComponent{
 	public void build() {
 	}
 
-	@Override
+
 	public void updateState() {		
 	}
 

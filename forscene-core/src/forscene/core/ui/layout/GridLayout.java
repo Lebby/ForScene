@@ -8,7 +8,7 @@ public class GridLayout extends AbstractLayout{
 	private int rows;
 	private int currCols=0,currRows=0;
 	
-	public void layout(AbstractSceneObject object) {
+	public void layout(AbstractSceneObject<?> object) {
 		try {
 			layout(object,currRows,currCols);
 		} catch (NoNameException e) {
@@ -16,13 +16,13 @@ public class GridLayout extends AbstractLayout{
 		}
 	}
 	
-	public void layout(AbstractSceneObject object, int row, int column) throws NoNameException
+	public void layout(AbstractSceneObject<?> object, int row, int column) throws NoNameException
 	{
 		object.getRoot().setTranslation(row*getHeight()/rows, column*getWidth()/columns);
 	}
 	
 	
-	public void addSceneObject(AbstractSceneObject object,int row, int column)
+	public void addSceneObject(AbstractSceneObject<?> object,int row, int column)
 			throws NoNameException 
 	{
 		layout(object,row,column);
@@ -34,7 +34,7 @@ public class GridLayout extends AbstractLayout{
 		
 	}
 
-	@Override
+	
 	public void updateState() {
 		// TODO Auto-generated method stub
 		

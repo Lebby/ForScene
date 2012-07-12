@@ -5,24 +5,32 @@ import playn.core.CanvasLayer;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
 import playn.core.Layer;
+import playn.core.PlayN;
 import playn.core.SurfaceLayer;
 
-import static playn.core.PlayN.graphics;
 
-// TODO: Auto-generated Javadoc
+
+
 /**
  * The Class AbstractSceneObject.
  */
-public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
-	
+public abstract class AbstractSceneObject<T extends Layer> implements ISceneObject<T>{
+
+	/**
+	 * Instantiates a new abstract scene object.
+	 */
+	/*
+	public AbstractSceneObject() {
+		setRoot(graphics().createImageLayer());		
+		
+		setToUpdate(false);
+	}*/
+
 	/** The update rate. */
 	private long updateRate = 0;
 	
-	/** The root. */
-	private Layer.HasSize root; //TODO: This must be template ... < T extends Layer > !!!
-	
-	/** The name. */
-	private String name="";
+	/** The root */
+	private T root;
 	
 	/** The ID. */
 	private ObjectID ID;
@@ -32,67 +40,56 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 	
 	private boolean builded = false; 
 
-	private AbstractSceneObject parent;
+	// The parent. If it is null means that it is orphan => it isn't in scenegraph. 
+	private AbstractSceneObjectGroup parent;
 	
-	/**
-	 * Checks if is to update.
-	 *
-	 * @return true, if is to update
+	
+	public AbstractSceneObject() {
+		setID(new ObjectID(this));
+		setName(""+this);
+	}
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#isToUpdate()
 	 */
 	public boolean isToUpdate() {		
 		return toUpdate;
 	}
 
-	/**
-	 * Sets the to update.
-	 *
-	 * @param toUpdate the new to update
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#setToUpdate(boolean)
 	 */
 	public void setToUpdate(boolean toUpdate) {
+		
+		/*PlayN.log().debug(this + " Called setToUpdate " + toUpdate);
+		
+		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+		for (int i = 0; i < stackTraceElements.length; i++) {
+			PlayN.log().debug("" + stackTraceElements[i]);
+	}*/
+		
 		this.toUpdate = toUpdate;
 	}
-
-		/**
-	 * Instantiates a new abstract scene object.
-	 */
-	public AbstractSceneObject() {
-		//root = GraphicFactory.createGroupLayer();
-		root = graphics().createImageLayer();
-
-		ID = new ObjectID(this);
-		/*name = this.getClass().getName();
-		if (name.lastIndexOf('.') > 0) {
-		    name = name.substring(name.lastIndexOf('.')+1);
-		}*/
-		name = ""+this;
-	}	
 	
-	
-	/**
-	 * Gets the root.
-	 *
-	 * @return the root
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#getRoot()
 	 */	
-	public Layer getRoot()
+	public T getRoot()
 	{
 		return root;
 	}
 	
-	/**
-	 * Sets the root.
-	 *
-	 * @param groupLayer the new root
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#setRoot(playn.core.Layer)
 	 */
-	public void setRoot(Layer layer)
+	public void setRoot(T layer)
 	{
-		this.root = (Layer.HasSize)layer;
+		this.root = layer;
 		setToUpdate(true);
 	}
 	
-	/**
-	 * Update draw.
-	 *
-	 * @param layer the layer
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#updateDraw(playn.core.Layer)
 	 */
 	public void updateDraw(Layer layer)
 	{
@@ -100,41 +97,17 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		//this.getRoot().add(layer);
 		getRoot().parent().remove(layer);
 		getRoot().parent().add(layer);
-		setToUpdate(false);
-	}
+		//setToUpdate(false);
+	}	
 	
-	//evil function
-	/**
-	 * Redraw.
-	 */
-	private void redraw()
-	{
-		//PlayN.log().debug("REDRAW SIZE 1 : " + getRoot().size() + " depth : " + getRoot().depth() + " : " + getRoot().getClass());
-		GroupLayer parent = this.getRoot().parent();
-		if (parent != null )
-		{
-			parent.remove(this.getRoot());
-			parent.clear();
-			parent.add(getRoot());			
-		}
-		/*PlayN.log().debug("REDRAW SIZE : " + getRoot().size() + " depth : " + getRoot().depth() + " : " + getRoot().getClass());
-		for( float i = 0; i < getRoot().size(); i++)
-		{
-			PlayN.log().debug("REDRAW ---INNER size : " + getRoot().get(i).getClass() );
-			if (getRoot().get(i).getClass().toString().compareTo( "class playn.java.JavaGroupLayer") ==0)
-			{
-				PlayN.log().debug("\t size : " + ((GroupLayer) getRoot().get(i)).size() + " -||- " + ((GroupLayer) getRoot().get(i)));
-			}	
-		}*/
-		setToUpdate(false);		
-	}
-	
-	
-	/**
-	 * Builds the.
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#build()
 	 */
 	public abstract void build();
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#buildOnce()
+	 */
 	public void buildOnce()
 	{
 		if(!isBuilded())
@@ -143,47 +116,136 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		}
 	}
 	
-	/**
-	 * Update state.
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#systemBuild()
 	 */
-	public abstract void updateState();
+	public void systemBuild()
+	{
+		build();		
+		while(!ResourceManager.getInstance().isReady())
+		{
+			ResourceManager.getInstance().loadResources();
+		}
+		setBuilded(true);
+		setToUpdate(true);		
+	}
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#setUpdateRate(long)
+	 */
+	public void setUpdateRate(long rate )
+	{
+		this.updateRate = rate;
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#getUpdateRate()
+	 */
+	public long getUpdateRate()
+	{
+		return updateRate;
+	}
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#hide()
+	 */
+	public void hide()
+	{
+		root.setAlpha(0);
+	}
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#show()
+	 */
+	public void show()
+	{
+		root.setAlpha(1);
+	}
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#isVisible()
+	 */
+	public boolean isVisible()
+	{
+		if (root.alpha()>0) return true;
+		return false;
+	}
 	
 	/**
-	 * Gets the name.
-	 *
-	 * @return the name
+	 * @param builded the builded to set
 	 */
-	public String getName() {
-		return name;
+	protected void setBuilded(boolean builded) {
+		this.builded = builded;
 	}
-
-	/**
-	 * Sets the name.
-	 *
-	 * @param name the new name
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#isBuilded()
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public boolean isBuilded() {
+		return builded;
 	}
+	
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#setID(forscene.core.entities.ObjectID)
+	 */
+	public void setID(ObjectID objectID) {
+		this.ID = objectID;
 		
-	/**
-	 * Gets the type.
-	 *
-	 * @return the type
+	}
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#getType()
 	 */
 	public String getType()
 	{
 		return ID.getType();
 	}
 	
-	public void systemBuild()
-	{
-		build();
-		setBuilded(true);
-		setToUpdate(false);
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#getName()
+	 */
+	public String getName() {
+		return ID.getName();
+	}
+
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#setName(java.lang.String)
+	 */
+	public void setName(String name) {
+		ID.setName(name);
+	}
+	
+	public ObjectID getObjectID() {		
+		return ID;
+	}
+
+	public long getID() {
+		return ID.getID();
 	}
 	
 	
+	
+	//parent
+	public AbstractSceneObjectGroup getParent() {		
+		return parent;
+	}
+	public boolean hasParent() {
+		return (parent!=null);
+	}
+	public void setParent(AbstractSceneObjectGroup parent) {
+		this.parent=parent;
+		parent.setToUpdate(true);
+		
+	}
+
+	
+	//TODO: TO MOVE
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.ISceneObject#contains(int, int)
+	 */
 	public boolean contains(int x, int y)
 	{
 		return contains(x,y,root);
@@ -213,75 +275,32 @@ public abstract class AbstractSceneObject implements ASOTemplate<Layer>{
 		 return false;
 	}
 	
+	//evil function
 	/**
-	 * Sets the update rate.
-	 *
-	 * @param rate the new update rate
+	 * Redraw.
 	 */
-	public void setUpdateRate(long rate )
+	public void refresh()
 	{
-		this.updateRate = rate;
+		PlayN.log().debug("called refresh");
+		//#Debug
+		//PlayN.log().debug("REDRAW SIZE 1 : " + getRoot().size() + " depth : " + getRoot().depth() + " : " + getRoot().getClass());
+		GroupLayer parent = this.getRoot().parent();
+		if (parent != null )
+		{
+			parent.remove(this.getRoot());
+			//parent.clear();
+			parent.add(getRoot());			
+		}
+		//#Debug
+		/*PlayN.log().debug("REDRAW SIZE : " + getRoot().size() + " depth : " + getRoot().depth() + " : " + getRoot().getClass());
+		for( float i = 0; i < getRoot().size(); i++)
+		{
+			PlayN.log().debug("REDRAW ---INNER size : " + getRoot().get(i).getClass() );
+			if (getRoot().get(i).getClass().toString().compareTo( "class playn.java.JavaGroupLayer") ==0)
+			{
+				PlayN.log().debug("\t size : " + ((GroupLayer) getRoot().get(i)).size() + " -||- " + ((GroupLayer) getRoot().get(i)));
+			}	
+		}*/
+		setToUpdate(false);		
 	}
-	
-
-	/**
-	 * Gets the update rate.
-	 *
-	 * @return the update rate
-	 */
-	public long getUpdateRate()
-	{
-		return updateRate;
-	}
-
-	public void setID(ObjectID objectID) {
-		this.ID = objectID;
-		
-	}
-	
-	public AbstractSceneObject getParent()
-	{
-		return this.parent;
-	}
-	
-	public void setParent(AbstractSceneObject parent)
-	{
-		this.parent = parent;
-	}
-	
-	public boolean hasParent()
-	{
-		return (parent!=null);
-	}
-
-	/**
-	 * @return the builded
-	 */
-	public boolean isBuilded() {
-		return builded;
-	}
-	
-	public void hide()
-	{
-		root.setAlpha(0);
-	}
-	
-	public void show()
-	{
-		root.setAlpha(1);
-	}
-	
-	public boolean isVisible()
-	{
-		if (root.alpha()>0) return true;
-		return false;
-	}
-	
-	/**
-	 * @param builded the builded to set
-	 */
-	protected void setBuilded(boolean builded) {
-		this.builded = builded;
-	}
-	
 }

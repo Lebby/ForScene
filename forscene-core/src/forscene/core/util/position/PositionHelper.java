@@ -1,6 +1,5 @@
 package forscene.core.util.position;
 
-import playn.core.Layer;
 import playn.core.PlayN;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.util.ShapeUtil;
@@ -77,7 +76,7 @@ public class PositionHelper {
 	
 	private static void verticalAlign(AbstractSceneObject parent, AbstractSceneObject target, Align align)
 	{
-		PlayN.log().debug("VAlign: " +  align);
+		//PlayN.log().debug("VAlign: " +  align);
 		//float containerHeight = ((Layer.HasSize)parent.getRoot()).height();
 		float containerHeight = ShapeUtil.calculateShapeInfoSceneObject(parent).getMaxY();
 		//float targetHeight = ((Layer.HasSize)target.getRoot()).height();
@@ -102,7 +101,7 @@ public class PositionHelper {
 	
 	private static void horizontalAlign(AbstractSceneObject parent, AbstractSceneObject target, Align align)
 	{
-		PlayN.log().debug("HAlign: " +  align);
+		//PlayN.log().debug("HAlign: " +  align);
 		//float containerWidth = ((Layer.HasSize)parent.getRoot()).width();
 		float containerWidth = ShapeUtil.calculateShapeInfoSceneObject(parent).getMaxX();
 		//float targetWidth = ((Layer.HasSize)target.getRoot()).width();

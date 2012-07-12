@@ -29,4 +29,9 @@ public abstract class OnLoad extends  AbstractEventListener{
 		return false;
 	}
 	
+	public AbstractScene getScene()
+	{
+		return scene;
+	}
+	
 }

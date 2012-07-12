@@ -1,11 +1,12 @@
 package forscene.core.util;
 
 import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.ISceneObject;
 
 public class ASOUtil {
-	public static AbstractSceneObject drawBorder(final AbstractSceneObject object)
+	public static ISceneObject drawBorder(final AbstractSceneObject object)
 	{
-		AbstractSceneObject tmp = new AbstractSceneObjectBorder(object);
+		ISceneObject tmp = new AbstractSceneObjectBorder(object);
 		return tmp;		
 	}
 }

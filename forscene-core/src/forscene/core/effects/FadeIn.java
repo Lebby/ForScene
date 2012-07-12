@@ -1,5 +1,6 @@
 package forscene.core.effects;
 
+import playn.core.PlayN;
 import forscene.core.entities.AbstractEffect;
 
 public class FadeIn extends AbstractEffect
@@ -8,33 +9,33 @@ public class FadeIn extends AbstractEffect
 	private float startAlpha =0f;
 	private float currentAlpha = startAlpha;
 	private float endAlpha =1f;
-	private float step = 0.1f;
-
-	@Override
-	public void build() 
-	{
-		super.build();
-		this.getRoot().setAlpha(getStartAlpha());
-	}
+	private float step = 0.1f;	
 	
 	@Override
 	public void goNext() 
-	{		
-		this.getRoot().setAlpha(currentAlpha);
-		if (currentAlpha >= endAlpha) this.stop();
-		else
-		currentAlpha+=step;
+	{
+		changeAlpha();		
 	}
 
 	@Override
 	public void run() 
 	{
+		goNext();
+	}
+	
+	private void changeAlpha()
+	{
 		if (init == false)
 		{
 			init= true;
-			currentAlpha=startAlpha;
-		}
-		goNext();		
+			currentAlpha=startAlpha;			
+		}				
+		if (currentAlpha >= endAlpha) this.stop();
+		else
+			currentAlpha+=step;
+		getRoot().setAlpha(currentAlpha);
+		
+		PlayN.log().debug("FadeIN change alpha");
 	}
 
 	/**

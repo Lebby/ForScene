@@ -1,6 +1,7 @@
 package forscene.core.events.system;
 
 
+import playn.core.PlayN;
 import forscene.core.LoopController.AbstractGameLoopManager;
 import forscene.core.entities.AbstractAnimation;
 
@@ -30,8 +31,6 @@ public class AnimationUpdateEvent extends AbstractEvent{
 	 */
 	@Override
 	public void run() {
-		//PlayN.log().debug("Animation update");
-
 		if (animation.isStarted())
 		{
 			long updateRate = animation.getUpdateRate();
@@ -41,16 +40,17 @@ public class AnimationUpdateEvent extends AbstractEvent{
 			PlayN.log().debug( " updateRate " + updateRate );*/
 			if (updateRate == 0 )
 			{
-				animation.run();				
+				animation.run();
+				animation.getTarget().setToUpdate(true);				
 				return;
 			}
 			
 			 long scaledFps =  ( AbstractGameLoopManager.getInstance().getTickRate() / updateRate);
-			 //PlayN.log().debug( " turi:  " + scaledFps  );
 			if (scaledFps == 0 ) scaledFps =1;
 			 if ((updateRate == 0)  || ((( AbstractGameLoopManager.getInstance().getTicks()))%scaledFps == 0)) 
 			{
-				animation.goNext();				
+				animation.run();
+				animation.getTarget().setToUpdate(true);
 			}
 		}else setDone(true);
 	}

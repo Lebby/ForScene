@@ -1,9 +1,18 @@
 package forscene.core.entities;
 
+import playn.core.GroupLayer;
+import playn.core.ImageLayer;
+import playn.core.ImmediateLayer;
 import playn.core.Layer;
 import playn.core.PlayN;
+import playn.core.Surface;
+import playn.core.SurfaceLayer;
 import forscene.core.events.system.AnimationUpdateEvent;
 import forscene.core.events.system.EventManager;
+import forscene.core.util.BasicShapeInfo;
+import forscene.core.util.ShapeUtil;
+
+import static playn.core.PlayN.graphics;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,10 +32,17 @@ public abstract class AbstractAnimation {
 	/** The update rate. */
 	private long updateRate = 0;
 	
+	private Layer root;
+		
 	/**
 	 * Builds the.
 	 */
 	public abstract void build();
+	
+	public void init()
+	{	
+		
+	}
 	
 	/**
 	 * Start.
@@ -36,6 +52,7 @@ public abstract class AbstractAnimation {
 		if (init == false)
 		{
 			init =true;
+			init();
 			build();
 		}
 		started = true;
@@ -48,6 +65,7 @@ public abstract class AbstractAnimation {
 	 */
 	public void stop(){
 		started = false;
+		//#Debug
 		PlayN.log().debug("ABSTRACT ANIMATION STOP!");
 	};
 	
@@ -97,14 +115,15 @@ public abstract class AbstractAnimation {
 	 */
 	public void setTarget(AbstractSceneObject actor) {
 		this.target = actor;
+		setRoot(actor.getRoot());
 	}
 	
 	//@Override
 	/**
 	 * Update state.
 	 */
-	public void updateState() {		
-		//GraphicFactory.refresh(getRoot()); //: wrong		
+	public void updateState() {
+		if(started) target.setToUpdate(true);
 	}
 	
 	/**
@@ -134,7 +153,8 @@ public abstract class AbstractAnimation {
 	 */
 	public Layer getRoot()
 	{
-		return getTarget().getRoot();
+		return root;
+		//return getTarget().getRoot();
 	}
 	
 	/**
@@ -142,10 +162,10 @@ public abstract class AbstractAnimation {
 	 *
 	 * @param groupLayer the new root
 	 */
-	public void setRoot(Layer groupLayer)
-	{
-		getTarget().setRoot(groupLayer);
-	}	
-	
+	public void setRoot(Layer layer)
+	{		
+		//root=getTarget().getRoot(Layer);
+		root=layer;
+	}
 	
 }

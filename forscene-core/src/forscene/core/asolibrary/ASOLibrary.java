@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.ISceneObject;
 
 public class ASOLibrary {
 	private Set<ASOType> types;
@@ -23,10 +24,10 @@ public class ASOLibrary {
 		return instance;
 	}
 	
-	public AbstractSceneObject getObjectByName(String name)
+	public ISceneObject getObjectByName(String name)
 	{
 		for (Iterator iterator = objects.iterator(); iterator.hasNext();) {
-			AbstractSceneObject value = (AbstractSceneObject) iterator.next();
+			ISceneObject value = (ISceneObject) iterator.next();
 			if (value.getName() == name) return value;			
 		}
 		return null;
@@ -42,7 +43,7 @@ public class ASOLibrary {
 		return null;
 	}*/
 	
-	public AbstractSceneObject[] getObjectsByType(String type)
+	public ISceneObject[] getObjectsByType(String type)
 	{
 		LinkedList<AbstractSceneObject> tmp = new LinkedList<AbstractSceneObject>();
 		for (Iterator iterator = objects.iterator(); iterator.hasNext();) {

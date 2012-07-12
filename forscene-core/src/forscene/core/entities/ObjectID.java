@@ -5,13 +5,17 @@ import forscene.core.asolibrary.ASOType;
 /**
  * The Class ObjectID.
  */
-public class ObjectID implements  Comparable<ObjectID> {	
+public class ObjectID implements  Comparable<ObjectID>, ForSceneObject {	
 	
 	/** The ID. */
 	private long ID;
 	
+	/** The name */
+	private String name;	
+	
+	
 	/** The instance. */
-	private AbstractSceneObject instance;
+	private AbstractSceneObject<?> instance;
 	
 	/** The type. */
 	private ASOType type;
@@ -21,12 +25,11 @@ public class ObjectID implements  Comparable<ObjectID> {
 	 *
 	 * @param instance the instance
 	 */
-	public ObjectID(AbstractSceneObject instance)
+	public ObjectID(AbstractSceneObject<?> instance)
 	{
-		this.instance = instance;
-		instance.setID(this);
-		
-	}
+		this.instance = instance;		
+	}	
+
 	
 	/**
 	 * Gets the name.
@@ -34,7 +37,7 @@ public class ObjectID implements  Comparable<ObjectID> {
 	 * @return the name
 	 */
 	public String getName() {
-		return instance.getName();
+		return name;
 	}
 	
 	/**
@@ -43,7 +46,7 @@ public class ObjectID implements  Comparable<ObjectID> {
 	 * @param name the new name
 	 */
 	public void setName(String name) {
-		instance.setName(name);
+		this.name = name;
 	}	
 	
 	/**
@@ -51,7 +54,7 @@ public class ObjectID implements  Comparable<ObjectID> {
 	 *
 	 * @return single instance of ObjectID
 	 */
-	public AbstractSceneObject getInstance() {
+	public AbstractSceneObject<?> getInstance() {
 		return instance;
 	}
 	
@@ -60,7 +63,7 @@ public class ObjectID implements  Comparable<ObjectID> {
 	 *
 	 * @param instance the new instance
 	 */
-	public void setInstance(AbstractSceneObject instance) {
+	public void setInstance(AbstractSceneObject<?> instance) {
 		this.instance = instance;
 	}
 	
@@ -79,6 +82,18 @@ public class ObjectID implements  Comparable<ObjectID> {
 	 */
 	public int compareTo(ObjectID arg0) {		
 		return this.getName().compareTo(arg0.getName());		
-	}	
+	}
+	
+	//TODO: TO FIX BY LIBRAY IMPLEMENTATION
+	public ObjectID getObjectID()
+	{
+		return this;
+	}
+	
+	//TODO: TO FIX BY LIBRAY IMPLEMENTATION
+	public long getID()
+	{
+		return ID;
+	}
 	
 }

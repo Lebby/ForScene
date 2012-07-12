@@ -1,6 +1,5 @@
 package forscene.core.ui.layout;
 
-import playn.core.PlayN;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.entities.AbstractSceneObjectGroup;
 import forscene.exceptions.IDAlreadyPresentException;
@@ -14,7 +13,7 @@ public abstract class  AbstractLayout extends AbstractSceneObjectGroup implement
 	private float width;
 		
 	@Override
-	public void addSceneObject(AbstractSceneObject object)
+	public void addSceneObject(AbstractSceneObject<?> object)
 			throws NoNameException {		
 		layout(object);
 		
@@ -29,7 +28,7 @@ public abstract class  AbstractLayout extends AbstractSceneObjectGroup implement
 	}
 	
 	@Override
-	public void addSceneObject(String name, AbstractSceneObject object)
+	public void addSceneObject(String name, AbstractSceneObject<?> object)
 			throws NoNameException {
 		layout(object);
 		setToUpdate(true);

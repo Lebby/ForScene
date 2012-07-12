@@ -11,7 +11,7 @@ import forscene.core.entities.AbstractScene;
 public class DrawSceneEvent extends AbstractEvent {
 	
 	/** The scene. */
-	AbstractScene scene;
+	protected AbstractScene scene;
 	
 	/**
 	 * Instantiates a new event draw scene.

@@ -1,5 +1,6 @@
 package forscene.core.entities;
 
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class AbstractEffect.
@@ -11,7 +12,8 @@ public abstract class AbstractEffect extends AbstractAnimation{
 	 */
 	@Override
 	public void build() {
-		setRoot(getTarget().getRoot());		
-	}	
+		getTarget().buildOnce();
+		setRoot(getTarget().getRoot());
+	}
 	
 }

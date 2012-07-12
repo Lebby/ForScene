@@ -19,7 +19,8 @@ public class DefautLayout extends AbstractStaticLayout{
 			marginTop = 1,
 			marginBottom = 1;
 	
-	public void layout(AbstractSceneObject object) {
+	
+	public void layout(AbstractSceneObject<?> object) {
 		//calculate basic info
 		BasicShapeInfo shapeInfo = ShapeUtil.calculateShapeInfoSceneObject(object);
 		
@@ -171,9 +172,9 @@ public class DefautLayout extends AbstractStaticLayout{
 		this.marginBottom = marginBottom;
 	}
 
+	public void updateState() {
+		// TODO Auto-generated method stub
 		
-	@Override
-	public void updateState() {		
-	}
+	}	
 	
 }

@@ -15,8 +15,7 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	
 	/** The keyboard listener. */
 	private AbstractKeyboardListener keyboardListener;
-	
-	
+		
 	/** The US e_ timer. */
 	private boolean USE_TIMER = false;
 	

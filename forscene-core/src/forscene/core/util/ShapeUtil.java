@@ -5,7 +5,7 @@ import forscene.core.entities.AbstractSceneObjectGroup;
 
 import playn.core.GroupLayer;
 import playn.core.Layer;
-import playn.core.PlayN;
+
 
 public class ShapeUtil {
 	
@@ -37,9 +37,8 @@ public class ShapeUtil {
 		}
 		if (layer instanceof Layer.HasSize)
 		{			
-			t=(Layer.HasSize)layer;
+			t=(Layer.HasSize)layer;			
 			
-			PlayN.log().debug(" tmp " + tmp + " t " + t);
 			if (tmp.getMaxX() < (t.scaledWidth()+t.originX()) )
 				tmp.setMaxX(t.scaledWidth()+t.originX());
 			if (tmp.getMaxY() < (t.scaledHeight()+t.originY()) )
@@ -52,7 +51,7 @@ public class ShapeUtil {
 		return tmp;
 	}
 	
-	public static BasicShapeInfo calculateShapeInfoSceneObject(AbstractSceneObject aso)
+	public static BasicShapeInfo calculateShapeInfoSceneObject(AbstractSceneObject<?> aso)
 	{
 		BasicShapeInfo tmp = new BasicShapeInfo();
 		BasicShapeInfo tmp1 = new BasicShapeInfo();		

@@ -1,8 +1,8 @@
 package forscene.core.events.system;
 
+
 import java.util.PriorityQueue;
 
-import playn.core.PlayN;
 
 
 
@@ -53,8 +53,8 @@ public class EventManager{
 	 * Update.
 	 */
 	public void update()
-	{		
-		//System.out.println("CurrentEvent: " + currentEvent);	
+	{				
+	
 		if (events == null)
 		{
 			events = new PriorityQueue<IEvent>();			
@@ -66,17 +66,21 @@ public class EventManager{
 			return;
 		}
 		PriorityQueue<IEvent> tmp = new PriorityQueue<IEvent>();
-		
+		//#Debug
+		/*for (Iterator iterator = events.iterator(); iterator.hasNext();) {
+			IEvent iEvent = (IEvent) iterator.next();
+			PlayN.log().debug("EventMap :" + iEvent.getName() + " P : "+ iEvent.getStatus());
+			
+		}*/
 		while(!events.isEmpty())
 		{
-			//PlayN.log().debug("event run");
+			
 			currentEvent = pop();			
 			currentEvent.run();
 			//useless ...
 			EventObserverManager.getInstance().notify(currentEvent); 
 			if (!currentEvent.isDone())
 			{
-				//PlayN.log().debug("push current event");
 				tmp.add(currentEvent);
 				currentEvent.setStatus(EventStatus.RUNNING);
 			} else currentEvent.setStatus(EventStatus.ENDED);

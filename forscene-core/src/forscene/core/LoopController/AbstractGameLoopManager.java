@@ -9,6 +9,9 @@ import playn.core.PlayN;
 
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
+import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.core.entities.ISceneObject;
+import forscene.core.entities.NullAbstractSceneObject;
 import forscene.core.events.system.DrawSceneEvent;
 import forscene.core.events.system.EventManager;
 import forscene.core.events.system.InitEvent;
@@ -70,6 +73,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	//PaintManager
 	/** The root. */
 	private static GroupLayer root;
+	
+	// Fake Scene ... used to parent
+	private AbstractSceneObjectGroup parent = new NullAbstractSceneObject();
 	
 	/**
 	 * Instantiates a new abstract game loop manager.
@@ -136,13 +142,15 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		AbstractSceneGroup tmp = null;
 		if (this.sceneGroups.size() > 0 )
 		{
+			//#Debug
 			//PlayN.log().debug("Add --- next size > 0");
 			tmp = this.sceneGroups.get(sceneGroups.size()-1);
 			sceneGroup.setPrev(tmp);			
 			tmp.setNext(sceneGroup);
 			sceneGroups. set(sceneGroups.size()-1, tmp);			
 		}//else setCurrentSceneGroup(sceneGroup);		
-		this.sceneGroups.add(sceneGroup);		
+		this.sceneGroups.add(sceneGroup);
+		//#Debu
 		/*PlayN.log().debug("Add --- next" + this.sceneGroups.get(sceneGroups.size()-1).getNext());
 		PlayN.log().debug("Add --- prev" + this.sceneGroups.get(sceneGroups.size()-1).getPrev());
 		PlayN.log().debug("Add --- last" + this.sceneGroups.get(sceneGroups.size()-1));*/
@@ -196,13 +204,13 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 			scene = currentSceneGroup.getFirstScene();
 		}
 		else
-		{
-			currentScene = scene;
+		{			
 			PlayN.log().debug("loadscene build/buildchild");
 			scene.systemBuild();
+			//currentScene = scene;
 		}
 		if (currentScene != null) prevScene=currentScene;
-		
+		draw(scene);
 		//PlayN.log().debug("LoadScene end!");
 		
 	}
@@ -356,13 +364,14 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	 */
 	public void draw(AbstractScene scene) 
 	{
-		if (scene != null)
-		{
-				currentScene= scene;
-				if ((scene != null ) && scene.getRoot() != null)
+		if ((scene != null) && (currentScene != scene ) )
+		{				
+				if (scene.getRoot() != null)
 				{
 						getRoot().clear();
 						getRoot().add(scene.getRoot());
+						currentScene= scene;
+						scene.setParent(parent);
 				}
 		}
 	}
@@ -372,7 +381,8 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	 */
 	public void paint()
 	{
-		eventMonitor.push(new DrawSceneEvent(currentScene));
+		//ATTENZIONE ELIMINATO MOMENTANEAMENTE
+		//eventMonitor.push(new DrawSceneEvent(currentScene));
 	}
 	
 	// =======
@@ -381,16 +391,15 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	 * @see forscene.core.LoopController.IGameLoopManager#updateState()
 	 */
 	public void updateState() 
-	{		
+	{
 		eventMonitor.update();
 		if (currentScene != null )
 		{
-			/*if (currentScene.getUpdateRate() == 0)
+			if (currentScene.getUpdateRate() == 0)
 			{
 				eventMonitor.push(new UpdateSceneEvent(currentScene));
 			}
-			//else if (getTicks() % (getTickRate()/currentScene.getUpdateRate()) == 0)
-			else */if  ((currentScene.getUpdateRate()!=0) 
+			if  ((currentScene.getUpdateRate()!=0) 
 					&& (getTicks() % getTickRate()/currentScene.getUpdateRate()) == 0) 
 			{
 				eventMonitor.push(new UpdateSceneEvent(currentScene));
@@ -414,7 +423,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 					startTimer = false;			
 				}
 			}			
-		}else eventMonitor.push(new NextEvent());
+		}else eventMonitor.push(new NextEvent());		
 	}
 	
 	
@@ -463,8 +472,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 		if (ms>1000)
 		{
 			seconds++;
-			ms-=1000;
-		}		
+			ms-=1000;			
+		}
+		
 	}
 
 	/* (non-Javadoc)
@@ -480,4 +490,16 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager{
 	public float getWidth() {
 		return graphics().width();
 	}
+	
+	public void redraw()
+	{
+		AbstractScene tmp=getCurrentScene();
+		if (tmp!=null)
+		{
+			getRoot().clear();
+			getRoot().add(tmp.getRoot());
+		}
+		PlayN.log().debug("redraw");
+	}
+	
 }

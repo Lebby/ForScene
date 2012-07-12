@@ -22,7 +22,7 @@ public class VisualLogger extends AbstractSceneObjectGroup {
 		
 	}
 	
-	@Override
+	
 	public void updateState() {
 		//TODO: Nothing to update?		
 	}

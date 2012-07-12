@@ -16,6 +16,7 @@ import playn.core.TextLayout;
 
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.core.entities.ResourceManager;
 
 
 
@@ -29,16 +30,31 @@ public class GraphicFactory {
 	{
 		Image bgImage = PlayN.assets().getImage(url);
 	    ImageLayer bgLayer = graphics().createImageLayer(bgImage);
-	    //PlayN.log().debug("TEST " + bgLayer);	    
+	    //PlayN.log().debug("TEST " + bgLayer);
+	    ResourceManager.getInstance().load(bgImage);
+	    
 	    return bgLayer;
 	}
 	
-	public static ImageLayer addImage(String url,AbstractSceneObject scene)
+	
+	public static ImageLayer addImage(String url,AbstractSceneObject<?> scene)
 	{
 		ImageLayer image = loadImage(url);
+		
 		if (scene instanceof AbstractSceneObjectGroup)
+		{
 			((AbstractSceneObjectGroup)scene).getRoot().add(image);
-		else scene.setRoot(image);
+			ResourceManager.getInstance().load(image);
+		}
+		else if (scene instanceof AbstractSceneObject)
+		{
+			((AbstractSceneObject<Layer.HasSize>)scene).setRoot(image);
+		}
+		
+
+
+		//#Debug
+		PlayN.log().debug("addImage debug: " + image);
 		return image;
 	}
 	
@@ -119,7 +135,8 @@ public class GraphicFactory {
 	public static GroupLayer drawBorder(Layer root)
 	{
 		GroupLayer border=null;
-		
+		try
+		{
 		if (root instanceof GroupLayer)
 		{
 			GroupLayer tmpborder= graphics().createGroupLayer();
@@ -145,7 +162,11 @@ public class GraphicFactory {
 			ImageLayer imageLayer = graphics().createImageLayer(canvas);
 			border.add(imageLayer);
 			PlayN.log().debug("BORDER " + border);
-		}		
+		}
+		}catch(Exception e)
+		{
+			PlayN.log().debug(e.toString());
+		}
 		return border;
 	}
 

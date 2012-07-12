@@ -41,6 +41,13 @@ public class EventObserverManager {
 		{
 			PlayN.log().debug(" EVENTMAP :" + globalEventMap.get(event.getName()) + " name: "+ event.getName());
 			notifyObservers(globalEventMap.get(event.getName()));
+			//TODO: CHECK THIS ... if event is done ... it must be removed
+			/*if (event.isDone())
+			{
+				//#Debug
+				PlayN.log().debug(" EVENTMAP REMOVED:" + globalEventMap.get(event.getName()) + " name: "+ event.getName());
+				globalEventMap.remove(event);
+			}*/			
 		}
 		
 		if (eventMap.containsKey(event)) 
@@ -68,7 +75,7 @@ public class EventObserverManager {
 		{
 			tmp = new InnerEventList();			
 			globalEventMap.put(globalEventName, tmp);
-			PlayN.log().debug(" EVENTMAP : NO EXIXTS" + callback);
+			PlayN.log().debug(" EVENTMAP : NO EXIXTS " + callback);
 		}
 		tmp.add(callback);
 	}
@@ -88,4 +95,25 @@ public class EventObserverManager {
 		tmp.add(callback);
 	}	
 	
+	public void deregister(IEvent eventToMonitor)
+	{
+		if (eventMap.containsKey(eventToMonitor))
+		{
+			eventMap.remove(eventToMonitor);
+		}
+		else
+			//#Debug
+			PlayN.log().debug("Event Observer Manager Error: Event Not Found" + eventToMonitor);
+	}
+	
+	public void deregister(String globalEventName)
+	{
+		if (globalEventMap.containsKey(globalEventName))
+		{			 
+			globalEventMap.remove(globalEventName);			
+		}else 
+			//#Debug
+			PlayN.log().debug("Event Observer Manager Error: Event Not Found" + globalEventName);
+	}
+
 }
