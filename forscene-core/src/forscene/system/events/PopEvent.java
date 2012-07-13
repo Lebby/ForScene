@@ -1,4 +1,6 @@
-package forscene.core.events.system;
+package forscene.system.events;
+
+import forscene.core.events.system.AbstractEvent;
 
 
 

@@ -9,7 +9,7 @@ import forscene.core.events.input.mouse.OnMouseButtonDownEvent;
 import forscene.core.events.input.mouse.OnMouseButtonUpEvent;
 import forscene.core.events.input.mouse.OnMouseMoveEvent;
 import forscene.core.events.input.mouse.OnMouseWheelScrollEvent;
-import forscene.core.events.system.EventManager;
+import forscene.system.managers.EventManager;
 
 
 public class AbstractMouseListener extends Adapter implements IListener{

@@ -1,4 +1,4 @@
-package forscene.core.events.system;
+package forscene.system.managers;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import playn.core.PlayN;
 
 import forscene.core.events.listener.AbstractEventListener;
+import forscene.core.events.system.IEvent;
 
 // It allow to observe an event calling another event. 
 // Map contains in "null" key a global event list

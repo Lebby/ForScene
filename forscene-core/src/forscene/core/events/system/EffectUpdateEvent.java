@@ -1,6 +1,6 @@
 package forscene.core.events.system;
 
-import forscene.core.entities.AbstractEffect;
+import forscene.core.entities.toTest.AbstractEffect;
 
 
 // TODO: Auto-generated Javadoc

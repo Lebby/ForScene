@@ -1,6 +1,6 @@
 package forscene.core.effects;
 
-import forscene.core.entities.AbstractEffect;
+import forscene.core.entities.toTest.AbstractEffect;
 
 public class Blink extends AbstractEffect{
 

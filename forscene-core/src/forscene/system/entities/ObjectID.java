@@ -1,6 +1,7 @@
-package forscene.core.entities;
+package forscene.system.entities;
 
 import forscene.core.asolibrary.ASOType;
+import forscene.core.entities.AbstractSceneObject;
 
 /**
  * The Class ObjectID.
@@ -11,7 +12,7 @@ public class ObjectID implements  Comparable<ObjectID>, ForSceneObject {
 	private long ID;
 	
 	/** The name */
-	private String name;	
+	private String name="";	
 	
 	
 	/** The instance. */
@@ -81,7 +82,7 @@ public class ObjectID implements  Comparable<ObjectID>, ForSceneObject {
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	public int compareTo(ObjectID arg0) {		
-		return this.getName().compareTo(arg0.getName());		
+		return getName().compareTo(arg0.getName());		
 	}
 	
 	//TODO: TO FIX BY LIBRAY IMPLEMENTATION

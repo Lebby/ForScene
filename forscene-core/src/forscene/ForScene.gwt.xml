@@ -4,5 +4,6 @@
 	<inherits name='com.google.gwt.user.User' />
   	<!-- Specify the paths for translatable code                    -->
   	<source path='core'/>
-  	<source path='exceptions'/>    
+  	<source path='system'/>
+  	<source path='exceptions'/>  	       
 </module>

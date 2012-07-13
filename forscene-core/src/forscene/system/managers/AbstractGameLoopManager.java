@@ -1,4 +1,4 @@
-package forscene.core.LoopController;
+package forscene.system.managers;
 
 import static playn.core.PlayN.graphics;
 
@@ -10,10 +10,8 @@ import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
 import forscene.core.entities.AbstractSceneObjectGroup;
-import forscene.core.entities.ISceneObject;
 import forscene.core.entities.NullAbstractSceneObject;
 import forscene.core.events.system.DrawSceneEvent;
-import forscene.core.events.system.EventManager;
 import forscene.core.events.system.InitEvent;
 import forscene.core.events.system.LoadSceneEvent;
 import forscene.core.events.system.LoadSceneGroupEvent;

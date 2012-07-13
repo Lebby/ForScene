@@ -1,4 +1,5 @@
-package forscene.core.entities;
+package forscene.system.entities;
+
 
 public interface ForSceneObject {
 	public void setName(String name);

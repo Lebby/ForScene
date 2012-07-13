@@ -1,4 +1,4 @@
-package forscene.core.entities;
+package forscene.system;
 public enum ResourceState
 	{
 		TOLOAD,

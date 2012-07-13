@@ -1,5 +1,8 @@
-package forscene.core.entities;
+package forscene.system;
 
+import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.system.entities.ForSceneObject;
+import forscene.system.entities.ObjectID;
 import playn.core.Layer;
 
 public interface ISceneObject<T extends Layer> 

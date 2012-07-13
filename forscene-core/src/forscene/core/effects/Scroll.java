@@ -1,6 +1,6 @@
 package forscene.core.effects;
 
-import forscene.core.entities.AbstractEffect;
+import forscene.core.entities.toTest.AbstractEffect;
 
 public class Scroll extends AbstractEffect {
 	private float startX;

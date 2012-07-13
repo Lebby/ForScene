@@ -11,7 +11,6 @@ public abstract class AbstractInputEvent<T extends Input> extends AbstractEvent 
 		run(event);
 	};
 	
-
 	public abstract void run(T event);
 	
 	public void setEvent(T event) {

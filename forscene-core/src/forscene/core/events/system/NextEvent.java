@@ -1,6 +1,6 @@
 package forscene.core.events.system;
 
-import forscene.core.LoopController.AbstractGameLoopManager;
+import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**

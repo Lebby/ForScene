@@ -1,6 +1,8 @@
-package forscene.core.entities;
+package forscene.core.entities.toTest;
 
 import java.util.HashMap;
+
+import forscene.core.entities.AbstractSceneObject;
 import playn.core.GroupLayer;
 
 

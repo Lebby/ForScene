@@ -1,6 +1,9 @@
 package forscene.core.entities;
 
 
+import forscene.system.ISceneObject;
+import forscene.system.entities.ObjectID;
+import forscene.system.managers.ResourceManager;
 import playn.core.CanvasLayer;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;

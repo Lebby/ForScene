@@ -1,4 +1,4 @@
-package forscene.core.entities;
+package forscene.core.entities.toTest;
 
 import java.util.ArrayList;
 

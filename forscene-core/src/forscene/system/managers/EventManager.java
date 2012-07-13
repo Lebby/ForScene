@@ -1,7 +1,10 @@
-package forscene.core.events.system;
+package forscene.system.managers;
 
 
 import java.util.PriorityQueue;
+
+import forscene.core.events.system.EventStatus;
+import forscene.core.events.system.IEvent;
 
 
 

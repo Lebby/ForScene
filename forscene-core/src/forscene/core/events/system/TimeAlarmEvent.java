@@ -1,6 +1,6 @@
 package forscene.core.events.system;
 
-import forscene.core.LoopController.GameLoopManager;
+import forscene.system.managers.GameLoopManager;
 import playn.core.PlayN;
 
 

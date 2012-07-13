@@ -1,18 +1,17 @@
 package forscene.core.entities;
 
+
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
 
-import org.w3c.dom.views.AbstractView;
-
 import playn.core.GroupLayer;
-import playn.core.Layer;
-import playn.core.PlayN;
 import forscene.core.util.GraphicFactory;
 import forscene.exceptions.AbstractObjectNotFoundException;
 import forscene.exceptions.IDAlreadyPresentException;
 import forscene.exceptions.NoNameException;
+import forscene.system.entities.ObjectID;
+import forscene.system.managers.ResourceManager;
 
 // TODO: Auto-generated Javadoc
 /**

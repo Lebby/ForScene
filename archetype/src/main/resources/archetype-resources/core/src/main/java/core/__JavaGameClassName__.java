@@ -5,11 +5,11 @@ package ${package}.core;
 
 import static playn.core.PlayN.*;
 
-import forscene.core.LoopController.AbstractGame;
 import forscene.core.entities.AbstractScene;
 import forscene.core.util.GraphicFactory;
+import forscene.system.entities.AbstractGame;
 
-public class Main extends AbstractGame {
+public class ${JavaGameClassName} extends AbstractGame {
 
 	@Override	
 	  public int updateRate() {

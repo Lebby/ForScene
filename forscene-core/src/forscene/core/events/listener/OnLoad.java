@@ -2,9 +2,9 @@ package forscene.core.events.listener;
 
 import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
-import forscene.core.events.system.EventManager;
 import forscene.core.events.system.IEvent;
 import forscene.core.events.system.LoadSceneEvent;
+import forscene.system.managers.EventManager;
 
 public abstract class OnLoad extends  AbstractEventListener{
 	private AbstractScene scene;	

@@ -1,16 +1,30 @@
+/**
+ * 
+ */
 package forscene.core.events.input.keyboard;
 
-import forscene.core.events.input.AbstractInputEvent;
 import playn.core.Events.Input;
+import playn.core.PlayN;
+import forscene.core.events.input.AbstractInputEvent;
 
-public abstract class AbstractKeyboardEvent<T extends Input> extends AbstractInputEvent<T> {
+/**
+ * @author blackdevil
+ *
+ */
+public abstract class AbstractKeyboardEvent <T extends Input>
+				extends AbstractInputEvent<T>{	
+	
+	
 	public AbstractKeyboardEvent()
 	{
 		super();
+		PlayN.log().debug("ASDASDAS");
 	}
+	
 	@Override
 	public int getPriority() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
+	
+	
 }

@@ -16,17 +16,15 @@ import playn.core.TextLayout;
 
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.entities.AbstractSceneObjectGroup;
-import forscene.core.entities.ResourceManager;
-
+import forscene.system.managers.ResourceManager;
 
 
 import static playn.core.PlayN.graphics;
 
 
-
 public class GraphicFactory {
 	
-	public static ImageLayer loadImage(String url)
+	public static ImageLayer loadImageLayer(String url)
 	{
 		Image bgImage = PlayN.assets().getImage(url);
 	    ImageLayer bgLayer = graphics().createImageLayer(bgImage);
@@ -36,10 +34,17 @@ public class GraphicFactory {
 	    return bgLayer;
 	}
 	
+	public static Image loadImage(String url)
+	{
+		Image image = PlayN.assets().getImage(url);
+		ResourceManager.getInstance().load(image);
+	    return image;
+	}
+	
 	
 	public static ImageLayer addImage(String url,AbstractSceneObject<?> scene)
 	{
-		ImageLayer image = loadImage(url);
+		ImageLayer image = loadImageLayer(url);
 		
 		if (scene instanceof AbstractSceneObjectGroup)
 		{
@@ -51,8 +56,6 @@ public class GraphicFactory {
 			((AbstractSceneObject<Layer.HasSize>)scene).setRoot(image);
 		}
 		
-
-
 		//#Debug
 		PlayN.log().debug("addImage debug: " + image);
 		return image;
@@ -93,7 +96,7 @@ public class GraphicFactory {
 		TextFormat format = new TextFormat();
 		format = format.withAlignment(Alignment.LEFT);
 		format = format.withFont(font);
-		format = format.withTextColor(textColor);		
+		//format = format.withTextColor(textColor);		
 		return format;
 	}	
 	
@@ -168,7 +171,5 @@ public class GraphicFactory {
 			PlayN.log().debug(e.toString());
 		}
 		return border;
-	}
-
-	
+	}	
 }

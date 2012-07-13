@@ -1,4 +1,4 @@
-package forscene.core.entities;
+package forscene.system.managers;
 
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 import org.omg.CosNaming.IstringHelper;
 
 import forscene.core.asolibrary.ASOLibrary;
+import forscene.system.entities.Resource;
 
 import playn.core.*;
 

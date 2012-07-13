@@ -1,4 +1,4 @@
-package forscene.core.entities;
+package forscene.core.entities.toTest;
 
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
@@ -7,10 +7,11 @@ import playn.core.Layer;
 import playn.core.PlayN;
 import playn.core.Surface;
 import playn.core.SurfaceLayer;
+import forscene.core.entities.AbstractSceneObject;
 import forscene.core.events.system.AnimationUpdateEvent;
-import forscene.core.events.system.EventManager;
 import forscene.core.util.BasicShapeInfo;
 import forscene.core.util.ShapeUtil;
+import forscene.system.managers.EventManager;
 
 import static playn.core.PlayN.graphics;
 

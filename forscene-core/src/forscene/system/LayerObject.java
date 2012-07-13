@@ -1,4 +1,4 @@
-package forscene.core.entities;
+package forscene.system;
 
 import playn.core.Layer;
 

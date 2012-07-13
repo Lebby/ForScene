@@ -1,4 +1,6 @@
-package forscene.core.entities;
+package forscene.core.entities.toTest;
+
+import forscene.core.entities.ILogicShape;
 
 // TODO: Auto-generated Javadoc
 /**

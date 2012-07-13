@@ -2,8 +2,8 @@ package forscene.core.events.system;
 
 
 import playn.core.PlayN;
-import forscene.core.LoopController.AbstractGameLoopManager;
-import forscene.core.entities.AbstractAnimation;
+import forscene.core.entities.toTest.AbstractAnimation;
+import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**

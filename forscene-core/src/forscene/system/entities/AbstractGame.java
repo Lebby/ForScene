@@ -1,4 +1,4 @@
-package forscene.core.LoopController;
+package forscene.system.entities;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,8 @@ import playn.core.Game;
 import playn.core.GroupLayer;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
+import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.IGameLoopManager;
 
 
 /**

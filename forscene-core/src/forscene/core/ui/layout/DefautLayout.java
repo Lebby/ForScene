@@ -3,11 +3,11 @@ package forscene.core.ui.layout;
 import java.util.ArrayList;
 
 import playn.core.PlayN;
-import forscene.core.LoopController.GameLoopManager;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.util.BasicShapeInfo;
 import forscene.core.util.ShapeUtil;
 import forscene.core.util.SizeInfo;
+import forscene.system.managers.GameLoopManager;
 
 
 public class DefautLayout extends AbstractStaticLayout{

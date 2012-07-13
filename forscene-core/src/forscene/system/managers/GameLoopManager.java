@@ -1,4 +1,5 @@
-package forscene.core.LoopController;
+package forscene.system.managers;
+
 
 /**
  * The Class GameLoopManager.

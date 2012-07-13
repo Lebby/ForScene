@@ -106,6 +106,8 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	 * @return the keyboard listener
 	 */
 	public AbstractKeyboardListener  getKeyboardListener() {
+		if(keyboardListener == null)
+			keyboardListener = new AbstractKeyboardListener();
 		return keyboardListener;
 	}
 

@@ -1,7 +1,7 @@
 package forscene.core.effects;
 
 import playn.core.PlayN;
-import forscene.core.entities.AbstractEffect;
+import forscene.core.entities.toTest.AbstractEffect;
 
 public class FadeIn extends AbstractEffect
 {

@@ -1,7 +1,7 @@
 package forscene.core.util;
 
 import forscene.core.entities.AbstractSceneObject;
-import forscene.core.entities.ISceneObject;
+import forscene.system.ISceneObject;
 
 public class ASOUtil {
 	public static ISceneObject drawBorder(final AbstractSceneObject object)

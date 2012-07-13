@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import forscene.core.entities.AbstractSceneObject;
-import forscene.core.entities.ISceneObject;
+import forscene.system.ISceneObject;
 
 public class ASOLibrary {
 	private Set<ASOType> types;
