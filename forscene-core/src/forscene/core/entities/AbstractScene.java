@@ -2,9 +2,9 @@ package forscene.core.entities;
 
 import forscene.core.listener.AbstractKeyboardListener;
 import forscene.core.listener.AbstractMouseListener;
+import forscene.core.listener.AbstractPointerListener;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractScene.
  */
@@ -15,20 +15,23 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	
 	/** The keyboard listener. */
 	private AbstractKeyboardListener keyboardListener;
+	
+	/** The Pointer listener. */
+	private AbstractPointerListener pointerListener;
 		
-	/** The US e_ timer. */
+	/** Flag related to timed scenes */
 	private boolean USE_TIMER = false;
 	
-	/** The I s_ read y_ t o_ switch. */
+	/** Flag used to switch scenes. */
 	private boolean IS_READY_TO_SWITCH = false;
 	
-	/** The I s_ conditional. */
+	/** Flag related to conditiona scenes. */
 	private boolean IS_CONDITIONAL = false;
 	
 	/** The seconds. */
 	private float seconds;
 	
-	/** The prev. */
+	/** The previous and successive scene. */
 	private AbstractScene next,prev;
 	
 	
@@ -88,6 +91,8 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	 * @return the mouse listener
 	 */
 	public AbstractMouseListener getMouseListener() {
+		/*if (mouseListener == null)
+			mouseListener = new AbstractMouseListener();*/
 		return mouseListener;
 	}
 	
@@ -106,8 +111,8 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	 * @return the keyboard listener
 	 */
 	public AbstractKeyboardListener  getKeyboardListener() {
-		if(keyboardListener == null)
-			keyboardListener = new AbstractKeyboardListener();
+		/*if(keyboardListener == null)
+			keyboardListener = new AbstractKeyboardListener();*/
 		return keyboardListener;
 	}
 
@@ -120,7 +125,22 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 		this.keyboardListener = listener;
 		
 	}
+	
+	/**
+	 * @return the pointerListener
+	 */
+	public AbstractPointerListener getPointerListener() {
+		/*if (pointerListener == null)
+			pointerListener = new AbstractPointerListener();*/
+		return pointerListener;
+	}
 
+	/**
+	 * @param pointerListener the pointerListener to set
+	 */
+	public void setPointerListener(AbstractPointerListener pointerListener) {
+		this.pointerListener = pointerListener;
+	}
 	
 	/**
 	 * Gets the timeout.
@@ -189,4 +209,5 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	{
 		return (next != null);
 	}
+
 }

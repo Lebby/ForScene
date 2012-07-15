@@ -11,7 +11,7 @@ import forscene.core.util.GraphicFactory;
 /**
  * The Class AbstractSceneGroup.
  */
-public abstract class AbstractSceneGroup {
+public abstract class AbstractSceneGroup{
 	
 	/** The prev. */
 	private AbstractSceneGroup next,prev;
@@ -38,7 +38,7 @@ public abstract class AbstractSceneGroup {
 	 */
 	public AbstractSceneGroup()
 	{
-		root = 	GraphicFactory.createGroupLayer();
+		setRoot(GraphicFactory.createGroupLayer());
 		setScenes(new ArrayList<AbstractScene>());
 	}
 	
@@ -184,5 +184,19 @@ public abstract class AbstractSceneGroup {
 	public void addScene(AbstractScene scene)
 	{
 		getScenes().add(scene);
+	}
+
+	/**
+	- * @return the root
+	 */
+	public GroupLayer getRoot() {
+		return root;
+	}
+
+	/**
+	 * @param root the root to set
+	 */
+	public void setRoot(GroupLayer root) {
+		this.root = root;
 	}
 }

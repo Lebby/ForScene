@@ -1,11 +1,9 @@
 /**
  * 
  */
-package forscene.core.events.input.keyboard;
+package forscene.core.events.input;
 
 import playn.core.Events.Input;
-import playn.core.PlayN;
-import forscene.core.events.input.AbstractInputEvent;
 
 /**
  * @author blackdevil
@@ -17,8 +15,7 @@ public abstract class AbstractKeyboardEvent <T extends Input>
 	
 	public AbstractKeyboardEvent()
 	{
-		super();
-		PlayN.log().debug("ASDASDAS");
+		super();		
 	}
 	
 	@Override

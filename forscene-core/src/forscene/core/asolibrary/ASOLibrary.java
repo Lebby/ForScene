@@ -8,6 +8,7 @@ import java.util.Set;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.system.ISceneObject;
 
+//TODO: NOT TESTED ... NOT USED
 public class ASOLibrary {
 	private Set<ASOType> types;
 	private LinkedList<AbstractSceneObject> objects;

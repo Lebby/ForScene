@@ -2,13 +2,12 @@ package forscene.core.listener;
 
 
 import static playn.core.PlayN.keyboard;
-import playn.core.PlayN;
 import playn.core.Keyboard.Adapter;
 import playn.core.Keyboard.Event;
 import playn.core.Keyboard.TypedEvent;
 
-import forscene.core.events.input.keyboard.AbstractKeyEvent;
-import forscene.core.events.input.keyboard.AbstractTypedEvent;
+import forscene.core.events.input.AbstractKeyEvent;
+import forscene.core.events.input.AbstractTypedEvent;
 import forscene.system.managers.EventManager;
 
 public class AbstractKeyboardListener extends Adapter implements IListener {	
@@ -70,8 +69,7 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 	}
 	
 	@Override
-	public void onKeyDown(Event event) {
-		PlayN.log().debug(" pressed " +  event.key());
+	public void onKeyDown(Event event) {		
 		if (keyDown == null) return;
 		keyDown.setEvent(event);
 		EventManager.getInstance().push(this.keyDown);
@@ -80,8 +78,7 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 	}
 	
 	@Override
-	public void onKeyUp(Event event) {
-		PlayN.log().debug(" pressed " +  event.key());
+	public void onKeyUp(Event event) {		
 		if (keyUp == null) return;
 		keyDown.setEvent(event);
 		EventManager.getInstance().push(this.keyUp);
@@ -90,8 +87,7 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 	}
 	
 	@Override
-	public void onKeyTyped(TypedEvent event) {
-		PlayN.log().debug(" pressed " +  event.typedChar());
+	public void onKeyTyped(TypedEvent event) {		
 		if (keyTyped == null) return;		
 		keyTyped.setEvent(event);
 		EventManager.getInstance().push(this.keyTyped);
@@ -101,7 +97,5 @@ public class AbstractKeyboardListener extends Adapter implements IListener {
 	public void register() {
 		keyboard().setListener(this);		
 	}
-	
-	
 	
 }

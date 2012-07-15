@@ -33,7 +33,7 @@ public class FadeIn extends AbstractEffect
 		if (currentAlpha >= endAlpha) this.stop();
 		else
 			currentAlpha+=step;
-		getRoot().setAlpha(currentAlpha);
+		getTarget().getRoot().setAlpha(currentAlpha);
 		
 		PlayN.log().debug("FadeIN change alpha");
 	}

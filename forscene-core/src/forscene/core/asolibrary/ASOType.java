@@ -1,5 +1,6 @@
 package forscene.core.asolibrary;
 
+//TODO: NOT TESTED ... NOT USED
 public class ASOType {
 	private String type="";
 	private boolean unique=false;

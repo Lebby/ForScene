@@ -1,4 +1,6 @@
 package forscene.core.asolibrary;
+
+//TODO: NOT TESTED ... NOT USED
 public class ASOLibrarian{
 	private ASOLibrary library;
 	private static ASOLibrarian instance;

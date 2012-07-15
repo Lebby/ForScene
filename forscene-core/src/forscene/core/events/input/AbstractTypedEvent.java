@@ -1,7 +1,7 @@
 /**
  * 
  */
-package forscene.core.events.input.keyboard;
+package forscene.core.events.input;
 
 import playn.core.Keyboard.TypedEvent;
 
