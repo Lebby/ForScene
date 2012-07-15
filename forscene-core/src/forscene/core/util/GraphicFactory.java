@@ -24,27 +24,10 @@ import static playn.core.PlayN.graphics;
 
 public class GraphicFactory {
 	
-	public static ImageLayer loadImageLayer(String url)
-	{
-		Image bgImage = PlayN.assets().getImage(url);
-	    ImageLayer bgLayer = graphics().createImageLayer(bgImage);
-	    //PlayN.log().debug("TEST " + bgLayer);
-	    ResourceManager.getInstance().load(bgImage);
-	    
-	    return bgLayer;
-	}
-	
-	public static Image loadImage(String url)
-	{
-		Image image = PlayN.assets().getImage(url);
-		ResourceManager.getInstance().load(image);
-	    return image;
-	}
-	
 	
 	public static ImageLayer addImage(String url,AbstractSceneObject<?> scene)
 	{
-		ImageLayer image = loadImageLayer(url);
+		ImageLayer image = ResourceLoader.loadImageLayer(url);
 		
 		if (scene instanceof AbstractSceneObjectGroup)
 		{
@@ -84,12 +67,7 @@ public class GraphicFactory {
 		image.setHeight(10);
 		image.setWidth(10);
 		return image;
-	}
-	
-	public static Layer setAlpha(int alpha, Layer layer)
-	{
-		return null;
-	}
+	}	
 	
 	public static TextFormat createTextFormat(Font font, int textColor )
 	{

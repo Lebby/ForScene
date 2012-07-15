@@ -4,6 +4,7 @@
 package forscene.core.entities;
 
 import forscene.core.util.GraphicFactory;
+import forscene.core.util.ResourceLoader;
 import playn.core.Image;
 import playn.core.ImageLayer;
 import playn.core.PlayN;
@@ -41,7 +42,7 @@ public abstract class AbstractSimpleSceneObject extends AbstractSceneObject<Imag
 	
 	public void loadImage(String url)
 	{
-		Image image = GraphicFactory.loadImage(url);
+		Image image = ResourceLoader.loadImage(url);
 		setImage(image);
 	}
 
