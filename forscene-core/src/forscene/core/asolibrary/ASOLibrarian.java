@@ -2,11 +2,11 @@ package forscene.core.asolibrary;
 
 //TODO: NOT TESTED ... NOT USED
 public class ASOLibrarian{
-	private ASOLibrary library;
+	private Library library;
 	private static ASOLibrarian instance;
 	
 	private ASOLibrarian(){
-		library = ASOLibrary.getInstance();
+		library = Library.getInstance();
 	}
 	
 	public static ASOLibrarian getInstance()

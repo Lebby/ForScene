@@ -10,14 +10,14 @@ import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
 import forscene.core.entities.AbstractSceneObjectGroup;
-import forscene.core.entities.NullAbstractSceneObject;
 import forscene.core.events.system.DrawSceneEvent;
 import forscene.core.events.system.InitEvent;
 import forscene.core.events.system.LoadSceneEvent;
 import forscene.core.events.system.LoadSceneGroupEvent;
 import forscene.core.events.system.NextEvent;
 import forscene.core.events.system.UpdateSceneEvent;
-import forscene.core.helper.DefaultSceneGroup;
+import forscene.core.objects.DefaultSceneGroup;
+import forscene.core.objects.NullAbstractSceneObject;
 
 
 

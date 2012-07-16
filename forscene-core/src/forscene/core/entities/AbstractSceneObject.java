@@ -18,17 +18,7 @@ import playn.core.SurfaceLayer;
  * The Class AbstractSceneObject.
  */
 public abstract class AbstractSceneObject<T extends Layer> implements ISceneObject<T>{
-
-	/**
-	 * Instantiates a new abstract scene object.
-	 */
-	/*
-	public AbstractSceneObject() {
-		setRoot(graphics().createImageLayer());		
-		
-		setToUpdate(false);
-	}*/
-
+	
 	/** The update rate. */
 	private long updateRate = 0;
 	
@@ -96,8 +86,6 @@ public abstract class AbstractSceneObject<T extends Layer> implements ISceneObje
 	 */
 	public void updateDraw(Layer layer)
 	{
-//		this.getRoot().clear();
-		//this.getRoot().add(layer);
 		getRoot().parent().remove(layer);
 		getRoot().parent().add(layer);
 		//setToUpdate(false);
