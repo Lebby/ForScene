@@ -22,6 +22,15 @@ public class ResourceManager {
 
   private PriorityQueue<Resource<?>> toLoad;
 
+  /*
+   * AssetWatcher watcher = new AssetWatcher(new Listener() { public void done()
+   * { startGame(); } });
+   * 
+   * // Add assets to check. watcher.add(image1); watcher.add(image2); // ...
+   * 
+   * // Start the watching now. watcher.start();
+   */
+
   public static ResourceManager getInstance() {
     if (ResourceManager.instance == null) {
       ResourceManager.instance = new ResourceManager();
