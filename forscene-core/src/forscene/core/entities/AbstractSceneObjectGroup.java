@@ -1,6 +1,6 @@
 package forscene.core.entities;
 
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.TreeSet;
 
 import playn.core.GroupLayer;
@@ -21,8 +21,8 @@ public abstract class AbstractSceneObjectGroup extends
 
   // TODO: improve Object child
   /** The childs. */
-  private TreeSet<ObjectID>       childs;
-  private PriorityQueue<ObjectID> pendingChilds;
+  private TreeSet<ObjectID>    childs;
+  private LinkedList<ObjectID> pendingChilds;
 
   /**
    * Instantiates a new abstract scene object group.
@@ -32,7 +32,7 @@ public abstract class AbstractSceneObjectGroup extends
     setRoot(GraphicFactory.createGroupLayer());
     getRoot().clear();
     childs = new TreeSet<ObjectID>();
-    pendingChilds = new PriorityQueue<ObjectID>();
+    pendingChilds = new LinkedList<ObjectID>();
   }
 
   /**
@@ -140,8 +140,9 @@ public abstract class AbstractSceneObjectGroup extends
    */
   public void buildChilds() {
     ObjectID element = pendingChilds.poll();
-    // PlayN.log().debug("Object " + this);
+
     while (element != null) {
+      PlayN.log().debug("Object " + element.getName());
       childs.add(element);
       element.getInstance().buildOnce();
       element.getInstance().setParent(this);
@@ -163,18 +164,17 @@ public abstract class AbstractSceneObjectGroup extends
   }
 
   public void updateChilds() {
+
     // call update on child builded
-    // PlayN.log().debug("Childs size:" + childs.size());
     for (ObjectID obj : childs) {
       if (obj.getInstance() instanceof AbstractSceneObjectGroup) {
         AbstractSceneObjectGroup objGroup = (AbstractSceneObjectGroup) obj
             .getInstance();
-        // objGroup.updateChilds();
-        // i think this is wrong ... why rebuild Childs?
-        /*
-         * if (objGroup.pendingChilds.size() > 0) { objGroup.buildChilds(); }
-         */
-        // objGroup.updateState();
+        objGroup.updateChilds();
+        if (objGroup.pendingChilds.size() > 0) {
+          objGroup.buildChilds();
+        }
+        objGroup.updateState();
       }
       obj.getInstance().updateState();
     }

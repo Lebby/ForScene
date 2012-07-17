@@ -1,6 +1,6 @@
 package forscene.system.managers;
 
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 
 import playn.core.Image;
 import playn.core.ImageLayer;
@@ -10,17 +10,17 @@ import forscene.system.entities.Resource;
 
 public class ResourceManager {
 
-  private static ResourceManager     instance = null;
+  private static ResourceManager  instance = null;
 
-  private PriorityQueue<Resource<?>> done;
+  private LinkedList<Resource<?>> done;
 
-  private PriorityQueue<Resource<?>> error;
+  private LinkedList<Resource<?>> error;
 
-  private boolean                    ready    = false;
+  private boolean                 ready    = false;
 
-  private int                        retry    = 5;
+  private int                     retry    = 5;
 
-  private PriorityQueue<Resource<?>> toLoad;
+  private LinkedList<Resource<?>> toLoad;
 
   /*
    * AssetWatcher watcher = new AssetWatcher(new Listener() { public void done()
@@ -58,9 +58,9 @@ public class ResourceManager {
   }
 
   private ResourceManager() {
-    toLoad = new PriorityQueue<Resource<?>>();
-    error = new PriorityQueue<Resource<?>>();
-    done = new PriorityQueue<Resource<?>>();
+    toLoad = new LinkedList<Resource<?>>();
+    error = new LinkedList<Resource<?>>();
+    done = new LinkedList<Resource<?>>();
   }
 
   private void add(Resource<?> res) {
