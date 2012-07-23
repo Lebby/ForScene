@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.util;
 
 import static playn.core.PlayN.graphics;
@@ -6,8 +9,18 @@ import forscene.core.entities.AbstractSceneObject;
 import forscene.system.managers.GameLoopManager;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Sizer.
+ */
 public class Sizer extends AbstractSceneObject<Layer.HasSize> {
+	
+	/** The sizer. */
 	private Layer.HasSize sizer;
+	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.AbstractSceneObject#build()
+	 */
 	@Override
 	public void build() {
 		
@@ -19,6 +32,9 @@ public class Sizer extends AbstractSceneObject<Layer.HasSize> {
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see forscene.system.ISceneObject#updateState()
+	 */
 	public void updateState() {
 		// TODO Auto-generated method stub
 		

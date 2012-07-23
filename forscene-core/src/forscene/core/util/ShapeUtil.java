@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.util;
 
 import forscene.core.entities.AbstractSceneObject;
@@ -7,8 +10,18 @@ import playn.core.GroupLayer;
 import playn.core.Layer;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShapeUtil.
+ */
 public class ShapeUtil {
 	
+	/**
+	 * Calculate shape info group layer.
+	 *
+	 * @param layer the layer
+	 * @return the basic shape info
+	 */
 	public static BasicShapeInfo calculateShapeInfoGroupLayer(Layer layer)
 	{
 		
@@ -51,6 +64,12 @@ public class ShapeUtil {
 		return tmp;
 	}
 	
+	/**
+	 * Calculate shape info scene object.
+	 *
+	 * @param aso the aso
+	 * @return the basic shape info
+	 */
 	public static BasicShapeInfo calculateShapeInfoSceneObject(AbstractSceneObject<?> aso)
 	{
 		BasicShapeInfo tmp = new BasicShapeInfo();

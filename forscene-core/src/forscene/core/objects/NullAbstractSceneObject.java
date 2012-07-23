@@ -5,9 +5,11 @@ package forscene.core.objects;
 
 import forscene.core.entities.AbstractSceneObjectGroup;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author blackdevil
+ * The Class NullAbstractSceneObject.
  *
+ * @author blackdevil
  */
 public class NullAbstractSceneObject extends AbstractSceneObjectGroup {
 
@@ -20,6 +22,9 @@ public class NullAbstractSceneObject extends AbstractSceneObjectGroup {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see forscene.system.ISceneObject#updateState()
+	 */
 	public void updateState() {
 		// TODO Auto-generated method stub
 		

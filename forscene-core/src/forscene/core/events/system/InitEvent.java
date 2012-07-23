@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.events.system;
 
 import playn.core.PlayN;

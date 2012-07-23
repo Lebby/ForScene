@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.entities;
 
 import forscene.core.listener.AbstractKeyboardListener;
@@ -5,6 +8,7 @@ import forscene.core.listener.AbstractMouseListener;
 import forscene.core.listener.AbstractPointerListener;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractScene.
  */
@@ -19,7 +23,7 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	/** The Pointer listener. */
 	private AbstractPointerListener pointerListener;
 		
-	/** Flag related to timed scenes */
+	/** Flag related to timed scenes. */
 	private boolean USE_TIMER = false;
 	
 	/** Flag used to switch scenes. */
@@ -127,6 +131,8 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	}
 	
 	/**
+	 * Gets the pointer listener.
+	 *
 	 * @return the pointerListener
 	 */
 	public AbstractPointerListener getPointerListener() {
@@ -136,6 +142,8 @@ public abstract class AbstractScene extends AbstractSceneObjectGroup{
 	}
 
 	/**
+	 * Sets the pointer listener.
+	 *
 	 * @param pointerListener the pointerListener to set
 	 */
 	public void setPointerListener(AbstractPointerListener pointerListener) {

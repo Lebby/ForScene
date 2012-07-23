@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.entities.toTest;
 
 import forscene.core.entities.ILogicShape;

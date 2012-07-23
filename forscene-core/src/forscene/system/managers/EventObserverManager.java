@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.system.managers;
 
 import java.util.HashMap;
@@ -9,6 +12,7 @@ import playn.core.PlayN;
 import forscene.core.events.listener.AbstractEventListener;
 import forscene.core.events.system.IEvent;
 
+// TODO: Auto-generated Javadoc
 // It allow to observe an event calling another event. 
 // Map contains in "null" key a global event list
 // Other keys contains a list of event that want to be notified when an event instance is processed by EventManager.
@@ -16,14 +20,30 @@ import forscene.core.events.system.IEvent;
 // A poll is needed to implement an Observer by getCurrentEvent and it is a performance issue.
 // EventObserverManager check global event observer and then try to find related observer of an event instance.
 
+/**
+ * The Class EventObserverManager.
+ */
 public class EventObserverManager {
 	
+	/**
+	 * The Class InnerEventList.
+	 */
 	class InnerEventList extends LinkedList<AbstractEventListener>{};
 	
+	/** The event map. */
 	private HashMap<IEvent, InnerEventList > eventMap;
+	
+	/** The global event map. */
 	private HashMap<String, InnerEventList> globalEventMap;
+	
+	/** The instance. */
 	private static EventObserverManager instance = null;
 		
+	/**
+	 * Gets the single instance of EventObserverManager.
+	 *
+	 * @return single instance of EventObserverManager
+	 */
 	public static EventObserverManager getInstance()
 	{
 		if ( instance == null )
@@ -31,16 +51,25 @@ public class EventObserverManager {
 		return instance;
 	}
 	
+	/**
+	 * Instantiates a new event observer manager.
+	 */
 	private EventObserverManager() {
 		eventMap = new HashMap<IEvent, InnerEventList>();
 		globalEventMap = new HashMap<String, InnerEventList>();
 	}
 	
+	/**
+	 * Notify.
+	 *
+	 * @param event the event
+	 */
 	public void notify(IEvent event)
 	{
 		if (globalEventMap.containsKey(event.getName()))
 		{
-			PlayN.log().debug(" EVENTMAP :" + globalEventMap.get(event.getName()) + " name: "+ event.getName());
+			
+		  //PlayN.log().debug(" EVENTMAP :" + globalEventMap.get(event.getName()) + " name: "+ event.getName());
 			notifyObservers(globalEventMap.get(event.getName()));
 			//TODO: CHECK THIS ... if event is done ... it must be removed
 			/*if (event.isDone())
@@ -56,6 +85,11 @@ public class EventObserverManager {
 	}
 	
 	
+	/**
+	 * Notify observers.
+	 *
+	 * @param list the list
+	 */
 	private void notifyObservers(InnerEventList list)
 	{		
 		for (Iterator<AbstractEventListener>iterator = list.iterator(); iterator.hasNext();) {
@@ -65,23 +99,34 @@ public class EventObserverManager {
 		}
 	}
 	
+	/**
+	 * Register.
+	 *
+	 * @param globalEventName the global event name
+	 * @param callback the callback
+	 */
 	public void register(String globalEventName, AbstractEventListener callback)
 	{
 		InnerEventList tmp;
 		if (globalEventMap.containsKey(globalEventName))
-		{
-			PlayN.log().debug(" EVENTMAP : EXIXTS" ); 
+		{ 
 			tmp = globalEventMap.get(globalEventName);			
 		}else 
 		{
 			tmp = new InnerEventList();			
 			globalEventMap.put(globalEventName, tmp);
-			PlayN.log().debug(" EVENTMAP : NO EXIXTS " + callback);
+			PlayN.log().debug(" EVENTMAP : NO EXIXTS " + globalEventName +  " CB: " +callback.getName());
 		}
 		tmp.add(callback);
 	}
 	
 	
+	/**
+	 * Register.
+	 *
+	 * @param eventToMonitor the event to monitor
+	 * @param callback the callback
+	 */
 	public void register(IEvent eventToMonitor, AbstractEventListener callback)
 	{
 		InnerEventList tmp;
@@ -96,6 +141,11 @@ public class EventObserverManager {
 		tmp.add(callback);
 	}	
 	
+	/**
+	 * Deregister.
+	 *
+	 * @param eventToMonitor the event to monitor
+	 */
 	public void deregister(IEvent eventToMonitor)
 	{
 		if (eventMap.containsKey(eventToMonitor))
@@ -107,6 +157,11 @@ public class EventObserverManager {
 			PlayN.log().debug("Event Observer Manager Error: Event Not Found" + eventToMonitor);
 	}
 	
+	/**
+	 * Deregister.
+	 *
+	 * @param globalEventName the global event name
+	 */
 	public void deregister(String globalEventName)
 	{
 		if (globalEventMap.containsKey(globalEventName))

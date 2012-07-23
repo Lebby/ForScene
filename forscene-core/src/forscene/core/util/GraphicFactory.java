@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.util;
 
 import playn.core.CanvasImage;
@@ -16,8 +19,19 @@ import forscene.core.entities.AbstractSceneObject;
 import forscene.core.entities.AbstractSceneObjectGroup;
 import forscene.system.managers.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating Graphic objects.
+ */
 public class GraphicFactory {
 
+  /**
+   * Adds the image.
+   *
+   * @param url the url
+   * @param scene the scene
+   * @return the image layer
+   */
   public static ImageLayer addImage(String url, AbstractSceneObject<?> scene) {
     ImageLayer image = ResourceManager.loadImageLayer(url);
 
@@ -28,11 +42,16 @@ public class GraphicFactory {
       ((AbstractSceneObject<Layer.HasSize>) scene).setRoot(image);
     }
 
-    // #Debug
-    PlayN.log().debug("addImage debug: " + image);
     return image;
   }
 
+  /**
+   * Creates a new Graphic object.
+   *
+   * @param text the text
+   * @param format the format
+   * @return the image layer
+   */
   public static ImageLayer createText(String text, TextFormat format) {
     // crea il font : Font font = graphics().createFont("Courier",
     // Font.Style.PLAIN, 16);
@@ -44,7 +63,6 @@ public class GraphicFactory {
     // scrivo il layer : layer.canvas().drawText(layout, 0, 0);
 
     TextLayout layout = PlayN.graphics().layoutText(text, format);
-    PlayN.log().debug("LAYOUT " + layout.height() + " " + layout.width());
     // CanvasImage canvas =
     // graphics().createImage(((int)Math.ceil(layout.width())),
     // ((int)Math.ceil(layout.height())));
@@ -64,6 +82,13 @@ public class GraphicFactory {
     return image;
   }
 
+  /**
+   * Creates a new Graphic object.
+   *
+   * @param font the font
+   * @param textColor the text color
+   * @return the text format
+   */
   public static TextFormat createTextFormat(Font font, int textColor) {
     TextFormat format = new TextFormat();
     format = format.withAlignment(Alignment.LEFT);
@@ -72,17 +97,35 @@ public class GraphicFactory {
     return format;
   }
 
+  /**
+   * Creates a new Graphic object.
+   *
+   * @param fontName the font name
+   * @param fontStyle the font style
+   * @param size the size
+   * @return the font
+   */
   public static Font createFont(String fontName, Style fontStyle, float size) {
     Font font = PlayN.graphics().createFont(fontName, fontStyle, size);
     return font;
   }
 
+  /**
+   * Creates a new Graphic object.
+   *
+   * @return the text format
+   */
   public static TextFormat createTextFormat() {
     Font font = GraphicFactory.createFont("Arial", Font.Style.PLAIN, 10f);
     TextFormat format = GraphicFactory.createTextFormat(font, 0xFF000000);
     return format;
   }
 
+  /**
+   * Creates a new Graphic object.
+   *
+   * @return the group layer
+   */
   public static GroupLayer createGroupLayer() {
     GroupLayer gl = PlayN.graphics().createGroupLayer();
     return gl;
@@ -96,6 +139,12 @@ public class GraphicFactory {
    * root.add(ls.get(i)); } }
    */
 
+  /**
+   * Draw border.
+   *
+   * @param root the root
+   * @return the group layer
+   */
   public static GroupLayer drawBorder(Layer root) {
     GroupLayer border = null;
     try {
@@ -126,7 +175,6 @@ public class GraphicFactory {
         border = PlayN.graphics().createGroupLayer();
         ImageLayer imageLayer = PlayN.graphics().createImageLayer(canvas);
         border.add(imageLayer);
-        PlayN.log().debug("BORDER " + border);
       }
     } catch (Exception e) {
       PlayN.log().debug(e.toString());

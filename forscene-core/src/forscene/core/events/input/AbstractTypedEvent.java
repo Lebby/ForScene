@@ -8,8 +8,9 @@ import playn.core.Keyboard.TypedEvent;
 
 
 /**
- * @author blackdevil
+ * The Class AbstractTypedEvent.
  *
+ * @author blackdevil
  */
 public abstract class AbstractTypedEvent extends AbstractKeyboardEvent<TypedEvent>{
 

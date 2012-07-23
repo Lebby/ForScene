@@ -10,17 +10,24 @@ import playn.core.PlayN;
 import forscene.core.entities.AbstractSimpleSceneObject;
 import forscene.system.managers.AbstractGameLoopManager;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class AbstractPaintSceneObject.
+ *
  * @author blackdevil
- * 
  */
 public abstract class AbstractPaintSceneObject extends
     AbstractSimpleSceneObject {
 
+  /** The canvas. */
   private Canvas      canvas;
   // container of canvas
+  /** The canvas image. */
   private CanvasImage canvasImage;
 
+  /**
+   * Instantiates a new abstract paint scene object.
+   */
   public AbstractPaintSceneObject() {
     canvasImage = PlayN.graphics().createImage(
         AbstractGameLoopManager.getInstance().getWidth(),
@@ -32,6 +39,8 @@ public abstract class AbstractPaintSceneObject extends
   }
 
   /**
+   * Gets the canvas.
+   *
    * @return the canvas
    */
   public Canvas getCanvas() {

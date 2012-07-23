@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.entities;
 
 import java.util.ArrayList;
@@ -189,15 +192,18 @@ public abstract class AbstractSceneGroup {
   }
 
   /**
-   * - * @return the root
+   * - * @return the root.
+   *
+   * @return the root
    */
   public GroupLayer getRoot() {
     return root;
   }
 
   /**
-   * @param root
-   *          the root to set
+   * Sets the root.
+   *
+   * @param root the root to set
    */
   public void setRoot(GroupLayer root) {
     this.root = root;

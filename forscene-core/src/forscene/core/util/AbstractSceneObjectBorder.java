@@ -1,29 +1,48 @@
+/*
+ * 
+ */
 package forscene.core.util;
 
 import playn.core.GroupLayer;
 import playn.core.PlayN;
 import forscene.core.entities.AbstractSceneObject;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractSceneObjectBorder.
+ */
 public class AbstractSceneObjectBorder extends AbstractSceneObject<GroupLayer>{
+	
+	/** The object. */
 	private AbstractSceneObject<?> object;	
 	
+	/**
+	 * Instantiates a new abstract scene object border.
+	 *
+	 * @param object the object
+	 */
 	public AbstractSceneObjectBorder(AbstractSceneObject<?> object) {
 		setTargetObject(object);
 	}
 
 	
-	public void updateState() {
-		PlayN.log().debug("Border: "+ object + " Root : " + object.getRoot());
+	/* (non-Javadoc)
+	 * @see forscene.system.ISceneObject#updateState()
+	 */
+	public void updateState() {	  
+
 		if (object.isToUpdate())
 		{			
 			this.systemBuild();					
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.AbstractSceneObject#build()
+	 */
 	@Override
 	public void build() {		
-		GroupLayer tmp = GraphicFactory.drawBorder(object.getRoot());
-		PlayN.log().debug("Border: "+ object + " Root : " + object.getRoot() +  " DrawBorder " + tmp );
+		GroupLayer tmp = GraphicFactory.drawBorder(object.getRoot());		
 		
 		if (tmp != null)
 		{
@@ -38,11 +57,14 @@ public class AbstractSceneObjectBorder extends AbstractSceneObject<GroupLayer>{
 		}
 	}
 	
+	/**
+	 * Sets the target object.
+	 *
+	 * @param object the new target object
+	 */
 	public void setTargetObject(AbstractSceneObject object)
 	{
 		this.object = object;
 		this.setName(object.getName()+"Border");
-		PlayN.log().debug("**********"+
-				getName());
 	}
 }

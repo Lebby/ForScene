@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.system;
 
 import forscene.core.entities.AbstractSceneObjectGroup;
@@ -5,6 +8,12 @@ import forscene.system.entities.ForSceneObject;
 import forscene.system.entities.ObjectID;
 import playn.core.Layer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface ISceneObject.
+ *
+ * @param <T> the generic type
+ */
 public interface ISceneObject<T extends Layer> 
 extends LayerObject<T> , ForSceneObject{
 
@@ -34,6 +43,9 @@ extends LayerObject<T> , ForSceneObject{
 	 */
 	public abstract void build();
 
+	/**
+	 * Builds the once.
+	 */
 	public abstract void buildOnce();
 
 	/**
@@ -62,8 +74,18 @@ extends LayerObject<T> , ForSceneObject{
 	 */
 	public abstract String getType();
 
+	/**
+	 * System build.
+	 */
 	public abstract void systemBuild();
 
+	/**
+	 * Contains.
+	 *
+	 * @param x the x
+	 * @param y the y
+	 * @return true, if successful
+	 */
 	public abstract boolean contains(int x, int y);
 
 	/**
@@ -80,23 +102,56 @@ extends LayerObject<T> , ForSceneObject{
 	 */
 	public abstract long getUpdateRate();
 
+	/**
+	 * Sets the iD.
+	 *
+	 * @param objectID the new iD
+	 */
 	public abstract void setID(ObjectID objectID);
 
+	/**
+	 * Gets the parent.
+	 *
+	 * @return the parent
+	 */
 	public abstract AbstractSceneObjectGroup getParent();
 
+	/**
+	 * Sets the parent.
+	 *
+	 * @param parent the new parent
+	 */
 	public abstract void setParent(AbstractSceneObjectGroup parent);
 
+	/**
+	 * Checks for parent.
+	 *
+	 * @return true, if successful
+	 */
 	public abstract boolean hasParent();
 
 	/**
+	 * Checks if is builded.
+	 *
 	 * @return the builded
 	 */
 	public abstract boolean isBuilded();
 
+	/**
+	 * Hide.
+	 */
 	public abstract void hide();
 
+	/**
+	 * Show.
+	 */
 	public abstract void show();
 
+	/**
+	 * Checks if is visible.
+	 *
+	 * @return true, if is visible
+	 */
 	public abstract boolean isVisible();
 
 }

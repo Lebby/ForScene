@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.events.system;
 
 import forscene.core.entities.AbstractScene;
@@ -35,6 +38,11 @@ public class LoadSceneEvent extends AbstractEvent{
 		setDone(true);
 	}
 	
+	/**
+	 * Gets the scene.
+	 *
+	 * @return the scene
+	 */
 	public AbstractScene getScene() {
 		return scene;
 	}

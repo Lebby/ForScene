@@ -9,15 +9,20 @@ import playn.core.SurfaceLayer;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.system.managers.AbstractGameLoopManager;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class AbstractFastPaintSceneObject.
+ *
  * @author blackdevil
- * 
  */
 
 // TODO: to add method of customization of surfaceLayer ( setRoot? )
 public abstract class AbstractFastPaintSceneObject extends
     AbstractSceneObject<SurfaceLayer> {
 
+  /**
+   * Instantiates a new abstract fast paint scene object.
+   */
   public AbstractFastPaintSceneObject() {
     SurfaceLayer layer = PlayN.graphics().createSurfaceLayer(
         AbstractGameLoopManager.getInstance().getWidth(),
@@ -25,6 +30,11 @@ public abstract class AbstractFastPaintSceneObject extends
     setRoot(layer);
   }
 
+  /**
+   * Gets the surface.
+   *
+   * @return the surface
+   */
   public Surface getSurface() {
     return getRoot().surface();
   }

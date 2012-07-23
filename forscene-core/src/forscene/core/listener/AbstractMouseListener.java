@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.listener;
 
 import static playn.core.PlayN.mouse;
@@ -13,17 +16,45 @@ import forscene.core.events.input.AbstractMouseWheelEvent;
 import forscene.system.managers.EventManager;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving abstractMouse events.
+ * The class that is interested in processing a abstractMouse
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addAbstractMouseListener<code> method. When
+ * the abstractMouse event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see AbstractMouseEvent
+ */
 public class AbstractMouseListener extends Adapter implements IListener{
 	
+	/** The evt mouse down. */
 	private AbstractMouseButtonEvent evtMouseDown;	
+	
+	/** The evt mouse up. */
 	private AbstractMouseButtonEvent evtMouseUp;
+	
+	/** The evt mouse wheel scroll. */
 	private AbstractMouseWheelEvent  evtMouseWheelScroll;
+	
+	/** The evt mouse move. */
 	private AbstractMouseMotionEvent evtMouseMove;
 
+	/**
+	 * Instantiates a new abstract mouse listener.
+	 */
 	public AbstractMouseListener() {
 		super();
 	}	
 	
+	/**
+	 * Instantiates a new abstract mouse listener.
+	 *
+	 * @param eventMouseDown the event mouse down
+	 * @param eventMouseUp the event mouse up
+	 */
 	public AbstractMouseListener(AbstractMouseButtonEvent eventMouseDown,AbstractMouseButtonEvent eventMouseUp)
 	{
 		this();
@@ -31,6 +62,14 @@ public class AbstractMouseListener extends Adapter implements IListener{
 		this.evtMouseUp = eventMouseUp;
 	}
 	
+	/**
+	 * Instantiates a new abstract mouse listener.
+	 *
+	 * @param eventMouseDown the event mouse down
+	 * @param eventMouseUp the event mouse up
+	 * @param eventMouseMove the event mouse move
+	 * @param eventMouseScroll the event mouse scroll
+	 */
 	public AbstractMouseListener
 	(AbstractMouseButtonEvent eventMouseDown, 
 	 AbstractMouseButtonEvent eventMouseUp,
@@ -45,6 +84,9 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see playn.core.Mouse.Adapter#onMouseDown(playn.core.Mouse.ButtonEvent)
+	 */
 	@Override
 	public void onMouseDown(ButtonEvent event) {		
 		if (evtMouseDown == null) return;
@@ -53,6 +95,9 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see playn.core.Mouse.Adapter#onMouseMove(playn.core.Mouse.MotionEvent)
+	 */
 	@Override
 	public void onMouseMove(MotionEvent event) {		
 		if (evtMouseMove == null) return;
@@ -61,6 +106,9 @@ public class AbstractMouseListener extends Adapter implements IListener{
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see playn.core.Mouse.Adapter#onMouseUp(playn.core.Mouse.ButtonEvent)
+	 */
 	@Override
 	public void onMouseUp(ButtonEvent event) {
 		if (evtMouseUp == null) return;
@@ -68,6 +116,9 @@ public class AbstractMouseListener extends Adapter implements IListener{
 		EventManager.getInstance().push(this.evtMouseUp);		
 	}
 	
+	/* (non-Javadoc)
+	 * @see playn.core.Mouse.Adapter#onMouseWheelScroll(playn.core.Mouse.WheelEvent)
+	 */
 	@Override
 	public void onMouseWheelScroll(WheelEvent event) {
 		if (evtMouseWheelScroll == null) return;
@@ -76,6 +127,8 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 	
 	/**
+	 * Gets the mouse down.
+	 *
 	 * @return the evtMouseDown
 	 */
 	public AbstractMouseButtonEvent getMouseDown() {
@@ -83,6 +136,8 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 
 	/**
+	 * Sets the mouse down.
+	 *
 	 * @param evtMouseDown the evtMouseDown to set
 	 */
 	public void setMouseDown(AbstractMouseButtonEvent evtMouseDown) {
@@ -90,6 +145,8 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 
 	/**
+	 * Gets the mouse up.
+	 *
 	 * @return the evtMouseUp
 	 */
 	public AbstractMouseButtonEvent getMouseUp() {
@@ -97,6 +154,8 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 
 	/**
+	 * Sets the mouse up.
+	 *
 	 * @param evtMouseUp the evtMouseUp to set
 	 */
 	public void setMouseUp(AbstractMouseButtonEvent evtMouseUp) {
@@ -104,6 +163,8 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 
 	/**
+	 * Gets the mouse wheel scroll.
+	 *
 	 * @return the evtMouseWheelScroll
 	 */
 	public AbstractMouseWheelEvent getMouseWheelScroll() {
@@ -111,6 +172,8 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 
 	/**
+	 * Sets the mouse wheel scroll.
+	 *
 	 * @param evtMouseWheelScroll the evtMouseWheelScroll to set
 	 */
 	public void setMouseWheelScroll(
@@ -119,6 +182,8 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 
 	/**
+	 * Gets the mouse move.
+	 *
 	 * @return the evtMouseMove
 	 */
 	public AbstractMouseMotionEvent getMouseMove() {
@@ -126,12 +191,17 @@ public class AbstractMouseListener extends Adapter implements IListener{
 	}
 
 	/**
+	 * Sets the mouse move.
+	 *
 	 * @param evtMouseMove the evtMouseMove to set
 	 */
 	public void setMouseMove(AbstractMouseMotionEvent evtMouseMove) {
 		this.evtMouseMove = evtMouseMove;
 	}
 
+	/* (non-Javadoc)
+	 * @see forscene.core.listener.IListener#register()
+	 */
 	public void register() {
 		mouse().setListener(this);		
 	}

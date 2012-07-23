@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.ui.layout;
 
 import java.util.ArrayList;
@@ -10,16 +13,25 @@ import forscene.core.util.SizeInfo;
 import forscene.system.managers.GameLoopManager;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DefautLayout.
+ */
 public class DefautLayout extends AbstractStaticLayout{
 	
+	/** The element matrix. */
 	private ArrayList<ArrayList<SizeInfo>> elementMatrix;
 
+	/** The margin bottom. */
 	private float marginLeft = 1,
 			marginRight = 1,
 			marginTop = 1,
 			marginBottom = 1;
 	
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.ui.layout.ILayout#layout(forscene.core.entities.AbstractSceneObject)
+	 */
 	public void layout(AbstractSceneObject<?> object) {
 		//calculate basic info
 		BasicShapeInfo shapeInfo = ShapeUtil.calculateShapeInfoSceneObject(object);
@@ -111,11 +123,17 @@ public class DefautLayout extends AbstractStaticLayout{
 		PlayN.log().debug("(X)(Y) " + lastXMatrix + " | " + lastYMatrix + " (posX,posY)" + info.getX() + " , " + info.getY() );
 	}
 	
+	/**
+	 * Instantiates a new defaut layout.
+	 */
 	public DefautLayout() 
 	{
 		buildOnce(); //TODO:TO FIX
 	}
 	
+	/* (non-Javadoc)
+	 * @see forscene.core.entities.AbstractSceneObject#build()
+	 */
 	@Override
 	public void build() 
 	{
@@ -127,6 +145,14 @@ public class DefautLayout extends AbstractStaticLayout{
 		elementMatrix = new ArrayList<ArrayList<SizeInfo>>();		
 	}	
 	
+	/**
+	 * Sets the margin.
+	 *
+	 * @param marginLeft the margin left
+	 * @param marginRight the margin right
+	 * @param marginTop the margin top
+	 * @param marginBottom the margin bottom
+	 */
 	public void setMargin(float marginLeft,float marginRight,float marginTop,float marginBottom)
 	{
 		this.marginLeft = marginLeft;
@@ -135,43 +161,91 @@ public class DefautLayout extends AbstractStaticLayout{
 		this.marginTop = marginTop;
 	}
 	
+	/**
+	 * Sets the margin.
+	 *
+	 * @param margin the new margin
+	 */
 	public void setMargin(float margin)
 	{
 		marginLeft=marginBottom=marginRight=marginTop=margin;
 	}
 	
+	/**
+	 * Gets the margin left.
+	 *
+	 * @return the margin left
+	 */
 	public float getMarginLeft() {
 		return marginLeft;
 	}
 
+	/**
+	 * Sets the margin left.
+	 *
+	 * @param marginLeft the new margin left
+	 */
 	public void setMarginLeft(float marginLeft) {
 		this.marginLeft = marginLeft;
 	}
 
+	/**
+	 * Gets the margin right.
+	 *
+	 * @return the margin right
+	 */
 	public float getMarginRight() {
 		return marginRight;
 	}
 
+	/**
+	 * Sets the margin right.
+	 *
+	 * @param marginRight the new margin right
+	 */
 	public void setMarginRight(float marginRight) {
 		this.marginRight = marginRight;
 	}
 
+	/**
+	 * Gets the margin top.
+	 *
+	 * @return the margin top
+	 */
 	public float getMarginTop() {
 		return marginTop;
 	}
 
+	/**
+	 * Sets the margin top.
+	 *
+	 * @param marginTop the new margin top
+	 */
 	public void setMarginTop(float marginTop) {
 		this.marginTop = marginTop;
 	}
 
+	/**
+	 * Gets the margin bottom.
+	 *
+	 * @return the margin bottom
+	 */
 	public float getMarginBottom() {
 		return marginBottom;
 	}
 
+	/**
+	 * Sets the margin bottom.
+	 *
+	 * @param marginBottom the new margin bottom
+	 */
 	public void setMarginBottom(float marginBottom) {
 		this.marginBottom = marginBottom;
 	}
 
+	/* (non-Javadoc)
+	 * @see forscene.system.ISceneObject#updateState()
+	 */
 	public void updateState() {
 		// TODO Auto-generated method stub
 		

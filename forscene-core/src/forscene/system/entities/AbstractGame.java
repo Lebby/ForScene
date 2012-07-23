@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.system.entities;
 
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import forscene.system.managers.AbstractGameLoopManager;
 import forscene.system.managers.IGameLoopManager;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractGame.
  * This class is the "main class" that you need to extends to implement your game. 
@@ -62,13 +66,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 	 */
 	public void update(float delta) 
 	{
-		//#Debug
-		//PlayN.log().debug("delta" + delta + "Incs" );
-		//for ( int i = 0 ; i < incs; i++)
-		//{
-			//PlayN.log().debug("INCSECONDS");
-			//incSeconds();
-		//}
+
 		frame++;
 		incTicks();
 		incTime(delta);
@@ -78,9 +76,6 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
 			updateState();
 		}*/
 		updateState();
-		
-		//PlayN.log().debug("update update state");
-		
 		
 	}
 

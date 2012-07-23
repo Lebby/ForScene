@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.ui.layout;
 
 import playn.core.PlayN;
@@ -5,6 +8,7 @@ import forscene.core.entities.AbstractSceneObject;
 import forscene.core.util.ShapeUtil;
 
 
+// TODO: Auto-generated Javadoc
 /*
  * alignment is relative to parent and refer on nearest object border.
  * Align left is relative to object left border ( x=0 )
@@ -14,7 +18,18 @@ import forscene.core.util.ShapeUtil;
  * ... and so on 
  * 
  */
+/**
+ * The Class PositionHelper.
+ */
 public class PositionHelper {
+	
+	/**
+	 * Align.
+	 *
+	 * @param parent the parent
+	 * @param target the target
+	 * @param align the align
+	 */
 	public static void align(AbstractSceneObject parent, AbstractSceneObject target, Align align)
 	{
 		PlayN.log().debug("Align: " +  align);
@@ -74,6 +89,13 @@ public class PositionHelper {
 		}		
 	}
 	
+	/**
+	 * Vertical align.
+	 *
+	 * @param parent the parent
+	 * @param target the target
+	 * @param align the align
+	 */
 	private static void verticalAlign(AbstractSceneObject parent, AbstractSceneObject target, Align align)
 	{
 		//PlayN.log().debug("VAlign: " +  align);
@@ -99,6 +121,13 @@ public class PositionHelper {
 		
 	}
 	
+	/**
+	 * Horizontal align.
+	 *
+	 * @param parent the parent
+	 * @param target the target
+	 * @param align the align
+	 */
 	private static void horizontalAlign(AbstractSceneObject parent, AbstractSceneObject target, Align align)
 	{
 		//PlayN.log().debug("HAlign: " +  align);

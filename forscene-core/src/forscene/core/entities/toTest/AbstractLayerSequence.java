@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.entities.toTest;
 
 import java.util.ArrayList;
@@ -107,34 +110,36 @@ public abstract class AbstractLayerSequence extends AbstractAnimation{
 	/**
 	 * Draw.
 	 * 
-
-	public void draw()
-	{
-		//#Debug
-		//PlayN.log().debug("ROOT " + getRoot() + " systemroot " + graphics().rootLayer() + " current" + current );
-		
-		if (currentIndex == -1) return;
-		if (current != null)
-		{
-			//getRoot().remove(getPrevFrame());
-			//getRoot().remove(getNextFrame());
-			getPrevFrame().setVisible(false);
-			getNextFrame().setVisible(false);
-			getRoot().clear();			
-		}
-		//getRoot().clear();
-		GraphicFactory.refresh(getRoot());
-		
-		current = layers.get((currentIndex%layers.size()));
-		//current.setScale(0.3f);
-		
-		current.setVisible(true);
-		//#Debug
-		//PlayN.log().debug("SEq current : " + current);
-		//PlayN.log().debug("SEq current : " + currentIndex%layers.size());
-		getRoot().add(current);
-		PlayN.log().debug("SEq root SIZE: " + getRoot().size());		
-	}
+	 * 
+	 * public void draw()
+	 * {
+	 * //#Debug
+	 * //PlayN.log().debug("ROOT " + getRoot() + " systemroot " + graphics().rootLayer() + " current" + current );
+	 * 
+	 * if (currentIndex == -1) return;
+	 * if (current != null)
+	 * {
+	 * //getRoot().remove(getPrevFrame());
+	 * //getRoot().remove(getNextFrame());
+	 * getPrevFrame().setVisible(false);
+	 * getNextFrame().setVisible(false);
+	 * getRoot().clear();
+	 * }
+	 * //getRoot().clear();
+	 * GraphicFactory.refresh(getRoot());
+	 * 
+	 * current = layers.get((currentIndex%layers.size()));
+	 * //current.setScale(0.3f);
+	 * 
+	 * current.setVisible(true);
+	 * //#Debug
+	 * //PlayN.log().debug("SEq current : " + current);
+	 * //PlayN.log().debug("SEq current : " + currentIndex%layers.size());
+	 * getRoot().add(current);
+	 * PlayN.log().debug("SEq root SIZE: " + getRoot().size());
+	 * }
+	 *
+	 * @return the layers
 	 */
 	
 	/**

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.entities;
 
 import forscene.core.entities.toTest.AbstractLogicShape;

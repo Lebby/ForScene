@@ -7,8 +7,9 @@ import playn.core.Events.Input;
 import playn.core.Pointer;
 
 /**
- * @author blackdevil
+ * The Class AbstractPointerEvent.
  *
+ * @author blackdevil
  */
 public abstract class AbstractPointerEvent  extends AbstractInputEvent<Pointer.Event> {
 

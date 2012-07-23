@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.entities;
 
 import java.util.LinkedList;
@@ -22,6 +25,8 @@ public abstract class AbstractSceneObjectGroup extends
   // TODO: improve Object child
   /** The childs. */
   private TreeSet<ObjectID>    childs;
+
+  /** The pending childs. */
   private LinkedList<ObjectID> pendingChilds;
 
   /**
@@ -38,13 +43,12 @@ public abstract class AbstractSceneObjectGroup extends
   /**
    * Adds the scene object.
    * 
-   * @param <T>
-   * 
    * @param object
    *          the object
    * @throws NoNameException
    *           the no name exception
    * @throws IDAlreadyPresentException
+   *           the iD already present exception
    */
   public void addSceneObject(AbstractSceneObject<?> object)
       throws NoNameException, IDAlreadyPresentException {
@@ -73,6 +77,7 @@ public abstract class AbstractSceneObjectGroup extends
    * @throws NoNameException
    *           the no name exception
    * @throws IDAlreadyPresentException
+   *           the iD already present exception
    */
   public void addSceneObject(String name, AbstractSceneObject<?> object)
       throws NoNameException, IDAlreadyPresentException {
@@ -160,9 +165,12 @@ public abstract class AbstractSceneObjectGroup extends
       element = pendingChilds.poll();
     }
     // setToUpdate(false);
-    setToUpdate(true);
+    // setToUpdate(true);
   }
 
+  /**
+   * Update childs.
+   */
   public void updateChilds() {
 
     // call update on child builded
@@ -231,6 +239,11 @@ public abstract class AbstractSceneObjectGroup extends
     setToUpdate(true);
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.core.entities.AbstractSceneObject#systemBuild()
+   */
   @Override
   public void systemBuild() {
     build();
@@ -241,6 +254,11 @@ public abstract class AbstractSceneObjectGroup extends
     setBuilded(true);
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.core.entities.AbstractSceneObject#isToUpdate()
+   */
   @Override
   public boolean isToUpdate() {
     if (pendingChilds.size() > 0) {

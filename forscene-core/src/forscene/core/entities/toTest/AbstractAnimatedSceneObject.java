@@ -10,36 +10,33 @@ import playn.core.ImmediateLayer.Renderer;
 import playn.core.Surface;
 import static playn.core.PlayN.graphics;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author blackdevil
+ * The Class AbstractAnimatedSceneObject.
  *
+ * @author blackdevil
  */
 public abstract class AbstractAnimatedSceneObject extends
 		AbstractSceneObject<ImmediateLayer> {	
-	/**
-	 * 
-	 */
+	
+	/** The surface. */
 	private Surface surface;
-	/**
-	 * 
-	 */
+	
+	/** The image. */
 	private Image image;
-	/**
-	 * 
-	 */
+	
+	/** The autodraw. */
 	boolean autodraw = true;
-	/**
-	 * 
-	 */
+	
+	/** The x. */
 	private float x = 0f;
-	/**
-	 * 
-	 */
+	
+	/** The y. */
 	private float y = 0f;
 
 	
 	/**
-	 * 
+	 * Instantiates a new abstract animated scene object.
 	 */
 	public AbstractAnimatedSceneObject() {
 		ImmediateLayer imm = graphics().createImmediateLayer(new Renderer() {
@@ -67,7 +64,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Sets the surface.
+	 *
+	 * @param surface the new surface
 	 */
 	protected void setSurface(Surface surface)
 	{
@@ -75,7 +74,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Gets the surface.
+	 *
+	 * @return the surface
 	 */
 	public Surface getSurface()
 	{
@@ -83,12 +84,16 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Update draw.
 	 */
 	public abstract void updateDraw();
 	
 	/**
-	 * 
+	 * Update draw.
+	 *
+	 * @param image the image
+	 * @param x the x
+	 * @param y the y
 	 */
 	public void updateDraw(Image image, float x, float y)
 	{
@@ -96,7 +101,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Sets the x.
+	 *
+	 * @param xPosition the new x
 	 */
 	public void setX(float xPosition)
 	{
@@ -104,7 +111,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Sets the y.
+	 *
+	 * @param yPosition the new y
 	 */
 	public void setY(float yPosition)
 	{
@@ -112,7 +121,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Gets the x.
+	 *
+	 * @return the x
 	 */
 	public float getX()
 	{
@@ -120,7 +131,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Gets the y.
+	 *
+	 * @return the y
 	 */
 	public float getY()
 	{
@@ -128,7 +141,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}	
 	
 	/**
-	 * 
+	 * Sets the image.
+	 *
+	 * @param image the new image
 	 */
 	public void setImage(Image image)
 	{
@@ -136,7 +151,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Gets the image.
+	 *
+	 * @return the image
 	 */
 	public Image getImage()
 	{
@@ -144,7 +161,7 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Inner draw.
 	 */
 	private void innerDraw()
 	{
@@ -152,7 +169,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Sets the auto draw.
+	 *
+	 * @param autodraw the new auto draw
 	 */
 	public void setAutoDraw(boolean autodraw)
 	{
@@ -160,7 +179,9 @@ public abstract class AbstractAnimatedSceneObject extends
 	}
 	
 	/**
-	 * 
+	 * Checks if is auto draw.
+	 *
+	 * @return true, if is auto draw
 	 */
 	public boolean isAutoDraw()
 	{

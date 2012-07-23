@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.system.events;
 
 import forscene.core.events.system.AbstractEvent;

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.events.system;
 
 // TODO: Auto-generated Javadoc
@@ -10,12 +13,17 @@ public abstract class AbstractEvent implements IEvent {
   private int         priority = 0;
 
   /** The done. */
-  private boolean     done     = true;
+  private boolean     done     = false;
 
+  /** The status. */
   private EventStatus status   = EventStatus.NONE;
 
+  /** The name. */
   private String      name     = "";
 
+  /**
+   * Instantiates a new abstract event.
+   */
   public AbstractEvent() {
     name = this.getClass().getName();
     if (name.lastIndexOf('.') > 0) {
@@ -78,10 +86,22 @@ public abstract class AbstractEvent implements IEvent {
    */
   public abstract void run();
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.core.events.system.IEvent#getStatus()
+   */
   public EventStatus getStatus() {
     return status;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * forscene.core.events.system.IEvent#setStatus(forscene.core.events.system
+   * .EventStatus)
+   */
   public void setStatus(EventStatus status) {
     /* complex checking on status */
     switch (this.status) {
@@ -100,10 +120,20 @@ public abstract class AbstractEvent implements IEvent {
     }
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.core.events.system.IEvent#getName()
+   */
   public String getName() {
     return name;
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.core.events.system.IEvent#setName(java.lang.String)
+   */
   public void setName(String name) {
     this.name = name;
   }

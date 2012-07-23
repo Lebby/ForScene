@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package forscene.core.entities;
 
 // TODO: Auto-generated Javadoc
