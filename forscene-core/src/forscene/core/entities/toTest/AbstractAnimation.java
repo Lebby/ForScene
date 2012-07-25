@@ -15,6 +15,8 @@ import forscene.system.managers.EventManager;
  */
 public abstract class AbstractAnimation {
 
+  private AnimationUpdateEvent   eventUpdate;
+
   /** The started. */
   private boolean                started    = false;
 
@@ -57,7 +59,7 @@ public abstract class AbstractAnimation {
       PlayN.log().debug("ABSTRACT ANIMATION builded!");
     }
     started = true;
-    AnimationUpdateEvent eventUpdate = new AnimationUpdateEvent(this);
+    eventUpdate = new AnimationUpdateEvent(this);
     EventManager.getInstance().push(eventUpdate);
   };
 
@@ -68,6 +70,7 @@ public abstract class AbstractAnimation {
     started = false;
     // #Debug
     PlayN.log().debug("ABSTRACT ANIMATION STOP!");
+    eventUpdate.setDone(true);
   };
 
   /**
