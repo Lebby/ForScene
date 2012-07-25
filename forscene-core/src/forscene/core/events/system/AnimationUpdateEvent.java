@@ -55,7 +55,7 @@ public class AnimationUpdateEvent extends AbstractEvent {
           || ((((AbstractGameLoopManager.getInstance().getTicks())) % scaledFps) == 0)) {
         animation.run();
         animation.getTarget().setToUpdate(true);
-        setDone(true);
+        setDone(false);
       }
     } /*
        * else { setDone(true); }
