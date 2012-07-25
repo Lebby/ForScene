@@ -36,20 +36,25 @@ public abstract class AbstractAnimation {
   public abstract void build();
 
   /**
-   * Inits the.
+   * Init.
    */
-  public void init() {
-
-  }
+  public abstract void init();
 
   /**
    * Start.
    */
   public void start() {
+    PlayN.log().debug("ABSTRACT ANIMATION Start!");
     if (init == false) {
       init = true;
       init();
       build();
+      if (target != null) {
+        target.buildOnce();
+        PlayN.log().debug("ABSTRACT ANIMATION Target NULL ERROR!");
+      }
+
+      PlayN.log().debug("ABSTRACT ANIMATION builded!");
     }
     started = true;
     AnimationUpdateEvent eventUpdate = new AnimationUpdateEvent(this);
@@ -160,6 +165,14 @@ public abstract class AbstractAnimation {
    */
   public void setRoot(Layer layer) {
     root = layer;
+  }
+
+  /**
+   * @return the initialization state. If true, init is called and it will not
+   *         be called anymore.
+   */
+  public boolean isInit() {
+    return init;
   }
 
 }

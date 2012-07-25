@@ -12,20 +12,17 @@ import forscene.core.entities.toTest.AbstractEffect;
  */
 public class FadeIn extends AbstractEffect {
 
-  /** The init. */
-  private boolean init         = false;
-
   /** The start alpha. */
-  private float   startAlpha   = 0f;
+  private float startAlpha   = 0f;
 
   /** The current alpha. */
-  private float   currentAlpha = startAlpha;
+  private float currentAlpha = startAlpha;
 
   /** The end alpha. */
-  private float   endAlpha     = 1f;
+  private float endAlpha     = 1f;
 
   /** The step. */
-  private float   step         = 0.1f;
+  private float step         = 0.1f;
 
   /*
    * (non-Javadoc)
@@ -47,14 +44,20 @@ public class FadeIn extends AbstractEffect {
     goNext();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.core.entities.toTest.AbstractAnimation#init()
+   */
+  @Override
+  public void init() {
+    currentAlpha = startAlpha;
+  }
+
   /**
    * Change alpha.
    */
   private void changeAlpha() {
-    if (init == false) {
-      init = true;
-      currentAlpha = startAlpha;
-    }
     if (currentAlpha >= endAlpha) {
       stop();
     } else {

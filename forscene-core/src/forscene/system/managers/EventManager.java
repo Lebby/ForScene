@@ -5,7 +5,6 @@ package forscene.system.managers;
 
 import java.util.PriorityQueue;
 
-import playn.core.PlayN;
 import forscene.core.events.system.EventStatus;
 import forscene.core.events.system.IEvent;
 
@@ -59,25 +58,16 @@ public class EventManager {
       EventManager.currentEvent = null;
       return;
     }
+
     PriorityQueue<IEvent> tmp = new PriorityQueue<IEvent>();
 
-    // #Debug
-
-    PlayN.log().debug("EventMap Size: " + EventManager.events.size());
     for (Object element : EventManager.events) {
       IEvent iEvent = (IEvent) element;
-      PlayN.log().debug(
-          "EventMap :" + iEvent.getName() + (" P : " + iEvent.getStatus()));
     }
 
     while (!EventManager.events.isEmpty()) {
 
       EventManager.currentEvent = pop();
-      /*
-       * PlayN.log().debug( "evt : " + EventManager.currentEvent.getName() +
-       * " : " + EventManager.currentEvent + " status " +
-       * EventManager.currentEvent.getStatus());
-       */
       EventManager.currentEvent.run();
 
       // useless ...
@@ -85,20 +75,9 @@ public class EventManager {
       if (!EventManager.currentEvent.isDone()) {
         tmp.add(EventManager.currentEvent);
         EventManager.currentEvent.setStatus(EventStatus.RUNNING);
-        /*
-         * PlayN.log().debug( "evt : " + EventManager.currentEvent.getName() +
-         * " : " + EventManager.currentEvent + " status " +
-         * EventManager.currentEvent.getStatus());
-         */
         EventManager.currentEvent.run();
       } else {
         EventManager.currentEvent.setStatus(EventStatus.ENDED);
-        /*
-         * PlayN.log().debug( "evt : " + EventManager.currentEvent.getName() +
-         * " : " + EventManager.currentEvent + " status " +
-         * EventManager.currentEvent.getStatus());
-         * EventManager.currentEvent.run();
-         */
       }
     }
     EventManager.events.addAll(tmp);
@@ -115,10 +94,6 @@ public class EventManager {
     /* boolean result = */
     EventManager.events.add(evt);
     evt.setStatus(EventStatus.ENQUEUED);
-    /*
-     * PlayN.log().debug( "evt : " + evt.getName() + " : " + evt + " status " +
-     * evt.getStatus());
-     */
   }
 
   /**
@@ -129,11 +104,6 @@ public class EventManager {
   public IEvent pop() {
     EventManager.currentEvent = EventManager.events.poll();
     EventManager.currentEvent.setStatus(EventStatus.STARTED);
-    /*
-     * PlayN.log().debug( "evt : " + EventManager.currentEvent.getName() + " : "
-     * + EventManager.currentEvent + " status " +
-     * EventManager.currentEvent.getStatus());
-     */
     return EventManager.currentEvent;
   }
 
