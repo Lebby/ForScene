@@ -7,7 +7,7 @@ package forscene.core.entities.toTest.sprites;
 /**
  * The Class AbstractSprite.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public class AbstractSprite {
   

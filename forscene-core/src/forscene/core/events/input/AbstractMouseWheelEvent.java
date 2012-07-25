@@ -8,7 +8,7 @@ import playn.core.Mouse.WheelEvent;
 /**
  * The Class AbstractMouseWheelEvent.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public abstract class AbstractMouseWheelEvent extends AbstractMouseEvent<WheelEvent>{
 

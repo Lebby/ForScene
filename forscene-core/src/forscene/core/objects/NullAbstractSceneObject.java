@@ -9,7 +9,7 @@ import forscene.core.entities.AbstractSceneObjectGroup;
 /**
  * The Class NullAbstractSceneObject.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public class NullAbstractSceneObject extends AbstractSceneObjectGroup {
 

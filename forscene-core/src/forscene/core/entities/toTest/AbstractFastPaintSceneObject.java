@@ -13,7 +13,7 @@ import forscene.system.managers.AbstractGameLoopManager;
 /**
  * The Class AbstractFastPaintSceneObject.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 
 // TODO: to add method of customization of surfaceLayer ( setRoot? )

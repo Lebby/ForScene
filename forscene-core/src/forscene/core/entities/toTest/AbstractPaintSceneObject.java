@@ -14,7 +14,7 @@ import forscene.system.managers.AbstractGameLoopManager;
 /**
  * The Class AbstractPaintSceneObject.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public abstract class AbstractPaintSceneObject extends
     AbstractSimpleSceneObject {

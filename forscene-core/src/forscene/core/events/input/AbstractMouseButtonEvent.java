@@ -8,7 +8,7 @@ import playn.core.Mouse.ButtonEvent;
 /**
  * The Class AbstractMouseButtonEvent.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public abstract class AbstractMouseButtonEvent extends AbstractMouseEvent<ButtonEvent> {
 

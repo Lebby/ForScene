@@ -9,7 +9,7 @@ import java.util.LinkedList;
 /**
  * The Class AtlasManager.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 
 /**

@@ -9,7 +9,7 @@ import playn.core.Image;
 /**
  * The Class SpriteImage.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 /*
  * "frame": {"x":0,"y":194,"w":32,"h":44}, "rotated": false, "trimmed": true,

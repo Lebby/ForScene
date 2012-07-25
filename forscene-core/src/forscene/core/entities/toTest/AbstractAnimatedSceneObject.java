@@ -14,7 +14,7 @@ import static playn.core.PlayN.graphics;
 /**
  * The Class AbstractAnimatedSceneObject.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public abstract class AbstractAnimatedSceneObject extends
 		AbstractSceneObject<ImmediateLayer> {	

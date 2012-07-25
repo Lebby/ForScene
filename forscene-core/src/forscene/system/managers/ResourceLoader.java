@@ -13,7 +13,7 @@ import forscene.core.entities.AbstractSceneObjectGroup;
 /**
  * The Class ResourceLoader.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public class ResourceLoader {
 

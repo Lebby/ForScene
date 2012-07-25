@@ -4,7 +4,7 @@
 package forscene.system.debug;
 
 /**
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  * 
  */
 public class DebugUtil {

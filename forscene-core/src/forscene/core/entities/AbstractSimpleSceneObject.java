@@ -12,7 +12,7 @@ import forscene.system.managers.ResourceManager;
 /**
  * The Class AbstractSimpleSceneObject.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public abstract class AbstractSimpleSceneObject extends
     AbstractSceneObject<ImageLayer> {

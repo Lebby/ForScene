@@ -9,7 +9,7 @@ import playn.core.Layer;
 /**
  * The Interface FCanvasLayer.
  *
- * @author blackdevil
+ * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
 public interface FCanvasLayer extends Layer.HasSize, CanvasImage {
 
