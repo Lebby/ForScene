@@ -1,13 +1,12 @@
 /**
  * 
  */
-package forscene.core.entities.toTest;
+package forscene.core.entities;
 
 import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.ImageLayer;
 import playn.core.PlayN;
-import forscene.core.entities.AbstractSimpleSceneObject;
 import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc

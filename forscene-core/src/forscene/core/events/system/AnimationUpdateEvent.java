@@ -3,7 +3,7 @@
  */
 package forscene.core.events.system;
 
-import forscene.core.entities.toTest.AbstractAnimation;
+import forscene.core.entities.AbstractAnimation;
 import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc

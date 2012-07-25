@@ -3,7 +3,7 @@
  */
 package forscene.core.events.system;
 
-import forscene.core.entities.toTest.AbstractEffect;
+import forscene.core.entities.AbstractEffect;
 
 
 // TODO: Auto-generated Javadoc

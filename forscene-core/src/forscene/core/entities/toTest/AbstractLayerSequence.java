@@ -5,6 +5,8 @@ package forscene.core.entities.toTest;
 
 import java.util.ArrayList;
 
+import forscene.core.entities.AbstractAnimation;
+
 import playn.core.Layer;
 import playn.core.PlayN;
 import static playn.core.PlayN.graphics;

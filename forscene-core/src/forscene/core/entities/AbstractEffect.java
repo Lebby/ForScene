@@ -1,7 +1,8 @@
 /*
  * 
  */
-package forscene.core.entities.toTest;
+package forscene.core.entities;
+
 
 
 // TODO: Auto-generated Javadoc

@@ -1,11 +1,10 @@
 /*
  * 
  */
-package forscene.core.entities.toTest;
+package forscene.core.entities;
 
 import playn.core.Layer;
 import playn.core.PlayN;
-import forscene.core.entities.AbstractSceneObject;
 import forscene.core.events.system.AnimationUpdateEvent;
 import forscene.system.managers.EventManager;
 
