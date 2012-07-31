@@ -155,8 +155,7 @@ public abstract class AbstractSceneObjectGroup extends
       // element.getInstance().setToUpdate(false);
 
       if (!element.getInstance().isToUpdate()) {
-        // PlayN.log().debug("BuildChild " + element.getInstance() +
-        // "isToUpdate " + element.getInstance().isToUpdate());
+
         if (element.getInstance() instanceof AbstractSceneObjectGroup) {
           ((AbstractSceneObjectGroup) element.getInstance()).buildChilds();
         }
@@ -164,6 +163,7 @@ public abstract class AbstractSceneObjectGroup extends
       getRoot().add(element.getInstance().getRoot());
       element = pendingChilds.poll();
     }
+
     // setToUpdate(false);
     // setToUpdate(true);
   }
@@ -248,9 +248,9 @@ public abstract class AbstractSceneObjectGroup extends
   public void systemBuild() {
     build();
     buildChilds();
-    while (!ResourceManager.getInstance().isReady()) {
-      ResourceManager.getInstance().loadResources();
-    }
+    // while (!ResourceManager.getInstance().isReady()) {
+    ResourceManager.getInstance().loadResources();
+    // }
     setBuilded(true);
   }
 

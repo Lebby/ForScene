@@ -24,7 +24,6 @@ public class AnimationUpdateEvent extends AbstractEvent {
   public AnimationUpdateEvent(AbstractAnimation anim) {
     animation = anim;
     setDone(false);
-    setPriority(-1);
   }
 
   /*
@@ -54,7 +53,7 @@ public class AnimationUpdateEvent extends AbstractEvent {
       if ((updateRate == 0)
           || ((((AbstractGameLoopManager.getInstance().getTicks())) % scaledFps) == 0)) {
         animation.run();
-        animation.getTarget().setToUpdate(true);
+        animation.getTarget().setToUpdate(false);
         setDone(false);
       }
     } /*

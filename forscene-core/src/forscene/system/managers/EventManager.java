@@ -3,10 +3,13 @@
  */
 package forscene.system.managers;
 
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 
+import playn.core.PlayN;
 import forscene.core.events.system.EventStatus;
 import forscene.core.events.system.IEvent;
+import forscene.system.entities.ForSceneConfigurator;
+import forscene.system.entities.PriorityQueue;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,7 +33,7 @@ public class EventManager {
    * Instantiates a new event monitor.
    */
   private EventManager() {
-    EventManager.events = new PriorityQueue<IEvent>();
+    EventManager.setEvents(new PriorityQueue<IEvent>());
   }
 
   /**
@@ -50,37 +53,34 @@ public class EventManager {
    */
   public void update() {
 
-    if (EventManager.events == null) {
-      EventManager.events = new PriorityQueue<IEvent>();
-    }
-
-    if (EventManager.events.size() == 0) {
+    if (getEvents().isEmpty()) {
       EventManager.currentEvent = null;
       return;
     }
-
-    PriorityQueue<IEvent> tmp = new PriorityQueue<IEvent>();
-
-    for (Object element : EventManager.events) {
-      IEvent iEvent = (IEvent) element;
-    }
-
-    while (!EventManager.events.isEmpty()) {
+    LinkedList<IEvent> tmp = new LinkedList<IEvent>();
+    while (!getEvents().isEmpty()) {
 
       EventManager.currentEvent = pop();
+      if (EventManager.currentEvent == null) {
+        PlayN.log().debug("CurrentEvent Null");
+        return;
+      }
+      EventManager.currentEvent.setStatus(EventStatus.RUNNING);
       EventManager.currentEvent.run();
 
       // useless ...
       EventObserverManager.getInstance().notify(EventManager.currentEvent);
+
       if (!EventManager.currentEvent.isDone()) {
         tmp.add(EventManager.currentEvent);
-        EventManager.currentEvent.setStatus(EventStatus.RUNNING);
-        EventManager.currentEvent.run();
       } else {
         EventManager.currentEvent.setStatus(EventStatus.ENDED);
       }
     }
-    EventManager.events.addAll(tmp);
+
+    for (int i = 0; i < tmp.size(); i++) {
+      EventManager.getInstance().push(tmp.get(i));
+    }
 
   }
 
@@ -91,8 +91,15 @@ public class EventManager {
    *          the evt
    */
   public void push(IEvent evt) {
-    /* boolean result = */
-    EventManager.events.add(evt);
+
+    getEvents().add(evt,
+        ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_PRIORITY);
+    evt.setStatus(EventStatus.ENQUEUED);
+  }
+
+  public void push(IEvent evt, short priority) {
+    evt.setPriority(priority);
+    getEvents().add(evt, priority);
     evt.setStatus(EventStatus.ENQUEUED);
   }
 
@@ -102,7 +109,10 @@ public class EventManager {
    * @return the i event
    */
   public IEvent pop() {
-    EventManager.currentEvent = EventManager.events.poll();
+    EventManager.currentEvent = getEvents().poll();
+    if (EventManager.currentEvent == null) {
+      return null;
+    }
     EventManager.currentEvent.setStatus(EventStatus.STARTED);
     return EventManager.currentEvent;
   }
@@ -115,4 +125,20 @@ public class EventManager {
   public IEvent getCurrentEvent() {
     return EventManager.currentEvent;
   }
+
+  /**
+   * @return the events
+   */
+  public PriorityQueue<IEvent> getEvents() {
+    return EventManager.events;
+  }
+
+  /**
+   * @param events
+   *          the events to set
+   */
+  private static void setEvents(PriorityQueue<IEvent> events) {
+    EventManager.events = events;
+  }
+
 }

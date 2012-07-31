@@ -11,7 +11,6 @@ import playn.core.PlayN;
 import playn.core.SurfaceLayer;
 import forscene.system.ISceneObject;
 import forscene.system.entities.ObjectID;
-import forscene.system.managers.ResourceManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -124,9 +123,12 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    */
   public void systemBuild() {
     build();
-    while (!ResourceManager.getInstance().isReady()) {
-      ResourceManager.getInstance().loadResources();
-    }
+    /*
+     * while (!ResourceManager.getInstance().isReady()) {
+     * ResourceManager.getInstance().loadResources();
+     * PlayN.log().debug(ResourceManager.getInstance().done.toString()); }
+     */
+
     setBuilded(true);
     setToUpdate(true);
   }
@@ -342,17 +344,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
       // parent.clear();
       parent.add(getRoot());
     }
-    // #Debug
-    /*
-     * PlayN.log().debug("REDRAW SIZE : " + getRoot().size() + " depth : " +
-     * getRoot().depth() + " : " + getRoot().getClass()); for( float i = 0; i <
-     * getRoot().size(); i++) { PlayN.log().debug("REDRAW ---INNER size : " +
-     * getRoot().get(i).getClass() ); if
-     * (getRoot().get(i).getClass().toString().compareTo(
-     * "class playn.java.JavaGroupLayer") ==0) { PlayN.log().debug("\t size : "
-     * + ((GroupLayer) getRoot().get(i)).size() + " -||- " + ((GroupLayer)
-     * getRoot().get(i))); } }
-     */
+
     setToUpdate(false);
   }
 }

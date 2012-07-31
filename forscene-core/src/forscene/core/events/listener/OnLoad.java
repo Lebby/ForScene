@@ -36,6 +36,9 @@ public abstract class OnLoad extends AbstractEventListener {
   @Override
   public boolean check() {
     IEvent currEvent = EventManager.getInstance().getCurrentEvent();
+    if (currEvent == null) {
+      return false;
+    }
     if (currEvent.getName().compareTo("LoadSceneEvent") == 0) {
       LoadSceneEvent event = (LoadSceneEvent) currEvent;
       if (event.getScene() == scene) {

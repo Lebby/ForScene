@@ -10,16 +10,19 @@ package forscene.core.events.system;
 public abstract class AbstractEvent implements IEvent {
 
   /** The priority. */
-  private int         priority = 0;
+  private short       priority         = 0;
+
+  /** The priority assigned from system */
+  private short       assignedPriority = 0;
 
   /** The done. */
-  private boolean     done     = false;
+  private boolean     done             = false;
 
   /** The status. */
-  private EventStatus status   = EventStatus.NONE;
+  private EventStatus status           = EventStatus.NONE;
 
   /** The name. */
-  private String      name     = "";
+  private String      name             = "";
 
   /**
    * Instantiates a new abstract event.
@@ -45,7 +48,7 @@ public abstract class AbstractEvent implements IEvent {
    * 
    * @return the priority
    */
-  public int getPriority() {
+  public short getPriority() {
     return priority;
   }
 
@@ -55,7 +58,7 @@ public abstract class AbstractEvent implements IEvent {
    * @param priority
    *          the new priority
    */
-  public void setPriority(int priority) {
+  public void setPriority(short priority) {
     this.priority = priority;
   }
 

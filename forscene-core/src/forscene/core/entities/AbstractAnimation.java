@@ -69,7 +69,9 @@ public abstract class AbstractAnimation {
     started = false;
     // #Debug
     PlayN.log().debug("ABSTRACT ANIMATION STOP!");
-    eventUpdate.setDone(true);
+    if (eventUpdate != null) {
+      eventUpdate.setDone(true);
+    }
   };
 
   /**
@@ -126,7 +128,8 @@ public abstract class AbstractAnimation {
    */
   public void updateState() {
     if (started) {
-      target.setToUpdate(true);
+      run();
+      target.setToUpdate(false);
     }
   }
 

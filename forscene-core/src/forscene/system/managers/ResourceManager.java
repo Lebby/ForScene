@@ -9,9 +9,9 @@ import playn.core.Image;
 import playn.core.ImageLayer;
 import playn.core.PlayN;
 import playn.core.Sound;
+import forscene.system.ResourceState;
 import forscene.system.entities.Resource;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ResourceManager.
  */
@@ -21,7 +21,7 @@ public class ResourceManager {
   private static ResourceManager  instance = null;
 
   /** The done. */
-  private LinkedList<Resource<?>> done;
+  public LinkedList<Resource<?>>  done;
 
   /** The error. */
   private LinkedList<Resource<?>> error;
@@ -35,18 +35,15 @@ public class ResourceManager {
   /** The to load. */
   private LinkedList<Resource<?>> toLoad;
 
-  /*
-   * AssetWatcher watcher = new AssetWatcher(new Listener() { public void done()
-   * { startGame(); } });
-   * 
-   * // Add assets to check. watcher.add(image1); watcher.add(image2); // ...
-   * 
-   * // Start the watching now. watcher.start();
+  /**
+   * AssetWatcher contains a listener that sets Assetwacher isDone when all
+   * resources are loaded.
    */
+  // private AssetWatcher watcher;
 
   /**
    * Gets the single instance of ResourceManager.
-   *
+   * 
    * @return single instance of ResourceManager
    */
   public static ResourceManager getInstance() {
@@ -58,8 +55,9 @@ public class ResourceManager {
 
   /**
    * Load image.
-   *
-   * @param url the url
+   * 
+   * @param url
+   *          the url
    * @return the image
    */
   public static Image loadImage(String url) {
@@ -70,8 +68,9 @@ public class ResourceManager {
 
   /**
    * Load image layer.
-   *
-   * @param url the url
+   * 
+   * @param url
+   *          the url
    * @return the image layer
    */
   public static ImageLayer loadImageLayer(String url) {
@@ -83,8 +82,9 @@ public class ResourceManager {
 
   /**
    * Load sound.
-   *
-   * @param url the url
+   * 
+   * @param url
+   *          the url
    * @return the sound
    */
   public static Sound loadSound(String url) {
@@ -100,22 +100,43 @@ public class ResourceManager {
     toLoad = new LinkedList<Resource<?>>();
     error = new LinkedList<Resource<?>>();
     done = new LinkedList<Resource<?>>();
+
+    /*
+     * watcher = new AssetWatcher(new AssetWatcher.Listener() {
+     * 
+     * public void error(Throwable e) { try { throw e; } catch (Throwable e1) {
+     * e1.printStackTrace(); } }
+     * 
+     * public void done() { ResourceManager.getInstance().ready = true;
+     * PlayN.log().debug("AssetsWatcher thumb up!"); } });
+     */
   }
 
   /**
    * Adds the.
-   *
-   * @param res the res
+   * 
+   * @param res
+   *          the res
    */
   private void add(Resource<?> res) {
     toLoad.add(res);
+    if (res.getResource() instanceof Image) {
+      Image _res = (Image) res.getResource();
+      // watcher.add(_res);
+    }
+    if (res.getResource() instanceof Sound) {
+      Sound _res = (Sound) res.getResource();
+      // watcher.add(_res);
+    }
+    loadResources();
     ready = false;
   }
 
   /**
    * Adds the done.
-   *
-   * @param resource the resource
+   * 
+   * @param resource
+   *          the resource
    */
   public void addDone(Resource<?> resource) {
     done.add(resource);
@@ -123,8 +144,9 @@ public class ResourceManager {
 
   /**
    * Adds the error.
-   *
-   * @param resource the resource
+   * 
+   * @param resource
+   *          the resource
    */
   public void addError(Resource<?> resource) {
     error.add(resource);
@@ -133,18 +155,25 @@ public class ResourceManager {
 
   /**
    * Checks if is ready.
-   *
+   * 
    * @return true, if is ready
    */
   public boolean isReady() {
+    ready = toLoad.isEmpty(); // && watcher.isDone());
+    for (Object element : done) {
+      Resource<?> el = (Resource<?>) element;
+      ready = (ready && (el.getState() == ResourceState.DONE));
+    }
     return ready;
   }
 
   /**
    * Load.
-   *
-   * @param <T> the generic type
-   * @param resource the resource
+   * 
+   * @param <T>
+   *          the generic type
+   * @param resource
+   *          the resource
    */
   public <T> void load(T resource) {
     Resource<T> res = new Resource<T>();
@@ -158,6 +187,7 @@ public class ResourceManager {
   public void loadResources() {
     while (!toLoad.isEmpty()) {
       (toLoad.poll()).load();
+      // watcher.start();
     }
 
     int i = retry;
@@ -165,7 +195,6 @@ public class ResourceManager {
       (error.poll()).load();
       --i;
     }
-    ready = true;
   }
 
 }

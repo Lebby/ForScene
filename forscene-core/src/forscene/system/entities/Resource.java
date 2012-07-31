@@ -37,7 +37,7 @@ public class Resource<T> implements Comparable<T> {
       ((Image) (_res))
           .addCallback((ResourceCallback<? super Image>) new ResourceCallback<T>() {
             public void done(final T resource) {
-              PlayN.log().debug("Resource" + resource + " Loaded");
+              PlayN.log().debug("Resource" + resource + " Loaded DONE");
               _done();
             };
 
@@ -73,6 +73,13 @@ public class Resource<T> implements Comparable<T> {
    */
   public void setResource(T resource) {
     _res = resource;
+  }
+
+  /**
+   * Gets the resource.
+   */
+  public T getResource() {
+    return _res;
   }
 
   /**

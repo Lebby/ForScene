@@ -17,6 +17,7 @@ import forscene.core.events.system.NextEvent;
 import forscene.core.events.system.UpdateSceneEvent;
 import forscene.core.objects.DefaultSceneGroup;
 import forscene.core.objects.NullAbstractSceneObject;
+import forscene.system.entities.ForSceneConfigurator;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -46,9 +47,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
 
   /** sceneGroups: container of all sceneGroups. */
   private ArrayList<AbstractSceneGroup>  sceneGroups;
-
-  /** eventMonitor: instance of event monitor that manages events. */
-  private EventManager                   eventMonitor;
 
   /** seconds: seconds elapsed from starting game. */
   private long                           seconds;
@@ -86,9 +84,10 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * Instantiates a new abstract game loop manager.
    */
   protected AbstractGameLoopManager() {
-    eventMonitor = EventManager.getInstance();
+
     sceneGroups = new ArrayList<AbstractSceneGroup>();
-    eventMonitor.push(new InitEvent());
+    EventManager.getInstance().push(new InitEvent(), (short) 0);
+    EventManager.getInstance().push(new NextEvent(), (short) 0);
     AbstractGameLoopManager.root = PlayN.graphics().rootLayer();
   }
 
@@ -155,23 +154,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
   public void addSceneGroup(AbstractSceneGroup sceneGroup) {
     AbstractSceneGroup tmp = null;
     if (sceneGroups.size() > 0) {
-      // #Debug
-      // PlayN.log().debug("Add --- next size > 0");
       tmp = sceneGroups.get(sceneGroups.size() - 1);
       sceneGroup.setPrev(tmp);
       tmp.setNext(sceneGroup);
       sceneGroups.set(sceneGroups.size() - 1, tmp);
     }// else setCurrentSceneGroup(sceneGroup);
     sceneGroups.add(sceneGroup);
-    // #Debu
-    /*
-     * PlayN.log().debug("Add --- next" +
-     * this.sceneGroups.get(sceneGroups.size()-1).getNext());
-     * PlayN.log().debug("Add --- prev" +
-     * this.sceneGroups.get(sceneGroups.size()-1).getPrev());
-     * PlayN.log().debug("Add --- last" +
-     * this.sceneGroups.get(sceneGroups.size()-1));
-     */
 
   }
 
@@ -395,24 +383,30 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
           if (sceneGroups.get(0) == null) {
             return;
           }
-          eventMonitor.push(new LoadSceneGroupEvent(sceneGroups.get(0)));
+          EventManager.getInstance().push(
+              new LoadSceneGroupEvent(sceneGroups.get(0)),
+              ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
         }
       } else // if (currentSceneGroup != null )
       {
-        eventMonitor
-            .push(new LoadSceneEvent(currentSceneGroup.getFirstScene()));
+        EventManager.getInstance().push(
+            new LoadSceneEvent(currentSceneGroup.getFirstScene()),
+            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
       }
     } else // (currentScene != null)
     {
       if (currentScene.hasNext()) // switch scene
       {
-        eventMonitor.push(new LoadSceneEvent(currentScene.getNext()));
+        EventManager.getInstance().push(
+            new LoadSceneEvent(currentScene.getNext()),
+            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
       } else // switch sceneGroup
       {
         PlayN.log().debug("GoScene !currentScene.hasNext() ...");
         if (currentSceneGroup.hasNext()) {
-          eventMonitor
-              .push(new LoadSceneGroupEvent(currentSceneGroup.getNext()));
+          EventManager.getInstance().push(
+              new LoadSceneGroupEvent(currentSceneGroup.getNext()),
+              ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
         }
       }
     }
@@ -454,24 +448,23 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#updateState()
    */
   public void updateState() {
-    eventMonitor.update();
+    EventManager.getInstance().update();
     if (currentScene != null) {
-
       if ((currentScene.getUpdateRate() != 0)
           && ((getTicks() % currentScene.getUpdateRate()) == 0)) {
-        // lol what is this? Was I drunken?
-        eventMonitor.push(new UpdateSceneEvent(currentScene));
+        EventManager.getInstance().push(new UpdateSceneEvent(currentScene),
+            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
       }
 
       if ((currentScene.getUpdateRate() == 0) && (currentScene.isToUpdate())) {
-        PlayN.log().debug(
-            "CurrentScene " + currentScene + " isToUpdate :"
-                + currentScene.isToUpdate());
-        eventMonitor.push(new UpdateSceneEvent(currentScene));
+        PlayN.log().debug("Scene to update : " + currentScene);
+        EventManager.getInstance().push(new UpdateSceneEvent(currentScene),
+            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
       }
 
       if (currentScene.isReadyToSwitch()) {
-        eventMonitor.push(new NextEvent());
+        EventManager.getInstance().push(new NextEvent(),
+            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
       }
 
       if (currentScene.hasTimeout()) {
@@ -482,13 +475,18 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
 
         if ((startTimer)
             && ((getSeconds() - currentTimeTimer) >= currentScene.getTimeout())) {
-          eventMonitor.push(new NextEvent());
+          EventManager.getInstance().push(new NextEvent(),
+              ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
           startTimer = false;
         }
       }
     } else {
-      eventMonitor.push(new NextEvent());
+      if (EventManager.getInstance().getEvents().isEmpty()) {
+        EventManager.getInstance().push(new NextEvent(),
+            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
+      }
     }
+
   }
 
   /*
@@ -498,6 +496,8 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    */
   public void init() {
     // PlayN.log().debug("glc.Init");
+    EventManager.getInstance().push(new NextEvent(),
+        ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
   }
 
   /*

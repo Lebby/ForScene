@@ -101,13 +101,12 @@ public class PositionHelper {
    */
   private static void verticalAlign(AbstractSceneObject<?> parent,
       AbstractSceneObject<?> target, Align align) {
-    // PlayN.log().debug("VAlign: " + align);
-    // float containerHeight = ((Layer.HasSize)parent.getRoot()).height();
+
     float containerHeight = ShapeUtil.calculateShapeInfoSceneObject(parent)
         .getMaxY();
-    // float targetHeight = ((Layer.HasSize)target.getRoot()).height();
     float targetHeight = ShapeUtil.calculateShapeInfoSceneObject(target)
         .getMaxY();
+
     float position = 0;
 
     switch (align) {
@@ -139,11 +138,10 @@ public class PositionHelper {
    */
   private static void horizontalAlign(AbstractSceneObject<?> parent,
       AbstractSceneObject<?> target, Align align) {
-    // PlayN.log().debug("HAlign: " + align);
-    // float containerWidth = ((Layer.HasSize)parent.getRoot()).width();
+
     float containerWidth = ShapeUtil.calculateShapeInfoSceneObject(parent)
         .getMaxX();
-    // float targetWidth = ((Layer.HasSize)target.getRoot()).width();
+
     float targetWidth = ShapeUtil.calculateShapeInfoSceneObject(target)
         .getMaxX();
 

@@ -25,6 +25,7 @@ public class UpdateSceneEvent extends AbstractEvent {
    */
   public UpdateSceneEvent(AbstractScene scene) {
     this.scene = scene;
+    tick=0;
   }
 
   /*
