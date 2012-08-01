@@ -3,7 +3,6 @@
  */
 package forscene.core.effects;
 
-import playn.core.PlayN;
 import forscene.core.entities.AbstractEffect;
 
 // TODO: Auto-generated Javadoc
@@ -65,9 +64,9 @@ public class FadeIn extends AbstractEffect {
     }
     getTarget().getRoot().setAlpha(currentAlpha);
     getTarget().refresh();
-    PlayN.log().debug(
-        "FadeIN change alpha " + getTarget().getRoot().alpha() + " parent "
-            + getTarget().getRoot().parent());
+    // PlayN.log().debug(
+    // "FadeIN change alpha " + getTarget().getRoot().alpha() + " parent "
+    // + getTarget().getRoot().parent());
   }
 
   /**

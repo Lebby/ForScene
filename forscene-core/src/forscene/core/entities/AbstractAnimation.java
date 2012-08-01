@@ -6,6 +6,7 @@ package forscene.core.entities;
 import playn.core.Layer;
 import playn.core.PlayN;
 import forscene.core.events.system.AnimationUpdateEvent;
+import forscene.system.entities.ForSceneConfigurator;
 import forscene.system.managers.EventManager;
 
 // TODO: Auto-generated Javadoc
@@ -49,17 +50,19 @@ public abstract class AbstractAnimation {
     if (init == false) {
       init = true;
       init();
-      build();
+
       if (target != null) {
         target.buildOnce();
+
+      } else {
         PlayN.log().debug("ABSTRACT ANIMATION Target NULL ERROR!");
       }
-
-      PlayN.log().debug("ABSTRACT ANIMATION builded!");
+      build();
     }
     started = true;
     eventUpdate = new AnimationUpdateEvent(this);
-    EventManager.getInstance().push(eventUpdate);
+    EventManager.getInstance().push(eventUpdate,
+        ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
   };
 
   /**

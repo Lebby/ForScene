@@ -33,6 +33,7 @@ public class AnimationUpdateEvent extends AbstractEvent {
    */
   @Override
   public void run() {
+
     if (animation.isStarted()) {
       long updateRate = animation.getUpdateRate();
       /*
@@ -55,6 +56,10 @@ public class AnimationUpdateEvent extends AbstractEvent {
         animation.run();
         animation.getTarget().setToUpdate(false);
         setDone(false);
+      }
+
+      if (animation.getTarget().getParent() == null) {
+        setDone(true);
       }
     } /*
        * else { setDone(true); }

@@ -4,7 +4,9 @@
 package forscene.core.events.system;
 
 import forscene.core.entities.AbstractScene;
+import forscene.system.entities.ForSceneConfigurator;
 import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.EventManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -43,6 +45,10 @@ public class LoadSceneEvent extends AbstractEvent {
     if (scene.getPointerListener() != null) {
       scene.getPointerListener().register();
     }
+
+    EventManager.getInstance().push(new UpdateSceneEvent(scene),
+        ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
+
     setDone(true);
   }
 

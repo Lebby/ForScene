@@ -347,4 +347,13 @@ public abstract class AbstractSceneObject<T extends Layer> implements
 
     setToUpdate(false);
   }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.system.ISceneObject#isLoaded()
+   */
+  public boolean isLoaded() {
+    return hasParent();
+  }
 }

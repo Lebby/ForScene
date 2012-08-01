@@ -94,15 +94,9 @@ public class EventObserverManager {
     for (AbstractEventListener abstractEventListener : list) {
       AbstractEventListener iEvent = abstractEventListener;
       if (iEvent.check()) {
+        // demand run to EventManager ... TODO: Adjust priorityLevel
         EventManager.getInstance().push(iEvent,
-            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);// demand
-                                                                              // run
-                                                                              // to
-                                                                              // EventManager
-                                                                              // ...
-                                                                              // TODO:
-                                                                              // Adjust
-                                                                              // priorityLevel
+            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
       }
     }
   }

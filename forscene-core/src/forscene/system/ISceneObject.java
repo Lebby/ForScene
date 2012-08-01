@@ -3,155 +3,166 @@
  */
 package forscene.system;
 
+import playn.core.Layer;
 import forscene.core.entities.AbstractSceneObjectGroup;
 import forscene.system.entities.ForSceneObject;
 import forscene.system.entities.ObjectID;
-import playn.core.Layer;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Interface ISceneObject.
- *
- * @param <T> the generic type
+ * 
+ * @param <T>
+ *          the generic type
  */
-public interface ISceneObject<T extends Layer> 
-extends LayerObject<T> , ForSceneObject{
+public interface ISceneObject<T extends Layer> extends LayerObject<T>,
+    ForSceneObject {
 
-	/**
-	 * Checks if is to update.
-	 *
-	 * @return true, if is to update
-	 */
-	public abstract boolean isToUpdate();
+  /**
+   * Checks if is to update.
+   * 
+   * @return true, if is to update
+   */
+  abstract boolean isToUpdate();
 
-	/**
-	 * Sets the to update.
-	 *
-	 * @param toUpdate the new to update
-	 */
-	public abstract void setToUpdate(boolean toUpdate);	
-	
-	/**
-	 * Update draw.
-	 *
-	 * @param layer the layer
-	 */
-	public abstract void updateDraw(Layer layer);
+  /**
+   * Sets the to update.
+   * 
+   * @param toUpdate
+   *          the new to update
+   */
+  abstract void setToUpdate(boolean toUpdate);
 
-	/**
-	 * Builds the.
-	 */
-	public abstract void build();
+  /**
+   * Update draw.
+   * 
+   * @param layer
+   *          the layer
+   */
+  abstract void updateDraw(Layer layer);
 
-	/**
-	 * Builds the once.
-	 */
-	public abstract void buildOnce();
+  /**
+   * Builds the.
+   */
+  abstract void build();
 
-	/**
-	 * Update state.
-	 */
-	public abstract void updateState();	
+  /**
+   * Builds the once.
+   */
+  abstract void buildOnce();
 
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public abstract String getName();
+  /**
+   * Update state.
+   */
+  abstract void updateState();
 
-	/**
-	 * Sets the name.
-	 *
-	 * @param name the new name
-	 */
-	public abstract void setName(String name);
+  /**
+   * Gets the name.
+   * 
+   * @return the name
+   */
+  abstract String getName();
 
-	/**
-	 * Gets the type.
-	 *
-	 * @return the type
-	 */
-	public abstract String getType();
+  /**
+   * Sets the name.
+   * 
+   * @param name
+   *          the new name
+   */
+  abstract void setName(String name);
 
-	/**
-	 * System build.
-	 */
-	public abstract void systemBuild();
+  /**
+   * Gets the type.
+   * 
+   * @return the type
+   */
+  abstract String getType();
 
-	/**
-	 * Contains.
-	 *
-	 * @param x the x
-	 * @param y the y
-	 * @return true, if successful
-	 */
-	public abstract boolean contains(int x, int y);
+  /**
+   * System build.
+   */
+  abstract void systemBuild();
 
-	/**
-	 * Sets the update rate.
-	 *
-	 * @param rate the new update rate
-	 */
-	public abstract void setUpdateRate(long rate);
+  /**
+   * Contains.
+   * 
+   * @param x
+   *          the x
+   * @param y
+   *          the y
+   * @return true, if successful
+   */
+  abstract boolean contains(int x, int y);
 
-	/**
-	 * Gets the update rate.
-	 *
-	 * @return the update rate
-	 */
-	public abstract long getUpdateRate();
+  /**
+   * Sets the update rate.
+   * 
+   * @param rate
+   *          the new update rate
+   */
+  abstract void setUpdateRate(long rate);
 
-	/**
-	 * Sets the iD.
-	 *
-	 * @param objectID the new iD
-	 */
-	public abstract void setID(ObjectID objectID);
+  /**
+   * Gets the update rate.
+   * 
+   * @return the update rate
+   */
+  abstract long getUpdateRate();
 
-	/**
-	 * Gets the parent.
-	 *
-	 * @return the parent
-	 */
-	public abstract AbstractSceneObjectGroup getParent();
+  /**
+   * Sets the iD.
+   * 
+   * @param objectID
+   *          the new iD
+   */
+  abstract void setID(ObjectID objectID);
 
-	/**
-	 * Sets the parent.
-	 *
-	 * @param parent the new parent
-	 */
-	public abstract void setParent(AbstractSceneObjectGroup parent);
+  /**
+   * Gets the parent.
+   * 
+   * @return the parent
+   */
+  abstract AbstractSceneObjectGroup getParent();
 
-	/**
-	 * Checks for parent.
-	 *
-	 * @return true, if successful
-	 */
-	public abstract boolean hasParent();
+  /**
+   * Sets the parent.
+   * 
+   * @param parent
+   *          the new parent
+   */
+  abstract void setParent(AbstractSceneObjectGroup parent);
 
-	/**
-	 * Checks if is builded.
-	 *
-	 * @return the builded
-	 */
-	public abstract boolean isBuilded();
+  /**
+   * Checks for parent.
+   * 
+   * @return true, if successful
+   */
+  abstract boolean hasParent();
 
-	/**
-	 * Hide.
-	 */
-	public abstract void hide();
+  /**
+   * Checks if is builded.
+   * 
+   * @return the builded
+   */
+  abstract boolean isBuilded();
 
-	/**
-	 * Show.
-	 */
-	public abstract void show();
+  /**
+   * Hide.
+   */
+  abstract void hide();
 
-	/**
-	 * Checks if is visible.
-	 *
-	 * @return true, if is visible
-	 */
-	public abstract boolean isVisible();
+  /**
+   * Show.
+   */
+  abstract void show();
+
+  /**
+   * Checks if is visible.
+   * 
+   * @return true, if is visible
+   */
+  abstract boolean isVisible();
+
+  abstract boolean isLoaded();
 
 }

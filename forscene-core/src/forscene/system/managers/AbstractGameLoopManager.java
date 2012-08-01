@@ -10,11 +10,11 @@ import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
 import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.core.events.system.DrawSceneEvent;
 import forscene.core.events.system.InitEvent;
 import forscene.core.events.system.LoadSceneEvent;
 import forscene.core.events.system.LoadSceneGroupEvent;
 import forscene.core.events.system.NextEvent;
-import forscene.core.events.system.UpdateSceneEvent;
 import forscene.core.objects.DefaultSceneGroup;
 import forscene.core.objects.NullAbstractSceneObject;
 import forscene.system.entities.ForSceneConfigurator;
@@ -232,7 +232,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
       prevScene = currentScene;
     }
     draw(scene);
-    // PlayN.log().debug("LoadScene end!");
 
   }
 
@@ -437,7 +436,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    */
   public void paint() {
     // ATTENZIONE ELIMINATO MOMENTANEAMENTE
-    // eventMonitor.push(new DrawSceneEvent(currentScene));
+    EventManager.getInstance().push(new DrawSceneEvent(currentScene));
   }
 
   // =======
@@ -450,17 +449,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
   public void updateState() {
     EventManager.getInstance().update();
     if (currentScene != null) {
-      if ((currentScene.getUpdateRate() != 0)
-          && ((getTicks() % currentScene.getUpdateRate()) == 0)) {
-        EventManager.getInstance().push(new UpdateSceneEvent(currentScene),
-            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
-      }
-
-      if ((currentScene.getUpdateRate() == 0) && (currentScene.isToUpdate())) {
-        PlayN.log().debug("Scene to update : " + currentScene);
-        EventManager.getInstance().push(new UpdateSceneEvent(currentScene),
-            ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
-      }
 
       if (currentScene.isReadyToSwitch()) {
         EventManager.getInstance().push(new NextEvent(),

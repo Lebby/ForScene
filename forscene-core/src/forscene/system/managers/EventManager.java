@@ -61,12 +61,18 @@ public class EventManager {
     while (!getEvents().isEmpty()) {
 
       EventManager.currentEvent = pop();
+
       if (EventManager.currentEvent == null) {
         PlayN.log().debug("CurrentEvent Null");
         return;
       }
-      EventManager.currentEvent.setStatus(EventStatus.RUNNING);
+      PlayN.log().debug("CurrentEvent: " + EventManager.currentEvent);
+      // First run is Started ... setStatus check if it can pass in Started
+
+      EventManager.currentEvent.setStatus(EventStatus.STARTED);
       EventManager.currentEvent.run();
+      // Then go in running
+      EventManager.currentEvent.setStatus(EventStatus.RUNNING);
 
       // useless ...
       EventObserverManager.getInstance().notify(EventManager.currentEvent);
@@ -91,7 +97,6 @@ public class EventManager {
    *          the evt
    */
   public void push(IEvent evt) {
-
     getEvents().add(evt,
         ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_PRIORITY);
     evt.setStatus(EventStatus.ENQUEUED);
@@ -113,7 +118,6 @@ public class EventManager {
     if (EventManager.currentEvent == null) {
       return null;
     }
-    EventManager.currentEvent.setStatus(EventStatus.STARTED);
     return EventManager.currentEvent;
   }
 

@@ -4,6 +4,7 @@
 package forscene.core.events.system;
 
 import forscene.core.entities.AbstractScene;
+import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -25,7 +26,7 @@ public class UpdateSceneEvent extends AbstractEvent {
    */
   public UpdateSceneEvent(AbstractScene scene) {
     this.scene = scene;
-    tick=0;
+    UpdateSceneEvent.tick = 0;
   }
 
   /*
@@ -37,14 +38,15 @@ public class UpdateSceneEvent extends AbstractEvent {
   public void run() {
     UpdateSceneEvent.tick++;
     if (scene.isBuilded()) {
-
-      // new
       // It isn't attached to scenegraph or is void
       if ((!scene.hasParent()) || (scene.getRoot() == null)) {
         return;
       }
       // It has a fixed update rate
       if (scene.getUpdateRate() != 0) {
+        if (AbstractGameLoopManager.getInstance().getCurrentScene() != scene) {
+          setDone(true);
+        }
         if ((UpdateSceneEvent.tick % scene.getUpdateRate()) == 0) {
           scene.updateChilds();
           scene.updateState();
@@ -55,9 +57,9 @@ public class UpdateSceneEvent extends AbstractEvent {
       if (scene.isToUpdate()) {
         scene.updateChilds();
         scene.updateState();
+        scene.setToUpdate(false);
       }
-      scene.setToUpdate(false);
-      setDone(true);
+
     }
   }
 }

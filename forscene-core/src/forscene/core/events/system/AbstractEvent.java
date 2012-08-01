@@ -3,6 +3,7 @@
  */
 package forscene.core.events.system;
 
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class AbstractEvent.
@@ -107,20 +108,36 @@ public abstract class AbstractEvent implements IEvent {
    */
   public void setStatus(EventStatus status) {
     /* complex checking on status */
-    switch (this.status) {
+    switch (status) {
     case RUNNING:
-    case ENDED:
-      if (status == EventStatus.STARTED) {
-        break;
+      if ((this.status == EventStatus.PAUSED)
+          || (this.status == EventStatus.STARTED)) {
+        this.status = status;
       }
+      break;
+    case ENDED:
+      if (this.status == EventStatus.RUNNING) {
+        this.status = status;
+      }
+      break;
     case NONE:
+      break;
     case ENQUEUED:
+      if (this.status == EventStatus.NONE) {
+        this.status = status;
+      }
+      break;
     case STARTED:
+      if (this.status == EventStatus.ENQUEUED) {
+        this.status = status;
+      }
+      break;
     case PAUSED:
     default:
       this.status = status;
       break;
     }
+    // PlayN.log().debug("Status : " + getName() + " - " + this.status);
   }
 
   /*
