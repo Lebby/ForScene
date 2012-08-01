@@ -3,8 +3,7 @@
  */
 package forscene.core.entities;
 
-import java.util.LinkedList;
-import java.util.TreeSet;
+import java.util.ArrayList;
 
 import playn.core.GroupLayer;
 import playn.core.PlayN;
@@ -24,10 +23,10 @@ public abstract class AbstractSceneObjectGroup extends
 
   // TODO: improve Object child
   /** The childs. */
-  private TreeSet<ObjectID>    childs;
+  private ArrayList<ObjectID> childs;
 
   /** The pending childs. */
-  private LinkedList<ObjectID> pendingChilds;
+  private ArrayList<ObjectID> pendingChilds;
 
   /**
    * Instantiates a new abstract scene object group.
@@ -36,8 +35,8 @@ public abstract class AbstractSceneObjectGroup extends
     super();
     setRoot(GraphicFactory.createGroupLayer());
     getRoot().clear();
-    childs = new TreeSet<ObjectID>();
-    pendingChilds = new LinkedList<ObjectID>();
+    childs = new ArrayList<ObjectID>();
+    pendingChilds = new ArrayList<ObjectID>();
   }
 
   /**
@@ -52,6 +51,7 @@ public abstract class AbstractSceneObjectGroup extends
    */
   public void addSceneObject(AbstractSceneObject<?> object)
       throws NoNameException, IDAlreadyPresentException {
+    PlayN.log().debug("Adding");
     if ((object.getName() == null) || (object.getName() == "")) {
       PlayN.log().debug("ERROR");
       throw new NoNameException();
@@ -63,6 +63,7 @@ public abstract class AbstractSceneObjectGroup extends
       PlayN.log().debug("ERROR ID");
       throw new IDAlreadyPresentException();
     }
+    PlayN.log().debug("adding - " + pendingChilds.size() + " obj :" + element);
 
     setToUpdate(true);
   }
@@ -144,7 +145,15 @@ public abstract class AbstractSceneObjectGroup extends
    * Builds the child.
    */
   public void buildChilds() {
-    ObjectID element = pendingChilds.poll();
+    PlayN.log().debug("ASGO : BuildChilds  p-childs : " + pendingChilds.size());
+    PlayN.log().debug("ASGO : BuildChilds  childs : " + childs.size());
+    ObjectID element;
+    if (pendingChilds.size() > 0) {
+      element = pendingChilds.get(0);
+      pendingChilds.remove(0);
+    } else {
+      element = null;
+    }
 
     while (element != null) {
       PlayN.log().debug("Object " + element.getName());
@@ -161,7 +170,12 @@ public abstract class AbstractSceneObjectGroup extends
         }
       }
       getRoot().add(element.getInstance().getRoot());
-      element = pendingChilds.poll();
+      if (pendingChilds.size() > 0) {
+        element = pendingChilds.get(0);
+        pendingChilds.remove(0);
+      } else {
+        element = null;
+      }
     }
 
     // setToUpdate(false);
@@ -194,7 +208,7 @@ public abstract class AbstractSceneObjectGroup extends
    * 
    * @return the childs
    */
-  public TreeSet<ObjectID> getChilds() {
+  public ArrayList<ObjectID> getChilds() {
     return childs;
   }
 
@@ -204,7 +218,7 @@ public abstract class AbstractSceneObjectGroup extends
    * @param childs
    *          the new childs
    */
-  public void setChilds(TreeSet<ObjectID> childs) {
+  public void setChilds(ArrayList<ObjectID> childs) {
     this.childs = childs;
     setToUpdate(true);
   }

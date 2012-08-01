@@ -3,7 +3,7 @@
  */
 package forscene.system.managers;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import playn.core.Image;
 import playn.core.ImageLayer;
@@ -18,22 +18,22 @@ import forscene.system.entities.Resource;
 public class ResourceManager {
 
   /** The instance. */
-  private static ResourceManager  instance = null;
+  private static ResourceManager instance = null;
 
   /** The done. */
-  public LinkedList<Resource<?>>  done;
+  public ArrayList<Resource<?>>  done;
 
   /** The error. */
-  private LinkedList<Resource<?>> error;
+  private ArrayList<Resource<?>> error;
 
   /** The ready. */
-  private boolean                 ready    = false;
+  private boolean                ready    = false;
 
   /** The retry. */
-  private int                     retry    = 5;
+  private int                    retry    = 5;
 
   /** The to load. */
-  private LinkedList<Resource<?>> toLoad;
+  private ArrayList<Resource<?>> toLoad;
 
   /**
    * AssetWatcher contains a listener that sets Assetwacher isDone when all
@@ -97,9 +97,9 @@ public class ResourceManager {
    * Instantiates a new resource manager.
    */
   private ResourceManager() {
-    toLoad = new LinkedList<Resource<?>>();
-    error = new LinkedList<Resource<?>>();
-    done = new LinkedList<Resource<?>>();
+    toLoad = new ArrayList<Resource<?>>();
+    error = new ArrayList<Resource<?>>();
+    done = new ArrayList<Resource<?>>();
 
     /*
      * watcher = new AssetWatcher(new AssetWatcher.Listener() {
@@ -186,13 +186,15 @@ public class ResourceManager {
    */
   public void loadResources() {
     while (!toLoad.isEmpty()) {
-      (toLoad.poll()).load();
+      (toLoad.get(0)).load();
+      toLoad.remove(0);
       // watcher.start();
     }
 
     int i = retry;
     while (!error.isEmpty() && (i != 0)) {
-      (error.poll()).load();
+      (error.get(0)).load();
+      error.remove(0);
       --i;
     }
   }

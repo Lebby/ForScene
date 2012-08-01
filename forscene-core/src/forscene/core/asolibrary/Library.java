@@ -3,7 +3,7 @@
  */
 package forscene.core.asolibrary;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Set;
 
 import forscene.core.entities.AbstractSceneObject;
@@ -15,13 +15,13 @@ import forscene.system.entities.Resource;
  * The Class Library.
  */
 public class Library {
-  
+
   /** The instance. */
   private static Library instance = null;
 
   /**
    * Gets the single instance of Library.
-   *
+   * 
    * @return single instance of Library
    */
   public static Library getInstance() {
@@ -32,13 +32,13 @@ public class Library {
   }
 
   /** The objects list. */
-  private LinkedList<AbstractSceneObject<?>> objectsList;
-  
+  private ArrayList<AbstractSceneObject<?>> objectsList;
+
   /** The resources list. */
-  private LinkedList<Resource<?>>            resourcesList;
+  private ArrayList<Resource<?>>            resourcesList;
 
   /** The types. */
-  private Set<ASOType>                       types;
+  private Set<ASOType>                      types;
 
   /**
    * Instantiates a new library.
@@ -49,8 +49,9 @@ public class Library {
   // TODO: TO IMPLEMENT
   /**
    * Adds the object.
-   *
-   * @param object the object
+   * 
+   * @param object
+   *          the object
    */
   public void addObject(AbstractSceneObject<?> object) {
 
@@ -59,8 +60,9 @@ public class Library {
   // TODO: TO IMPLEMENT
   /**
    * Adds the resource.
-   *
-   * @param object the object
+   * 
+   * @param object
+   *          the object
    */
   public void addResource(Resource<?> object) {
 
@@ -69,8 +71,9 @@ public class Library {
   // TODO: TO IMPLEMENT
   /**
    * Gets the object.
-   *
-   * @param object the object
+   * 
+   * @param object
+   *          the object
    * @return the object
    */
   public void getObject(AbstractSceneObject<?> object) {
@@ -80,8 +83,9 @@ public class Library {
   // TODO: TO IMPLEMENT
   /**
    * Gets the resource.
-   *
-   * @param object the object
+   * 
+   * @param object
+   *          the object
    * @return the resource
    */
   public void getResource(Resource<?> object) {
@@ -97,8 +101,9 @@ public class Library {
 
   /**
    * Gets the object by name.
-   *
-   * @param name the name
+   * 
+   * @param name
+   *          the name
    * @return the object by name
    */
   public AbstractSceneObject<?> getObjectByName(String name) {
@@ -113,21 +118,22 @@ public class Library {
 
   /**
    * Gets the objects.
-   *
+   * 
    * @return the objects
    */
-  public LinkedList<AbstractSceneObject<?>> getObjects() {
+  public ArrayList<AbstractSceneObject<?>> getObjects() {
     return objectsList;
   }
 
   /**
    * Gets the objects by type.
-   *
-   * @param type the type
+   * 
+   * @param type
+   *          the type
    * @return the objects by type
    */
   public AbstractSceneObject<?>[] getObjectsByType(String type) {
-    LinkedList<AbstractSceneObject<?>> tmp = new LinkedList<AbstractSceneObject<?>>();
+    ArrayList<AbstractSceneObject<?>> tmp = new ArrayList<AbstractSceneObject<?>>();
     for (Object element : objectsList) {
       AbstractSceneObject<?> value = (AbstractSceneObject<?>) element;
       if (value.getType() == type) {
@@ -139,7 +145,7 @@ public class Library {
 
   /**
    * Gets the types.
-   *
+   * 
    * @return the types
    */
   public Set<ASOType> getTypes() {
@@ -148,17 +154,19 @@ public class Library {
 
   /**
    * Sets the objects.
-   *
-   * @param objects the new objects
+   * 
+   * @param objects
+   *          the new objects
    */
-  public void setObjects(LinkedList<AbstractSceneObject<?>> objects) {
+  public void setObjects(ArrayList<AbstractSceneObject<?>> objects) {
     objectsList = objects;
   }
 
   /**
    * Sets the types.
-   *
-   * @param types the new types
+   * 
+   * @param types
+   *          the new types
    */
   public void setTypes(Set<ASOType> types) {
     this.types = types;

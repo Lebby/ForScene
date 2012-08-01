@@ -3,7 +3,7 @@
  */
 package forscene.core.ui.layout;
 
-import playn.core.PlayN;
+import playn.core.Asserts;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.util.ShapeUtil;
 
@@ -34,7 +34,9 @@ public class PositionHelper {
    */
   public static void align(AbstractSceneObject<?> parent,
       AbstractSceneObject<?> target, Align align) {
-    PlayN.log().debug("Align: " + align);
+    Asserts.check(parent != null, "parent can't be null", new Object[0]);
+    Asserts.check(align != null, "align can't be null", new Object[0]);
+    Asserts.check(target != null, "align can't be null", new Object[0]);
 
     // horizontal component
     switch (align) {
@@ -101,6 +103,9 @@ public class PositionHelper {
    */
   private static void verticalAlign(AbstractSceneObject<?> parent,
       AbstractSceneObject<?> target, Align align) {
+    Asserts.check(parent != null, "parent can't be null", new Object[0]);
+    Asserts.check(align != null, "align can't be null", new Object[0]);
+    Asserts.check(target != null, "align can't be null", new Object[0]);
 
     float containerHeight = ShapeUtil.calculateShapeInfoSceneObject(parent)
         .getMaxY();
@@ -121,6 +126,9 @@ public class PositionHelper {
       position = (containerHeight / 2) - (targetHeight / 2);
       break;
     }
+    if (target.getRoot() == null) {
+      target.buildOnce();
+    }
     target.getRoot()
         .setTranslation(target.getRoot().transform().tx(), position);
 
@@ -138,6 +146,9 @@ public class PositionHelper {
    */
   private static void horizontalAlign(AbstractSceneObject<?> parent,
       AbstractSceneObject<?> target, Align align) {
+    Asserts.check(parent != null, "parent can't be null", new Object[0]);
+    Asserts.check(align != null, "align can't be null", new Object[0]);
+    Asserts.check(target != null, "align can't be null", new Object[0]);
 
     float containerWidth = ShapeUtil.calculateShapeInfoSceneObject(parent)
         .getMaxX();
@@ -158,6 +169,10 @@ public class PositionHelper {
     case HORIZONTAL_CENTER:
       position = (containerWidth / 2) - (targetWidth / 2);
       break;
+    }
+
+    if (target.getRoot() == null) {
+      target.buildOnce();
     }
     target.getRoot()
         .setTranslation(position, target.getRoot().transform().ty());

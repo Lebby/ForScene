@@ -205,11 +205,13 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    */
   public void loadSceneGroup(AbstractSceneGroup sceneGroup) {
     if (sceneGroup == null) {
-      throw new NullPointerException();
+      // throw new NullPointerException();
+      return;
     }
     // PlayN.log().debug("glc.loadscenegroup" + sceneGroup);
     currentSceneGroup = sceneGroup;
     currentSceneGroup.chain(currentSceneGroup.build());
+    prevScene = currentScene;
     currentScene = null;
   }
 
@@ -385,9 +387,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
           EventManager.getInstance().push(
               new LoadSceneGroupEvent(sceneGroups.get(0)),
               ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
+
         }
       } else // if (currentSceneGroup != null )
       {
+        // PlayN.log().debug("LoadScene : " +
+        // currentSceneGroup.getFirstScene());
         EventManager.getInstance().push(
             new LoadSceneEvent(currentSceneGroup.getFirstScene()),
             ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);

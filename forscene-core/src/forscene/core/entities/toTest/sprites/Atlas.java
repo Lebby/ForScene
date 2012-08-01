@@ -3,7 +3,7 @@
  */
 package forscene.core.entities.toTest.sprites;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -18,10 +18,10 @@ import java.util.LinkedList;
 public class Atlas {
 
   /** The sprites. */
-  private LinkedList<SpriteImage>      sprites;     // manages global sprites
+  private ArrayList<SpriteImage>      sprites;     // manages global sprites
 
   /** The sprites group. */
-  private LinkedList<SpriteImageGroup> spritesGroup; // manages spritegroup that
-                                                     // could
+  private ArrayList<SpriteImageGroup> spritesGroup; // manages spritegroup that
+                                                    // could
   // be animation
 }

@@ -3,8 +3,8 @@
  */
 package forscene.system.managers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 import playn.core.PlayN;
 import forscene.core.events.listener.AbstractEventListener;
@@ -27,7 +27,7 @@ public class EventObserverManager {
   /**
    * The Class InnerEventList.
    */
-  class InnerEventList extends LinkedList<AbstractEventListener> {
+  class InnerEventList extends ArrayList<AbstractEventListener> {
   };
 
   /** The event map. */

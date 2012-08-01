@@ -3,7 +3,7 @@
  */
 package forscene.system.managers;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import playn.core.PlayN;
 import forscene.core.events.system.EventStatus;
@@ -57,7 +57,7 @@ public class EventManager {
       EventManager.currentEvent = null;
       return;
     }
-    LinkedList<IEvent> tmp = new LinkedList<IEvent>();
+    ArrayList<IEvent> tmp = new ArrayList<IEvent>();
     while (!getEvents().isEmpty()) {
 
       EventManager.currentEvent = pop();
@@ -66,7 +66,7 @@ public class EventManager {
         PlayN.log().debug("CurrentEvent Null");
         return;
       }
-      PlayN.log().debug("CurrentEvent: " + EventManager.currentEvent);
+      // PlayN.log().debug("CurrentEvent: " + EventManager.currentEvent);
       // First run is Started ... setStatus check if it can pass in Started
 
       EventManager.currentEvent.setStatus(EventStatus.STARTED);

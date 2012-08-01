@@ -5,7 +5,6 @@ package forscene.system.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
@@ -15,18 +14,18 @@ import java.util.Queue;
  */
 
 public class PriorityQueue<E> implements Queue<E> {
-  private ArrayList<LinkedList<E>> queue;
-  private int                      size = 0;
+  private ArrayList<ArrayList<E>> queue;
+  private int                     size = 0;
 
   /**
    * 
    */
   public PriorityQueue() {
-    queue = new ArrayList<LinkedList<E>>(
+    queue = new ArrayList<ArrayList<E>>(
         ForSceneConfigurator.EVENT_MANAGER_PRIORITY_QUEUE_SIZE);
 
     for (int i = 0; i < ForSceneConfigurator.EVENT_MANAGER_PRIORITY_QUEUE_SIZE; i++) {
-      queue.add(i, new LinkedList<E>());
+      queue.add(i, new ArrayList<E>());
     }
   }
 
@@ -193,10 +192,9 @@ public class PriorityQueue<E> implements Queue<E> {
    * 
    * @see java.util.Collection#toArray(T[])
    */
-  @Deprecated
-  public <E> E[] toArray(E[] a) {
+  public <T extends Object> T[] toArray(T[] arg0) {
     return null;
-  }
+  };
 
   /*
    * (non-Javadoc)
@@ -228,7 +226,7 @@ public class PriorityQueue<E> implements Queue<E> {
   public E element() {
     for (int i = 0; i < ForSceneConfigurator.EVENT_MANAGER_PRIORITY_QUEUE_SIZE;) {
       try {
-        E tmp = queue.get(i).element();
+        E tmp = queue.get(i).get(0);
         return tmp;
       } catch (NoSuchElementException e) {
       }
@@ -252,8 +250,8 @@ public class PriorityQueue<E> implements Queue<E> {
    * @see java.util.Queue#offer(java.lang.Object)
    */
   public boolean offer(E e, short priority) {
-    boolean res = queue.get(priority).offer(e);
-    return res;
+    queue.get(priority).add(0, e);
+    return true;
   }
 
   /*
@@ -264,7 +262,7 @@ public class PriorityQueue<E> implements Queue<E> {
   public E peek() {
     for (int i = 0; i < ForSceneConfigurator.EVENT_MANAGER_PRIORITY_QUEUE_SIZE; i++) {
       if (!queue.get(i).isEmpty()) {
-        return queue.get(i).peek();
+        return queue.get(i).get(0);
       }
     }
     return null;
@@ -278,7 +276,8 @@ public class PriorityQueue<E> implements Queue<E> {
   public E poll() {
     for (int i = 0; i < ForSceneConfigurator.EVENT_MANAGER_PRIORITY_QUEUE_SIZE; i++) {
       if (!(queue.get(i).isEmpty())) {
-        E e = queue.get(i).poll();
+        E e = queue.get(i).get(0);
+        queue.get(i).remove(0);
         // PlayN.log().debug("Popped : " + e);
         return e;
       }
@@ -294,7 +293,7 @@ public class PriorityQueue<E> implements Queue<E> {
   public E remove() {
     for (int i = 0; i < ForSceneConfigurator.EVENT_MANAGER_PRIORITY_QUEUE_SIZE; i++) {
       if (!queue.get(i).isEmpty()) {
-        E e = queue.get(i).remove();
+        E e = queue.get(i).remove(0);
         return e;
       }
     }
@@ -310,10 +309,10 @@ public class PriorityQueue<E> implements Queue<E> {
   }
 
   public class Iterator<E> implements java.util.Iterator<E> {
-    private short                    currentIndex;
-    private java.util.Iterator<E>    _iterator;
-    private ArrayList<LinkedList<E>> parent;
-    private boolean                  init = false;
+    private short                   currentIndex;
+    private java.util.Iterator<E>   _iterator;
+    private ArrayList<ArrayList<E>> parent;
+    private boolean                 init = false;
 
     /**
      * 
@@ -370,7 +369,7 @@ public class PriorityQueue<E> implements Queue<E> {
       _iterator.remove();
     }
 
-    private void setParentCollection(ArrayList<LinkedList<E>> parent) {
+    private void setParentCollection(ArrayList<ArrayList<E>> parent) {
       this.parent = parent;
     }
 
