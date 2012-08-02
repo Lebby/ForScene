@@ -3,6 +3,7 @@
  */
 package forscene.core.entities;
 
+import playn.core.Asserts;
 import playn.core.Layer;
 import playn.core.PlayN;
 import forscene.core.events.system.AnimationUpdateEvent;
@@ -120,9 +121,11 @@ public abstract class AbstractAnimation {
    * @param actor
    *          the new target
    */
-  public void setTarget(AbstractSceneObject<?> actor) {
-    target = actor;
-    setRoot(actor.getRoot());
+  public void setTarget(AbstractSceneObject<?> target) {
+    Asserts.check(target != null, "target can't be null");
+    Asserts.check(target.getRoot() != null, "target is not builded");
+    this.target = target;
+    setRoot(target.getRoot());
   }
 
   // @Override
@@ -131,6 +134,7 @@ public abstract class AbstractAnimation {
    */
   public void updateState() {
     if (started) {
+      Asserts.check(target != null, "target can't be null");
       run();
       target.setToUpdate(false);
     }
@@ -143,6 +147,7 @@ public abstract class AbstractAnimation {
    *          the new update rate
    */
   public void setUpdateRate(long rate) {
+    Asserts.check(rate > 0, "rate must be >=0");
     updateRate = rate;
   }
 
@@ -172,6 +177,7 @@ public abstract class AbstractAnimation {
    *          the new root
    */
   public void setRoot(Layer layer) {
+    Asserts.check(layer != null, "layer can't be null");
     root = layer;
   }
 

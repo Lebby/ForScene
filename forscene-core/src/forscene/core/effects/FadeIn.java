@@ -3,6 +3,7 @@
  */
 package forscene.core.effects;
 
+import playn.core.Asserts;
 import forscene.core.entities.AbstractEffect;
 
 // TODO: Auto-generated Javadoc
@@ -85,6 +86,7 @@ public class FadeIn extends AbstractEffect {
    *          the startAlpha to set
    */
   public void setStartAlpha(float startAlpha) {
+    Asserts.check(startAlpha > 0, "startAlpha must be >= 0");
     this.startAlpha = startAlpha;
   }
 
@@ -104,6 +106,7 @@ public class FadeIn extends AbstractEffect {
    *          the endAlpha to set
    */
   public void setEndAlpha(float endAlpha) {
+    Asserts.check(endAlpha > 0, "endAlpha must be >= 0");
     this.endAlpha = endAlpha;
   }
 
@@ -123,6 +126,7 @@ public class FadeIn extends AbstractEffect {
    *          the step to set
    */
   public void setStep(float step) {
+    Asserts.check(step > 0, "step must be >= 0");
     this.step = step;
   }
 
@@ -141,8 +145,9 @@ public class FadeIn extends AbstractEffect {
    * @param f
    *          the new current alpha
    */
-  protected void setCurrentAlpha(float f) {
-    currentAlpha = f;
+  protected void setCurrentAlpha(float alpha) {
+    Asserts.check(alpha > 0, "alpha must be >= 0");
+    currentAlpha = alpha;
   }
 
 }

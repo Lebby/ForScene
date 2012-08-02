@@ -3,6 +3,7 @@
  */
 package forscene.core.entities;
 
+import playn.core.Asserts;
 import playn.core.CanvasLayer;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
@@ -83,6 +84,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#setRoot(playn.core.Layer)
    */
   public void setRoot(T layer) {
+    Asserts.check(layer != null, "layer can't be null");
     this.root = layer;
     setToUpdate(true);
   }
@@ -93,6 +95,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#updateDraw(playn.core.Layer)
    */
   public void updateDraw(Layer layer) {
+    Asserts.check(layer != null, "layer can't be null");
     getRoot().parent().remove(layer);
     getRoot().parent().add(layer);
     // setToUpdate(false);
@@ -139,6 +142,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#setUpdateRate(long)
    */
   public void setUpdateRate(long rate) {
+    Asserts.check(rate >= 0, "rate must be >=0");
     this.updateRate = rate;
   }
 
@@ -207,6 +211,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * forscene.core.entities.ISceneObject#setID(forscene.core.entities.ObjectID)
    */
   public void setID(ObjectID objectID) {
+    Asserts.check(objectID != null, "objectID can't be null");
     this.ID = objectID;
 
   }
@@ -235,6 +240,8 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#setName(java.lang.String)
    */
   public void setName(String name) {
+    Asserts.check(name != null, "name can't be null");
+    Asserts.check(name != "", "name can't be void");
     ID.setName(name);
   }
 
@@ -282,6 +289,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * AbstractSceneObjectGroup)
    */
   public void setParent(AbstractSceneObjectGroup parent) {
+    Asserts.check(parent != null, "parent can't be null");
     this.parent = parent;
     parent.setToUpdate(true);
 
@@ -295,6 +303,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#contains(int, int)
    */
   public boolean contains(int x, int y) {
+    Asserts.check((x * y) >= 0, "x and y must be >=0");
     return contains(x, y, root);
   }
 
@@ -310,6 +319,8 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @return true, if successful
    */
   private boolean contains(int x, int y, Layer layer) {
+    Asserts.check((x * y) >= 0, "x and y must be >=0");
+    Asserts.check(layer != null, "layer can't be null");
     if (layer instanceof GroupLayer) {
       for (int i = 0; i < ((GroupLayer) layer).size(); i++) {
         if (contains(x, y, ((GroupLayer) layer).get(i))) {

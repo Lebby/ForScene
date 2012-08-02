@@ -5,6 +5,7 @@ package forscene.core.entities;
 
 import java.util.ArrayList;
 
+import playn.core.Asserts;
 import playn.core.GroupLayer;
 import playn.core.PlayN;
 import forscene.core.util.GraphicFactory;
@@ -51,7 +52,7 @@ public abstract class AbstractSceneObjectGroup extends
    */
   public void addSceneObject(AbstractSceneObject<?> object)
       throws NoNameException, IDAlreadyPresentException {
-    PlayN.log().debug("Adding");
+    Asserts.check(object != null, "object can't be null");
     if ((object.getName() == null) || (object.getName() == "")) {
       PlayN.log().debug("ERROR");
       throw new NoNameException();
@@ -63,6 +64,7 @@ public abstract class AbstractSceneObjectGroup extends
       PlayN.log().debug("ERROR ID");
       throw new IDAlreadyPresentException();
     }
+
     PlayN.log().debug("adding - " + pendingChilds.size() + " obj :" + element);
 
     setToUpdate(true);
@@ -82,6 +84,9 @@ public abstract class AbstractSceneObjectGroup extends
    */
   public void addSceneObject(String name, AbstractSceneObject<?> object)
       throws NoNameException, IDAlreadyPresentException {
+    Asserts.check(object != null, "object can't be null");
+    Asserts.check(name != null, "name can't be null");
+    Asserts.check(name != "", "name can't be void");
     object.setName(name);
     addSceneObject(object);
     setToUpdate(true);
@@ -97,6 +102,7 @@ public abstract class AbstractSceneObjectGroup extends
    */
   public void removeSceneObject(AbstractSceneObject<?> object)
       throws AbstractObjectNotFoundException {
+    Asserts.check(object != null, "object can't be null");
     if (childs.contains(object)) {
       object.setParent(null);
       childs.remove(object);
@@ -117,6 +123,8 @@ public abstract class AbstractSceneObjectGroup extends
    */
   public AbstractSceneObject<?> getSceneObject(String name)
       throws AbstractObjectNotFoundException {
+    Asserts.check(name != null, "name can't be null");
+    Asserts.check(name != "", "name can't be void");
     for (ObjectID type : childs) {
       if (type.getName() == name) {
         return type.getInstance();
@@ -137,8 +145,9 @@ public abstract class AbstractSceneObjectGroup extends
    *          the i
    * @return the scene object
    */
-  public AbstractSceneObject<?> getSceneObject(int i) {
-    return (AbstractSceneObject<?>) childs.toArray()[i];
+  public AbstractSceneObject<?> getSceneObject(int index) {
+    Asserts.check(index >= 0, "index must be >=0");
+    return (AbstractSceneObject<?>) childs.toArray()[index];
   }
 
   /**
@@ -219,6 +228,7 @@ public abstract class AbstractSceneObjectGroup extends
    *          the new childs
    */
   public void setChilds(ArrayList<ObjectID> childs) {
+    Asserts.check(childs != null, "childs can't be null");
     this.childs = childs;
     setToUpdate(true);
   }

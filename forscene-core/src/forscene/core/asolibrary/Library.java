@@ -6,6 +6,7 @@ package forscene.core.asolibrary;
 import java.util.ArrayList;
 import java.util.Set;
 
+import playn.core.Asserts;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.system.entities.Resource;
 
@@ -54,6 +55,7 @@ public class Library {
    *          the object
    */
   public void addObject(AbstractSceneObject<?> object) {
+    Asserts.check(object != null, "type can't be null");
 
   }
 
@@ -64,8 +66,8 @@ public class Library {
    * @param object
    *          the object
    */
-  public void addResource(Resource<?> object) {
-
+  public void addResource(Resource<?> resource) {
+    Asserts.check(resource != null, "resource can't be null");
   }
 
   // TODO: TO IMPLEMENT
@@ -77,6 +79,7 @@ public class Library {
    * @return the object
    */
   public void getObject(AbstractSceneObject<?> object) {
+    Asserts.check(object != null, "object can't be null");
 
   }
 
@@ -88,8 +91,8 @@ public class Library {
    *          the object
    * @return the resource
    */
-  public void getResource(Resource<?> object) {
-
+  public void getResource(Resource<?> resource) {
+    Asserts.check(resource != null, "resource can't be null");
   }
 
   /*
@@ -107,6 +110,8 @@ public class Library {
    * @return the object by name
    */
   public AbstractSceneObject<?> getObjectByName(String name) {
+    Asserts.check(name != null, "name can't be null");
+    Asserts.check(name != "", "name can't be void");
     for (Object element : objectsList) {
       AbstractSceneObject<?> value = (AbstractSceneObject<?>) element;
       if (value.getName() == name) {
@@ -133,6 +138,7 @@ public class Library {
    * @return the objects by type
    */
   public AbstractSceneObject<?>[] getObjectsByType(String type) {
+    Asserts.check(type != null, "type can't be null");
     ArrayList<AbstractSceneObject<?>> tmp = new ArrayList<AbstractSceneObject<?>>();
     for (Object element : objectsList) {
       AbstractSceneObject<?> value = (AbstractSceneObject<?>) element;
@@ -159,6 +165,7 @@ public class Library {
    *          the new objects
    */
   public void setObjects(ArrayList<AbstractSceneObject<?>> objects) {
+    Asserts.check(objects != null, "objects can't be null");
     objectsList = objects;
   }
 
@@ -169,6 +176,7 @@ public class Library {
    *          the new types
    */
   public void setTypes(Set<ASOType> types) {
+    Asserts.check(types != null, "types can't be null");
     this.types = types;
   }
 

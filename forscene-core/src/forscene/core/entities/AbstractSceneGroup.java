@@ -6,6 +6,7 @@ package forscene.core.entities;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import playn.core.Asserts;
 import playn.core.GroupLayer;
 import forscene.core.util.GraphicFactory;
 
@@ -87,6 +88,7 @@ public abstract class AbstractSceneGroup {
    *          the scenes
    */
   public void addScenes(ArrayList<AbstractScene> scenes) {
+    Asserts.check(scenes != null, "scenes can't be null");
     if (getScenes() == null) {
       setScenes(scenes);
     }
@@ -105,6 +107,7 @@ public abstract class AbstractSceneGroup {
    *          the scenes
    */
   public void chain(ArrayList<AbstractScene> scenes) {
+    Asserts.check(scenes != null, "scenes can't be null");
     ArrayList<AbstractScene> tmp = new ArrayList<AbstractScene>();
 
     if (scenes == null) {
@@ -178,6 +181,7 @@ public abstract class AbstractSceneGroup {
    *          the new scenes
    */
   public void setScenes(ArrayList<AbstractScene> scenes) {
+    Asserts.check(scenes != null, "scenes can't be null");
     this.scenes = scenes;
   }
 
@@ -188,12 +192,13 @@ public abstract class AbstractSceneGroup {
    *          the scene
    */
   public void addScene(AbstractScene scene) {
+    Asserts.check(scene != null, "scene can't be null");
     getScenes().add(scene);
   }
 
   /**
    * - * @return the root.
-   *
+   * 
    * @return the root
    */
   public GroupLayer getRoot() {
@@ -202,10 +207,12 @@ public abstract class AbstractSceneGroup {
 
   /**
    * Sets the root.
-   *
-   * @param root the root to set
+   * 
+   * @param root
+   *          the root to set
    */
   public void setRoot(GroupLayer root) {
+    Asserts.check(root != null, "root can't be null");
     this.root = root;
   }
 }
