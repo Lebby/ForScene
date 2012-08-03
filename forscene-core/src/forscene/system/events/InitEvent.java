@@ -28,8 +28,6 @@ public class InitEvent extends AbstractEvent {
         && (AbstractGameLoopManager.getInstance().getCurrentScene() != null)) {
       setDone(true);
     }
-    setDone(true);
-    EventManager.getInstance().push(new NextEvent(),
-        ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
+    setDone(true);    
   }
 }

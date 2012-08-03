@@ -492,9 +492,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#init()
    */
   public void init() {
-    // PlayN.log().debug("glc.Init");
-    EventManager.getInstance().push(new NextEvent(),
-        ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
+    PlayN.log().debug("glc.Init");
   }
 
   /*
