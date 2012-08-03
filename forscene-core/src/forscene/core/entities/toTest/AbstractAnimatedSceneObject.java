@@ -3,13 +3,13 @@
  */
 package forscene.core.entities.toTest;
 
-import playn.core.Asserts;
 import playn.core.Image;
 import playn.core.ImmediateLayer;
 import playn.core.ImmediateLayer.Renderer;
 import playn.core.PlayN;
 import playn.core.Surface;
 import forscene.core.entities.AbstractSceneObject;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**

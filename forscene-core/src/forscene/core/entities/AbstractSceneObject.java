@@ -3,13 +3,13 @@
  */
 package forscene.core.entities;
 
-import playn.core.Asserts;
 import playn.core.CanvasLayer;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
 import playn.core.Layer;
 import playn.core.PlayN;
 import playn.core.SurfaceLayer;
+import forscene.system.Asserts;
 import forscene.system.ISceneObject;
 import forscene.system.entities.ObjectID;
 

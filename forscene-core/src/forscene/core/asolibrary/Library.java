@@ -6,8 +6,8 @@ package forscene.core.asolibrary;
 import java.util.ArrayList;
 import java.util.Set;
 
-import playn.core.Asserts;
 import forscene.core.entities.AbstractSceneObject;
+import forscene.system.Asserts;
 import forscene.system.entities.Resource;
 
 // TODO: Auto-generated Javadoc

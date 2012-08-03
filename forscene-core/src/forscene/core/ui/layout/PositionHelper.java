@@ -3,9 +3,9 @@
  */
 package forscene.core.ui.layout;
 
-import playn.core.Asserts;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.util.ShapeUtil;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /*

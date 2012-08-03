@@ -4,6 +4,7 @@
 package forscene.core.events.system;
 
 import forscene.core.entities.AbstractScene;
+import forscene.system.Asserts;
 import forscene.system.entities.ForSceneConfigurator;
 
 // TODO: Auto-generated Javadoc
@@ -22,6 +23,7 @@ public class DrawSceneEvent extends AbstractEvent {
    *          the scene
    */
   public DrawSceneEvent(AbstractScene scene) {
+    Asserts.check(scene != null, "scene can't be null");
     this.scene = scene;
     setPriority(ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
   }

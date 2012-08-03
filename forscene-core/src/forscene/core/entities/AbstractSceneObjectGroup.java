@@ -5,13 +5,13 @@ package forscene.core.entities;
 
 import java.util.ArrayList;
 
-import playn.core.Asserts;
 import playn.core.GroupLayer;
 import playn.core.PlayN;
 import forscene.core.util.GraphicFactory;
 import forscene.exceptions.AbstractObjectNotFoundException;
 import forscene.exceptions.IDAlreadyPresentException;
 import forscene.exceptions.NoNameException;
+import forscene.system.Asserts;
 import forscene.system.entities.ObjectID;
 import forscene.system.managers.ResourceManager;
 

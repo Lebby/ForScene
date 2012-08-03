@@ -3,7 +3,7 @@
  */
 package forscene.core.entities;
 
-import playn.core.Asserts;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**

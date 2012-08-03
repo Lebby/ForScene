@@ -3,10 +3,10 @@
  */
 package forscene.core.entities;
 
-import playn.core.Asserts;
 import playn.core.Layer;
 import playn.core.PlayN;
 import forscene.core.events.system.AnimationUpdateEvent;
+import forscene.system.Asserts;
 import forscene.system.entities.ForSceneConfigurator;
 import forscene.system.managers.EventManager;
 

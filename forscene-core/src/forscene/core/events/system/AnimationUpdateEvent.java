@@ -4,6 +4,7 @@
 package forscene.core.events.system;
 
 import forscene.core.entities.AbstractAnimation;
+import forscene.system.Asserts;
 import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc
@@ -22,6 +23,7 @@ public class AnimationUpdateEvent extends AbstractEvent {
    *          the anim
    */
   public AnimationUpdateEvent(AbstractAnimation anim) {
+    Asserts.check(anim != null, "anim can't be null");
     animation = anim;
     setDone(false);
   }

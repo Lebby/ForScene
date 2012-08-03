@@ -4,6 +4,7 @@
 package forscene.core.events.system;
 
 import forscene.core.entities.AbstractEffect;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -18,6 +19,7 @@ public abstract class EffectUpdateEvent extends AbstractEvent {
    *          the effect
    */
   public EffectUpdateEvent(AbstractEffect effect) {
+    Asserts.check(effect != null, "effect can't be null");
     setDone(false);
   }
 

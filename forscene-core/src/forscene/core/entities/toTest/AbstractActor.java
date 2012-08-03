@@ -5,9 +5,9 @@ package forscene.core.entities.toTest;
 
 import java.util.HashMap;
 
-import playn.core.Asserts;
 import playn.core.GroupLayer;
 import forscene.core.entities.AbstractSceneObject;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**

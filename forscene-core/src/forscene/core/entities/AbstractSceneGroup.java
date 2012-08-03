@@ -6,9 +6,9 @@ package forscene.core.entities;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import playn.core.Asserts;
 import playn.core.GroupLayer;
 import forscene.core.util.GraphicFactory;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**

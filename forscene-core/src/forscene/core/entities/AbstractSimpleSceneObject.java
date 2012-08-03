@@ -3,10 +3,10 @@
  */
 package forscene.core.entities;
 
-import playn.core.Asserts;
 import playn.core.Image;
 import playn.core.ImageLayer;
 import playn.core.PlayN;
+import forscene.system.Asserts;
 import forscene.system.managers.ResourceManager;
 
 // TODO: Auto-generated Javadoc

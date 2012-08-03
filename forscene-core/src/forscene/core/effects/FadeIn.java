@@ -3,8 +3,8 @@
  */
 package forscene.core.effects;
 
-import playn.core.Asserts;
 import forscene.core.entities.AbstractEffect;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**

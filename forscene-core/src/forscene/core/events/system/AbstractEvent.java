@@ -3,6 +3,7 @@
  */
 package forscene.core.events.system;
 
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -155,6 +156,8 @@ public abstract class AbstractEvent implements IEvent {
    * @see forscene.core.events.system.IEvent#setName(java.lang.String)
    */
   public void setName(String name) {
+    Asserts.check(name != null, "name can't be null");
+    Asserts.check(name != "", "name can't be void");
     this.name = name;
   }
 

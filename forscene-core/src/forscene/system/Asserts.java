@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+package forscene.system;
+
+import playn.core.PlayN;
+
+/**
+ * @author blackdevil
+ * 
+ */
+public class Asserts {
+  private static boolean ENABLE = false;
+
+  public boolean isEnable() {
+    return Asserts.ENABLE;
+  }
+
+  public void setEnable(boolean enable) {
+    Asserts.ENABLE = enable;
+  }
+
+  public static void check(boolean condition, String message, Object[] toPrint) {
+    if (!Asserts.ENABLE) {
+      return;
+    }
+    if (condition) {
+      for (Object element : toPrint) {
+        message += " " + element;
+      }
+      PlayN.log().debug(message);
+      Exception e = new Exception(message);
+      PlayN.log().debug("" + e.getStackTrace());
+    }
+  }
+
+  public static void check(boolean condition, String message) {
+    Asserts.check(condition, message, null);
+  }
+
+  public static void check(boolean condition) {
+    Asserts.check(condition, "Asserts error", null);
+
+  }
+}

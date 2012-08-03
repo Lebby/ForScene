@@ -7,6 +7,7 @@ import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.events.system.IEvent;
 import forscene.core.events.system.LoadSceneEvent;
+import forscene.system.Asserts;
 import forscene.system.managers.EventManager;
 
 // TODO: Auto-generated Javadoc
@@ -25,6 +26,7 @@ public abstract class OnLoad extends AbstractEventListener {
    *          the scene
    */
   public OnLoad(AbstractScene scene) {
+    Asserts.check(scene != null, "scene can't be null");
     this.scene = scene;
   }
 

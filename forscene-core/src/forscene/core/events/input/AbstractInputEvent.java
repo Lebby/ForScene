@@ -5,6 +5,7 @@ package forscene.core.events.input;
 
 import playn.core.Events.Input;
 import forscene.core.events.system.AbstractEvent;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -25,6 +26,7 @@ public abstract class AbstractInputEvent<T extends Input> extends AbstractEvent 
    */
   @Override
   public void run() {
+    Asserts.check(event != null, "Event can't be null");
     run(event);
     setDone(true);
   };
@@ -44,6 +46,7 @@ public abstract class AbstractInputEvent<T extends Input> extends AbstractEvent 
    *          the new event
    */
   public void setEvent(T event) {
+    Asserts.check(event != null, "Event can't be null");
     this.event = event;
   }
 }

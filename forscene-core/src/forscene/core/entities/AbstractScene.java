@@ -3,10 +3,10 @@
  */
 package forscene.core.entities;
 
-import playn.core.Asserts;
 import forscene.core.listener.AbstractKeyboardListener;
 import forscene.core.listener.AbstractMouseListener;
 import forscene.core.listener.AbstractPointerListener;
+import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**
