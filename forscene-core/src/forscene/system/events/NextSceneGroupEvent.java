@@ -1,7 +1,7 @@
 /*
  * 
  */
-package forscene.core.events.system;
+package forscene.system.events;
 
 import forscene.core.entities.AbstractSceneGroup;
 import forscene.system.entities.ForSceneConfigurator;

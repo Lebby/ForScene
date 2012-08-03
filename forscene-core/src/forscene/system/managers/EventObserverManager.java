@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 import playn.core.PlayN;
 import forscene.core.events.listener.AbstractEventListener;
-import forscene.core.events.system.IEvent;
 import forscene.system.entities.ForSceneConfigurator;
+import forscene.system.events.IEvent;
 
 // TODO: Auto-generated Javadoc
 // It allow to observe an event calling another event. 

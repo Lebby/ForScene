@@ -47,7 +47,8 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * Instantiates a new abstract scene object.
    */
   public AbstractSceneObject() {
-    setID(new ObjectID(this));
+    ObjectID id = new ObjectID(this);
+    setID(id);
     setName("" + this);
   }
 

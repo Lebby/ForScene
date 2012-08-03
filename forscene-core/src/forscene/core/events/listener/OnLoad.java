@@ -5,9 +5,9 @@ package forscene.core.events.listener;
 
 import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
-import forscene.core.events.system.IEvent;
-import forscene.core.events.system.LoadSceneEvent;
 import forscene.system.Asserts;
+import forscene.system.events.IEvent;
+import forscene.system.events.LoadSceneEvent;
 import forscene.system.managers.EventManager;
 
 // TODO: Auto-generated Javadoc

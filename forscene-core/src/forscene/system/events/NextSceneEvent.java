@@ -1,7 +1,7 @@
 /*
  * 
  */
-package forscene.core.events.system;
+package forscene.system.events;
 
 import forscene.system.entities.ForSceneConfigurator;
 import forscene.system.managers.AbstractGameLoopManager;

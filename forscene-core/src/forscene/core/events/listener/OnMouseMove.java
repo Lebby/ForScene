@@ -3,7 +3,7 @@
  */
 package forscene.core.events.listener;
 
-import forscene.core.events.system.IEvent;
+import forscene.system.events.IEvent;
 import forscene.system.managers.EventManager;
 
 // TODO: Auto-generated Javadoc

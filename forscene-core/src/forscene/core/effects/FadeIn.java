@@ -31,7 +31,17 @@ public class FadeIn extends AbstractEffect {
    */
   @Override
   public void goNext() {
-    changeAlpha();
+    /**
+     * Change alpha.
+     */
+
+    if (currentAlpha >= endAlpha) {
+      stop();
+    } else {
+      currentAlpha += step;
+    }
+    getTarget().getRoot().setAlpha(currentAlpha);
+    getTarget().refresh();
   }
 
   /*
@@ -52,22 +62,6 @@ public class FadeIn extends AbstractEffect {
   @Override
   public void init() {
     currentAlpha = startAlpha;
-  }
-
-  /**
-   * Change alpha.
-   */
-  private void changeAlpha() {
-    if (currentAlpha >= endAlpha) {
-      stop();
-    } else {
-      currentAlpha += step;
-    }
-    getTarget().getRoot().setAlpha(currentAlpha);
-    getTarget().refresh();
-    // PlayN.log().debug(
-    // "FadeIN change alpha " + getTarget().getRoot().alpha() + " parent "
-    // + getTarget().getRoot().parent());
   }
 
   /**
@@ -106,7 +100,7 @@ public class FadeIn extends AbstractEffect {
    *          the endAlpha to set
    */
   public void setEndAlpha(float endAlpha) {
-    Asserts.check(endAlpha > 0, "endAlpha must be >= 0");
+    Asserts.check(endAlpha >= 0, "endAlpha must be >= 0");
     this.endAlpha = endAlpha;
   }
 

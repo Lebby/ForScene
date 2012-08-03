@@ -10,14 +10,15 @@ import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
 import forscene.core.entities.AbstractSceneObjectGroup;
-import forscene.core.events.system.DrawSceneEvent;
-import forscene.core.events.system.InitEvent;
-import forscene.core.events.system.LoadSceneEvent;
-import forscene.core.events.system.LoadSceneGroupEvent;
-import forscene.core.events.system.NextEvent;
 import forscene.core.objects.DefaultSceneGroup;
 import forscene.core.objects.NullAbstractSceneObject;
+import forscene.system.Asserts;
 import forscene.system.entities.ForSceneConfigurator;
+import forscene.system.events.DrawSceneEvent;
+import forscene.system.events.InitEvent;
+import forscene.system.events.LoadSceneEvent;
+import forscene.system.events.LoadSceneGroupEvent;
+import forscene.system.events.NextEvent;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -87,7 +88,6 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
 
     sceneGroups = new ArrayList<AbstractSceneGroup>();
     EventManager.getInstance().push(new InitEvent(), (short) 0);
-    EventManager.getInstance().push(new NextEvent(), (short) 0);
     AbstractGameLoopManager.root = PlayN.graphics().rootLayer();
   }
 
@@ -121,6 +121,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * core.entities.AbstractScene)
    */
   public void setCurrentScene(AbstractScene scene) {
+    Asserts.check(scene != null, "scene can't be null");
     currentScene = scene;
   }
 
@@ -141,6 +142,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * .core.entities.AbstractSceneGroup)
    */
   public void setCurrentSceneGroup(AbstractSceneGroup sceneGroup) {
+    Asserts.check(sceneGroup != null, "scenegroup can't be null");
     currentSceneGroup = sceneGroup;
   }
 
@@ -152,6 +154,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * .entities.AbstractSceneGroup)
    */
   public void addSceneGroup(AbstractSceneGroup sceneGroup) {
+    Asserts.check(sceneGroup != null, "scenegroup can't be null");
     AbstractSceneGroup tmp = null;
     if (sceneGroups.size() > 0) {
       tmp = sceneGroups.get(sceneGroups.size() - 1);
@@ -204,11 +207,10 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * .entities.AbstractSceneGroup)
    */
   public void loadSceneGroup(AbstractSceneGroup sceneGroup) {
+    Asserts.check(sceneGroup != null, "scenegroup can't be null");
     if (sceneGroup == null) {
-      // throw new NullPointerException();
       return;
     }
-    // PlayN.log().debug("glc.loadscenegroup" + sceneGroup);
     currentSceneGroup = sceneGroup;
     currentSceneGroup.chain(currentSceneGroup.build());
     prevScene = currentScene;
@@ -223,6 +225,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * .AbstractScene)
    */
   public void loadScene(AbstractScene scene) {
+    Asserts.check(scene != null, "scene can't be null");
     if (scene == null) {
       scene = currentSceneGroup.getFirstScene();
     } else {
@@ -233,8 +236,8 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
     if (currentScene != null) {
       prevScene = currentScene;
     }
+    currentScene = scene;
     draw(scene);
-
   }
 
   /*
@@ -245,6 +248,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * .core.entities.AbstractSceneGroup)
    */
   public void removeSceneGroup(AbstractSceneGroup sceneGroup) {
+    Asserts.check(sceneGroup != null, "scenegroup can't be null");
     if (sceneGroup == null) {
       throw new NullPointerException();
     }
@@ -299,6 +303,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * )
    */
   public void setRoot(GroupLayer root) {
+    Asserts.check(root != null, "root can't be null");
     AbstractGameLoopManager.root = root;
   }
 
@@ -387,12 +392,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
           EventManager.getInstance().push(
               new LoadSceneGroupEvent(sceneGroups.get(0)),
               ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
-
         }
       } else // if (currentSceneGroup != null )
       {
-        // PlayN.log().debug("LoadScene : " +
-        // currentSceneGroup.getFirstScene());
         EventManager.getInstance().push(
             new LoadSceneEvent(currentSceneGroup.getFirstScene()),
             ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
@@ -424,11 +426,11 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * .AbstractScene)
    */
   public void draw(AbstractScene scene) {
+    Asserts.check(scene != null, "scene can't be null");
     if ((scene != null) && (currentScene != scene)) {
       if (scene.getRoot() != null) {
         getRoot().clear();
         getRoot().add(scene.getRoot());
-        currentScene = scene;
         scene.setParent(parent);
       }
     }
@@ -441,7 +443,9 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    */
   public void paint() {
     // ATTENZIONE ELIMINATO MOMENTANEAMENTE
-    EventManager.getInstance().push(new DrawSceneEvent(currentScene));
+    if (currentScene != null) {
+      EventManager.getInstance().push(new DrawSceneEvent(currentScene));
+    }
   }
 
   // =======
@@ -519,6 +523,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * .AbstractScene)
    */
   public void addScene(AbstractScene scene) {
+    Asserts.check(scene != null, "scene can't be null");
     DefaultSceneGroup.getInstance().addScene(scene);
     if (getSceneGroups().contains(DefaultSceneGroup.getInstance())) {
       return;

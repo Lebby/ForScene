@@ -10,7 +10,7 @@ import playn.core.PlayN;
  * 
  */
 public class Asserts {
-  private static boolean ENABLE = false;
+  private static boolean ENABLE = true;
 
   public boolean isEnable() {
     return Asserts.ENABLE;
@@ -24,13 +24,17 @@ public class Asserts {
     if (!Asserts.ENABLE) {
       return;
     }
-    if (condition) {
-      for (Object element : toPrint) {
-        message += " " + element;
+    if (!condition) {
+      if (toPrint != null) {
+        for (Object element : toPrint) {
+          message += " " + element;
+        }
       }
       PlayN.log().debug(message);
       Exception e = new Exception(message);
-      PlayN.log().debug("" + e.getStackTrace());
+      e.printStackTrace();
+      System.exit(0);
+
     }
   }
 

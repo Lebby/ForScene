@@ -1,11 +1,12 @@
 /*
  * 
  */
-package forscene.core.events.system;
+package forscene.system.events;
 
 import forscene.core.entities.AbstractScene;
 import forscene.system.Asserts;
 import forscene.system.entities.ForSceneConfigurator;
+import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,7 +24,7 @@ public class DrawSceneEvent extends AbstractEvent {
    *          the scene
    */
   public DrawSceneEvent(AbstractScene scene) {
-    Asserts.check(scene != null, "scene can't be null");
+    Asserts.check(scene != null, "DrawSceneEvent: scene can't be null");
     this.scene = scene;
     setPriority(ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
   }
@@ -35,7 +36,7 @@ public class DrawSceneEvent extends AbstractEvent {
    */
   @Override
   public void run() {
-    // AbstractGameLoopManager.getInstance().draw(scene);
+    AbstractGameLoopManager.getInstance().draw(scene);
     setDone(true);
   }
 

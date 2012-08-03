@@ -3,6 +3,7 @@
  */
 package forscene.system.entities;
 
+import playn.core.Asserts;
 import forscene.core.asolibrary.ASOType;
 import forscene.core.entities.AbstractSceneObject;
 
@@ -31,6 +32,7 @@ public class ObjectID implements Comparable<ObjectID>, ForSceneObject {
    *          the instance
    */
   public ObjectID(AbstractSceneObject<?> instance) {
+    Asserts.check(instance != null, "instance can't be null", this);
     this.instance = instance;
     // TODO: change when json rappresentation is implemented
     setName(instance.toString());

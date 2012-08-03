@@ -1,7 +1,7 @@
 /*
  * 
  */
-package forscene.core.events.system;
+package forscene.system.events;
 
 import playn.core.PlayN;
 import forscene.system.entities.ForSceneConfigurator;

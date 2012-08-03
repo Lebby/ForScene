@@ -6,10 +6,10 @@ package forscene.system.managers;
 import java.util.ArrayList;
 
 import playn.core.PlayN;
-import forscene.core.events.system.EventStatus;
-import forscene.core.events.system.IEvent;
 import forscene.system.entities.ForSceneConfigurator;
 import forscene.system.entities.PriorityQueue;
+import forscene.system.events.EventStatus;
+import forscene.system.events.IEvent;
 
 // TODO: Auto-generated Javadoc
 /**

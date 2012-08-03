@@ -4,8 +4,8 @@
 package forscene.core.events.input;
 
 import playn.core.Events.Input;
-import forscene.core.events.system.AbstractEvent;
 import forscene.system.Asserts;
+import forscene.system.events.AbstractEvent;
 
 // TODO: Auto-generated Javadoc
 /**
