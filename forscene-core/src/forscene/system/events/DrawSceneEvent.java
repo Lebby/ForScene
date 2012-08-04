@@ -3,6 +3,7 @@
  */
 package forscene.system.events;
 
+import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.system.Asserts;
 import forscene.system.entities.ForSceneConfigurator;
@@ -36,6 +37,7 @@ public class DrawSceneEvent extends AbstractEvent {
    */
   @Override
   public void run() {
+    PlayN.log().debug("DRAW");
     AbstractGameLoopManager.getInstance().draw(scene);
     setDone(true);
   }

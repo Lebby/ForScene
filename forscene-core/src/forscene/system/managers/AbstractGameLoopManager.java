@@ -14,7 +14,6 @@ import forscene.core.objects.DefaultSceneGroup;
 import forscene.core.objects.NullAbstractSceneObject;
 import forscene.system.Asserts;
 import forscene.system.entities.ForSceneConfigurator;
-import forscene.system.events.DrawSceneEvent;
 import forscene.system.events.InitEvent;
 import forscene.system.events.LoadSceneEvent;
 import forscene.system.events.LoadSceneGroupEvent;
@@ -231,13 +230,12 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
     } else {
       PlayN.log().debug("loadscene build/buildchild");
       scene.systemBuild();
-      // currentScene = scene;
+      // currentScene = scene; --> moved in draw
     }
     if (currentScene != null) {
       prevScene = currentScene;
     }
-    currentScene = scene;
-    draw(scene);
+
   }
 
   /*
@@ -427,11 +425,13 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    */
   public void draw(AbstractScene scene) {
     Asserts.check(scene != null, "scene can't be null");
+    PlayN.log().debug("scene : " + scene + " currentScene: " + currentScene);
     if ((scene != null) && (currentScene != scene)) {
       if (scene.getRoot() != null) {
         getRoot().clear();
         getRoot().add(scene.getRoot());
         scene.setParent(parent);
+        currentScene = scene;
       }
     }
   }
@@ -442,10 +442,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#paint()
    */
   public void paint() {
-    // ATTENZIONE ELIMINATO MOMENTANEAMENTE
-    if (currentScene != null) {
-      EventManager.getInstance().push(new DrawSceneEvent(currentScene));
-    }
+
   }
 
   // =======

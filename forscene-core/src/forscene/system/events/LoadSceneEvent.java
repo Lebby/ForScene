@@ -45,7 +45,8 @@ public class LoadSceneEvent extends AbstractEvent {
     if (scene.getPointerListener() != null) {
       scene.getPointerListener().register();
     }
-
+    EventManager.getInstance().push(new DrawSceneEvent(scene),
+        ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
     EventManager.getInstance().push(new UpdateSceneEvent(scene),
         ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
 
