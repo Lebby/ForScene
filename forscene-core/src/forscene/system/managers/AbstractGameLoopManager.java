@@ -423,7 +423,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
    * forscene.core.LoopController.IGameLoopManager#draw(forscene.core.entities
    * .AbstractScene)
    */
-  public void draw(AbstractScene scene) {
+  public boolean draw(AbstractScene scene) {
     Asserts.check(scene != null, "scene can't be null");
     PlayN.log().debug("scene : " + scene + " currentScene: " + currentScene);
     if ((scene != null) && (currentScene != scene)) {
@@ -432,8 +432,10 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
         getRoot().add(scene.getRoot());
         scene.setParent(parent);
         currentScene = scene;
+        return true;
       }
     }
+    return false;
   }
 
   /*

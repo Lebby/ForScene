@@ -10,6 +10,7 @@ import forscene.system.managers.EventManager;
 /**
  * The Class OnMouseMove.
  */
+
 public abstract class OnMouseMove extends AbstractEventListener {
 
   /*

@@ -12,6 +12,7 @@ import playn.core.SurfaceLayer;
 import forscene.system.Asserts;
 import forscene.system.ISceneObject;
 import forscene.system.entities.ObjectID;
+import forscene.system.managers.ResourceManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -37,6 +38,8 @@ public abstract class AbstractSceneObject<T extends Layer> implements
 
   /** The builded. */
   private boolean                  builded    = false;
+
+  private boolean                  loaded     = false;
 
   // The parent. If it is null means that it is orphan => it isn't in
   // scenegraph.
@@ -126,12 +129,15 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#systemBuild()
    */
   public void systemBuild() {
+    loadResource();
+
+    while (!ResourceManager.getInstance().isReady()) {
+      ResourceManager.getInstance().loadResources();
+      PlayN.log().debug(ResourceManager.getInstance().done.toString());
+    }
+    setLoaded(true);
+
     build();
-    /*
-     * while (!ResourceManager.getInstance().isReady()) {
-     * ResourceManager.getInstance().loadResources();
-     * PlayN.log().debug(ResourceManager.getInstance().done.toString()); }
-     */
 
     setBuilded(true);
     setToUpdate(true);
@@ -366,6 +372,21 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.system.ISceneObject#isLoaded()
    */
   public boolean isLoaded() {
-    return hasParent();
+    return loaded;
   }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.system.ISceneObject#loadResource()
+   */
+  public void loadResource() {
+    // TODO Auto-generated method stub
+
+  }
+
+  public void setLoaded(boolean isLoaded) {
+    loaded = isLoaded;
+  }
+
 }

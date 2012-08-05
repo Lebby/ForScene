@@ -14,6 +14,7 @@ import forscene.system.managers.EventManager;
 /**
  * The Class OnLoad.
  */
+
 public abstract class OnLoad extends AbstractEventListener {
 
   /** The scene. */

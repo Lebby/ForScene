@@ -110,7 +110,7 @@ public interface IGameLoopManager {
    * @param scene
    *          the scene
    */
-  void draw(AbstractScene scene); // attach in root
+  boolean draw(AbstractScene scene); // attach in root
 
   /**
    * Inits the.
@@ -226,14 +226,14 @@ public interface IGameLoopManager {
 
   /**
    * getHeight of game.
-   *
+   * 
    * @return game height ( float )
    */
   float getHeight();
 
   /**
    * getWidth of game.
-   *
+   * 
    * @return game width ( float )
    */
   float getWidth();

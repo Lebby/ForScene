@@ -38,8 +38,11 @@ public class DrawSceneEvent extends AbstractEvent {
   @Override
   public void run() {
     PlayN.log().debug("DRAW");
-    AbstractGameLoopManager.getInstance().draw(scene);
-    setDone(true);
+    if (AbstractGameLoopManager.getInstance().draw(scene)) {
+      setDone(true);
+    } else {
+      setDone(false);
+    }
   }
 
 }

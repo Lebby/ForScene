@@ -42,9 +42,14 @@ public interface ISceneObject<T extends Layer> extends LayerObject<T>,
   abstract void updateDraw(Layer layer);
 
   /**
-   * Builds the.
+   * Builds the scene
    */
   abstract void build();
+
+  /**
+   * .LoadResource
+   */
+  abstract void loadResource();
 
   /**
    * Builds the once.
@@ -163,6 +168,11 @@ public interface ISceneObject<T extends Layer> extends LayerObject<T>,
    */
   abstract boolean isVisible();
 
+  /**
+   * Checks if it has loaded all resource.
+   * 
+   * @return true, if all resource are loaded
+   */
   abstract boolean isLoaded();
 
 }

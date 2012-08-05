@@ -10,7 +10,7 @@ import playn.core.PlayN;
  * The Class NoNameException.
  */
 public class NoNameException extends AbstractSceneObjectException {
-  
+
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -7964696907646854838L;
 
