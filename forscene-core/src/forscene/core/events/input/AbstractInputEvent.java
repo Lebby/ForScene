@@ -19,6 +19,13 @@ public abstract class AbstractInputEvent<T extends Input> extends AbstractEvent 
   /** The event. */
   private T event;
 
+  /**
+   * 
+   */
+  public AbstractInputEvent() {
+    setName("InputEvent");
+  }
+
   /*
    * (non-Javadoc)
    * 

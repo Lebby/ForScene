@@ -34,6 +34,9 @@ public abstract class AbstractEvent implements IEvent {
     if (name.lastIndexOf('.') > 0) {
       name = name.substring(name.lastIndexOf('.') + 1);
     }
+    if (name.lastIndexOf('$') > 0) {
+      name = name.substring(name.lastIndexOf('$') + 1);
+    }
   }
 
   /*

@@ -21,6 +21,7 @@ public abstract class AbstractKeyboardEvent<T extends Input> extends
    */
   public AbstractKeyboardEvent() {
     super();
+    setName("KeyboardEvent");
   }
 
 }

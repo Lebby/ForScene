@@ -129,7 +129,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#systemBuild()
    */
   public void systemBuild() {
-    loadResource();
+    load();
 
     while (!ResourceManager.getInstance().isReady()) {
       ResourceManager.getInstance().loadResources();
@@ -380,7 +380,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * 
    * @see forscene.system.ISceneObject#loadResource()
    */
-  public void loadResource() {
+  public void load() {
     // TODO Auto-generated method stub
 
   }

@@ -7,11 +7,16 @@ import playn.core.Events.Input;
 
 /**
  * The Class AbstractMouseEvent.
- *
- * @param <T> the generic type
+ * 
+ * @param <T>
+ *          the generic type
  */
-public abstract class AbstractMouseEvent<T extends Input> extends AbstractInputEvent<T> {	
+public abstract class AbstractMouseEvent<T extends Input> extends
+    AbstractInputEvent<T> {
+  /**
+ * 
+ */
+  public AbstractMouseEvent() {
+    setName("MouseEvent");
+  }
 }
-
-
-

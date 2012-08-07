@@ -13,4 +13,11 @@ import playn.core.Pointer;
 public abstract class AbstractPointerEvent extends
     AbstractInputEvent<Pointer.Event> {
 
+  /**
+   * 
+   */
+  public AbstractPointerEvent() {
+    setName("PointerEvent");
+  }
+
 }

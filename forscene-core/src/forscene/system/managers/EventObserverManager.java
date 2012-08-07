@@ -28,6 +28,11 @@ public class EventObserverManager {
    * The Class InnerEventList.
    */
   class InnerEventList extends ArrayList<AbstractEventListener> {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
   };
 
   /** The event map. */
@@ -66,11 +71,10 @@ public class EventObserverManager {
    *          the event
    */
   public void notify(IEvent event) {
+    PlayN.log().debug("Event Name : " + event.getName());
     if (globalEventMap.containsKey(event.getName())) {
-
-      // PlayN.log().debug(" EVENTMAP :" + globalEventMap.get(event.getName()) +
-      // " name: "+ event.getName());
       notifyObservers(globalEventMap.get(event.getName()));
+
       // TODO: CHECK THIS ... if event is done ... it must be removed
       /*
        * if (event.isDone()) { //#Debug PlayN.log().debug(" EVENTMAP REMOVED:" +
@@ -113,14 +117,15 @@ public class EventObserverManager {
     InnerEventList tmp;
     if (globalEventMap.containsKey(globalEventName)) {
       tmp = globalEventMap.get(globalEventName);
+      tmp.add(callback);
     } else {
       tmp = new InnerEventList();
+      tmp.add(callback);
       globalEventMap.put(globalEventName, tmp);
       PlayN.log().debug(
           " EVENTMAP : NO EXIXTS " + globalEventName + " CB: "
               + callback.getName());
     }
-    tmp.add(callback);
   }
 
   /**

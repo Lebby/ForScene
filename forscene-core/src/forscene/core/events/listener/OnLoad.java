@@ -3,7 +3,6 @@
  */
 package forscene.core.events.listener;
 
-import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.system.Asserts;
 import forscene.system.events.IEvent;
@@ -38,6 +37,8 @@ public abstract class OnLoad extends AbstractEventListener {
    */
   @Override
   public boolean check() {
+    setDone(false);
+
     IEvent currEvent = EventManager.getInstance().getCurrentEvent();
     if (currEvent == null) {
       return false;
@@ -45,7 +46,6 @@ public abstract class OnLoad extends AbstractEventListener {
     if (currEvent.getName().compareTo("LoadSceneEvent") == 0) {
       LoadSceneEvent event = (LoadSceneEvent) currEvent;
       if (event.getScene() == scene) {
-        PlayN.log().debug("DONE");
         setDone(true);
         return true;
       }

@@ -49,7 +49,7 @@ public interface ISceneObject<T extends Layer> extends LayerObject<T>,
   /**
    * .LoadResource
    */
-  abstract void loadResource();
+  abstract void load();
 
   /**
    * Builds the once.
