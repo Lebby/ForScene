@@ -54,21 +54,11 @@ public class TextObject extends AbstractPaintSceneObject {
   public void updateState() {
     getCanvas().clear();
 
-    /*
-     * TextLayout layout = PlayN.graphics().layoutText(text, fontFormat);
-     * Integer width = (int) layout.width() + (padding * 2); Integer height =
-     * (int) layout.height() + (padding * 2);
-     * 
-     * CanvasImage textImage = PlayN.graphics().createImage(width, height);
-     * textImage.canvas().drawText(layout, padding, padding);
-     */
-
     Font font = PlayN.graphics().createFont(fontName, fontStyle, fontSize);
     TextFormat fontFormat = ((new TextFormat()).withFont(font));
 
     TextLayout textlay = PlayN.graphics().layoutText(text, fontFormat);
     getCanvas().setFillColor(fontColor);
-    fontColor++;
     getCanvas().fillText(textlay, 0, 0);
 
   }
