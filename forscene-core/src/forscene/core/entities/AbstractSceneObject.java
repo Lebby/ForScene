@@ -88,7 +88,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#setRoot(playn.core.Layer)
    */
   public void setRoot(T layer) {
-    Asserts.check(layer != null, "layer can't be null");
+    Asserts.check(layer != null, "ASO setRoot: layer can't be null");
     this.root = layer;
     setToUpdate(true);
   }
@@ -129,7 +129,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#systemBuild()
    */
   public void systemBuild() {
-    load();
+    this.load();
 
     while (!ResourceManager.getInstance().isReady()) {
       ResourceManager.getInstance().loadResources();
@@ -220,7 +220,6 @@ public abstract class AbstractSceneObject<T extends Layer> implements
   public void setID(ObjectID objectID) {
     Asserts.check(objectID != null, "objectID can't be null");
     this.ID = objectID;
-
   }
 
   /*
@@ -299,7 +298,6 @@ public abstract class AbstractSceneObject<T extends Layer> implements
     Asserts.check(parent != null, "parent can't be null");
     this.parent = parent;
     parent.setToUpdate(true);
-
   }
 
   // TODO: TO MOVE
@@ -388,5 +386,4 @@ public abstract class AbstractSceneObject<T extends Layer> implements
   public void setLoaded(boolean isLoaded) {
     loaded = isLoaded;
   }
-
 }

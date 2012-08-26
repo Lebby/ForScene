@@ -49,6 +49,7 @@ public class ResourceManager {
   public static ResourceManager getInstance() {
     if (ResourceManager.instance == null) {
       ResourceManager.instance = new ResourceManager();
+      ResourceManager.instance.ready = false;
     }
     return ResourceManager.instance;
   }
@@ -159,7 +160,10 @@ public class ResourceManager {
    * @return true, if is ready
    */
   public boolean isReady() {
-    ready = toLoad.isEmpty(); // && watcher.isDone());
+    ready = (toLoad.isEmpty() && (toLoad.size() == 0)); // && watcher.isDone());
+    if (!ready) {
+      return false;
+    }
     for (Object element : done) {
       Resource<?> el = (Resource<?>) element;
       ready = (ready && (el.getState() == ResourceState.DONE));

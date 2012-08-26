@@ -71,7 +71,6 @@ public class EventObserverManager {
    *          the event
    */
   public void notify(IEvent event) {
-    PlayN.log().debug("Event Name : " + event.getName());
     if (globalEventMap.containsKey(event.getName())) {
       notifyObservers(globalEventMap.get(event.getName()));
 

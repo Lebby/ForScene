@@ -3,6 +3,7 @@
  */
 package forscene.system.events;
 
+import playn.core.PlayN;
 import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
@@ -31,12 +32,14 @@ public abstract class AbstractEvent implements IEvent {
    */
   public AbstractEvent() {
     name = this.getClass().getName();
+    PlayN.log().debug("Event Name : " + name);
     if (name.lastIndexOf('.') > 0) {
       name = name.substring(name.lastIndexOf('.') + 1);
     }
     if (name.lastIndexOf('$') > 0) {
       name = name.substring(name.lastIndexOf('$') + 1);
     }
+    PlayN.log().debug("Event Name AFTER: " + name);
   }
 
   /*

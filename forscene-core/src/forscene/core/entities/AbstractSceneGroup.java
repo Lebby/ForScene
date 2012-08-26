@@ -33,7 +33,7 @@ public abstract class AbstractSceneGroup {
    * 
    * @return the array list
    */
-  public abstract ArrayList<AbstractScene> build();
+  public abstract void build();
 
   /**
    * Instantiates a new abstract scene group.
@@ -138,7 +138,8 @@ public abstract class AbstractSceneGroup {
    * Inner build.
    */
   public void innerBuild() {
-    chain(build());
+    build();
+    chain(getScenes());
   }
 
   /**

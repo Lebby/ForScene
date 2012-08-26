@@ -41,7 +41,7 @@ public class FadeIn extends AbstractEffect {
       currentAlpha += step;
     }
     getTarget().getRoot().setAlpha(currentAlpha);
-    getTarget().refresh();
+    // getTarget().refresh();
   }
 
   /*

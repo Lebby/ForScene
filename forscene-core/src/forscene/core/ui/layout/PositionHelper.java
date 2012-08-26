@@ -20,6 +20,7 @@ import forscene.system.Asserts;
 /**
  * The Class PositionHelper.
  */
+
 public class PositionHelper {
 
   /**
@@ -37,7 +38,6 @@ public class PositionHelper {
     Asserts.check(parent != null, "parent can't be null", new Object[0]);
     Asserts.check(align != null, "align can't be null", new Object[0]);
     Asserts.check(target != null, "align can't be null", new Object[0]);
-
     // horizontal component
     switch (align) {
     case HORIZONTAL_CENTER:
@@ -131,7 +131,6 @@ public class PositionHelper {
     }
     target.getRoot()
         .setTranslation(target.getRoot().transform().tx(), position);
-
   }
 
   /**
@@ -177,5 +176,4 @@ public class PositionHelper {
     target.getRoot()
         .setTranslation(position, target.getRoot().transform().ty());
   }
-
 }

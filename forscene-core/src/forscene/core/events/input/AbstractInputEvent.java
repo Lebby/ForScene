@@ -7,7 +7,6 @@ import playn.core.Events.Input;
 import forscene.system.Asserts;
 import forscene.system.events.AbstractEvent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractInputEvent.
  * 

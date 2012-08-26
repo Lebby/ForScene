@@ -211,7 +211,7 @@ public abstract class AbstractGameLoopManager implements IGameLoopManager {
       return;
     }
     currentSceneGroup = sceneGroup;
-    currentSceneGroup.chain(currentSceneGroup.build());
+    currentSceneGroup.innerBuild();
     prevScene = currentScene;
     currentScene = null;
   }

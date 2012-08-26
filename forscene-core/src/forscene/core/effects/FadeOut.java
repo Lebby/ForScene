@@ -37,7 +37,7 @@ public class FadeOut extends FadeIn {
       setCurrentAlpha(getCurrentAlpha() - getStep());
     }
     getTarget().getRoot().setAlpha(getCurrentAlpha());
-    getTarget().refresh();
+    // getTarget().refresh();
   }
 
 }

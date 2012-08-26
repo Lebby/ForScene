@@ -154,8 +154,6 @@ public abstract class AbstractSceneObjectGroup extends
    * Builds the child.
    */
   public void buildChilds() {
-    PlayN.log().debug("ASGO : BuildChilds  p-childs : " + pendingChilds.size());
-    PlayN.log().debug("ASGO : BuildChilds  childs : " + childs.size());
     ObjectID element;
     if (pendingChilds.size() > 0) {
       element = pendingChilds.get(0);
@@ -270,12 +268,16 @@ public abstract class AbstractSceneObjectGroup extends
    */
   @Override
   public void systemBuild() {
+    load();
+
+    while (!ResourceManager.getInstance().isReady()) {
+      ResourceManager.getInstance().loadResources();
+    }
+    setLoaded(true);
     build();
     buildChilds();
-    // while (!ResourceManager.getInstance().isReady()) {
-    ResourceManager.getInstance().loadResources();
-    // }
     setBuilded(true);
+    setToUpdate(true);
   }
 
   /*

@@ -34,33 +34,31 @@ public class Resource<T> implements Comparable<T> {
   public void load() {
 
     if (_res instanceof Image) {
-      ((Image) (_res))
-          .addCallback((ResourceCallback<? super Image>) new ResourceCallback<T>() {
-            public void done(final T resource) {
-              PlayN.log().debug("Resource" + resource + " Loaded DONE");
-              _done();
-            };
+      ((Image) (_res)).addCallback(new ResourceCallback<Image>() {
+        public void done(final Image resource) {
+          PlayN.log().debug("Resource" + resource + " Loaded DONE");
+          _done();
+        };
 
-            public void error(final Throwable err) {
-              PlayN.log().debug("Resource load error: " + err);
-              _error();
-            }
-          });
+        public void error(final Throwable err) {
+          PlayN.log().debug("Resource load error: " + err);
+          _error();
+        }
+      });
     }
 
     if ((_res instanceof Sound) || (_res instanceof AbstractSound)) {
-      ((Sound) (_res))
-          .addCallback((ResourceCallback<? super Sound>) new ResourceCallback<T>() {
-            public void done(final T resource) {
-              PlayN.log().debug("Resource" + resource + " Loaded");
-              _done();
-            };
+      ((Sound) (_res)).addCallback(new ResourceCallback<Sound>() {
+        public void done(final Sound resource) {
+          PlayN.log().debug("Resource" + resource + " Loaded");
+          _done();
+        };
 
-            public void error(final Throwable err) {
-              PlayN.log().debug("Resource load error: " + err);
-              _error();
-            }
-          });
+        public void error(final Throwable err) {
+          PlayN.log().debug("Resource load error: " + err);
+          _error();
+        }
+      });
     }
 
   }

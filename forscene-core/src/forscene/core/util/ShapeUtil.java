@@ -6,7 +6,6 @@ package forscene.core.util;
 import playn.core.GroupLayer;
 import playn.core.ImageLayer;
 import playn.core.Layer;
-import playn.core.PlayN;
 import forscene.core.entities.AbstractSceneObject;
 import forscene.core.entities.AbstractSceneObjectGroup;
 
@@ -57,9 +56,6 @@ public class ShapeUtil {
     }
     if (layer instanceof Layer.HasSize) {
       t = (Layer.HasSize) layer;
-      PlayN.log().debug(
-          "t: h :" + t.scaledHeight() + " w:" + t.scaledWidth() + " w:"
-              + t.width() + " h:" + t.height());
 
       if (tmp.getMaxX() < (t.scaledWidth() + t.originX())) {
         tmp.setMaxX(t.scaledWidth() + t.originX());
@@ -76,9 +72,6 @@ public class ShapeUtil {
     }
     if (layer instanceof ImageLayer) {
       t = (ImageLayer) layer;
-      PlayN.log().debug(
-          "t: h :" + t.scaledHeight() + " w:" + t.scaledWidth() + " w:"
-              + t.width() + " h:" + t.height());
     }
     return tmp;
   }
