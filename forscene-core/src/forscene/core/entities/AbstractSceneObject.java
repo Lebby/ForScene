@@ -100,8 +100,10 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    */
   public void updateDraw(Layer layer) {
     Asserts.check(layer != null, "layer can't be null");
-    getRoot().parent().remove(layer);
-    getRoot().parent().add(layer);
+    if (getRoot().parent() != null) {
+      getRoot().parent().remove(layer);
+      getRoot().parent().add(layer);
+    }
     // setToUpdate(false);
   }
 

@@ -3,6 +3,7 @@
  */
 package forscene.system.events;
 
+import playn.core.PlayN;
 import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc
@@ -12,24 +13,25 @@ import forscene.system.managers.AbstractGameLoopManager;
 public abstract class TimeAlarmEvent extends AbstractEvent {
 
   /** The time. */
-  private float        time;
+  private float   delay;
 
   /** The first time. */
-  private boolean      firstTime = true;
+  private boolean firstTime = true;
 
   /** The timer. */
-  private static float timer;
+  private float   startTime;
 
   /**
    * Instantiates a new event time alarm.
    * 
-   * @param time
+   * @param delay
    *          the time
    */
-  public TimeAlarmEvent(float time) {
-
-    TimeAlarmEvent.timer = AbstractGameLoopManager.getInstance().getTicks();
-    this.time = TimeAlarmEvent.timer + time;
+  public TimeAlarmEvent(float delay) {
+    this.delay = delay;
+    PlayN.log().debug(
+        "Time: " + AbstractGameLoopManager.getInstance().getTicks()
+            + " Alarm at : " + delay);
   }
 
   /**
@@ -38,8 +40,7 @@ public abstract class TimeAlarmEvent extends AbstractEvent {
   public void start() {
     if (firstTime) {
       firstTime = false;
-      TimeAlarmEvent.timer = AbstractGameLoopManager.getInstance().getTicks();
-      time = TimeAlarmEvent.timer + time;
+      startTime = AbstractGameLoopManager.getInstance().getTicks();
     }
   }
 
@@ -50,7 +51,7 @@ public abstract class TimeAlarmEvent extends AbstractEvent {
    */
   @Override
   public void run() {
-    if (AbstractGameLoopManager.getInstance().getTicks() >= time) {
+    if (AbstractGameLoopManager.getInstance().getTicks() >= (startTime + delay)) {
       alarm();
       setDone(true);
     } else {

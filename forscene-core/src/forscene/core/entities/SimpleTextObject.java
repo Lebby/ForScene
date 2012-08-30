@@ -5,6 +5,7 @@ package forscene.core.entities;
 
 import playn.core.Font;
 import playn.core.Font.Style;
+import playn.core.ImageLayer;
 import playn.core.PlayN;
 import playn.core.TextFormat;
 import playn.core.TextLayout;
@@ -14,7 +15,7 @@ import forscene.core.ui.DefaultStyle;
  * @author blackdevil
  * 
  */
-public class TextObject extends AbstractPaintSceneObject {
+public class SimpleTextObject extends AbstractPaintSceneObject {
 
   private String  text     = "default";
   private String  fontName = DefaultStyle.fontName;
@@ -26,13 +27,15 @@ public class TextObject extends AbstractPaintSceneObject {
   private float   strokeWidth;
   private boolean stroked;
   private boolean filled;
+  private int     backgroundColor;
+  private Font    font;
 
   // private ImageLayer imageLayer; root is ImageLayer
   /**
  * 
  * 
  */
-  public TextObject() {
+  public SimpleTextObject() {
     setFontColor(DefaultStyle.fontColor);
     setFontName(DefaultStyle.fontName);
     setFontSize(DefaultStyle.fontSize);
@@ -42,7 +45,7 @@ public class TextObject extends AbstractPaintSceneObject {
     setStrokeWidth(DefaultStyle.strokeWidth);
     setStroked(DefaultStyle.stroked);
     setFilled(DefaultStyle.filled);
-    write();
+    setBackgroundColor(DefaultStyle.backgroundColor);
   }
 
   /*
@@ -50,22 +53,36 @@ public class TextObject extends AbstractPaintSceneObject {
    * 
    * @see forscene.system.ISceneObject#updateState()
    */
-  public void updateState() {
-    write();
-  }
 
   public void write() {
-    getCanvas().clear();
-    Font font = PlayN.graphics().createFont(fontName, fontStyle, fontSize);
-    TextFormat fontFormat = ((new TextFormat()).withFont(font));
-    TextLayout textlay = PlayN.graphics().layoutText(text, fontFormat);
-    if (isFilled()) {
-      getCanvas().fillText(textlay, 0, 0);
-    }
-    if (isStroked()) {
-      getCanvas().strokeText(textlay, 0, 0);
-    }
+    if (isBuilded()) {
+      getImageLayer().destroy();
+      float width, height;
+      width = (text.length() * fontSize) / 1.8f;
+      height = fontSize * 1.4f;
+      setCanvasImage(PlayN.graphics().createImage(width, height));
+      setCanvas(getCanvasImage().canvas());
+      getCanvas().clear();
+      ImageLayer immLayer = PlayN.graphics().createImageLayer(getCanvasImage());
+      setImageLayer(immLayer);
+      getCanvas().clear();
 
+      font = PlayN.graphics().createFont(fontName, fontStyle, fontSize);
+      TextFormat fontFormat = ((new TextFormat()).withFont(font));
+      TextLayout textlay = PlayN.graphics().layoutText(text, fontFormat);
+      getCanvas().setFillColor(backgroundColor);
+      getCanvas().fillRect(0, 0, getImageLayer().width(),
+          getImageLayer().height());
+      getCanvas().setFillColor(fontColor);
+      if (isFilled()) {
+        getCanvas().fillText(textlay, 0, 0);
+      }
+      if (isStroked()) {
+        getCanvas().strokeText(textlay, 0, 0);
+      }
+
+      setToUpdate(false);
+    }
   }
 
   /*
@@ -75,7 +92,7 @@ public class TextObject extends AbstractPaintSceneObject {
    */
   @Override
   public void build() {
-
+    write();
   }
 
   /**
@@ -226,6 +243,22 @@ public class TextObject extends AbstractPaintSceneObject {
   }
 
   /**
+   * @return the font
+   */
+  public Font getFont() {
+    return font;
+  }
+
+  /**
+   * @param font
+   *          the font to set
+   */
+  public void setFont(Font font) {
+    this.font = font;
+    setToUpdate(true);
+  }
+
+  /**
    * @return the filled
    */
   public boolean isFilled() {
@@ -238,6 +271,34 @@ public class TextObject extends AbstractPaintSceneObject {
    */
   public void setFilled(boolean filled) {
     this.filled = filled;
+    setToUpdate(true);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.system.ISceneObject#updateState()
+   */
+  public void updateState() {
+    if (isToUpdate()) {
+      write();
+    }
+
+  }
+
+  /**
+   * @return the backgroundColor
+   */
+  public int getBackgroundColor() {
+    return backgroundColor;
+  }
+
+  /**
+   * @param backgroundColor
+   *          the backgroundColor to set
+   */
+  public void setBackgroundColor(int backgroundColor) {
+    this.backgroundColor = backgroundColor;
     setToUpdate(true);
   }
 }

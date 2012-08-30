@@ -15,14 +15,32 @@ import forscene.system.managers.AbstractGameLoopManager;
  * 
  * @author Scuderi Giovanni Luca {Lebby} mail:glscud@gmail.com
  */
-public abstract class AbstractPaintSceneObject extends
-    AbstractSimpleSceneObject {
+public abstract class AbstractPaintSceneObject extends AbstractSceneObjectGroup {
 
   /** The canvas. */
   private Canvas      canvas;
   // container of canvas
   /** The canvas image. */
   private CanvasImage canvasImage;
+
+  private ImageLayer  imageLayer;
+
+  /**
+   * @return the imageLayer
+   */
+  public ImageLayer getImageLayer() {
+    return imageLayer;
+  }
+
+  /**
+   * @param imageLayer
+   *          the imageLayer to set
+   */
+  public void setImageLayer(ImageLayer imageLayer) {
+    this.imageLayer = imageLayer;
+    getRoot().clear();
+    getRoot().add(imageLayer);
+  }
 
   /**
    * Instantiates a new abstract paint scene object.
@@ -33,8 +51,9 @@ public abstract class AbstractPaintSceneObject extends
         AbstractGameLoopManager.getInstance().getHeight()));
     setCanvas(getCanvasImage().canvas());
     getCanvas().clear();
-    ImageLayer immLayer = PlayN.graphics().createImageLayer(getCanvasImage());
-    setRoot(immLayer);
+    imageLayer = PlayN.graphics().createImageLayer(getCanvasImage());
+    setRoot(PlayN.graphics().createGroupLayer());
+    getRoot().add(imageLayer);
   }
 
   /**

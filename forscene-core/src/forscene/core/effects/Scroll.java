@@ -17,6 +17,12 @@ public class Scroll extends AbstractEffect {
   /** The start y. */
   private float   startY;
 
+  /** The endX */
+  private float   endX;
+
+  /** The endY */
+  private float   endY;
+
   /** The tmp y. */
   private float   tmpX, tmpY;
 
@@ -131,43 +137,60 @@ public class Scroll extends AbstractEffect {
    * Scroll.
    */
   private void scroll() {
-    float x = getTarget().getRoot().originX();
-    float y = getTarget().getRoot().originY();
 
     switch (scrollType) {
     case UP:
-      getRoot().setTranslation(x, y - step);
+      tmpY -= step;
+      if (endY == tmpY) {
+        stop();
+      }
       break;
+
     case DOWN:
-      getRoot().setTranslation(x, y + step);
+      tmpY += step;
+      if (endY == tmpY) {
+        stop();
+      }
       break;
 
     case LEFT:
-      tmpX--;
-      // getTarget().getRoot().setTranslation(tmpX , tmpY);
-      getRoot().setTranslation(tmpX, tmpY);
+      tmpX -= step;
+      if (endX == tmpX) {
+        stop();
+      }
       break;
     case RIGHT:
-      tmpX++;
-      // getTarget().getRoot().setTranslation(tmpX, tmpY);
-      getRoot().setTranslation(tmpX, tmpY);
+      tmpX += step;
+      if (endX == tmpX) {
+        stop();
+      }
       break;
 
     case DOWN_LEFT:
-      getTarget().getRoot().setTranslation(x - step, y + step);
+      tmpX -= step;
+      tmpY += step;
       break;
     case UP_RIGHT:
-      getTarget().getRoot().setTranslation(x + step, y - step);
+      tmpX += step;
+      tmpY -= step;
       break;
 
     case DOWN_RIGHT:
-      getTarget().getRoot().setTranslation(x + step, y + step);
+      tmpX += step;
+      tmpY += step;
+      if ((endX == tmpX) && (endY == tmpY)) {
+        stop();
+      }
       break;
     case UP_LEFT:
-      getTarget().getRoot().setTranslation(x - step, y - step);
+      tmpX -= step;
+      tmpY -= step;
+      if ((endX == tmpX) && (endY == tmpY)) {
+        stop();
+      }
       break;
     }
-
+    getRoot().setTranslation(tmpX, tmpY);
   }
 
   /*
@@ -197,6 +220,7 @@ public class Scroll extends AbstractEffect {
    */
   public void setStartX(float startX) {
     this.startX = startX;
+    tmpX = startX;
   }
 
   /**
@@ -216,6 +240,7 @@ public class Scroll extends AbstractEffect {
    */
   public void setStartY(float startY) {
     this.startY = startY;
+    tmpY = startY;
   }
 
   /**
@@ -224,7 +249,7 @@ public class Scroll extends AbstractEffect {
    * @return the position x
    */
   public float getPositionX() {
-    return getTarget().getRoot().originX();
+    return getTarget().getRoot().transform().tx();
   }
 
   /**
@@ -233,7 +258,37 @@ public class Scroll extends AbstractEffect {
    * @return the position y
    */
   public float getPositionY() {
-    return getTarget().getRoot().originY();
+    return getTarget().getRoot().transform().ty();
+  }
+
+  /**
+   * @return the endX
+   */
+  public float getEndX() {
+    return endX;
+  }
+
+  /**
+   * @param endX
+   *          the endX to set
+   */
+  public void setEndX(float endX) {
+    this.endX = endX;
+  }
+
+  /**
+   * @return the endY
+   */
+  public float getEndY() {
+    return endY;
+  }
+
+  /**
+   * @param endY
+   *          the endY to set
+   */
+  public void setEndY(float endY) {
+    this.endY = endY;
   }
 
 }

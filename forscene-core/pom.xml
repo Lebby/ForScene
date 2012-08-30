@@ -25,6 +25,12 @@
     	<artifactId>playn-core</artifactId>
     	<version>${playn.version}</version>
     </dependency>
+     <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>10.0.1</version>
+      <scope>test</scope>
+    </dependency>    
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>

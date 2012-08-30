@@ -14,6 +14,20 @@
     <forscene.version>${project.version}</forscene.version>
     <playn.version>1.4</playn.version>
   </properties>
+  
+  <developers>
+    <developer>
+      <id>Lebby</id>
+      <name>Giovanni Luca Scuderi</name>
+      <email>glscud@gmail.com</email>
+    </developer>
+  </developers>
+
+  <scm>https://github.com/
+    <connection>scm:git:git://github.com/Lebby/ForScene.git</connection>
+    <developerConnection>scm:git:git@github.com:Lebby/ForScene.git</developerConnection>
+    <url>http://github.com/Lebby/ForScene.git/</url>
+  </scm>
 
   <dependencies>
     <dependency>

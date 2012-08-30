@@ -22,7 +22,7 @@ public class FadeIn extends AbstractEffect {
   private float endAlpha     = 1f;
 
   /** The step. */
-  private float step         = 0.1f;
+  private float step         = 0.01f;
 
   /*
    * (non-Javadoc)
@@ -41,7 +41,6 @@ public class FadeIn extends AbstractEffect {
       currentAlpha += step;
     }
     getTarget().getRoot().setAlpha(currentAlpha);
-    // getTarget().refresh();
   }
 
   /*
