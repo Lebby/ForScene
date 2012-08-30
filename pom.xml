@@ -8,25 +8,30 @@
 
   <name>forscene-project</name>
   <url>www.github.com/Lebby/Forscene</url>
+  
+  <description>Forscene is a project based on PlayN project ( ex-forplay). It add a scene management features and other features.</description>
+  <organization>
+    <name>Lebby</name>
+    <url>lebby.github.com</url>
+  </organization>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <forscene.version>${project.version}</forscene.version>
     <playn.version>1.4</playn.version>
-  </properties>
-  
+  </properties>  
   <developers>
-    <developer>
-      <id>Lebby</id>
-      <name>Giovanni Luca Scuderi</name>
-      <email>glscud@gmail.com</email>
-    </developer>
+  <developer>
+  <id>Lebby</id>
+  <name>Giovanni Luca Scuderi</name>
+  <email>glscud@gmail.com</email>
+  </developer>
   </developers>
 
-  <scm>https://github.com/
-    <connection>scm:git:git://github.com/Lebby/ForScene.git</connection>
-    <developerConnection>scm:git:git@github.com:Lebby/ForScene.git</developerConnection>
-    <url>http://github.com/Lebby/ForScene.git/</url>
+  <scm>
+  <connection>scm:git:git://github.com/Lebby/ForScene.git</connection>
+  <developerConnection>scm:git:git@github.com:Lebby/ForScene.git</developerConnection>
+  <url>http://github.com/Lebby/ForScene.git/</url>
   </scm>
 
   <dependencies>
@@ -44,11 +49,7 @@
     	<type>pom</type>
     </dependency>
   </dependencies>
-  <description>Forscene is a project based on PlayN project ( ex-forplay). It add a scene management features and other features.</description>
-  <organization>
-  	<name>Lebby</name>
-  	<url>lebby.github.com</url>
-  </organization>
+  
   <modules>    
     <module>forscene-core</module>
   </modules>
