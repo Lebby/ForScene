@@ -5,6 +5,11 @@ package forscene.core.effects;
 
 import forscene.core.entities.AbstractEffect;
 
+/**
+ * @author Scuderi Giovanni Luca aka Lebby glscud@gmail.com
+ * 
+ */
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Scroll.

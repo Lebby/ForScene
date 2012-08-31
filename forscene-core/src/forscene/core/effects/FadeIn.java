@@ -6,6 +6,11 @@ package forscene.core.effects;
 import forscene.core.entities.AbstractEffect;
 import forscene.system.Asserts;
 
+/**
+ * @author Scuderi Giovanni Luca aka Lebby glscud@gmail.com
+ * 
+ */
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class FadeIn.

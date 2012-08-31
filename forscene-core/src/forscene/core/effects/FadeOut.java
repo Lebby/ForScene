@@ -3,6 +3,11 @@
  */
 package forscene.core.effects;
 
+/**
+ * @author Scuderi Giovanni Luca aka Lebby glscud@gmail.com
+ * 
+ */
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class FadeOut.
