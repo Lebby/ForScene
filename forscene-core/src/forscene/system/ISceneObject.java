@@ -4,7 +4,7 @@
 package forscene.system;
 
 import playn.core.Layer;
-import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.core.entities.objects.AbstractSceneObjectGroup;
 import forscene.system.entities.ForSceneObject;
 import forscene.system.entities.ObjectID;
 

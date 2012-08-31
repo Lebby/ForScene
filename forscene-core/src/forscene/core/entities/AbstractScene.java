@@ -3,6 +3,7 @@
  */
 package forscene.core.entities;
 
+import forscene.core.entities.objects.AbstractSceneObjectGroup;
 import forscene.core.listener.AbstractKeyboardListener;
 import forscene.core.listener.AbstractMouseListener;
 import forscene.core.listener.AbstractPointerListener;

@@ -5,6 +5,7 @@ package forscene.core.entities;
 
 import playn.core.Layer;
 import playn.core.PlayN;
+import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.system.Asserts;
 import forscene.system.entities.ForSceneConfigurator;
 import forscene.system.events.AnimationUpdateEvent;

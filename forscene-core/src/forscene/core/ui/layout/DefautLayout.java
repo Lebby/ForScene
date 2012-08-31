@@ -6,7 +6,7 @@ package forscene.core.ui.layout;
 import java.util.ArrayList;
 
 import playn.core.PlayN;
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.core.util.BasicShapeInfo;
 import forscene.core.util.ShapeUtil;
 import forscene.core.util.SizeInfo;

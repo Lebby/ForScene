@@ -5,7 +5,7 @@ package forscene.system.entities;
 
 import playn.core.Asserts;
 import forscene.core.asolibrary.ASOType;
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 
 // TODO: Auto-generated Javadoc
 /**

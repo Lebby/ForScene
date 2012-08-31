@@ -1,7 +1,7 @@
 /**
  * 
  */
-package forscene.core.entities;
+package forscene.core.entities.objects;
 
 import playn.core.Canvas;
 import playn.core.CanvasImage;

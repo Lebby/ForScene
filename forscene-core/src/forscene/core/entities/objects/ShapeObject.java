@@ -1,7 +1,7 @@
 /*
  * 
  */
-package forscene.core.entities;
+package forscene.core.entities.objects;
 
 import forscene.core.entities.toTest.AbstractLogicShape;
 import forscene.core.util.BasicShapeInfo;

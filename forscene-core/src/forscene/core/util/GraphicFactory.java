@@ -15,8 +15,8 @@ import playn.core.SurfaceLayer;
 import playn.core.TextFormat;
 import playn.core.TextFormat.Alignment;
 import playn.core.TextLayout;
-import forscene.core.entities.AbstractSceneObject;
-import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.core.entities.objects.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObjectGroup;
 import forscene.system.managers.ResourceManager;
 
 // TODO: Auto-generated Javadoc

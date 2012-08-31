@@ -5,8 +5,8 @@ package forscene.system.managers;
 
 import playn.core.ImageLayer;
 import playn.core.Layer;
-import forscene.core.entities.AbstractSceneObject;
-import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.core.entities.objects.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObjectGroup;
 
 // TODO: Auto-generated Javadoc
 /**

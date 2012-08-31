@@ -16,7 +16,7 @@ public class Storage {
   private boolean            initialized = false;
   private playn.core.Storage storage;
 
-  private Json               json        = null;
+  private Json.Object        json        = null;
 
   /**
  * 
@@ -26,7 +26,7 @@ public class Storage {
     PlayN.assets().getText(ForSceneConfigurator.STORAGE_FILENAME,
         new ResourceCallback<String>() {
           public void done(String resource) {
-            setJson((Json) PlayN.json().parse(resource));
+            setJson(PlayN.json().parse(resource));
           }
 
           public void error(Throwable err) {
@@ -77,7 +77,7 @@ public class Storage {
   /**
    * @return the json
    */
-  public Json getJson() {
+  public Json.Object getJson() {
     return json;
   }
 
@@ -85,7 +85,7 @@ public class Storage {
    * @param json
    *          the json to set
    */
-  public void setJson(Json json) {
+  public void setJson(Json.Object json) {
     this.json = json;
   }
 

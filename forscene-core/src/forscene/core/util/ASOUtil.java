@@ -3,7 +3,7 @@
  */
 package forscene.core.util;
 
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.system.ISceneObject;
 
 // TODO: Auto-generated Javadoc

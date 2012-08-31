@@ -4,7 +4,8 @@
 package forscene.core.ui;
 
 import java.util.ArrayList;
-import forscene.core.entities.AbstractSceneObjectGroup;
+
+import forscene.core.entities.objects.AbstractSceneObjectGroup;
 import forscene.core.util.GraphicFactory;
 import playn.core.ImageLayer;
 import playn.core.TextFormat;

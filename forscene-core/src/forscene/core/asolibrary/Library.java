@@ -6,7 +6,7 @@ package forscene.core.asolibrary;
 import java.util.ArrayList;
 import java.util.Set;
 
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.system.Asserts;
 import forscene.system.entities.Resource;
 

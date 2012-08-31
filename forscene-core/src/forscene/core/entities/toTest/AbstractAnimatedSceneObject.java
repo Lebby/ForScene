@@ -8,7 +8,7 @@ import playn.core.ImmediateLayer;
 import playn.core.ImmediateLayer.Renderer;
 import playn.core.PlayN;
 import playn.core.Surface;
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc

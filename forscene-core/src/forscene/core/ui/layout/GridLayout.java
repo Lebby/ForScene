@@ -3,7 +3,7 @@
  */
 package forscene.core.ui.layout;
 
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.exceptions.NoNameException;
 
 // TODO: Auto-generated Javadoc

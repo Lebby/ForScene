@@ -5,7 +5,7 @@ package forscene.core.util;
 
 import playn.core.GroupLayer;
 import playn.core.PlayN;
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 
 // TODO: Auto-generated Javadoc
 /**

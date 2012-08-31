@@ -9,7 +9,7 @@ import playn.core.GroupLayer;
 import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
-import forscene.core.entities.AbstractSceneObjectGroup;
+import forscene.core.entities.objects.AbstractSceneObjectGroup;
 import forscene.core.objects.DefaultSceneGroup;
 import forscene.core.objects.NullAbstractSceneObject;
 import forscene.system.Asserts;

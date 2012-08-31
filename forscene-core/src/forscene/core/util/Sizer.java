@@ -5,7 +5,7 @@ package forscene.core.util;
 
 import playn.core.Layer;
 import playn.core.PlayN;
-import forscene.core.entities.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.system.managers.AbstractGameLoopManager;
 
 public class Sizer extends AbstractSceneObject<Layer.HasSize> {
