@@ -37,6 +37,9 @@ public class SimpleScene extends AbstractScene {
   public void build() {
     images = new HashMap<String, Layer>();
     order = new ArrayList<Layer>();
+    for (int i = 0; i < order.size(); i++) {
+      getRoot().add(order.get(i));
+    }
   }
 
   /**
@@ -104,7 +107,9 @@ public class SimpleScene extends AbstractScene {
   }
 
   public void toBackground(Layer layer) {
-    order.remove(order.indexOf(layer));
+    if (order.indexOf(layer) != -1) {
+      order.remove(order.indexOf(layer));
+    }
     order.add(0, layer);
     layer.setDepth(0);
     setToUpdate(true);
