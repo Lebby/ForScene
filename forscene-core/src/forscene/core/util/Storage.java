@@ -30,7 +30,7 @@ public class Storage {
           }
 
           public void error(Throwable err) {
-            PlayN.log().error("Failed to load: " + err.getMessage());
+            PlayN.log().error("Storage - Failed to load: " + err.getMessage());
           }
 
         });
