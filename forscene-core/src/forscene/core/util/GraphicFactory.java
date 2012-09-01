@@ -27,9 +27,11 @@ public class GraphicFactory {
 
   /**
    * Adds the image.
-   *
-   * @param url the url
-   * @param scene the scene
+   * 
+   * @param url
+   *          the url
+   * @param scene
+   *          the scene
    * @return the image layer
    */
   public static ImageLayer addImage(String url, AbstractSceneObject<?> scene) {
@@ -47,9 +49,11 @@ public class GraphicFactory {
 
   /**
    * Creates a new Graphic object.
-   *
-   * @param text the text
-   * @param format the format
+   * 
+   * @param text
+   *          the text
+   * @param format
+   *          the format
    * @return the image layer
    */
   public static ImageLayer createText(String text, TextFormat format) {
@@ -84,9 +88,11 @@ public class GraphicFactory {
 
   /**
    * Creates a new Graphic object.
-   *
-   * @param font the font
-   * @param textColor the text color
+   * 
+   * @param font
+   *          the font
+   * @param textColor
+   *          the text color
    * @return the text format
    */
   public static TextFormat createTextFormat(Font font, int textColor) {
@@ -99,10 +105,13 @@ public class GraphicFactory {
 
   /**
    * Creates a new Graphic object.
-   *
-   * @param fontName the font name
-   * @param fontStyle the font style
-   * @param size the size
+   * 
+   * @param fontName
+   *          the font name
+   * @param fontStyle
+   *          the font style
+   * @param size
+   *          the size
    * @return the font
    */
   public static Font createFont(String fontName, Style fontStyle, float size) {
@@ -112,7 +121,7 @@ public class GraphicFactory {
 
   /**
    * Creates a new Graphic object.
-   *
+   * 
    * @return the text format
    */
   public static TextFormat createTextFormat() {
@@ -123,7 +132,7 @@ public class GraphicFactory {
 
   /**
    * Creates a new Graphic object.
-   *
+   * 
    * @return the group layer
    */
   public static GroupLayer createGroupLayer() {
@@ -141,8 +150,9 @@ public class GraphicFactory {
 
   /**
    * Draw border.
-   *
-   * @param root the root
+   * 
+   * @param root
+   *          the root
    * @return the group layer
    */
   public static GroupLayer drawBorder(Layer root) {

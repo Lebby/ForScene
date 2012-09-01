@@ -8,6 +8,7 @@ import playn.core.Font;
 import playn.core.Font.Style;
 import playn.core.PlayN;
 import playn.core.TextFormat;
+import playn.core.TextFormat.Alignment;
 
 /**
  * @author blackdevil
@@ -25,6 +26,7 @@ public class DefaultStyle {
                                                DefaultStyle.fontSize);
   public static TextFormat textFormat      = ((new TextFormat())
                                                .withFont(DefaultStyle.font));
+  public static Alignment  textAlign       = Alignment.LEFT;
   public static int        strokeColor     = Color.argb(0xff, 0x0, 0x0, 0x0);
   public static float      strokeWidth     = 1f;
   public static int        backgroundColor = Color.argb(0, 0xff, 0xff, 0xff);

@@ -8,6 +8,7 @@ import playn.core.Font.Style;
 import playn.core.ImageLayer;
 import playn.core.PlayN;
 import playn.core.TextFormat;
+import playn.core.TextFormat.Alignment;
 import playn.core.TextLayout;
 import forscene.core.ui.DefaultStyle;
 
@@ -17,18 +18,19 @@ import forscene.core.ui.DefaultStyle;
  */
 public class SimpleTextObject extends AbstractPaintSceneObject {
 
-  private String  text     = "default";
-  private String  fontName = DefaultStyle.fontName;
-  private float   fontSize;
-  private int     fontColor;
-  private Style   fontStyle;
-  private int     padding;
-  private int     strokeColor;
-  private float   strokeWidth;
-  private boolean stroked;
-  private boolean filled;
-  private int     backgroundColor;
-  private Font    font;
+  private String    text     = "default";
+  private String    fontName = DefaultStyle.fontName;
+  private float     fontSize;
+  private int       fontColor;
+  private Style     fontStyle;
+  private int       padding;
+  private int       strokeColor;
+  private float     strokeWidth;
+  private boolean   stroked;
+  private boolean   filled;
+  private int       backgroundColor;
+  private Font      font;
+  private Alignment align;
 
   // private ImageLayer imageLayer; root is ImageLayer
   /**
@@ -46,6 +48,7 @@ public class SimpleTextObject extends AbstractPaintSceneObject {
     setStroked(DefaultStyle.stroked);
     setFilled(DefaultStyle.filled);
     setBackgroundColor(DefaultStyle.backgroundColor);
+    setAlignment(DefaultStyle.textAlign);
   }
 
   /*
@@ -54,12 +57,26 @@ public class SimpleTextObject extends AbstractPaintSceneObject {
    * @see forscene.system.ISceneObject#updateState()
    */
 
+  /**
+   * @param textAlign
+   */
+  public void setAlignment(Alignment textAlign) {
+    align = textAlign;
+  }
+
   public void write() {
     if (isBuilded()) {
       getImageLayer().destroy();
       float width, height;
-      width = (text.length() * fontSize) / 1.8f;
-      height = fontSize * 1.4f;
+      float maxWidth = 0;
+      String[] splittedText = text.split("\n");
+      for (String element : splittedText) {
+        if (maxWidth < element.length()) {
+          maxWidth = element.length();
+        }
+      }
+      width = (maxWidth * fontSize) / 1.8f;
+      height = fontSize * splittedText.length * 1.4f;
       setCanvasImage(PlayN.graphics().createImage(width, height));
       setCanvas(getCanvasImage().canvas());
       getCanvas().clear();
@@ -69,6 +86,9 @@ public class SimpleTextObject extends AbstractPaintSceneObject {
 
       font = PlayN.graphics().createFont(fontName, fontStyle, fontSize);
       TextFormat fontFormat = ((new TextFormat()).withFont(font));
+      fontFormat = fontFormat.withWrapWidth(width);
+      fontFormat = fontFormat.withAlignment(align);
+
       TextLayout textlay = PlayN.graphics().layoutText(text, fontFormat);
       getCanvas().setFillColor(backgroundColor);
       getCanvas().fillRect(0, 0, getImageLayer().width(),
