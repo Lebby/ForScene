@@ -97,7 +97,7 @@ public interface ISceneObject<T extends Layer> extends LayerObject<T>,
    *          the y
    * @return true, if successful
    */
-  abstract boolean contains(int x, int y);
+  abstract boolean contains(float x, float y);
 
   /**
    * Sets the update rate.

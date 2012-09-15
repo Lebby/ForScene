@@ -1,7 +1,7 @@
 /**
  * 
  */
-package forscene.core.entities.objects;
+package forscene.core.objects;
 
 import playn.core.Font;
 import playn.core.Font.Style;
@@ -10,6 +10,7 @@ import playn.core.PlayN;
 import playn.core.TextFormat;
 import playn.core.TextFormat.Alignment;
 import playn.core.TextLayout;
+import forscene.core.entities.objects.AbstractPaintSceneObject;
 import forscene.core.ui.DefaultStyle;
 
 /**

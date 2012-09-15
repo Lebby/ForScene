@@ -3,7 +3,6 @@
  */
 package forscene.system.events;
 
-import playn.core.PlayN;
 import forscene.system.managers.AbstractGameLoopManager;
 
 // TODO: Auto-generated Javadoc
@@ -13,25 +12,22 @@ import forscene.system.managers.AbstractGameLoopManager;
 public abstract class TimeAlarmEvent extends AbstractEvent {
 
   /** The time. */
-  private float   delay;
+  private long    delay;
 
   /** The first time. */
   private boolean firstTime = true;
 
   /** The timer. */
-  private float   startTime;
+  private long    startTime;
 
   /**
    * Instantiates a new event time alarm.
    * 
    * @param delay
-   *          the time
+   *          the time in msec
    */
-  public TimeAlarmEvent(float delay) {
+  public TimeAlarmEvent(int delay) {
     this.delay = delay;
-    PlayN.log().debug(
-        "Time: " + AbstractGameLoopManager.getInstance().getTicks()
-            + " Alarm at : " + delay);
   }
 
   /**

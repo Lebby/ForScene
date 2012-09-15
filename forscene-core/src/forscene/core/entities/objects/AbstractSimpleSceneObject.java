@@ -35,6 +35,7 @@ public abstract class AbstractSimpleSceneObject extends
   public void setImage(Image image) {
     Asserts.check(image != null, "image can't be null");
     getRoot().setImage(image);
+    setToUpdate(true);
   }
 
   /**
@@ -55,7 +56,7 @@ public abstract class AbstractSimpleSceneObject extends
   public void loadImage(String url) {
     Asserts.check(url != null, "url can't be null");
     Asserts.check(url != "", "url can't be void");
-    Image image = ResourceManager.loadImage(url);
+    Image image = ResourceManager.getImage(url);
     setImage(image);
   }
 

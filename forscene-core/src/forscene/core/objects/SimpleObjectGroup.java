@@ -1,7 +1,9 @@
 /**
  * 
  */
-package forscene.core.entities.objects;
+package forscene.core.objects;
+
+import forscene.core.entities.objects.AbstractSceneObjectGroup;
 
 /**
  * @author blackdevil

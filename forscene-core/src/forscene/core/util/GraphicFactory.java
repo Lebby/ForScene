@@ -35,7 +35,7 @@ public class GraphicFactory {
    * @return the image layer
    */
   public static ImageLayer addImage(String url, AbstractSceneObject<?> scene) {
-    ImageLayer image = ResourceManager.loadImageLayer(url);
+    ImageLayer image = ResourceManager.getImageLayer(url);
 
     if (scene instanceof AbstractSceneObjectGroup) {
       ((AbstractSceneObjectGroup) scene).getRoot().add(image);

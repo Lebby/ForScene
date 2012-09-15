@@ -309,7 +309,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * 
    * @see forscene.core.entities.ISceneObject#contains(int, int)
    */
-  public boolean contains(int x, int y) {
+  public boolean contains(float x, float y) {
     Asserts.check((x * y) >= 0, "x and y must be >=0");
     return contains(x, y, root);
   }
@@ -325,7 +325,7 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    *          the layer
    * @return true, if successful
    */
-  private boolean contains(int x, int y, Layer layer) {
+  private boolean contains(float x, float y, Layer layer) {
     Asserts.check((x * y) >= 0, "x and y must be >=0");
     Asserts.check(layer != null, "layer can't be null");
     if (layer instanceof GroupLayer) {
@@ -339,8 +339,10 @@ public abstract class AbstractSceneObject<T extends Layer> implements
         || (layer instanceof CanvasLayer)) {
       Layer.HasSize tmp = (Layer.HasSize) layer;
 
-      if ((x > tmp.originX()) && (x < (tmp.originX() + tmp.width()))
-          && (y > tmp.originY()) && (y < (tmp.originY() + tmp.height()))) {
+      if (((x > tmp.transform().tx()))
+          && (x < (tmp.transform().tx() + tmp.width()))
+          && (y > tmp.transform().ty())
+          && (y < (tmp.transform().ty() + tmp.height()))) {
         return true;
       }
     }

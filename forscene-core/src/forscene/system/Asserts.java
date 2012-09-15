@@ -33,8 +33,6 @@ public class Asserts {
       PlayN.log().debug(message);
       Exception e = new Exception(message);
       e.printStackTrace();
-      // System.exit(0);
-
     }
   }
 

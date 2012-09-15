@@ -4,6 +4,7 @@
 package forscene.system.managers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import playn.core.Image;
 import playn.core.ImageLayer;
@@ -18,22 +19,25 @@ import forscene.system.entities.Resource;
 public class ResourceManager {
 
   /** The instance. */
-  private static ResourceManager instance = null;
-
-  /** The done. */
-  public ArrayList<Resource<?>>  done;
-
-  /** The error. */
-  private ArrayList<Resource<?>> error;
-
-  /** The ready. */
-  private boolean                ready    = false;
-
-  /** The retry. */
-  private int                    retry    = 5;
+  private static ResourceManager       instance = null;
 
   /** The to load. */
-  private ArrayList<Resource<?>> toLoad;
+  private ArrayList<Resource<?>>       toLoad;
+
+  /** The done. */
+  public ArrayList<Resource<?>>        done;
+
+  /** The error. */
+  private ArrayList<Resource<?>>       error;
+
+  /** Loaded Resource */
+  private HashMap<String, Resource<?>> loadedResources;
+
+  /** The ready. */
+  private boolean                      ready    = false;
+
+  /** The retry. */
+  private int                          retry    = 5;
 
   /**
    * AssetWatcher contains a listener that sets Assetwacher isDone when all
@@ -54,6 +58,19 @@ public class ResourceManager {
     return ResourceManager.instance;
   }
 
+  public static Image getImage(String url, boolean forceReload) {
+    Image image = null;
+    if (forceReload
+        || !ResourceManager.getInstance().loadedResources.containsKey(url)) {
+      image = PlayN.assets().getImage(url);
+      ResourceManager.getInstance().load(image);
+    } else {
+      image = (Image) ResourceManager.getInstance().loadedResources.get(url)
+          .getResource();
+    }
+    return image;
+  }
+
   /**
    * Load image.
    * 
@@ -61,10 +78,16 @@ public class ResourceManager {
    *          the url
    * @return the image
    */
-  public static Image loadImage(String url) {
-    Image image = PlayN.assets().getImage(url);
-    ResourceManager.getInstance().load(image);
-    return image;
+
+  public static Image getImage(String url) {
+    return ResourceManager.getImage(url, false);
+  }
+
+  public static ImageLayer getImageLayer(String url, boolean forceReload) {
+    Image bgImage;
+    bgImage = ResourceManager.getImage(url, forceReload);
+    ImageLayer bgLayer = PlayN.graphics().createImageLayer(bgImage);
+    return bgLayer;
   }
 
   /**
@@ -74,11 +97,22 @@ public class ResourceManager {
    *          the url
    * @return the image layer
    */
-  public static ImageLayer loadImageLayer(String url) {
-    Image bgImage = PlayN.assets().getImage(url);
-    ImageLayer bgLayer = PlayN.graphics().createImageLayer(bgImage);
-    ResourceManager.getInstance().load(bgImage);
-    return bgLayer;
+  public static ImageLayer getImageLayer(String url) {
+    return ResourceManager.getImageLayer(url, false);
+  }
+
+  public static Sound getSound(String url, boolean forceReload) {
+    Sound sound;
+    if (forceReload
+        || !ResourceManager.getInstance().loadedResources.containsKey(url)) {
+      sound = PlayN.assets().getSound(url);
+      ResourceManager.getInstance().load(sound);
+    } else {
+      sound = (Sound) ResourceManager.getInstance().loadedResources.get(url)
+          .getResource();
+    }
+    return sound;
+
   }
 
   /**
@@ -88,7 +122,7 @@ public class ResourceManager {
    *          the url
    * @return the sound
    */
-  public static Sound loadSound(String url) {
+  public static Sound getSound(String url) {
     Sound sound = PlayN.assets().getSound(url);
     ResourceManager.getInstance().load(sound);
     return sound;
@@ -101,6 +135,7 @@ public class ResourceManager {
     toLoad = new ArrayList<Resource<?>>();
     error = new ArrayList<Resource<?>>();
     done = new ArrayList<Resource<?>>();
+    loadedResources = new HashMap<String, Resource<?>>();
 
     /*
      * watcher = new AssetWatcher(new AssetWatcher.Listener() {
@@ -200,7 +235,7 @@ public class ResourceManager {
       (error.get(0)).load();
       error.remove(0);
       --i;
+      PlayN.log().debug("error !empty");
     }
   }
-
 }
