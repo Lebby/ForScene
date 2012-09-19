@@ -7,7 +7,7 @@ import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.ImageLayer;
 import playn.core.PlayN;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -47,8 +47,8 @@ public abstract class AbstractPaintSceneObject extends AbstractSceneObjectGroup 
    */
   public AbstractPaintSceneObject() {
     setCanvasImage(PlayN.graphics().createImage(
-        AbstractGameLoopManager.getInstance().getWidth(),
-        AbstractGameLoopManager.getInstance().getHeight()));
+        GameLoopManager.getInstance().getWidth(),
+        GameLoopManager.getInstance().getHeight()));
     setCanvas(getCanvasImage().canvas());
     getCanvas().clear();
     imageLayer = PlayN.graphics().createImageLayer(getCanvasImage());

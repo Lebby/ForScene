@@ -4,7 +4,7 @@
 package forscene.system.events;
 
 import forscene.system.entities.ForSceneConfigurator;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 import forscene.system.managers.EventManager;
 
 // TODO: Auto-generated Javadoc
@@ -22,7 +22,7 @@ public class NextSceneEvent extends AbstractEvent {
   public void run() {
     EventManager.getInstance()
         .push(
-            new LoadSceneEvent(AbstractGameLoopManager.getInstance()
+            new LoadSceneEvent(GameLoopManager.getInstance()
                 .getNextScene()),
             ForSceneConfigurator.EVENT_MANAGER_DEFAULT_EVENT_SYSTEM_PRIORITY);
     setDone(true);

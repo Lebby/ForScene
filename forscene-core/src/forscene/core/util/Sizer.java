@@ -6,7 +6,7 @@ package forscene.core.util;
 import playn.core.Layer;
 import playn.core.PlayN;
 import forscene.core.entities.objects.AbstractSceneObject;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 public class Sizer extends AbstractSceneObject<Layer.HasSize> {
 
@@ -22,8 +22,8 @@ public class Sizer extends AbstractSceneObject<Layer.HasSize> {
   public void build() {
 
     sizer = PlayN.graphics().createImmediateLayer(
-        (int) AbstractGameLoopManager.getInstance().getWidth(),
-        (int) AbstractGameLoopManager.getInstance().getHeight(), null);
+        (int) GameLoopManager.getInstance().getWidth(),
+        (int) GameLoopManager.getInstance().getHeight(), null);
 
     setRoot(sizer);
     sizer.setVisible(false);

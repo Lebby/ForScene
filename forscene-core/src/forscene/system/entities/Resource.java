@@ -35,12 +35,12 @@ public class Resource<T> implements Comparable<T> {
 
     if (_res instanceof Image) {
       ((Image) (_res)).addCallback(new ResourceCallback<Image>() {
-        public void done(final Image resource) {
+        public void done(Image resource) {
           PlayN.log().debug("Resource" + resource + " Loaded DONE");
           _done();
         };
 
-        public void error(final Throwable err) {
+        public void error(Throwable err) {
           PlayN.log().debug("Resource load error: " + err);
           _error();
         }
@@ -49,12 +49,12 @@ public class Resource<T> implements Comparable<T> {
 
     if ((_res instanceof Sound) || (_res instanceof AbstractSound)) {
       ((Sound) (_res)).addCallback(new ResourceCallback<Sound>() {
-        public void done(final Sound resource) {
+        public void done(Sound resource) {
           PlayN.log().debug("Resource" + resource + " Loaded");
           _done();
         };
 
-        public void error(final Throwable err) {
+        public void error(Throwable err) {
           PlayN.log().debug("Resource load error: " + err);
           _error();
         }

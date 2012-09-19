@@ -4,7 +4,7 @@
 package forscene.system.events;
 
 import forscene.core.entities.AbstractScene;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -44,7 +44,7 @@ public class UpdateSceneEvent extends AbstractEvent {
       }
       // It has a fixed update rate
       if (scene.getUpdateRate() != 0) {
-        if (AbstractGameLoopManager.getInstance().getCurrentScene() != scene) {
+        if (GameLoopManager.getInstance().getCurrentScene() != scene) {
           setDone(true);
         }
         if ((UpdateSceneEvent.tick % scene.getUpdateRate()) == 0) {

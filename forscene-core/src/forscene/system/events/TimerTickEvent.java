@@ -3,7 +3,7 @@
  */
 package forscene.system.events;
 
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 
 // TODO: Auto-generated Javadoc
@@ -23,7 +23,7 @@ public class TimerTickEvent extends AbstractEvent{
 	 */
 	@Override
 	public void run() {
-		AbstractGameLoopManager.getInstance().incTicks();
+		GameLoopManager.getInstance().incTicks();
 	}
 
 

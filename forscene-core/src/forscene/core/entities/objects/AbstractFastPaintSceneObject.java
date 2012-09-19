@@ -6,7 +6,7 @@ package forscene.core.entities.objects;
 import playn.core.PlayN;
 import playn.core.Surface;
 import playn.core.SurfaceLayer;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -24,8 +24,8 @@ public abstract class AbstractFastPaintSceneObject extends
    */
   public AbstractFastPaintSceneObject() {
     SurfaceLayer layer = PlayN.graphics().createSurfaceLayer(
-        AbstractGameLoopManager.getInstance().getWidth(),
-        AbstractGameLoopManager.getInstance().getHeight());
+        GameLoopManager.getInstance().getWidth(),
+        GameLoopManager.getInstance().getHeight());
     setRoot(layer);
   }
 

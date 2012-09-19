@@ -131,17 +131,24 @@ public abstract class AbstractSceneObject<T extends Layer> implements
    * @see forscene.core.entities.ISceneObject#systemBuild()
    */
   public void systemBuild() {
-    this.load();
+    // call for prebuild action
+    this.preBuild();
 
-    while (!ResourceManager.getInstance().isReady()) {
-      ResourceManager.getInstance().loadResources();
-      PlayN.log().debug(ResourceManager.getInstance().done.toString());
-    }
+    // load all resource needed delcared on childs
+    // while (!ResourceManager.getInstance().isReady()) {
+    ResourceManager.getInstance().loadResources();
+    PlayN.log().debug(ResourceManager.getInstance().done.toString());
+    // }
     setLoaded(true);
 
+    // build all childs and scene
     build();
 
     setBuilded(true);
+
+    // call post build
+    postBuild();
+
     setToUpdate(true);
   }
 
@@ -380,11 +387,17 @@ public abstract class AbstractSceneObject<T extends Layer> implements
   /*
    * (non-Javadoc)
    * 
-   * @see forscene.system.ISceneObject#loadResource()
+   * @see forscene.system.ISceneObject#preBuild()
    */
-  public void load() {
-    // TODO Auto-generated method stub
+  public void preBuild() {
+  }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see forscene.system.ISceneObject#postBuild()
+   */
+  public void postBuild() {
   }
 
   public void setLoaded(boolean isLoaded) {

@@ -164,7 +164,7 @@ public class ResourceManager {
       Sound _res = (Sound) res.getResource();
       // watcher.add(_res);
     }
-    loadResources();
+    // loadResources();
     ready = false;
   }
 
@@ -195,6 +195,7 @@ public class ResourceManager {
    * @return true, if is ready
    */
   public boolean isReady() {
+    PlayN.log().debug("ResourceManger ready: toLoad.size: " + toLoad.size());
     ready = (toLoad.isEmpty() && (toLoad.size() == 0)); // && watcher.isDone());
     if (!ready) {
       return false;
@@ -202,6 +203,9 @@ public class ResourceManager {
     for (Object element : done) {
       Resource<?> el = (Resource<?>) element;
       ready = (ready && (el.getState() == ResourceState.DONE));
+      PlayN.log().debug(
+          "ResourceManger ready: state : " + el.getState() + " "
+              + el.getResource());
     }
     return ready;
   }

@@ -238,4 +238,10 @@ public interface IGameLoopManager {
    */
   float getWidth();
 
+  void build();
+
+  void preBuild();
+
+  void postBuild();
+
 }

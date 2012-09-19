@@ -47,9 +47,14 @@ public interface ISceneObject<T extends Layer> extends LayerObject<T>,
   abstract void build();
 
   /**
-   * .LoadResource
+   * Prebuild // ex load
    */
-  abstract void load();
+  abstract void preBuild();
+
+  /**
+   * Postbuild
+   */
+  abstract void postBuild();
 
   /**
    * Builds the once.

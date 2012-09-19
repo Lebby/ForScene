@@ -5,21 +5,17 @@ package forscene.core.entities.toTest;
 
 import java.util.HashMap;
 
-import playn.core.GroupLayer;
-import forscene.core.entities.objects.AbstractSceneObject;
+import forscene.core.entities.objects.AbstractSimpleSceneObject;
 import forscene.system.Asserts;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class AbstractActor.
  */
-public abstract class AbstractActor extends AbstractSceneObject {
+public abstract class AbstractActor extends AbstractSimpleSceneObject {
 
   /** The animations. */
   private HashMap<String, AbstractActorAnimation> animations;
-
-  /** The rest. */
-  private GroupLayer                              rest;
 
   /**
    * Instantiates a new abstract actor.

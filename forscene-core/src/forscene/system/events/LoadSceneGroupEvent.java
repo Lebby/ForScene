@@ -5,7 +5,7 @@ package forscene.system.events;
 
 import playn.core.PlayN;
 import forscene.core.entities.AbstractSceneGroup;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,7 +35,7 @@ public class LoadSceneGroupEvent extends AbstractEvent {
   @Override
   public void run() {
     PlayN.log().debug("EventLoadSceneGroup RUN scene: " + scene);
-    AbstractGameLoopManager.getInstance().loadSceneGroup(scene);
+    GameLoopManager.getInstance().loadSceneGroup(scene);
     setDone(true);
   }
 

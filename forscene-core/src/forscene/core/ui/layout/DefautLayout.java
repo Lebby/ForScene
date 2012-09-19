@@ -10,7 +10,7 @@ import forscene.core.entities.objects.AbstractSceneObject;
 import forscene.core.util.BasicShapeInfo;
 import forscene.core.util.ShapeUtil;
 import forscene.core.util.SizeInfo;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -109,7 +109,7 @@ public class DefautLayout extends AbstractStaticLayout {
                                                                          // ...
         {
           finish = true;
-          info.setX(AbstractGameLoopManager.getInstance().getWidth()); // put
+          info.setX(GameLoopManager.getInstance().getWidth()); // put
                                                                        // outside
                                                                        // ...
         }
@@ -149,8 +149,8 @@ public class DefautLayout extends AbstractStaticLayout {
   @Override
   public void build() {
     if ((getHeight() == 0) || (getWidth() == 0)) {
-      setHeight(AbstractGameLoopManager.getInstance().getHeight());
-      setWidth(AbstractGameLoopManager.getInstance().getWidth());
+      setHeight(GameLoopManager.getInstance().getHeight());
+      setWidth(GameLoopManager.getInstance().getWidth());
     }
     elementMatrix = new ArrayList<ArrayList<SizeInfo>>();
   }

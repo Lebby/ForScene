@@ -5,7 +5,7 @@ package forscene.system.events;
 
 import forscene.core.entities.AbstractScene;
 import forscene.system.entities.ForSceneConfigurator;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 import forscene.system.managers.EventManager;
 
 // TODO: Auto-generated Javadoc
@@ -35,7 +35,7 @@ public class LoadSceneEvent extends AbstractEvent {
 
   @Override
   public void run() {
-    AbstractGameLoopManager.getInstance().loadScene(scene);
+    GameLoopManager.getInstance().loadScene(scene);
     if (scene.getKeyboardListener() != null) {
       scene.getKeyboardListener().register();
     }

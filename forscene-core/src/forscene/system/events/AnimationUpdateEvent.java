@@ -5,7 +5,7 @@ package forscene.system.events;
 
 import forscene.core.entities.AbstractAnimation;
 import forscene.system.Asserts;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -48,13 +48,13 @@ public class AnimationUpdateEvent extends AbstractEvent {
        */
       long scaledFps;
       if (updateRate != 0) {
-        scaledFps = (AbstractGameLoopManager.getInstance().getTickRate() / updateRate);
+        scaledFps = (GameLoopManager.getInstance().getTickRate() / updateRate);
       } else {
         scaledFps = 1;
       }
 
       if ((updateRate == 0)
-          || ((((AbstractGameLoopManager.getInstance().getTicks())) % scaledFps) == 0)) {
+          || ((((GameLoopManager.getInstance().getTicks())) % scaledFps) == 0)) {
         animation.run();
         animation.getTarget().setToUpdate(false);
         setDone(false);

@@ -39,6 +39,7 @@ public abstract class AbstractAnimatedSceneObject extends
    * Instantiates a new abstract animated scene object.
    */
   public AbstractAnimatedSceneObject() {
+
     ImmediateLayer imm = PlayN.graphics().createImmediateLayer(new Renderer() {
       // default render ...
       public void render(Surface surface) {
@@ -57,6 +58,12 @@ public abstract class AbstractAnimatedSceneObject extends
       }
     });
     setRoot(imm);
+    /*
+     * SurfaceLayer layer = PlayN.graphics().createSurfaceLayer(
+     * AbstractGameLoopManager.getInstance().getWidth(),
+     * AbstractGameLoopManager.getInstance().getHeight()); surface =
+     * sl.surface();
+     */
 
   }
 
@@ -163,7 +170,9 @@ public abstract class AbstractAnimatedSceneObject extends
    * Inner draw.
    */
   private void innerDraw() {
-    surface.drawImage(image, x, y);
+    if ((image != null) && (surface != null)) {
+      surface.drawImage(image, x, y);
+    }
   }
 
   /**

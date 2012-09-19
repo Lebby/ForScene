@@ -168,10 +168,8 @@ public abstract class AbstractSceneObjectGroup extends
       element.getInstance().buildOnce();
       element.getInstance().setParent(this);
       element.getInstance().setToUpdate(true);
-      // element.getInstance().setToUpdate(false);
 
       if (!element.getInstance().isToUpdate()) {
-
         if (element.getInstance() instanceof AbstractSceneObjectGroup) {
           ((AbstractSceneObjectGroup) element.getInstance()).buildChilds();
         }
@@ -184,9 +182,6 @@ public abstract class AbstractSceneObjectGroup extends
         element = null;
       }
     }
-
-    // setToUpdate(false);
-    // setToUpdate(true);
   }
 
   /**
@@ -268,14 +263,16 @@ public abstract class AbstractSceneObjectGroup extends
    */
   @Override
   public void systemBuild() {
-    load();
+    preBuild();
 
+    setLoaded(true);
     while (!ResourceManager.getInstance().isReady()) {
       ResourceManager.getInstance().loadResources();
     }
-    setLoaded(true);
+    // to do by events
     build();
     buildChilds();
+
     setBuilded(true);
     setToUpdate(true);
   }

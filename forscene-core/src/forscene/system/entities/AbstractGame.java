@@ -7,12 +7,14 @@ import java.util.ArrayList;
 
 import playn.core.Game;
 import playn.core.GroupLayer;
+import playn.core.PlayN;
 import forscene.core.entities.AbstractScene;
 import forscene.core.entities.AbstractSceneGroup;
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.events.InitEvent;
+import forscene.system.managers.EventManager;
+import forscene.system.managers.GameLoopManager;
 import forscene.system.managers.IGameLoopManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractGame. This class is the "main class" that you need to
  * extends to implement your game. It fowards management of game loop to an
@@ -31,10 +33,10 @@ import forscene.system.managers.IGameLoopManager;
 public abstract class AbstractGame implements Game, IGameLoopManager {
 
   /** Frame count. */
-  static long      frame = 0;
+  static long             frame = 0;
 
   /** The game manager instance. */
-  IGameLoopManager gameManager;
+  static IGameLoopManager gameManager;
 
   /**
    * Main method. Implementing this method you can add scenes and scenegroups to
@@ -43,15 +45,25 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    */
   public abstract void build();
 
+  public void preBuild() {
+  }
+
+  public void postBuild() {
+  }
+
   /*
    * (non-Javadoc)
    * 
    * @see playn.core.Game#init()
    */
   public void init() {
-    gameManager = AbstractGameLoopManager.getInstance();
-    build();
-
+    AbstractGame.gameManager = GameLoopManager.getInstance(this);
+    PlayN.log().debug("INIT CALLED");
+    EventManager.getInstance().push(new InitEvent(), (short) 0);
+    /*
+     * preBuild(); while (!ResourceManager.getInstance().isReady()) { ; }
+     * build(); postBuild();
+     */
   };
 
   /*
@@ -60,7 +72,9 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see playn.core.Game#paint(float)
    */
   public void paint(float alpha) {
-    paint();
+    if (AbstractGame.gameManager != null) {
+      paint();
+    }
   }
 
   // delta = ms from last call
@@ -70,16 +84,17 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see playn.core.Game#update(float)
    */
   public void update(float delta) {
-
-    AbstractGame.frame++;
-    incTicks();
-    incTime(delta);
-    // #Debug
-    /*
-     * if ((updateRate() != 0 ) && ( (frame%updateRate()) ==0) ) {
-     * updateState(); }
-     */
-    updateState();
+    if (AbstractGame.gameManager != null) {
+      AbstractGame.frame++;
+      incTicks();
+      incTime(delta);
+      // #Debug
+      /*
+       * if ((updateRate() != 0 ) && ( (frame%updateRate()) ==0) ) {
+       * updateState(); }
+       */
+      updateState();
+    }
 
   }
 
@@ -89,7 +104,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#incTime(float)
    */
   public void incTime(float delta) {
-    gameManager.incTime(delta);
+    AbstractGame.gameManager.incTime(delta);
   }
 
   /*
@@ -98,7 +113,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getSceneGroups()
    */
   public ArrayList<AbstractSceneGroup> getSceneGroups() {
-    return gameManager.getSceneGroups();
+    return AbstractGame.gameManager.getSceneGroups();
 
   }
 
@@ -108,7 +123,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getNextScene()
    */
   public AbstractScene getNextScene() {
-    return gameManager.getNextScene();
+    return AbstractGame.gameManager.getNextScene();
   }
 
   /*
@@ -117,7 +132,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getNextSceneGroup()
    */
   public AbstractSceneGroup getNextSceneGroup() {
-    return gameManager.getNextSceneGroup();
+    return AbstractGame.gameManager.getNextSceneGroup();
   }
 
   /*
@@ -128,7 +143,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * .core.entities.AbstractSceneGroup)
    */
   public void setCurrentSceneGroup(AbstractSceneGroup sceneGroup) {
-    gameManager.setCurrentSceneGroup(sceneGroup);
+    AbstractGame.gameManager.setCurrentSceneGroup(sceneGroup);
 
   }
 
@@ -140,7 +155,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * core.entities.AbstractScene)
    */
   public void setCurrentScene(AbstractScene scene) {
-    gameManager.setCurrentScene(scene);
+    AbstractGame.gameManager.setCurrentScene(scene);
 
   }
 
@@ -150,7 +165,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getCurrentSceneGroup()
    */
   public AbstractSceneGroup getCurrentSceneGroup() {
-    return gameManager.getCurrentSceneGroup();
+    return AbstractGame.gameManager.getCurrentSceneGroup();
   }
 
   /*
@@ -159,7 +174,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getCurrentScene()
    */
   public AbstractScene getCurrentScene() {
-    return gameManager.getCurrentScene();
+    return AbstractGame.gameManager.getCurrentScene();
   }
 
   /*
@@ -170,7 +185,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * .AbstractScene)
    */
   public void loadScene(AbstractScene scene) {
-    gameManager.loadScene(scene);
+    AbstractGame.gameManager.loadScene(scene);
   }
 
   /*
@@ -181,7 +196,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * .entities.AbstractSceneGroup)
    */
   public void loadSceneGroup(AbstractSceneGroup sceneGroup) {
-    gameManager.loadSceneGroup(sceneGroup);
+    AbstractGame.gameManager.loadSceneGroup(sceneGroup);
   }
 
   /*
@@ -192,7 +207,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * .entities.AbstractSceneGroup)
    */
   public void addSceneGroup(AbstractSceneGroup sceneGroup) {
-    gameManager.addSceneGroup(sceneGroup);
+    AbstractGame.gameManager.addSceneGroup(sceneGroup);
   }
 
   /*
@@ -203,7 +218,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * .core.entities.AbstractSceneGroup)
    */
   public void removeSceneGroup(AbstractSceneGroup sceneGroup) {
-    gameManager.removeSceneGroup(sceneGroup);
+    AbstractGame.gameManager.removeSceneGroup(sceneGroup);
 
   }
 
@@ -213,7 +228,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#updateState()
    */
   public void updateState() {
-    gameManager.updateState();
+    AbstractGame.gameManager.updateState();
 
   }
 
@@ -225,7 +240,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * .AbstractScene)
    */
   public boolean draw(AbstractScene scene) {
-    return gameManager.draw(scene);
+    return AbstractGame.gameManager.draw(scene);
   }
 
   /*
@@ -234,7 +249,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#resetSeconds()
    */
   public void resetSeconds() {
-    gameManager.resetSeconds();
+    AbstractGame.gameManager.resetSeconds();
 
   }
 
@@ -244,7 +259,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getRoot()
    */
   public GroupLayer getRoot() {
-    return gameManager.getRoot();
+    return AbstractGame.gameManager.getRoot();
   }
 
   /*
@@ -255,7 +270,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * )
    */
   public void setRoot(GroupLayer root) {
-    gameManager.setRoot(root);
+    AbstractGame.gameManager.setRoot(root);
 
   }
 
@@ -265,7 +280,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#setSeconds(long)
    */
   public void setSeconds(long seconds) {
-    gameManager.setSeconds(seconds);
+    AbstractGame.gameManager.setSeconds(seconds);
 
   }
 
@@ -276,7 +291,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * forscene.core.LoopController.IGameLoopManager#setCurrentTimeTimer(long)
    */
   public void setCurrentTimeTimer(long currentTimeTimer) {
-    gameManager.setCurrentTimeTimer(currentTimeTimer);
+    AbstractGame.gameManager.setCurrentTimeTimer(currentTimeTimer);
 
   }
 
@@ -286,7 +301,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getSeconds()
    */
   public long getSeconds() {
-    return gameManager.getSeconds();
+    return AbstractGame.gameManager.getSeconds();
 
   }
 
@@ -296,7 +311,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getCurrentTimeTimer()
    */
   public long getCurrentTimeTimer() {
-    return gameManager.getCurrentTimeTimer();
+    return AbstractGame.gameManager.getCurrentTimeTimer();
   }
 
   /*
@@ -305,7 +320,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#paint()
    */
   public void paint() {
-    gameManager.paint();
+    AbstractGame.gameManager.paint();
 
   }
 
@@ -315,7 +330,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#setSize(int, int)
    */
   public void setSize(int width, int height) {
-    gameManager.setSize(width, height);
+    AbstractGame.gameManager.setSize(width, height);
 
   }
 
@@ -325,7 +340,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#goNext()
    */
   public void goNext() {
-    gameManager.goNext();
+    AbstractGame.gameManager.goNext();
 
   }
 
@@ -335,7 +350,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#incTicks()
    */
   public void incTicks() {
-    gameManager.incTicks();
+    AbstractGame.gameManager.incTicks();
 
   }
 
@@ -345,7 +360,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getTicks()
    */
   public long getTicks() {
-    return gameManager.getTicks();
+    return AbstractGame.gameManager.getTicks();
   }
 
   /*
@@ -354,7 +369,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getTickRate()
    */
   public short getTickRate() {
-    return gameManager.getTickRate();
+    return AbstractGame.gameManager.getTickRate();
   }
 
   /*
@@ -365,7 +380,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * .AbstractScene)
    */
   public void addScene(AbstractScene scene) {
-    gameManager.addScene(scene);
+    AbstractGame.gameManager.addScene(scene);
   }
 
   /*
@@ -374,7 +389,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getHeight()
    */
   public float getHeight() {
-    return gameManager.getHeight();
+    return AbstractGame.gameManager.getHeight();
   }
 
   /*
@@ -383,7 +398,7 @@ public abstract class AbstractGame implements Game, IGameLoopManager {
    * @see forscene.core.LoopController.IGameLoopManager#getHeight()
    */
   public float getWidth() {
-    return gameManager.getWidth();
+    return AbstractGame.gameManager.getWidth();
   }
 
 }

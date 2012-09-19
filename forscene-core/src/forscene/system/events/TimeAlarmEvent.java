@@ -3,7 +3,7 @@
  */
 package forscene.system.events;
 
-import forscene.system.managers.AbstractGameLoopManager;
+import forscene.system.managers.GameLoopManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -36,7 +36,7 @@ public abstract class TimeAlarmEvent extends AbstractEvent {
   public void start() {
     if (firstTime) {
       firstTime = false;
-      startTime = AbstractGameLoopManager.getInstance().getTicks();
+      startTime = GameLoopManager.getInstance().getTicks();
     }
   }
 
@@ -47,7 +47,7 @@ public abstract class TimeAlarmEvent extends AbstractEvent {
    */
   @Override
   public void run() {
-    if (AbstractGameLoopManager.getInstance().getTicks() >= (startTime + delay)) {
+    if (GameLoopManager.getInstance().getTicks() >= (startTime + delay)) {
       alarm();
       setDone(true);
     } else {
